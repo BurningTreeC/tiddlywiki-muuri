@@ -9,7 +9,6 @@ tags: $:/tags/PageControls
 </$list>
 \end
 \whitespace trim
-<$reveal state="$:/view" type="match" text="muuri">
 <$vars rangeMax={{$:/config/muuri/storyview/columns/max}} columns={{{ [[$:/config/muuri/storyview/columns]!is[missing]get[text]] ~[[1]] }}}>
 <$button tooltip={{$:/language/Buttons/Muuri/Columns/Hint}} aria-label={{$:/language/Buttons/Muuri/Columns/Caption}} class=<<tv-config-toolbar-class>> actions=<<set-next-column-actions>>>
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
@@ -20,4 +19,3 @@ tags: $:/tags/PageControls
 </$list>
 </$button>
 </$vars>
-</$reveal>

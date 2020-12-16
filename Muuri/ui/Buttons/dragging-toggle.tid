@@ -9,7 +9,6 @@ dragging $onoff$ - [$(draggingShortcut)$]
 \end
 
 \whitespace trim
-<$reveal state="$:/view" type="match" text="muuri">
 <$vars draggingShortcut={{$:/config/shortcuts/select-text}} state="$:/state/config/muuri/storyview/drag-enabled">
 <$reveal state=<<state>> type="nomatch" text="no">
 <$button class=<<get-button-class "tc-selected">> tooltip=<<get-dragging-tooltip "off">>>
@@ -34,4 +33,3 @@ dragging $onoff$ - [$(draggingShortcut)$]
 </$button>
 </$reveal>
 </$vars>
-</$reveal>
