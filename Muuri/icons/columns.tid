@@ -1,0 +1,6 @@
+title: $:/plugins/BTC/Muuri/icons/column
+tags: $:/tags/Image
+
+<$wikify name="foregroundColor" text=<<colour page-background>>>
+<svg class="tc-image-button" width="26pt" height="26pt" viewBox="3 3 18 18"><g fill-rule="evenodd"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14"/><text font-family="Helvetica" font-size={{{ [<columns>length[]match[1]addprefix[12]removesuffix[1]] [<columns>length[]match[2]addprefix[10]removesuffix[2]] ~[[8]] }}} font-weight="bold" fill=<<foregroundColor>>><tspan x="12" y="16" text-anchor="middle"><<columns>></tspan></text></g></svg>
+</$wikify>

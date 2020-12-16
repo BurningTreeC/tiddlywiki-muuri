@@ -1,0 +1,23 @@
+title: $:/plugins/BTC/Muuri/ui/Buttons/column
+tags: $:/tags/PageControls
+
+\define set-next-column-actions()
+<$list filter="[<columns>!match<rangeMax>]" emptyMessage="""
+<$action-setfield $tiddler="$:/config/muuri/storyview/columns" text="1"/>
+""">
+<$action-setfield $tiddler="$:/config/muuri/storyview/columns" text={{{ [range<rangeMax>after<columns>] }}}/>
+</$list>
+\end
+\whitespace trim
+<$reveal state="$:/view" type="match" text="muuri">
+<$vars rangeMax={{$:/config/muuri/storyview/columns/max}} columns={{{ [[$:/config/muuri/storyview/columns]!is[missing]get[text]] ~[[1]] }}}>
+<$button tooltip={{$:/language/Buttons/Muuri/Columns/Hint}} aria-label={{$:/language/Buttons/Muuri/Columns/Caption}} class=<<tv-config-toolbar-class>> actions=<<set-next-column-actions>>>
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/plugins/BTC/Muuri/icons/column}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text"><$text text="columns"/></span>
+</$list>
+</$button>
+</$vars>
+</$reveal>

@@ -1,0 +1,28 @@
+{
+	"tiddlers": [
+		{
+			"file": "modules/storyviews/muuri.js",
+			"fields": {
+				"type": "application/javascript",
+				"title": "$:/plugins/BTC/Muuri/modules/storyviews/muuri.js",
+				"module-type": "storyview",
+				"name": "muuri",
+				"description": "Muuri StoryView"
+			}
+		},{
+			"file": "lib/muuri.min.js",
+			"fields": {
+				"type": "application/javascript",
+				"title": "$:/plugins/BTC/Muuri/library/muuri.min.js",
+				"module-type": "library"
+			}
+		},{
+			"file": "lib/web-animations-polyfill.js",
+			"fields": {
+				"type": "application/javascript",
+				"title": "$:/plugins/BTC/Muuri/library/web-animations-polyfill.js",
+				"module-type": "library"
+			}
+		}
+	]
+}
