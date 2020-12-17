@@ -154,9 +154,7 @@ MuuriStoryView.prototype.insert = function(widget) {
 	var itemTitle = widget.parseTreeNode.itemTitle;
 	var targetIndex = this.listWidget.findListItem(0,itemTitle);
 	if(this.itemTitlesArray.indexOf(itemTitle) !== -1) {
-		var index = this.itemTitlesArray.indexOf(itemTitle),
-			items = this.muuri.getItems();
-		//this.muuri.remove([items[index]],{removeElements: true, layout: false})
+		var index = this.itemTitlesArray.indexOf(itemTitle);
 		this.muuri._items.splice(index,1);
 		this.muuri.refreshItems();
 	}
