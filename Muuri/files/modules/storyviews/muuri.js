@@ -127,6 +127,18 @@ MuuriStoryView.prototype.synchronizeGrid = function() {
 	}
 };
 
+MuuriStoryView.prototype.getItemIndexes = function(array,target) {
+    var indexes = [];
+    var count = 0;
+    for (var i=0; i<array.length; i++) {
+        if (array[i] === target) {
+            indexes.push(i);
+            count++;
+        }
+    }
+    return indexes;
+}
+
 MuuriStoryView.prototype.refreshItemTitlesArray = function() {
 	this.muuri.refreshItems();
 	var items = this.muuri.getItems(),
