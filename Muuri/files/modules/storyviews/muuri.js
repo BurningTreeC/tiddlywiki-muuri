@@ -36,58 +36,61 @@ var MuuriStoryView = function(listWidget) {
 	var self = this;
 	this.listWidget = listWidget;
 	this.itemTitlesArray = [];
+	this.connectedGrids = [];
 	this.collectAttributes();
 	this.muuri = this.createMuuriGrid();
-	this.muuri.listWidget = listWidget;
-	var items = this.muuri.getItems();
-	for(var i=0; i<items.length; i++) {
-		var element = items[i].getElement();
-		this.itemTitlesArray.push(this.getItemTitle(items[i]));
-		this.addResizeListener(element,function() {
+	if(this.muuri) {
+		this.muuri.listWidget = listWidget;
+		var items = this.muuri.getItems();
+		for(var i=0; i<items.length; i++) {
+			var element = items[i].getElement();
+			this.itemTitlesArray.push(this.getItemTitle(items[i]));
+			this.addResizeListener(element,function() {
+				self.refreshMuuriGrid();
+			});
+		}
+		this.addResizeListener(self.muuri._element,function() {
 			self.refreshMuuriGrid();
 		});
+		this.muuri.on("dragReleaseEnd",function(item) {
+			self.onDragReleaseEnd(item);
+		})
+		.on("add",function(items) {
+			self.updateZIndexList();
+		})
+		.on("remove",function(items) {
+			self.updateZIndexList();
+		})
+		.on("dragInit",function(item,event) {
+			self.inheritIframeEvents();
+		})
+		.on("dragStart",function(item,event) {
+		})
+		.on("dragEnd",function(item,event) {
+			self.restoreIframeEvents();
+		})
+		.on("layoutStart",function() {
+
+		})
+		.on("layoutEnd",function() {
+			self.updateZIndexList();
+		})
+		.on("beforeSend",function(data) {
+
+		})
+		.on("send",function(data) {
+
+		})
+		.on("beforeReceive",function(data) {
+
+		})
+		.on("receive",function(data) {
+
+		});
+		$tw.wiki.addEventListener("change",function(changes) {
+			self.handleRefresh(changes);
+		});
 	}
-	this.addResizeListener(self.muuri._element,function() {
-		self.refreshMuuriGrid();
-	});
-	this.muuri.on("dragReleaseEnd",function(item) {
-		self.onDragReleaseEnd(item);
-	})
-	.on("add",function(items) {
-		self.updateZIndexList();
-	})
-	.on("remove",function(items) {
-		self.updateZIndexList();
-	})
-	.on("dragInit",function(item,event) {
-		self.inheritIframeEvents();
-	})
-	.on("dragStart",function(item,event) {
-	})
-	.on("dragEnd",function(item,event) {
-		self.restoreIframeEvents();
-	})
-	.on("layoutStart",function() {
-
-	})
-	.on("layoutEnd",function() {
-		self.updateZIndexList();
-	})
-	.on("beforeSend",function(data) {
-
-	})
-	.on("send",function(data) {
-
-	})
-	.on("beforeReceive",function(data) {
-
-	})
-	.on("receive",function(data) {
-
-	});
-	$tw.wiki.addEventListener("change",function(changes) {
-		self.handleRefresh(changes);
-	});
 };
 
 MuuriStoryView.prototype.onDragReleaseEnd = function(item) {
@@ -118,23 +121,10 @@ MuuriStoryView.prototype.synchronizeGrid = function() {
 			}
 		}
 	}
-
 	if(hasChanged && this.itemTitlesArray.indexOf(undefined) === -1 && this.itemTitlesArray.indexOf(null) === -1) {
 		this.listWidget.wiki.setText(this.storyListTitle,this.storyListField,undefined,this.itemTitlesArray);
 	}
 };
-
-MuuriStoryView.prototype.getItemIndexes = function(array,target) {
-	var indexes = [];
-	var count = 0;
-	for (var i=0; i<array.length; i++) {
-		if (array[i] === target) {
-			indexes.push(i);
-			count++;
-		}
-	}
-	return indexes;
-}
 
 MuuriStoryView.prototype.refreshItemTitlesArray = function() {
 	this.muuri.refreshItems();
@@ -219,8 +209,11 @@ MuuriStoryView.prototype.navigateTo = function(historyInfo) {
 MuuriStoryView.prototype.createMuuriGrid = function() {
 	var options = this.collectOptions();
 	var domNode = this.listWidget.parentDomNode;
-	domNode.setAttribute("data-grid","muuri");
-	return new Muuri(domNode,options);
+	if(domNode) {
+		domNode.setAttribute("data-grid","muuri");
+		return new Muuri(domNode,options);
+	}
+	return false;
 };
 
 MuuriStoryView.prototype.collectOptions = function() {
@@ -576,6 +569,9 @@ MuuriStoryView.prototype.handleRefresh = function(changedTiddlers) {
 		setTimeout(function(){
 			self.listWidget.refreshSelf();
 		},25);
+	}
+	if(changedAttributes.connectionSelector) {
+		this.connectionSelector = this.listWidget.getAttribute("connectionSelector");
 	}
 	if(changedAttributes.storyList || changedAttributes.storyListField || changedAttributes.containerClass || changedAttributes.itemClass || changedAttributes.zIndexTiddler || changedAttributes.dragHandle) {
 		this.listWidget.refreshSelf();
