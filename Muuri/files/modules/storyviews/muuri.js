@@ -25,8 +25,6 @@ var ALIGNRIGHT_CONFIG = "$:/config/muuri/storyview/align-right",
 
 if(typeof window !== "undefined") {
 	var testElement = document.body;
-	// TODO: a better test for web-animations
-	//if(typeof testElement.animate !== "function" && typeof testElement.animate !== "FUNCTION") {
 	if(!("animate" in testElement)) {
 		require("$:/plugins/BTC/Muuri/library/web-animations-polyfill.js");
 	}
