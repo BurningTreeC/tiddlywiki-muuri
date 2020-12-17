@@ -131,6 +131,7 @@ MuuriStoryView.prototype.refreshItemTitlesArray = function() {
 	var items = this.muuri.getItems(),
 		muuriItems = [];
 	this.itemTitlesArray = [];
+	// TODO : first push all items, also the ones with no width and height. Then, lookup if there are duplicate items and in that case remove the one with no width and height
 	for(var i=0; i<items.length; i++) {
 		if(items[i]._width !== 0 && items[i]._height !== 0) {
 			this.itemTitlesArray.push(this.getItemTitle(items[i]));
