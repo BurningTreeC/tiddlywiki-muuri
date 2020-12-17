@@ -44,7 +44,7 @@ var MuuriStoryView = function(listWidget) {
 	var items = this.muuri.getItems();
 	for(var i=0; i<items.length; i++) {
 		var element = items[i].getElement();
-		this.itemTitlesArray.push(this.getItemTitle(items[i]));//element.dataset.tiddlerTitle);
+		this.itemTitlesArray.push(this.getItemTitle(items[i]));
 		this.addResizeListener(element,function() {
 			self.refreshMuuriGrid();
 		});
@@ -135,6 +135,12 @@ MuuriStoryView.prototype.refreshItemTitlesArray = function() {
 		if(items[i]._width !== 0 && items[i]._height !== 0) {
 			this.itemTitlesArray.push(this.getItemTitle(items[i]));
 			muuriItems.push(items[i]);
+		} else {
+		    if(items[i]._element && items[i]._element.parentNode) {
+    		    items[i]._element.parentNode.removeChild(items[i]._element);
+		    } else {
+		        this.muuri.remove([items[i]],{removeElements: true,layout: false});
+		    }
 		}
 	}
 	this.muuri._items = muuriItems;
