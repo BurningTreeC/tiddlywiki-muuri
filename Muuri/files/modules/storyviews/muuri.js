@@ -14,7 +14,6 @@ Views the story as a muuri grid
 
 var easing = "cubic-bezier(0.215, 0.61, 0.355, 1)";
 
-// TODO : clean up unneeded configs
 var ALIGNRIGHT_CONFIG = "$:/config/muuri/storyview/align-right",
 	ALIGNBOTTOM_CONFIG = "$:/config/muuri/storyview/align-bottom",
 	DRAGSORTACTION_CONFIG = "$:/config/muuri/storyview/dragsort-action",
