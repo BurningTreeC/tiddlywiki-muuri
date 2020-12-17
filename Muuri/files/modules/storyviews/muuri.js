@@ -125,15 +125,15 @@ MuuriStoryView.prototype.synchronizeGrid = function() {
 };
 
 MuuriStoryView.prototype.getItemIndexes = function(array,target) {
-    var indexes = [];
-    var count = 0;
-    for (var i=0; i<array.length; i++) {
-        if (array[i] === target) {
-            indexes.push(i);
-            count++;
-        }
-    }
-    return indexes;
+	var indexes = [];
+	var count = 0;
+	for (var i=0; i<array.length; i++) {
+		if (array[i] === target) {
+			indexes.push(i);
+			count++;
+		}
+	}
+	return indexes;
 }
 
 MuuriStoryView.prototype.refreshItemTitlesArray = function() {
@@ -141,17 +141,16 @@ MuuriStoryView.prototype.refreshItemTitlesArray = function() {
 	var items = this.muuri.getItems(),
 		muuriItems = [];
 	this.itemTitlesArray = [];
-	// TODO : first push all items, also the ones with no width and height. Then, lookup if there are duplicate items and in that case remove the one with no width and height
 	for(var i=0; i<items.length; i++) {
 		if(items[i]._width !== 0 && items[i]._height !== 0) {
 			this.itemTitlesArray.push(this.getItemTitle(items[i]));
 			muuriItems.push(items[i]);
 		} else {
-		    if(items[i]._element && items[i]._element.parentNode) {
-    		    items[i]._element.parentNode.removeChild(items[i]._element);
-		    } else {
-		        this.muuri.remove([items[i]],{removeElements: true,layout: false});
-		    }
+			if(items[i]._element && items[i]._element.parentNode) {
+				items[i]._element.parentNode.removeChild(items[i]._element);
+			} else {
+				this.muuri.remove([items[i]],{removeElements: true,layout: false});
+			}
 		}
 	}
 	this.muuri._items = muuriItems;
@@ -246,9 +245,9 @@ MuuriStoryView.prototype.collectOptions = function() {
 		},
 		layoutEasing: easing,
 		dragStartPredicate: function(item,e) {
-			// TODO: cleanup, rethink isReleasing
 			if (self.muuri._settings.dragEnabled) {
-				if((e.target && e.target.tagName && (self.noDragTags.indexOf(e.target.tagName) > -1 || self.lookupDragTarget(e.target)) || self.detectWithinCodemirror(e) || !self.detectGridWithinGrid(e.target))) {
+				if((e.target && e.target.tagName && (self.noDragTags.indexOf(e.target.tagName) > -1 || 
+					self.lookupDragTarget(e.target)) || self.detectWithinCodemirror(e) || !self.detectGridWithinGrid(e.target))) {
 					return false;
 				} else {
 					return Muuri.ItemDrag.defaultStartPredicate(item,e);
