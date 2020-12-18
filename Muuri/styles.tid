@@ -7,9 +7,9 @@ tags: $:/tags/Stylesheet
 	z-index: $(zIndex)$;
 }
 \end
-\define set-muuri-tiddler-width()
+\define set-muuri-tiddler-width(suffix)
 .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
-	width: calc((100% / <<columns>>) - <<margin>> - (<<margin>> / <<columns>>));
+	width: calc((100$suffix$ / <<columns>>) - <<margin>> - (<<margin>> / <<columns>>));
 }
 \end
 
@@ -37,19 +37,62 @@ tags: $:/tags/Stylesheet
 	margin-bottom: <<marginBottom>>;
 }
 
+<$reveal state="$:/config/muuri/storyview/horizontal-view" type="nomatch" text="yes">
+
 <$list filter="[list[$:/StoryList]has[muuri-tiddler-width]]">
 
 	<$set name="columns" value={{{ [<currentTiddler>get[muuri-tiddler-width]] }}}>
 	
 		<$set name="cssEscapedTitle" value={{{ [<currentTiddler>escapecss[]] }}}>
 		
-			<<set-muuri-tiddler-width>>
+			<<set-muuri-tiddler-width "%">>
 		
 		</$set>
 
 	</$set>
 
 </$list>
+
+</$reveal>
+
+<$reveal state="$:/config/muuri/storyview/horizontal-view" type="match" text="yes">
+
+.tc-story-river.tc-muuri-river {
+	height: 100vh;
+}
+
+.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+	width: calc((100vw / <<count>>) - <<margin>> -(<<margin>> / <<count>>));
+}
+
+.tc-sidebar-scrollable {
+	z-index: 202;
+	background-color: <<colour page-background>>;
+}
+
+<$reveal state="$:/state/sidebar" type="match" text="no">
+
+	.tc-sidebar-scrollable {
+		display: none;
+	}
+
+</$reveal>
+
+<$list filter="[list[$:/StoryList]has[muuri-tiddler-width]]">
+
+	<$set name="columns" value={{{ [<currentTiddler>get[muuri-tiddler-width]] }}}>
+	
+		<$set name="cssEscapedTitle" value={{{ [<currentTiddler>escapecss[]] }}}>
+		
+			<<set-muuri-tiddler-width "vw">>
+		
+		</$set>
+
+	</$set>
+
+</$list>
+
+</$reveal>
 
 .tc-story-river.tc-muuri-river {
 	margin-top: {{$:/config/muuri/storyview/story-river/margin-top}};
