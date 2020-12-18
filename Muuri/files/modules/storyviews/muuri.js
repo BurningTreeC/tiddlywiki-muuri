@@ -93,7 +93,22 @@ var MuuriStoryView = function(listWidget) {
 		$tw.wiki.addEventListener("change",function(changes) {
 			self.handleRefresh(changes);
 		});
+		this.addSelfToGlobalGrids();
 	}
+};
+
+MuuriStoryView.prototype.addSelfToGlobalGrids = function() {
+    var foundGrid = false;
+    for(var i=0; i<$tw
+    Grids.length;i++) {
+        var globalGrid = $tw.Grids[i];
+        if(globalGrid._element === this.muuri._element) {
+            foundGrid = true;
+        }
+    }
+    if(!foundGrid) {
+        $tw.utils.pushTop($tw.Grids,this.muuri);
+    }
 };
 
 MuuriStoryView.prototype.onDragReleaseEnd = function(item) {
