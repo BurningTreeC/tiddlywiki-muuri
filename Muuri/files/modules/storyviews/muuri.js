@@ -145,8 +145,7 @@ MuuriStoryView.prototype.detectConnectedGrids = function() {
 
 MuuriStoryView.prototype.addSelfToGlobalGrids = function() {
     var foundGrid = false;
-    for(var i=0; i<$tw
-    Grids.length;i++) {
+    for(var i=0; i<$tw.Grids.length;i++) {
         var globalGrid = $tw.Grids[i];
         if(globalGrid._element === this.muuri._element) {
             foundGrid = true;
@@ -167,8 +166,8 @@ MuuriStoryView.prototype.onDragReleaseEnd = function(item) {
 		}
 	}
 	if(isReleasing === false) {
-	    for(i=0; i<this.connectedGrids.length; i++) {
-		    this.connectedGrids[i].synchronizeGrid();
+	    for(var k=0; k<this.connectedGrids.length; k++) {
+		    this.connectedGrids[k].synchronizeGrid();
 	    }
 	}
 };
