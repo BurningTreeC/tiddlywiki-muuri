@@ -85,7 +85,14 @@ var MuuriStoryView = function(listWidget) {
 
 		})
 		.on("send",function(data) {
-
+			data.fromGrid.refreshItems();
+			data.fromGrid._refreshDimensions();
+			data.fromGrid.layout();
+			setTimeout(function() {
+				data.toGrid.refreshItems();
+				data.toGrid._refreshDimensions();
+				data.toGrid.layout();
+			},0);
 		})
 		.on("beforeReceive",function(data) {
 
