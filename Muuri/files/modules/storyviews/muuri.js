@@ -55,6 +55,9 @@ var MuuriStoryView = function(listWidget) {
 		this.addResizeListener(self.muuri._element,function() {
 			self.refreshMuuriGrid();
 		});
+		this.muuri.synchronizeGrid = function() {
+		    self.synchronizeGrid();
+		}
 		this.muuri.on("dragReleaseEnd",function(item) {
 			self.onDragReleaseEnd(item);
 		})
@@ -125,8 +128,17 @@ MuuriStoryView.prototype.detectConnectedGrids = function() {
             }
         }
     }
+    var selfIsAdded = false;
+    for(i=0; i<connectedGrids.length; i++) {
+        if(connectedGrids[i]._element === this.muuri._element) {
+            selfIsAdded = true;
+        }
+    }
+    if(!selfIsAdded) {
+        connectedGrids.push(this.muuri);
+    }
     connectedGrids.sort(function(a,b) {
-        return a._id - b._id;
+        return parseInt(a._id) - parseInt(b._id);
     });
     this.connectedGrids = connectedGrids;
 };
@@ -155,7 +167,9 @@ MuuriStoryView.prototype.onDragReleaseEnd = function(item) {
 		}
 	}
 	if(isReleasing === false) {
-		this.synchronizeGrid();
+	    for(i=0; i<this.connectedGrids.length; i++) {
+		    this.connectedGrids[i].synchronizeGrid();
+	    }
 	}
 };
 
@@ -301,6 +315,9 @@ MuuriStoryView.prototype.collectOptions = function() {
 				return false;
 			}
 		},
+		dragSort: function() {
+		    return self.connectedGrids;
+		},
 		dragSortInterval: self.dragSortInterval,
 		showDuration: self.animationDuration,
 		layoutDurattion: self.animationDuration,
@@ -351,13 +368,15 @@ MuuriStoryView.prototype.collectAttributes = function() {
 };
 
 MuuriStoryView.prototype.findListWidget = function(element) {
-	var listWidgetChildren = this.listWidget.children;
-	//find the widget corresponding to this element
-	for(var k=0; k<listWidgetChildren.length; k++) {
-		var listElement = listWidgetChildren[k] ? listWidgetChildren[k].findFirstDomNode() : null;
-		if(listElement && (listElement === element)) {
-			return(listWidgetChildren[k]);
-		}
+    for(var i=0; i<this.connectedGrids.length; i++) {
+    	var listWidgetChildren = this.connectedGrids[i].listWidget.children;
+    	//find the widget corresponding to this element
+    	for(var k=0; k<listWidgetChildren.length; k++) {
+    		var listElement = listWidgetChildren[k] ? listWidgetChildren[k].findFirstDomNode() : null;
+    		if(listElement && (listElement === element)) {
+    			return(listWidgetChildren[k]);
+    		}
+    	}
 	}
 	return null;
 };
