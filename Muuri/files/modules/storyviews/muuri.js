@@ -83,16 +83,18 @@ var MuuriStoryView = function(listWidget) {
 			self.updateZIndexList();
 		})
 		.on("beforeSend",function(data) {
-
 		})
 		.on("send",function(data) {
-
+			self.detectConnectedGrids();
+			for(var i=0; i<self.connectedGrids.length; i++) {
+				self.connectedGrids[i].refreshItems();
+				self.connectedGrids[i]._refreshDimensions();
+				self.connectedGrids[i].layout();
+			}
 		})
 		.on("beforeReceive",function(data) {
-
 		})
 		.on("receive",function(data) {
-
 		});
 		$tw.wiki.addEventListener("change",function(changes) {
 			self.handleRefresh(changes);
@@ -165,6 +167,8 @@ MuuriStoryView.prototype.onDragReleaseEnd = function(item) {
 			isReleasing = true;
 		}
 	}
+	// Important: detect connected Grids first
+	this.detectConnectedGrids();
 	if(isReleasing === false) {
 		for(var k=0; k<this.connectedGrids.length; k++) {
 			this.connectedGrids[k].synchronizeGrid();
