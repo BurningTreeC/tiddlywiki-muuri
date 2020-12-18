@@ -341,8 +341,8 @@ MuuriStoryView.prototype.detectGridWithinGrid = function(element) {
 	$tw.utils.each(elementChildNodes,function(node) {
 		while(node && !foundGrid) {
 			if(node instanceof Element && node.getAttribute("data-grid") === "muuri") {
-				//dragging within a grid
-				//see if the found grid is the current grid node
+				// dragging within a grid
+				// detect if the found grid is the current grid node
 				if(node !== gridNode) {
 					foundGrid = true;
 					isCurrentGrid = false;
