@@ -31,7 +31,7 @@ if(typeof window !== "undefined") {
 		window.Muuri = require("$:/plugins/BTC/Muuri/library/muuri.min.js");
 	}
 	if($tw.Grids === undefined) {
-	    $tw.Grids = [];
+		$tw.Grids = [];
 	}
 }
 
@@ -43,7 +43,7 @@ var MuuriStoryView = function(listWidget) {
 	this.collectAttributes();
 	this.muuri = this.createMuuriGrid();
 	if(this.muuri) {
-		this.muuri.listWidget = this.listWidget;
+		this.muuri.listWidget = listWidget;
 		var items = this.muuri.getItems();
 		for(var i=0; i<items.length; i++) {
 			var element = items[i].getElement();
@@ -56,7 +56,7 @@ var MuuriStoryView = function(listWidget) {
 			self.refreshMuuriGrid();
 		});
 		this.muuri.synchronizeGrid = function() {
-		    self.synchronizeGrid();
+			self.synchronizeGrid();
 		}
 		this.muuri.on("dragReleaseEnd",function(item) {
 			self.onDragReleaseEnd(item);
@@ -68,7 +68,7 @@ var MuuriStoryView = function(listWidget) {
 			self.updateZIndexList();
 		})
 		.on("dragInit",function(item,event) {
-		    self.detectConnectedGrids();
+			self.detectConnectedGrids();
 			self.inheritIframeEvents();
 		})
 		.on("dragStart",function(item,event) {
@@ -102,58 +102,58 @@ var MuuriStoryView = function(listWidget) {
 };
 
 MuuriStoryView.prototype.updateGlobalGrids = function() {
-    var foundGridElements = this.listWidget.document.documentElement.querySelectorAll('[data-grid="muuri"]');
-    for(var i=0; i<$tw.Grids.length; i++) {
-        var globalGridElement = $tw.Grids[i]._element;
-        var foundGrid = false;
-        for(var k=0; k<foundGridElements.length; k++) {
-            if(globalGridElement === foundGridElements[k]) {
-                foundGrid = true;
-            }
-        }
-        if(!foundGrid) {
-            $tw.Grids.splice(i,1);
-        }
-    }
+	var foundGridElements = this.listWidget.document.documentElement.querySelectorAll('[data-grid="muuri"]');
+	for(var i=0; i<$tw.Grids.length; i++) {
+		var globalGridElement = $tw.Grids[i]._element;
+		var foundGrid = false;
+		for(var k=0; k<foundGridElements.length; k++) {
+			if(globalGridElement === foundGridElements[k]) {
+				foundGrid = true;
+			}
+		}
+		if(!foundGrid) {
+			$tw.Grids.splice(i,1);
+		}
+	}
 };
 
 MuuriStoryView.prototype.detectConnectedGrids = function() {
-    var connectedGridElements = this.listWidget.document.documentElement.querySelectorAll(this.connectionSelector);
-    var connectedGrids = [];
-    this.updateGlobalGrids();
-    for(var i=0; i<$tw.Grids.length; i++) {
-        for(var k=0; k<connectedGridElements.length; k++) {
-            if($tw.Grids[i]._element === connectedGridElements[k]) {
-                connectedGrids.push($tw.Grids[i]);
-            }
-        }
-    }
-    var selfIsAdded = false;
-    for(i=0; i<connectedGrids.length; i++) {
-        if(connectedGrids[i]._element === this.muuri._element) {
-            selfIsAdded = true;
-        }
-    }
-    if(!selfIsAdded) {
-        connectedGrids.push(this.muuri);
-    }
-    connectedGrids.sort(function(a,b) {
-        return parseInt(a._id) - parseInt(b._id);
-    });
-    this.connectedGrids = connectedGrids;
+	var connectedGridElements = this.listWidget.document.documentElement.querySelectorAll(this.connectionSelector);
+	var connectedGrids = [];
+	this.updateGlobalGrids();
+	for(var i=0; i<$tw.Grids.length; i++) {
+		for(var k=0; k<connectedGridElements.length; k++) {
+			if($tw.Grids[i]._element === connectedGridElements[k]) {
+				connectedGrids.push($tw.Grids[i]);
+			}
+		}
+	}
+	var selfIsAdded = false;
+	for(i=0; i<connectedGrids.length; i++) {
+		if(connectedGrids[i]._element === this.muuri._element) {
+			selfIsAdded = true;
+		}
+	}
+	if(!selfIsAdded) {
+		connectedGrids.push(this.muuri);
+	}
+	connectedGrids.sort(function(a,b) {
+		return parseInt(a._id) - parseInt(b._id);
+	});
+	this.connectedGrids = connectedGrids;
 };
 
 MuuriStoryView.prototype.addSelfToGlobalGrids = function() {
-    var foundGrid = false;
-    for(var i=0; i<$tw.Grids.length;i++) {
-        var globalGrid = $tw.Grids[i];
-        if(globalGrid._element === this.muuri._element) {
-            foundGrid = true;
-        }
-    }
-    if(!foundGrid) {
-        $tw.utils.pushTop($tw.Grids,this.muuri);
-    }
+	var foundGrid = false;
+	for(var i=0; i<$tw.Grids.length;i++) {
+		var globalGrid = $tw.Grids[i];
+		if(globalGrid._element === this.muuri._element) {
+			foundGrid = true;
+		}
+	}
+	if(!foundGrid) {
+		$tw.utils.pushTop($tw.Grids,this.muuri);
+	}
 };
 
 MuuriStoryView.prototype.onDragReleaseEnd = function(item) {
@@ -166,9 +166,9 @@ MuuriStoryView.prototype.onDragReleaseEnd = function(item) {
 		}
 	}
 	if(isReleasing === false) {
-	    for(var k=0; k<this.connectedGrids.length; k++) {
-		    this.connectedGrids[k].synchronizeGrid();
-	    }
+		for(var k=0; k<this.connectedGrids.length; k++) {
+			this.connectedGrids[k].synchronizeGrid();
+		}
 	}
 };
 
@@ -315,7 +315,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 			}
 		},
 		dragSort: function() {
-		    return self.connectedGrids;
+			return self.connectedGrids;
 		},
 		dragSortInterval: self.dragSortInterval,
 		showDuration: self.animationDuration,
@@ -367,15 +367,15 @@ MuuriStoryView.prototype.collectAttributes = function() {
 };
 
 MuuriStoryView.prototype.findListWidget = function(element) {
-    for(var i=0; i<this.connectedGrids.length; i++) {
-    	var listWidgetChildren = this.connectedGrids[i].listWidget.children;
-    	//find the widget corresponding to this element
-    	for(var k=0; k<listWidgetChildren.length; k++) {
-    		var listElement = listWidgetChildren[k] ? listWidgetChildren[k].findFirstDomNode() : null;
-    		if(listElement && (listElement === element)) {
-    			return(listWidgetChildren[k]);
-    		}
-    	}
+	for(var i=0; i<this.connectedGrids.length; i++) {
+		var listWidgetChildren = this.connectedGrids[i].listWidget.children;
+		//find the widget corresponding to this element
+		for(var k=0; k<listWidgetChildren.length; k++) {
+			var listElement = listWidgetChildren[k] ? listWidgetChildren[k].findFirstDomNode() : null;
+			if(listElement && (listElement === element)) {
+				return(listWidgetChildren[k]);
+			}
+		}
 	}
 	return null;
 };
