@@ -43,7 +43,7 @@ var MuuriStoryView = function(listWidget) {
 	this.collectAttributes();
 	this.muuri = this.createMuuriGrid();
 	if(this.muuri) {
-		this.muuri.listWidget = listWidget;
+		this.muuri.listWidget = this.listWidget;
 		var items = this.muuri.getItems();
 		for(var i=0; i<items.length; i++) {
 			var element = items[i].getElement();
@@ -173,8 +173,9 @@ MuuriStoryView.prototype.onDragReleaseEnd = function(item) {
 };
 
 MuuriStoryView.prototype.synchronizeGrid = function() {
-	this.refreshItemTitlesArray();
+	// this.refreshItemTitlesArray();
 	this.muuri.synchronize();
+	this.refreshItemTitlesArray();
 	var hasChanged = false;
 	if(this.itemTitlesArray.length !== this.listWidget.list.length) {
 		hasChanged = true;
