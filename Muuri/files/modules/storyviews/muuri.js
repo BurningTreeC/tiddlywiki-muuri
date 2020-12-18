@@ -30,6 +30,9 @@ if(typeof window !== "undefined") {
 	if(!window.Muuri) {
 		window.Muuri = require("$:/plugins/BTC/Muuri/library/muuri.min.js");
 	}
+	if($tw.Grids === undefined) {
+	    $tw.Grids = [];
+	}
 }
 
 var MuuriStoryView = function(listWidget) {
