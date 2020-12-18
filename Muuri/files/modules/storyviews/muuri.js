@@ -173,9 +173,8 @@ MuuriStoryView.prototype.onDragReleaseEnd = function(item) {
 };
 
 MuuriStoryView.prototype.synchronizeGrid = function() {
-	// this.refreshItemTitlesArray();
-	this.muuri.synchronize();
 	this.refreshItemTitlesArray();
+	this.muuri.synchronize();
 	var hasChanged = false;
 	if(this.itemTitlesArray.length !== this.listWidget.list.length) {
 		hasChanged = true;
