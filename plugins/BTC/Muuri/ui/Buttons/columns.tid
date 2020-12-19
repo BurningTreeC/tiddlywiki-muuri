@@ -2,10 +2,19 @@ title: $:/plugins/BTC/Muuri/ui/Buttons/column
 tags: $:/tags/PageControls
 
 \define set-next-column-actions()
+<$list filter="[<modifier>match[normal]]">
 <$list filter="[<columns>!match<rangeMax>]" emptyMessage="""
 <$action-setfield $tiddler="$:/config/muuri/storyview/columns" text="1"/>
 """>
 <$action-setfield $tiddler="$:/config/muuri/storyview/columns" text={{{ [range<rangeMax>after<columns>] }}}/>
+</$list>
+</$list>
+<$list filter="[<modifier>match[ctrl]]">
+<$list filter="[<columns>!match[1]]" emptyMessage="""
+<$action-setfield $tiddler="$:/config/muuri/storyview/columns" text=<<rangeMax>>/>
+""">
+<$action-setfield $tiddler="$:/config/muuri/storyview/columns" text={{{ [range<rangeMax>before<columns>] }}}/>
+</$list>
 </$list>
 \end
 \whitespace trim
