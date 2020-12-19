@@ -6,6 +6,8 @@
 
 You can see a Demo [here](https://burningtreec.github.io/tiddlywiki-muuri)
 
+Note that the plugin works best with the TiddlyWiki CodeMirror plugin installed
+
 ## Installation
 
 You can install the tiddlywiki-muuri plugin in two ways:
@@ -20,7 +22,7 @@ git clone git@github.com:BurningTreeC/tiddlywiki-muuri.git
 
 enable the plugin in your tiddlywiki.info file (see https://tiddlywiki.com/#tiddlywiki.info%20Files)
 
-### The TiddlyWiki way
+### The TiddlyWiki SingleFile way
 
 - go to https://burningtreec.github.io/tiddlywiki-muuri
 - open the "More" Tab in the Sidebar
