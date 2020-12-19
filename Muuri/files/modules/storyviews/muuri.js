@@ -356,7 +356,7 @@ MuuriStoryView.prototype.collectAttributes = function() {
 		dragHandle = null;
 	}
 	this.dragHandle = dragHandle;
-	this.connectionSelector = this.listWidget.getAttribute("connectionSelector",'[data-grid="muuri"]');
+	this.connectionSelector = this.listWidget.getAttribute("connectionSelector");
 	this.horizontal = this.listWidget.getAttribute("horizontal",this.listWidget.wiki.getTiddlerText(HORIZONTAL_CONFIG)) === "yes";
 	this.alignRight = this.listWidget.getAttribute("alignRight",this.listWidget.wiki.getTiddlerText(ALIGNRIGHT_CONFIG)) !== "no";
 	this.alignBottom = this.listWidget.getAttribute("alignBottom",this.listWidget.wiki.getTiddlerText(ALIGNBOTTOM_CONFIG)) === "yes";
@@ -645,7 +645,7 @@ MuuriStoryView.prototype.handleRefresh = function(changedTiddlers) {
 		},25);
 	}
 	if(changedAttributes.connectionSelector) {
-		this.connectionSelector = this.listWidget.getAttribute("connectionSelector",'[data-grid="muuri"]');
+		this.connectionSelector = this.listWidget.getAttribute("connectionSelector");
 	}
 	if(changedAttributes.storyList || changedAttributes.storyListField || changedAttributes.containerClass || changedAttributes.itemClass || changedAttributes.zIndexTiddler || changedAttributes.dragHandle) {
 		this.listWidget.refreshSelf();
