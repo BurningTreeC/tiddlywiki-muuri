@@ -23,7 +23,7 @@ tags: $:/tags/Stylesheet
 
 <$reveal state="$:/view" type="match" text="muuri">
 
-<$vars count={{{ [{$:/config/muuri/storyview/columns}!match[]] ~[[1]] }}} margin={{$:/config/muuri/tiddler/margin}} marginSuffix={{{ [{$:/config/muuri/storyview/align-right}match[yes]addprefix[right]removesuffix[yes]] ~[[$:/config/muuri/storyview/align-right]is[missing]then[right]] ~[[left]] }}} sidebarBreakPoint={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}} marginBottom={{$:/config/muuri/tiddler/margin-bottom}} storyHighZIndex={{{ [list[$:/StoryList]count[]add[201]] }}}>
+<$vars count={{{ [{$:/config/muuri/storyview/columns}!match[]] ~[[1]] }}} margin={{$:/config/muuri/tiddler/margin}} marginSuffix={{{ [{$:/config/muuri/storyview/align-right}match[yes]addprefix[right]removesuffix[yes]] ~[[$:/config/muuri/storyview/align-right]is[missing]then[right]] ~[[left]] }}} sidebarBreakPoint={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}} marginBottom={{$:/config/muuri/tiddler/margin-bottom}} storyHighZIndex={{{ [list[$:/StoryList]count[]add[201]] }}} firstBreakPoint={{$:/config/muuri/storyview/first-break-point}} secondBreakPoint={{$:/config/muuri/storyview/second-break-point}}>
 
 @media(min-width:<<sidebarBreakPoint>>) {
 
@@ -102,7 +102,7 @@ tags: $:/tags/Stylesheet
 	padding-left: calc(42px - <<margin>>);
 }
 
-<$reveal state="$:/config/muuri/storyview/columns" type="gt" text="3">
+<$reveal state="$:/config/muuri/storyview/columns" type="gt" text=<<firstBreakPoint>>>
 
 .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
 	padding: 0;
@@ -112,7 +112,7 @@ tags: $:/tags/Stylesheet
 	margin-left: -29px;
 }
 
-<$reveal state="$:/config/muuri/storyview/columns" type="lt" text="5">
+<$reveal state="$:/config/muuri/storyview/columns" type="lt" text=<<secondBreakPoint>>>
 
 .tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 	padding: 2em;
@@ -124,7 +124,7 @@ tags: $:/tags/Stylesheet
 
 </$reveal>
 
-<$reveal state="$:/config/muuri/storyview/columns" type="gteq" text="5">
+<$reveal state="$:/config/muuri/storyview/columns" type="gteq" text=<<secondBreakPoint>>>
 
 .tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 	padding: 1em;
