@@ -632,6 +632,8 @@ MuuriStoryView.prototype.handleRefresh = function(changedTiddlers) {
 		this.muuri._settings.layout.horizontal = this.horizontal = this.listWidget.getAttribute("horizontal",this.listWidget.wiki.getTiddlerText(HORIZONTAL_CONFIG)) === "yes";
 		if(!this.horizontal) {
 			this.muuri._element.style.width = "";
+		} else {
+			this.muuri._element.style.height = "";
 		}
 		this.refreshMuuriGrid();
 	}
