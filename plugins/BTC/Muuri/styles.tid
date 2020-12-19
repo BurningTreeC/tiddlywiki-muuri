@@ -102,7 +102,7 @@ tags: $:/tags/Stylesheet
 	padding-left: calc(42px - <<margin>>);
 }
 
-<$reveal state="$:/config/muuri/storyview/columns" type="gt" text="2">
+<$reveal state="$:/config/muuri/storyview/columns" type="gt" text="3">
 
 .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
 	padding: 0;
