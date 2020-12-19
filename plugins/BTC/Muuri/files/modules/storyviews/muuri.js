@@ -19,7 +19,6 @@ var ALIGNRIGHT_CONFIG = "$:/config/muuri/storyview/align-right",
 	DRAGSORTACTION_CONFIG = "$:/config/muuri/storyview/dragsort-action",
 	DRAGSORTTHRESHOLD_CONFIG ="$:/config/muuri/storyview/dragsort-threshold",
 	DRAGGING_CONFIG = "$:/state/config/muuri/storyview/drag-enabled",
-	HORIZONTAL_CONFIG = "$:/config/muuri/storyview/horizontal-view",
 	DRAGSORT_HEURISTICS_INTERVAL_CONFIG = "$:/config/muuri/storyview/dragsort-heuristics-interval";
 
 if(typeof window !== "undefined") {
@@ -300,7 +299,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 		},
 		layout: {
 			fillGaps: false,
-			horizontal: self.horizontal,
+			horizontal: false,
 			alignRight: self.alignRight,
 			alignBottom: self.alignBottom,
 			rounding: true
@@ -363,7 +362,6 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	}
 	this.dragHandle = dragHandle;
 	this.connectionSelector = this.listWidget.getAttribute("connectionSelector");
-	this.horizontal = this.listWidget.getAttribute("horizontal",this.listWidget.wiki.getTiddlerText(HORIZONTAL_CONFIG)) === "yes";
 	this.alignRight = this.listWidget.getAttribute("alignRight",this.listWidget.wiki.getTiddlerText(ALIGNRIGHT_CONFIG)) !== "no";
 	this.alignBottom = this.listWidget.getAttribute("alignBottom",this.listWidget.wiki.getTiddlerText(ALIGNBOTTOM_CONFIG)) === "yes";
 	this.dragEnabled = this.listWidget.getAttribute("dragEnabled",this.listWidget.wiki.getTiddlerText(DRAGGING_CONFIG)) !== "no";
@@ -628,15 +626,6 @@ MuuriStoryView.prototype.handleRefresh = function(changedTiddlers) {
 	}
 	if(changedTiddlers[ALIGNBOTTOM_CONFIG] || changedAttributes.alignBottom) {
 		this.muuri._settings.layout.alignBottom = this.alignBottom = this.listWidget.getAttribute("alignBottom",this.listWidget.wiki.getTiddlerText(ALIGNBOTTOM_CONFIG)) === "yes";
-		this.refreshMuuriGrid();
-	}
-	if(changedTiddlers[HORIZONTAL_CONFIG] || changedAttributes.horizontal) {
-		this.muuri._settings.layout.horizontal = this.horizontal = this.listWidget.getAttribute("horizontal",this.listWidget.wiki.getTiddlerText(HORIZONTAL_CONFIG)) === "yes";
-		if(!this.horizontal) {
-			this.muuri._element.style.width = "";
-		} else {
-			this.muuri._element.style.height = "";
-		}
 		this.refreshMuuriGrid();
 	}
 	if(changedTiddlers[DRAGSORTACTION_CONFIG] || changedAttributes.dragSortAction) {
