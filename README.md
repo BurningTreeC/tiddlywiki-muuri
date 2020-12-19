@@ -2,7 +2,7 @@
 
 ## About
 
-**tiddlywiki-muuri** is a plugin for [TiddlyWiki5](https://tiddlywiki.com) that adds a gridded storyview based on the [muuri library](https://muuri.dev)
+**tiddlywiki-muuri** is a Drag&Drop enabled plugin for [TiddlyWiki5](https://tiddlywiki.com) that adds a gridded storyview based on the [muuri library](https://muuri.dev)
 
 You can see a Demo [here](https://burningtreec.github.io/tiddlywiki-muuri)
 
