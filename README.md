@@ -26,6 +26,6 @@ enable the plugin in your tiddlywiki.info file (see https://tiddlywiki.com/#tidd
 - open the "More" Tab in the Sidebar
 - open the "Plugins" Tab in the "More" Submenu
 - locate the plugin titled "A gridded storyview"
-- drag the link the Wiki where you want to install it
+- drag the link to the Wiki where you want to install it
 - save your Wiki and reload
 
