@@ -192,9 +192,11 @@ MuuriStoryView.prototype.synchronizeGrid = function() {
 			}
 		}
 	}
+	var scrollPosition = $tw.utils.getScrollPosition();
 	if(hasChanged && this.itemTitlesArray.indexOf(undefined) === -1 && this.itemTitlesArray.indexOf(null) === -1) {
 		this.listWidget.wiki.setText(this.storyListTitle,this.storyListField,undefined,this.itemTitlesArray);
 	}
+	this.listWidget.document.defaultView.scrollTo(scrollPosition.x,scrollPosition.y);
 };
 
 MuuriStoryView.prototype.refreshItemTitlesArray = function() {
