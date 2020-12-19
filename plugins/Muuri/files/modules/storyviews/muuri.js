@@ -74,6 +74,7 @@ var MuuriStoryView = function(listWidget) {
 		.on("dragStart",function(item,event) {
 		})
 		.on("dragEnd",function(item,event) {
+			item.event = event;
 			self.restoreIframeEvents();
 		})
 		.on("layoutStart",function() {
@@ -85,7 +86,7 @@ var MuuriStoryView = function(listWidget) {
 
 		})
 		.on("send",function(data) {
-
+			data.item.fromGrid = data.fromGrid;
 		})
 		.on("beforeReceive",function(data) {
 
@@ -171,6 +172,10 @@ MuuriStoryView.prototype.onDragReleaseEnd = function(item) {
 			this.connectedGrids[k].synchronizeGrid();
 		}
 	}
+	if(item.fromGrid && item.fromGrid !== this.muuri && this.dropActions) {
+		var modifierKey = $tw.keyboardManager.getEventModifierKeyDescriptor(item.event.srcEvent);
+		this.listWidget.invokeActionString(this.dropActions,this.listWidget,item.event.srcEvent,{actionTiddler: this.getItemTitle(item), modifier: modifierKey});
+	}
 };
 
 MuuriStoryView.prototype.synchronizeGrid = function() {
@@ -210,7 +215,6 @@ MuuriStoryView.prototype.refreshItemTitlesArray = function() {
 		}
 	}
 	this.muuri._items = muuriItems;
-	items = this.muuri.getItems();
 };
 
 MuuriStoryView.prototype.insert = function(widget) {
@@ -367,6 +371,7 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	this.itemEditTemplate = this.listWidget.getAttribute("editTemplate");
 	this.zIndexTiddler = this.listWidget.getAttribute("zIndexTiddler",this.storyListTitle === "$:/StoryList" ? "$:/state/muuri/storyriver/z-indexes" : null);
 	this.noDragTags = ["input","INPUT","textarea","TEXTAREA","button","BUTTON","select","SELECT"];
+	this.dropActions = this.listWidget.getAttribute("dropActions");
 };
 
 MuuriStoryView.prototype.findListWidget = function(element) {
