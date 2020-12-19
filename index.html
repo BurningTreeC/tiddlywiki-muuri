@@ -149,6 +149,8 @@ Error message and password prompt
 
 <li>$:/config/muuri/tiddler/margin</li>
 
+<li>$:/config/SidebarTags</li>
+
 <li>$:/core</li>
 
 <li>$:/core/ui/PageTemplate/story</li>
@@ -260,7 +262,7 @@ margin-right: 0;
 width: 100%;
 }</pre>
 </div>
-<div created="20201216154323661" modified="20201219094432487" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201216154323661" modified="20201219145807960" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>4</pre>
 </div>
 <div created="20201218053502921" modified="20201218053956615" tags="" title="$:/config/muuri/storyview/horizontal-view" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -268,6 +270,9 @@ width: 100%;
 </div>
 <div created="20201214212746120" modified="20201214212751122" tags="" title="$:/config/muuri/tiddler/margin" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>0.5em</pre>
+</div>
+<div created="20201219150157563" modified="20201219150157575" title="$:/config/SidebarTags" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>TestTag</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="TiddlyWiki5 core" list="readme" name="Core" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.1.23-prerelease" revision="0" bag="default">
 <pre>{
@@ -10162,33 +10167,15 @@ width: 100%;
 &lt;/section&gt;
 </pre>
 </div>
-<div caption="Grid" created="20201218163250928" modified="20201219123904859" tags="$:/tags/SideBar" title="$:/core/ui/SideBar/Grid/story" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div caption="Grid" created="20201218163250928" modified="20201219150143770" tags="$:/tags/SideBar" title="$:/core/ui/SideBar/Grid/story" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 &lt;$navigator story=&quot;$:/StoryList2&quot; history=&quot;$:/HistoryList2&quot;&gt;
 
+&lt;$vars currentTiddler=&quot;$:/config/SidebarTags&quot; tagField=&quot;text&quot;&gt;{{||$:/core/ui/EditTemplate/tags}}&lt;/$vars&gt;
+
 &lt;section class=&quot;tc-story-river tc-sidebar-grid&quot;&gt;
 
-&lt;section class=&quot;story-backdrop&quot;&gt;
-
-&lt;$list filter=&quot;[all[shadows+tiddlers]tag[$:/tags/AboveStory]!has[draft.of]]&quot;&gt;
-
-&lt;$transclude/&gt;
-
-&lt;/$list&gt;
-
-&lt;/section&gt;
-
-&lt;$list filter=&quot;[list[$:/StoryList2]]&quot; history=&quot;$:/HistoryList2&quot; storyList=&quot;$:/StoryList2&quot; template={{$:/config/ui/ViewTemplate}} editTemplate={{$:/config/ui/EditTemplate}} storyview={{$:/view}} emptyMessage={{$:/config/EmptyStoryMessage}} connectionSelector=&quot;.tc-muuri-river&quot; dropActions=&quot;&quot;&quot;&lt;$list filter=&quot;[&lt;modifier&gt;match[ctrl-shift]]&quot;&gt;&lt;$action-sendmessage $message=&quot;tm-edit-tiddler&quot; $param=&lt;&lt;actionTiddler&gt;&gt;/&gt;&lt;/$list&gt;&lt;$list filter=&quot;[&lt;modifier&gt;match[shift]]&quot;&gt;&lt;$action-listops $tiddler=&lt;&lt;actionTiddler&gt;&gt; $field=&quot;tags&quot; $subfilter=&quot;[[Sidebar]]&quot;/&gt;&lt;/$list&gt;&quot;&quot;&quot;/&gt;
-
-&lt;section class=&quot;story-frontdrop&quot;&gt;
-
-&lt;$list filter=&quot;[all[shadows+tiddlers]tag[$:/tags/BelowStory]!has[draft.of]]&quot;&gt;
-
-&lt;$transclude/&gt;
-
-&lt;/$list&gt;
-
-&lt;/section&gt;
+&lt;$list filter=&quot;[list[$:/StoryList2]]&quot; history=&quot;$:/HistoryList2&quot; storyList=&quot;$:/StoryList2&quot; template={{$:/config/ui/ViewTemplate}} editTemplate={{$:/config/ui/EditTemplate}} storyview={{$:/view}} emptyMessage={{$:/config/EmptyStoryMessage}} connectionSelector=&quot;.tc-muuri-river&quot; dropActions=&quot;&quot;&quot;&lt;$list filter=&quot;[&lt;modifier&gt;match[ctrl-shift]]&quot;&gt;&lt;$action-sendmessage $message=&quot;tm-edit-tiddler&quot; $param=&lt;&lt;actionTiddler&gt;&gt;/&gt;&lt;/$list&gt;&lt;$list filter=&quot;[&lt;modifier&gt;match[shift]]&quot;&gt;&lt;$action-listops $tiddler=&lt;&lt;actionTiddler&gt;&gt; $field=&quot;tags&quot; $subfilter=&quot;[enlist{$:/config/SidebarTags!!text}]&quot;/&gt;&lt;/$list&gt;&quot;&quot;&quot;/&gt;
 
 &lt;/section&gt;
 
@@ -10751,7 +10738,7 @@ width: 100%;
 <div list="[[Mona Lisa]] [[Ceci n’est pas une pipe.]] [[I am Mr. Van Gogh]] [[I am one of that guy's paintings]] [[The Great Wave off the Coast of Kanagawa]] [[The Kiss]] [[Works best with the CodeMirror plugin]] [[Dragging Tiddlers]] [[The Birth of Venus]] [[Kanban Demo]] [[Actions can be triggered on Drop]] [[El jardin de las Delicias]] [[This Louvre moment]] [[Right-to-left or Left-to-right View]] [[Moving Items between Grids]] [[Horizontal View]]" title="$:/StoryList" revision="1" bag="default">
 <pre></pre>
 </div>
-<div created="20201218163957875" list="" modified="20201219125919888" title="$:/StoryList2" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201218163957875" list="" modified="20201219150204328" title="$:/StoryList2" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23-prerelease" revision="0" bag="default">
@@ -11019,7 +11006,7 @@ color: black;
 <div created="20190221130918668" list="[[Kanban Demo Todo]] [[Kanban Demo Done]] [[Kanban Demo Working]]" modified="20201219103629152" tags="" title="kanban-list" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20201011123647469" modified="20201219123942761" tags="" title="Mona Lisa" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201011123647469" modified="20201219150210539" tags="" title="Mona Lisa" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img [https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/687px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg]]
 </pre>
 </div>
