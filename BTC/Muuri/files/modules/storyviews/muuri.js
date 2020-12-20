@@ -19,7 +19,9 @@ var ALIGNRIGHT_CONFIG = "$:/config/muuri/storyview/align-right",
 	DRAGSORTACTION_CONFIG = "$:/config/muuri/storyview/dragsort-action",
 	DRAGSORTTHRESHOLD_CONFIG ="$:/config/muuri/storyview/dragsort-threshold",
 	DRAGGING_CONFIG = "$:/state/config/muuri/storyview/drag-enabled",
-	DRAGSORT_HEURISTICS_INTERVAL_CONFIG = "$:/config/muuri/storyview/dragsort-heuristics-interval";
+	DRAGSORT_HEURISTICS_INTERVAL_CONFIG = "$:/config/muuri/storyview/dragsort-heuristics-interval",
+	CONNECTION_CONFIG = "$:/config/muuri/storyview/connection-selector",
+	DRAGHANDLE_CONFIG = "$:/config/muuri/storyview/drag-handle";
 
 if(typeof window !== "undefined") {
 	var testElement = document.body;
@@ -371,12 +373,7 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	this.dragSortAction = this.listWidget.getAttribute("dragSortAction",this.storyListTitle === "$:/StoryList" ? this.listWidget.wiki.getTiddlerText(DRAGSORTACTION_CONFIG) : "move");
 	this.dragSortThreshold = parseInt(this.listWidget.getAttribute("dragSortThreshold",this.storyListTitle === "$:/StoryList" ? this.listWidget.getTiddlerText(DRAGSORTTHRESHOLD_CONFIG) : "40"));
 	this.dragSortHeuristicsInterval = parseInt(this.listWidget.getAttribute("dragSortHeuristicsInterval"),this.listWidget.wiki.getTiddlerText(DRAGSORT_HEURISTICS_INTERVAL_CONFIG)) || 100;
-	var dragHandle = this.listWidget.getAttribute("dragHandle",null);
-	if(dragHandle === "") {
-		dragHandle = null;
-	}
 	this.dragHandle = dragHandle;
-	this.connectionSelector = this.listWidget.getAttribute("connectionSelector");
 	this.alignRight = this.listWidget.getAttribute("alignRight",this.listWidget.wiki.getTiddlerText(ALIGNRIGHT_CONFIG)) !== "no";
 	this.alignBottom = this.listWidget.getAttribute("alignBottom",this.listWidget.wiki.getTiddlerText(ALIGNBOTTOM_CONFIG)) === "yes";
 	this.dragEnabled = this.listWidget.getAttribute("dragEnabled",this.listWidget.wiki.getTiddlerText(DRAGGING_CONFIG)) !== "no";
@@ -386,6 +383,11 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	this.itemEditTemplate = this.listWidget.getAttribute("editTemplate");
 	this.zIndexTiddler = this.listWidget.getAttribute("zIndexTiddler",this.storyListTitle === "$:/StoryList" ? "$:/state/muuri/storyriver/z-indexes" : null);
 	this.noDragTags = ["input","INPUT","textarea","TEXTAREA","button","BUTTON","select","SELECT"];
+	this.connectionSelector = this.listWidget.getAttribute("connectionSelector",this.storyListTitle === "$:/StoryList" ? this.listWidget.wiki.getTiddlerText(CONNECTION_CONFIG) : null);
+	var dragHandle = this.listWidget.getAttribute("dragHandle",this.storyListTitle === "$:/StoryList" ? this.listWidget.wiki.getTiddlerText(DRAGHANDLE_CONFIG) : null);
+	if(dragHandle === "") {
+		dragHandle = null;
+	}
 	this.dropActions = this.listWidget.getAttribute("dropActions");
 };
 
@@ -657,10 +659,25 @@ MuuriStoryView.prototype.handleRefresh = function(changedTiddlers) {
 			self.listWidget.refreshSelf();
 		},25);
 	}
-	if(changedAttributes.connectionSelector) {
-		this.connectionSelector = this.listWidget.getAttribute("connectionSelector");
+	if(changedTiddlers[CONNECTION_CONFIG] || changedAttributes.connectionSelector) {
+		this.connectionSelector = this.listWidget.getAttribute("connectionSelector",this.storyListTitle === "$:/StoryList" ? this.listWidget.wiki.getTiddlerText(CONNECTION_CONFIG) : null);
 	}
-	if(changedAttributes.storyList || changedAttributes.storyListField || changedAttributes.containerClass || changedAttributes.itemClass || changedAttributes.zIndexTiddler || changedAttributes.dragHandle) {
+	if(changedTiddlers[DRAGHANDLE_CONFIG] || changedAttributes.dragHandle) {
+		var dragHandle = this.listWidget.getAttribute("dragHandle",this.storyListTitle === "$:/StoryList" ? this.listWidget.wiki.getTiddlerText(DRAGHANDLE_CONFIG) : null);
+		if(dragHandle === "") {
+			dragHandle = null;
+		}
+		this.muuri._settings.dragHandle = dragHandle;
+		var items = this.muuri.getItems();
+		var elements = [];
+		for(var i=0; i<items.length; i++) {
+			elements.push(items[i]._element);
+		}
+		this.muuri.remove(items,{removeElements:true,layout:false});
+		this.muuri.add(elements,{layout:false});
+		this.muuri.layout(true);
+	}
+	if(changedAttributes.storyList || changedAttributes.storyListField || changedAttributes.containerClass || changedAttributes.itemClass || changedAttributes.zIndexTiddler) {
 		this.listWidget.refreshSelf();
 	}
 	return true;
