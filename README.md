@@ -17,10 +17,18 @@ You can install the tiddlywiki-muuri plugin in two ways:
 clone this repo to your `TIDDLYWIKI_PLUGIN_PATH` (see https://tiddlywiki.com/#Environment%20Variables%20on%20Node.js)
 
 ```
-git clone git@github.com:BurningTreeC/tiddlywiki-muuri.git
+git clone --depth=1 git@github.com:BurningTreeC/tiddlywiki-muuri.git $TIDDLYWIKI_PLUGIN_PATH
 ```
 
 enable the plugin in your tiddlywiki.info file (see https://tiddlywiki.com/#tiddlywiki.info%20Files)
+
+```
+"plugins": [
+	"plugins/first-plugin",
+	"plugins/second-plugin",
+	"BTC/Muuri"
+	]
+```
 
 ### The TiddlyWiki SingleFile way
 
