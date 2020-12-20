@@ -143,6 +143,8 @@ Error message and password prompt
 
 <li>$:/_styles</li>
 
+<li>$:/config/DefaultSidebarTab</li>
+
 <li>$:/config/muuri/storyview/columns</li>
 
 <li>$:/config/muuri/storyview/horizontal-view</li>
@@ -150,6 +152,8 @@ Error message and password prompt
 <li>$:/config/muuri/tiddler/margin</li>
 
 <li>$:/config/SidebarTags</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/fold-bar</li>
 
 <li>$:/core</li>
 
@@ -251,32 +255,49 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
-<div created="20201218163434681" modified="20201220095255259" tags="$:/tags/Stylesheet" title="$:/_styles" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201218163434681" modified="20201220101259454" tags="$:/tags/Stylesheet" title="$:/_styles" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>.tc-story-river {
 min-height: 200px;
 }
 
-.tc-story-river.tc-muuri-river:not(.tc-sidebar-grid) {
+.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) {
 min-height: calc(100vh - 2em);
 }
 
-.tc-story-river.tc-sidebar-grid {
+.tc-story-river.tc-sidebar-river {
 margin-right: 0;
 border: 4px dashed &lt;&lt;colour foreground&gt;&gt;;
 border-radius: 4px;
 }
 
-.tc-story-river.tc-sidebar-grid &gt; .tc-tiddler-frame {
+.tc-story-river.tc-sidebar-river &gt; .tc-tiddler-frame {
 width: 100%;
 margin-right: 0;
 margin-left: 0;
+padding: 28px 42px 42px 42px;
+}
+
+.tc-story-river.tc-sidebar-river &gt; .tc-tiddler-frame .tc-tiddler-info {
+padding: 14px 42px 14px 42px;
+margin: 0 -42px 0 -42px;
+}
+
+.tc-story-river.tc-sidebar-river &gt; .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-sidebar-river &gt; .tc-tiddler-frame button.tc-unfold-banner {
+margin-left: -43px;
+}
+
+.tc-story-river.tc-sidebar-river &gt; .tc-tiddler-frame {
+color: &lt;&lt;colour foreground&gt;&gt;;
 }
 
 .tc-red-icon svg {
 fill: red;
 }</pre>
 </div>
-<div created="20201216154323661" modified="20201219145807960" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201220101109470" modified="20201220101126792" tags="" title="$:/config/DefaultSidebarTab" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>$:/core/ui/SideBar/Grid/story</pre>
+</div>
+<div created="20201216154323661" modified="20201220100300028" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>4</pre>
 </div>
 <div created="20201218053502921" modified="20201219153744122" tags="" title="$:/config/muuri/storyview/horizontal-view" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -287,6 +308,9 @@ fill: red;
 </div>
 <div created="20201219150157563" modified="20201219150157575" title="$:/config/SidebarTags" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>TestTag</pre>
+</div>
+<div created="20201220100313935" modified="20201220100904134" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/fold-bar" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>hide</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="TiddlyWiki5 core" list="readme" name="Core" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.1.23-prerelease" revision="0" bag="default">
 <pre>{
@@ -10181,13 +10205,13 @@ fill: red;
 &lt;/section&gt;
 </pre>
 </div>
-<div caption="Grid" created="20201218163250928" modified="20201219165618381" tags="$:/tags/SideBar" title="$:/core/ui/SideBar/Grid/story" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div caption="Grid" created="20201218163250928" modified="20201220101732076" tags="$:/tags/SideBar" title="$:/core/ui/SideBar/Grid/story" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 &lt;$navigator story=&quot;$:/StoryList2&quot; history=&quot;$:/HistoryList2&quot;&gt;
 
 &lt;$vars currentTiddler=&quot;$:/config/SidebarTags&quot; tagField=&quot;text&quot;&gt;{{||$:/core/ui/EditTemplate/tags}}&lt;/$vars&gt;
 
-&lt;section class=&quot;tc-story-river tc-sidebar-grid&quot;&gt;
+&lt;section class=&quot;tc-story-river tc-sidebar-river&quot;&gt;
 
 &lt;$list filter=&quot;[list[$:/StoryList2]]&quot; history=&quot;$:/HistoryList2&quot; storyList=&quot;$:/StoryList2&quot; template={{$:/config/ui/ViewTemplate}} editTemplate={{$:/config/ui/EditTemplate}} storyview={{$:/view}} emptyMessage={{$:/config/EmptyStoryMessage}} connectionSelector=&quot;.tc-muuri-river&quot; horizontal=&quot;no&quot; dropActions=&quot;&quot;&quot;&lt;$list filter=&quot;[&lt;modifier&gt;match[ctrl-shift]]&quot;&gt;&lt;$action-sendmessage $message=&quot;tm-edit-tiddler&quot; $param=&lt;&lt;actionTiddler&gt;&gt;/&gt;&lt;/$list&gt;&lt;$list filter=&quot;[&lt;modifier&gt;match[shift]]&quot;&gt;&lt;$action-listops $tiddler=&lt;&lt;actionTiddler&gt;&gt; $field=&quot;tags&quot; $subfilter=&quot;[enlist{$:/config/SidebarTags!!text}]&quot;/&gt;&lt;/$list&gt;&quot;&quot;&quot;/&gt;
 
@@ -10752,7 +10776,7 @@ fill: red;
 <div list="[[Mona Lisa]] [[I am Mr. Van Gogh]] [[Ceci n’est pas une pipe.]] [[I am one of that guy's paintings]] [[Star me on GitHub]] [[The Birth of Venus]] [[Works best with the CodeMirror plugin]] [[The Great Wave off the Coast of Kanagawa]] [[Kanban Demo]] [[The Kiss]] [[El jardin de las Delicias]] [[This Louvre moment]] [[Dragging Tiddlers]] [[Right-to-left or Left-to-right View]] [[Actions can be triggered on Drop]] [[Moving Items between Grids]] [[Horizontal View]]" title="$:/StoryList" revision="1" bag="default">
 <pre></pre>
 </div>
-<div created="20201218163957875" list="" modified="20201220092007171" title="$:/StoryList2" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201218163957875" list="" modified="20201220101719807" title="$:/StoryList2" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23-prerelease" revision="0" bag="default">
@@ -10864,8 +10888,8 @@ fill: red;
     }
 }</pre>
 </div>
-<div created="20201219083130175" modified="20201219083130190" title="$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>450px</pre>
+<div created="20201219083130175" modified="20201220095720141" title="$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>550px</pre>
 </div>
 <div created="20201214221228399" modified="20201218170556002" title="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>fluid-fixed</pre>
@@ -11020,7 +11044,7 @@ color: black;
 <div created="20190221130918668" list="[[Kanban Demo Todo]] [[Kanban Demo Done]] [[Kanban Demo Working]]" modified="20201219103629152" tags="" title="kanban-list" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20201011123647469" modified="20201220075312196" tags="" title="Mona Lisa" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201011123647469" modified="20201220095657360" tags="" title="Mona Lisa" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img [https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/687px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg]]
 </pre>
 </div>
