@@ -210,7 +210,7 @@ MuuriStoryView.prototype.synchronizeGrid = function() {
 			}
 		}
 	}
-	if(hasChanged && this.itemTitlesArray.indexOf(undefined) === -1 && this.itemTitlesArray.indexOf(null) === -1) {
+	if(this.storyListTitle && hasChanged && this.itemTitlesArray.indexOf(undefined) === -1 && this.itemTitlesArray.indexOf(null) === -1) {
 		this.listWidget.wiki.setText(this.storyListTitle,this.storyListField,undefined,this.itemTitlesArray);
 	}
 };
@@ -358,9 +358,12 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	this.animationDuration = $tw.utils.getAnimationDuration();
 	this.attachEvent = this.listWidget.document.attachEvent;
 	this.isIE = $tw.browser.isIE;
-	this.rounding = true;
-	this.containerClass = this.listWidget.getAttribute("containerClass","tc-muuri-river");
-	var itemClass = this.listWidget.getAttribute("itemClass","tc-tiddler-frame");
+	this.configNamespace = this.listWidget.getAttribute("storyViewConfig","$:/config/muuri/storyview/");
+	this.itemTemplate = this.listWidget.getAttribute("template");
+	this.itemEditTemplate = this.listWidget.getAttribute("editTemplate");
+	this.noDragTags = ["input","INPUT","textarea","TEXTAREA","button","BUTTON","select","SELECT"];
+	this.containerClass = this.listWidget.wiki.getTiddlerText(this.configNamespace + "container-class") || "tc-muuri-river";
+	var itemClass = this.listWidget.wiki.getTiddlerText(this.configNamespace + "item-class") || "tc-tiddler-frame";
 	if(itemClass === undefined || itemClass === "" || itemClass === "*") {
 		this.itemSelector = "*";
 		this.itemClass = "tc-muuri-item";
@@ -369,26 +372,22 @@ MuuriStoryView.prototype.collectAttributes = function() {
 		this.itemSelector = "." + classes[0];
 		this.itemClass = classes[0];
 	}
-	this.dragSortInterval = parseInt(this.listWidget.getAttribute("dragSortInterval","100"));
-	this.dragSortAction = this.listWidget.getAttribute("dragSortAction",this.storyListTitle === "$:/StoryList" ? this.listWidget.wiki.getTiddlerText(DRAGSORTACTION_CONFIG) : "move");
-	this.dragSortThreshold = parseInt(this.listWidget.getAttribute("dragSortThreshold",this.storyListTitle === "$:/StoryList" ? this.listWidget.getTiddlerText(DRAGSORTTHRESHOLD_CONFIG) : "40"));
-	this.dragSortHeuristicsInterval = parseInt(this.listWidget.getAttribute("dragSortHeuristicsInterval"),this.listWidget.wiki.getTiddlerText(DRAGSORT_HEURISTICS_INTERVAL_CONFIG)) || 100;
-	this.dragHandle = dragHandle;
-	this.alignRight = this.listWidget.getAttribute("alignRight",this.listWidget.wiki.getTiddlerText(ALIGNRIGHT_CONFIG)) !== "no";
-	this.alignBottom = this.listWidget.getAttribute("alignBottom",this.listWidget.wiki.getTiddlerText(ALIGNBOTTOM_CONFIG)) === "yes";
-	this.dragEnabled = this.listWidget.getAttribute("dragEnabled",this.listWidget.wiki.getTiddlerText(DRAGGING_CONFIG)) !== "no";
-	this.storyListTitle = this.listWidget.getAttribute("storyList","$:/StoryList");
-	this.storyListField = this.listWidget.getAttribute("storyListField","list");
-	this.itemTemplate = this.listWidget.getAttribute("template");
-	this.itemEditTemplate = this.listWidget.getAttribute("editTemplate");
-	this.zIndexTiddler = this.listWidget.getAttribute("zIndexTiddler",this.storyListTitle === "$:/StoryList" ? "$:/state/muuri/storyriver/z-indexes" : null);
-	this.noDragTags = ["input","INPUT","textarea","TEXTAREA","button","BUTTON","select","SELECT"];
-	this.connectionSelector = this.listWidget.getAttribute("connectionSelector",this.storyListTitle === "$:/StoryList" ? this.listWidget.wiki.getTiddlerText(CONNECTION_CONFIG) : null);
-	var dragHandle = this.listWidget.getAttribute("dragHandle",this.storyListTitle === "$:/StoryList" ? this.listWidget.wiki.getTiddlerText(DRAGHANDLE_CONFIG) : null);
-	if(dragHandle === "") {
+	this.dragSortAction = this.listWidget.wiki.getTiddlerText(this.configNamespace + "dragsort-action") || "move";
+	this.dragSortThreshold = parseInt(this.listWidget.wiki.getTiddlerText(this.configNamespace + "dragsort-threshold")) || 40;
+	this.dragSortHeuristicsInterval = parseInt(this.listWidget.wiki.getTiddlerText(this.configNamespace + "dragsort-heuristics-interval")) || 100;
+	var dragHandle = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-handle");
+	if(dragHandle === "" || dragHandle === undefined) {
 		dragHandle = null;
 	}
-	this.dropActions = this.listWidget.getAttribute("dropActions");
+	this.dragHandle = dragHandle;
+	this.alignRight = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-right") !== "no";
+	this.alignBottom = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-bottom") === "yes";
+	this.dragEnabled = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
+	this.storyListTitle = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist");
+	this.storyListField = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist-field") || "list";
+	this.zIndexTiddler = this.listWidget.wiki.getTiddlerText(this.configNamespace + "zindex-tiddler");
+	this.connectionSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "connection-selector");
+	this.dropActions = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
 };
 
 MuuriStoryView.prototype.findListWidget = function(element) {
@@ -620,64 +619,77 @@ MuuriStoryView.prototype.refreshMuuriGrid = function(item) {
 	this.muuri.layout(); //no .layout(true), make tiddlers move, not jump instantly
 };
 
+MuuriStoryView.prototype.hardRefresh = function() {
+	var items = this.muuri.getItems();
+	var elements = [];
+	for(var i=0; i<items.length; i++) {
+		elements.push(items[i]._element);
+	}
+	this.muuri.remove(items,{removeElements:true,layout:false});
+	this.muuri.add(elements,{layout:false});
+	this.muuri.layout(true);
+};
+
 MuuriStoryView.prototype.handleRefresh = function(changedTiddlers) {
 	var self = this;
 	var changedAttributes = this.listWidget.computeAttributes();
+	if(changedTiddlers[this.configNamespace + "drag-enabled"]) {
+		this.muuri._settings.dragEnabled = this.dragEnabled = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
+		this.hardRefresh();
+	}
+	if(changedTiddlers[this.configNamespace + "drag-handle"]) {
+		var dragHandle = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-handle");
+		if(dragHandle === "" || dragHandle === undefined) {
+			dragHandle = null;
+		}
+		this.muuri._settings.dragHandle = this.dragHandle = dragHandle;
+		this.hardRefresh();
+	}
+	if(changedTiddlers[this.configNamespace + "align-right"]) {
+		this.muuri._settings.layout.alignRight = this.alignRight = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-right") !== "no";
+		this.refreshMuuriGrid();
+	}
+	if(changedTiddlers[this.configNamespace + "align-bottom"]) {
+		this.muuri._settings.layout.alignBottom = this.alignBottom = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-bottom") === "yes";
+		this.refreshMuuriGrid();
+	}
+	if(changedTiddlers[this.configNamespace + "dragsort-action"]) {
+		this.muuri._settings.dragSortPredicate.action = this.dragSortAction = this.listWidget.wiki.getTiddlerText(this.configNamespace + "dragsort-action") || "move";
+	}
+	if(changedTiddlers[this.configNamespace + "dragsort-threshold"]) {
+		this.muuri._settings.dragSortPredicate.threshold = this.dragSortThreshold = parseInt(this.listWidget.wiki.getTiddlerText(this.configNamespace + "dragsort-threshold")) || 40;
+	}
+	if(changedTiddlers[this.configNamespace + "dragsort-heuristics-interval"]) {
+		this.muuri._settings.dragSortHeuristics.sortInterval = this.dragSortHeuristicsInterval = parseInt(this.listWidget.wiki.getTiddlerText(this.configNamespace + "dragsort-heuristics-interval")) || 100;
+	}
+	if(changedTiddlers[this.configNamespace + "storylist"]) {
+		this.storyListTitle = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist");
+	}
+	if(changedTiddlers[this.configNamespace + "storylist-field"]) {
+		this.storyListField = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist-field") || "list";
+	}
+	if(changedTiddlers[this.configNamespace + "zindex-tiddler"]) {
+		this.zIndexTiddler = this.listWidget.wiki.getTiddlerText(this.configNamespace + "zindex-tiddler");
+	}
+	if(changedTiddlers[this.configNamespace + "connection-selector"]) {
+		this.connectionSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "connection-selector");
+	}
+	if(changedTiddlers[this.configNamespace + "drop-actions"]) {
+		this.dropActions = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
+	}
+	if(changedTiddlers[this.configNamespace + "container-class"] || changedTiddlers[this.configNamespace + "item-class"]) {
+		this.muuri.destroy(true);
+		this.listWidget.parentWidget.refreshSelf();
+	}
 	if(changedTiddlers["$:/config/AnimationDuration"]) {
 		this.muuri._settings.showDuration = this.muuri._settings.layoutDuration = this.animationDuration = $tw.utils.getAnimationDuration();
-	}
-	if(changedTiddlers[DRAGGING_CONFIG] || changedAttributes.dragEnabled) {
-		this.muuri._settings.dragEnabled = this.dragEnabled = this.listWidget.getAttribute("dragEnabled",this.listWidget.wiki.getTiddlerText(DRAGGING_CONFIG)) !== "no";
-		var items = this.muuri.getItems();
-		var elements = [];
-		for(var i=0; i<items.length; i++) {
-			elements.push(items[i]._element);
-		}
-		this.muuri.remove(items,{removeElements:true,layout:false});
-		this.muuri.add(elements,{layout:false});
-		this.muuri.layout(true);
-	}
-	if(changedTiddlers[ALIGNRIGHT_CONFIG] || changedAttributes.alignRight) {
-		this.muuri._settings.layout.alignRight = this.alignRight = this.listWidget.getAttribute("alignRight",this.listWidget.wiki.getTiddlerText(ALIGNRIGHT_CONFIG)) !== "no";		
-		this.refreshMuuriGrid();
-	}
-	if(changedTiddlers[ALIGNBOTTOM_CONFIG] || changedAttributes.alignBottom) {
-		this.muuri._settings.layout.alignBottom = this.alignBottom = this.listWidget.getAttribute("alignBottom",this.listWidget.wiki.getTiddlerText(ALIGNBOTTOM_CONFIG)) === "yes";
-		this.refreshMuuriGrid();
-	}
-	if(changedTiddlers[DRAGSORTACTION_CONFIG] || changedAttributes.dragSortAction) {
-		this.muuri._settings.dragSortPredicate.action = this.dragSortAction = this.listWidget.getAttribute("dragSortAction",this.storyListTitle === "$:/StoryList" ? this.listWidget.wiki.getTiddlerText(DRAGSORTACTION_CONFIG) : "move");
-	}
-	if(changedTiddlers[DRAGSORTTHRESHOLD_CONFIG] || changedAttributes.dragSortThreshold) {
-		this.muuri._settings.dragSortPredicate.threshold = this.dragSortThreshold = parseInt(this.listWidget.getAttribute("dragSortThreshold",this.storyListTitle === "$:/StoryList" ? this.listWidget.wiki.getTiddlerText(DRAGSORTTHRESHOLD_CONFIG) : "40"));
-	}
-	if(changedTiddlers[DRAGSORT_HEURISTICS_INTERVAL_CONFIG] || changedAttributes.dragSortHeuristicsInterval) {
-		this.muuri._settings.dragSortHeuristics.sortInterval = this.dragSortHeuristicsInterval = parseInt(this.listWidget.getAttribute("dragSortHeuristicsInterval"),this.listWidget.wiki.getTiddlerText(DRAGSORT_HEURISTICS_INTERVAL_CONFIG)) || 100;
 	}
 	if(changedTiddlers[this.itemTemplate] || changedTiddlers[this.itemEditTemplate]) {
 		setTimeout(function(){
 			self.listWidget.refreshSelf();
 		},25);
 	}
-	if(changedTiddlers[CONNECTION_CONFIG] || changedAttributes.connectionSelector) {
-		this.connectionSelector = this.listWidget.getAttribute("connectionSelector",this.storyListTitle === "$:/StoryList" ? this.listWidget.wiki.getTiddlerText(CONNECTION_CONFIG) : null);
-	}
-	if(changedTiddlers[DRAGHANDLE_CONFIG] || changedAttributes.dragHandle) {
-		var dragHandle = this.listWidget.getAttribute("dragHandle",this.storyListTitle === "$:/StoryList" ? this.listWidget.wiki.getTiddlerText(DRAGHANDLE_CONFIG) : null);
-		if(dragHandle === "") {
-			dragHandle = null;
-		}
-		this.muuri._settings.dragHandle = dragHandle;
-		var items = this.muuri.getItems();
-		var elements = [];
-		for(var i=0; i<items.length; i++) {
-			elements.push(items[i]._element);
-		}
-		this.muuri.remove(items,{removeElements:true,layout:false});
-		this.muuri.add(elements,{layout:false});
-		this.muuri.layout(true);
-	}
-	if(changedAttributes.storyList || changedAttributes.storyListField || changedAttributes.containerClass || changedAttributes.itemClass || changedAttributes.zIndexTiddler) {
+	if(changedAttributes.storyViewConfig) {
 		this.listWidget.refreshSelf();
 	}
 	return true;
