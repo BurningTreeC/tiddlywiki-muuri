@@ -177,6 +177,23 @@ MuuriStoryView.prototype.onDragReleaseEnd = function(item) {
 	}
 };
 
+// From stackoverflow https://stackoverflow.com/questions/35939886/find-first-scrollable-parent
+MuuriStoryView.prototype.getScrollContainer = function (element,includeHidden) {
+	var style = getComputedStyle(element);
+	var excludeStaticParent = style.position === "absolute";
+	var overflowRegex = includeHidden ? /(auto|scroll|hidden)/ : /(auto|scroll)/;
+
+	if (style.position === "fixed") return this.listWidget.document.body;
+	for (var parent = element; (parent = parent.parentElement);) {
+		style = getComputedStyle(parent);
+		if (excludeStaticParent && style.position === "static") {
+			continue;
+		}
+		if (overflowRegex.test(style.overflow + style.overflowY + style.overflowX)) return parent;
+	}
+	return this.listWidget.document.body;
+};
+
 MuuriStoryView.prototype.synchronizeGrid = function() {
 	this.refreshItemTitlesArray();
 	this.muuri.synchronize();
@@ -191,11 +208,9 @@ MuuriStoryView.prototype.synchronizeGrid = function() {
 			}
 		}
 	}
-	var scrollPosition = $tw.utils.getScrollPosition();
 	if(hasChanged && this.itemTitlesArray.indexOf(undefined) === -1 && this.itemTitlesArray.indexOf(null) === -1) {
 		this.listWidget.wiki.setText(this.storyListTitle,this.storyListField,undefined,this.itemTitlesArray);
 	}
-	this.listWidget.document.defaultView.scrollTo(scrollPosition.x,scrollPosition.y);
 };
 
 MuuriStoryView.prototype.refreshItemTitlesArray = function() {
