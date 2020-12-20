@@ -301,7 +301,7 @@ MuuriStoryView.prototype.createMuuriGrid = function() {
 
 MuuriStoryView.prototype.collectOptions = function() {
 	var self = this;
-	var scrollContainer = this.getScrollContainer(this.listWidget.parentDomNode);
+	//var scrollContainer = this.getScrollContainer(this.listWidget.parentDomNode);
 	return {
 		items: self.itemSelector,
 		dragEnabled: self.dragEnabled,
@@ -341,7 +341,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 			duration: self.animationDuration,
 			easing: easing
 		},
-		dragAutoScroll: {
+/*		dragAutoScroll: {
 			targets: [
 				{ element: scrollContainer, priority: 0, axis: Muuri.AutoScroller.AXIS_Y }
 			],
@@ -351,7 +351,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 			speed: Muuri.AutoScroller.smoothSpeed(1000, 2000, 2500),
 			sortDuringScroll: false,
 			smoothStop: true,
-		},
+		},*/
 		dragSortInterval: self.dragSortInterval,
 		showDuration: self.animationDuration,
 		layoutDurattion: self.animationDuration,
