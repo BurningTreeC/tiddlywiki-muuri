@@ -147,6 +147,8 @@ Error message and password prompt
 
 <li>$:/config/muuri/storyview/columns</li>
 
+<li>$:/config/muuri/storyview/connection-selector</li>
+
 <li>$:/config/muuri/storyview/horizontal-view</li>
 
 <li>$:/config/muuri/tiddler/margin</li>
@@ -158,8 +160,6 @@ Error message and password prompt
 <li>$:/core</li>
 
 <li>$:/core/ui/PageTemplate/drafts</li>
-
-<li>$:/core/ui/PageTemplate/story</li>
 
 <li>$:/core/ui/SideBar/Grid/story</li>
 
@@ -309,6 +309,9 @@ fill: red;
 </div>
 <div created="20201216154323661" modified="20201220121451078" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>4</pre>
+</div>
+<div created="20201220152912999" modified="20201220152950165" tags="" title="$:/config/muuri/storyview/connection-selector" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>.tc-sidebar-river</pre>
 </div>
 <div created="20201218053502921" modified="20201219153744122" tags="" title="$:/config/muuri/storyview/horizontal-view" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>no</pre>
@@ -10197,35 +10200,6 @@ fill: red;
 &lt;/$reveal&gt;
 </pre>
 </div>
-<div created="20201219090229872" modified="20201219090249610" tags="$:/tags/PageTemplate" title="$:/core/ui/PageTemplate/story" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>\whitespace trim
-&lt;section class=&quot;tc-story-river&quot;&gt;
-
-&lt;section class=&quot;story-backdrop&quot;&gt;
-
-&lt;$list filter=&quot;[all[shadows+tiddlers]tag[$:/tags/AboveStory]!has[draft.of]]&quot;&gt;
-
-&lt;$transclude/&gt;
-
-&lt;/$list&gt;
-
-&lt;/section&gt;
-
-&lt;$list filter=&quot;[list[$:/StoryList]]&quot; history=&quot;$:/HistoryList&quot; template={{$:/config/ui/ViewTemplate}} editTemplate={{$:/config/ui/EditTemplate}} storyview={{$:/view}} emptyMessage={{$:/config/EmptyStoryMessage}} connectionSelector=&quot;.tc-muuri-river&quot;/&gt;
-
-&lt;section class=&quot;story-frontdrop&quot;&gt;
-
-&lt;$list filter=&quot;[all[shadows+tiddlers]tag[$:/tags/BelowStory]!has[draft.of]]&quot;&gt;
-
-&lt;$transclude/&gt;
-
-&lt;/$list&gt;
-
-&lt;/section&gt;
-
-&lt;/section&gt;
-</pre>
-</div>
 <div caption="Grid" created="20201218163250928" modified="20201220103928196" tags="$:/tags/SideBar" title="$:/core/ui/SideBar/Grid/story" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 &lt;$navigator story=&quot;$:/StoryList2&quot; history=&quot;$:/HistoryList2&quot;&gt;
@@ -10797,7 +10771,7 @@ fill: red;
 <div list="[[Mona Lisa]] [[I am Mr. Van Gogh]] [[Ceci n’est pas une pipe.]] [[I am one of that guy's paintings]] [[Star me on GitHub]] [[The Birth of Venus]] [[Works best with the CodeMirror plugin]] [[The Great Wave off the Coast of Kanagawa]] [[Kanban Demo]] [[The Kiss]] [[El jardin de las Delicias]] [[This Louvre moment]] [[Dragging Tiddlers]] [[Right-to-left or Left-to-right View]] [[Actions can be triggered on Drop]] [[Moving Items between Grids]] [[Horizontal View]] [[Change the amount of columns]] [[storyList Attribute]] [[containerClass Attribute]] itemClass" title="$:/StoryList" revision="1" bag="default">
 <pre></pre>
 </div>
-<div created="20201218163957875" list="" modified="20201220121402613" title="$:/StoryList2" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201218163957875" list="" modified="20201220153108227" title="$:/StoryList2" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23-prerelease" revision="0" bag="default">
