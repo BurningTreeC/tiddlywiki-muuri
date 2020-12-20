@@ -157,6 +157,8 @@ Error message and password prompt
 
 <li>$:/core</li>
 
+<li>$:/core/ui/PageTemplate/drafts</li>
+
 <li>$:/core/ui/PageTemplate/story</li>
 
 <li>$:/core/ui/SideBar/Grid/story</li>
@@ -194,6 +196,8 @@ Error message and password prompt
 <li>Actions can be triggered on Drop</li>
 
 <li>Ceci n’est pas une pipe.</li>
+
+<li>Change the amount of columns</li>
 
 <li>done-list</li>
 
@@ -10176,6 +10180,17 @@ fill: red;
     }
 }</pre>
 </div>
+<div created="20201220102914240" modified="20201220102918002" tags="$:/tags/PageTemplate" title="$:/core/ui/PageTemplate/drafts" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>\whitespace trim
+&lt;$reveal state=&quot;$:/status/IsReadOnly&quot; type=&quot;nomatch&quot; text=&quot;yes&quot; tag=&quot;div&quot; class=&quot;tc-drafts-list&quot;&gt;
+&lt;$list filter=&quot;[has[draft.of]!sort[modified]] -[list[$:/StoryList]] -[list[$:/StoryList2]]&quot;&gt;
+&lt;$link&gt;
+{{$:/core/images/edit-button}} &lt;$text text=&lt;&lt;currentTiddler&gt;&gt;/&gt;
+&lt;/$link&gt;
+&lt;/$list&gt;
+&lt;/$reveal&gt;
+</pre>
+</div>
 <div created="20201219090229872" modified="20201219090249610" tags="$:/tags/PageTemplate" title="$:/core/ui/PageTemplate/story" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 &lt;section class=&quot;tc-story-river&quot;&gt;
@@ -10773,7 +10788,7 @@ fill: red;
 <div title="$:/status/RequireReloadDueToPluginChange" revision="0" bag="default">
 <pre>no</pre>
 </div>
-<div list="[[Mona Lisa]] [[I am Mr. Van Gogh]] [[Ceci n’est pas une pipe.]] [[I am one of that guy's paintings]] [[Star me on GitHub]] [[The Birth of Venus]] [[Works best with the CodeMirror plugin]] [[The Great Wave off the Coast of Kanagawa]] [[Kanban Demo]] [[The Kiss]] [[El jardin de las Delicias]] [[This Louvre moment]] [[Dragging Tiddlers]] [[Right-to-left or Left-to-right View]] [[Actions can be triggered on Drop]] [[Moving Items between Grids]] [[Horizontal View]]" title="$:/StoryList" revision="1" bag="default">
+<div list="[[Mona Lisa]] [[I am Mr. Van Gogh]] [[Ceci n’est pas une pipe.]] [[I am one of that guy's paintings]] [[Star me on GitHub]] [[The Birth of Venus]] [[Works best with the CodeMirror plugin]] [[The Great Wave off the Coast of Kanagawa]] [[Kanban Demo]] [[The Kiss]] [[El jardin de las Delicias]] [[This Louvre moment]] [[Dragging Tiddlers]] [[Right-to-left or Left-to-right View]] [[Actions can be triggered on Drop]] [[Moving Items between Grids]] [[Horizontal View]] [[Change the amount of columns]]" title="$:/StoryList" revision="1" bag="default">
 <pre></pre>
 </div>
 <div created="20201218163957875" list="" modified="20201220101719807" title="$:/StoryList2" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -10902,6 +10917,9 @@ fill: red;
 </div>
 <div created="20201011123220797" modified="20201219123937933" tags="" title="Ceci n’est pas une pipe." type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img [https://upload.wikimedia.org/wikipedia/en/b/b9/MagrittePipe.jpg]]</pre>
+</div>
+<div created="20201220101933342" modified="20201220102206969" tags="Features" title="Change the amount of columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>Click the columns Button for more columns, hold &lt;kbd&gt;ctrl&lt;/kbd&gt; while clicking it for less columns</pre>
 </div>
 <div created="20190221125559737" list="[[Item #5]] [[Item #6]] [[Item #7]] [[Item #8]]" modified="20201219151207037" tags="" title="done-list" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
