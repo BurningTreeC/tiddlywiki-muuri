@@ -14,15 +14,6 @@ Views the story as a muuri grid
 
 var easing = "cubic-bezier(0.215, 0.61, 0.355, 1)";
 
-var ALIGNRIGHT_CONFIG = "$:/config/muuri/storyview/align-right",
-	ALIGNBOTTOM_CONFIG = "$:/config/muuri/storyview/align-bottom",
-	DRAGSORTACTION_CONFIG = "$:/config/muuri/storyview/dragsort-action",
-	DRAGSORTTHRESHOLD_CONFIG ="$:/config/muuri/storyview/dragsort-threshold",
-	DRAGGING_CONFIG = "$:/state/config/muuri/storyview/drag-enabled",
-	DRAGSORT_HEURISTICS_INTERVAL_CONFIG = "$:/config/muuri/storyview/dragsort-heuristics-interval",
-	CONNECTION_CONFIG = "$:/config/muuri/storyview/connection-selector",
-	DRAGHANDLE_CONFIG = "$:/config/muuri/storyview/drag-handle";
-
 if(typeof window !== "undefined") {
 	var testElement = document.body;
 	if(!("animate" in testElement)) {
