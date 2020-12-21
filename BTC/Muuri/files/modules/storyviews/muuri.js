@@ -86,9 +86,9 @@ var MuuriStoryView = function(listWidget) {
 		.on("receive",function(data) {
 
 		});
-		$tw.wiki.addEventListener("change",function(changes) {
+		/*$tw.wiki.addEventListener("change",function(changes) {
 			self.handleRefresh(changes);
-		});
+		});*/
 		this.addSelfToGlobalGrids();
 	}
 };
@@ -621,9 +621,9 @@ MuuriStoryView.prototype.hardRefresh = function() {
 	this.muuri.layout(true);
 };
 
-MuuriStoryView.prototype.handleRefresh = function(changedTiddlers) {
+MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttributes) {
 	var self = this;
-	var changedAttributes = this.listWidget.computeAttributes();
+	//var changedAttributes = this.listWidget.computeAttributes();
 	if(changedTiddlers[this.configNamespace + "drag-enabled"]) {
 		this.muuri._settings.dragEnabled = this.dragEnabled = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
 		this.hardRefresh();
@@ -676,10 +676,10 @@ MuuriStoryView.prototype.handleRefresh = function(changedTiddlers) {
 		this.muuri._settings.showDuration = this.muuri._settings.layoutDuration = this.animationDuration = $tw.utils.getAnimationDuration();
 	}
 	if(changedTiddlers[this.itemTemplate] || changedTiddlers[this.itemEditTemplate]) {
-		setTimeout(function(){
-		    self.muuri.destroy(true);
-			self.listWidget.parentWidget.refreshSelf();
-		},100);
+		//setTimeout(function(){
+		    //self.muuri.destroy(true);
+			self.listWidget.refreshSelf();
+		//},100);
 	}
 	if(changedAttributes.storyViewConfig) {
 		this.listWidget.refreshSelf();
