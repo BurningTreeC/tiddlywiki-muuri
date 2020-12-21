@@ -86,9 +86,6 @@ var MuuriStoryView = function(listWidget) {
 		.on("receive",function(data) {
 
 		});
-		/*$tw.wiki.addEventListener("change",function(changes) {
-			self.handleRefresh(changes);
-		});*/
 		this.addSelfToGlobalGrids();
 	}
 };
@@ -676,10 +673,10 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 		this.muuri._settings.showDuration = this.muuri._settings.layoutDuration = this.animationDuration = $tw.utils.getAnimationDuration();
 	}
 	if(changedTiddlers[this.itemTemplate] || changedTiddlers[this.itemEditTemplate]) {
-		//setTimeout(function(){
-		    //self.muuri.destroy(true);
-			self.listWidget.refreshSelf();
-		//},100);
+		setTimeout(function(){
+		    self.muuri.destroy(true);
+			self.listWidget.parentWidget.refreshSelf();
+		},100);
 	}
 	if(changedAttributes.storyViewConfig) {
 		this.listWidget.refreshSelf();
