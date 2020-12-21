@@ -205,6 +205,8 @@ Error message and password prompt
 
 <li>Configuration by Namespace</li>
 
+<li>Configuration Options</li>
+
 <li>done-list</li>
 
 <li>Dragging Tiddlers</li>
@@ -10781,10 +10783,10 @@ fill: red;
 <div title="$:/status/RequireReloadDueToPluginChange" revision="0" bag="default">
 <pre>no</pre>
 </div>
-<div list="[[Mona Lisa]] [[I am Mr. Van Gogh]] [[Ceci n’est pas une pipe.]] [[I am one of that guy's paintings]] [[Star me on GitHub]] [[Works best with the CodeMirror plugin]] [[The Great Wave off the Coast of Kanagawa]] [[The Kiss]] [[This Louvre moment]] [[El jardin de las Delicias]] [[Configuration by Namespace]] [[Right-to-left or Left-to-right View]] [[Dragging Tiddlers]] [[Moving Items between Grids]] [[Actions can be triggered on Drop]] [[Change the amount of columns]]" title="$:/StoryList" revision="1" bag="default">
+<div list="[[Mona Lisa]] [[I am Mr. Van Gogh]] [[Ceci n’est pas une pipe.]] [[I am one of that guy's paintings]] [[Star me on GitHub]] [[The Kiss]] [[The Birth of Venus]] [[This Louvre moment]] [[El jardin de las Delicias]] [[Works best with the CodeMirror plugin]] [[Configuration by Namespace]] [[Configuration Options]] [[Right-to-left or Left-to-right View]] [[Dragging Tiddlers]] [[Moving Items between Grids]] [[Actions can be triggered on Drop]] [[Change the amount of columns]]" title="$:/StoryList" revision="1" bag="default">
 <pre></pre>
 </div>
-<div created="20201218163957875" list="" modified="20201221051430875" title="$:/StoryList2" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201218163957875" list="" modified="20201221161328596" title="$:/StoryList2" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23-prerelease" revision="0" bag="default">
@@ -10914,8 +10916,27 @@ fill: red;
 <div created="20201220101933342" modified="20201220102206969" tags="Features" title="Change the amount of columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>Click the columns Button for more columns, hold &lt;kbd&gt;ctrl&lt;/kbd&gt; while clicking it for less columns</pre>
 </div>
-<div created="20201221045948964" modified="20201221050143863" tags="Features" title="Configuration by Namespace" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>The list widget accepts ''one'' additional attribute, namely `storyViewConfig`, which is the `namespace` for all configuration tiddlers. The default namespace is `$:/config/muuri/storyview/`</pre>
+<div created="20201221045948964" modified="20201221160728440" tags="Features" title="Configuration by Namespace" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>The list widget accepts ''one'' additional attribute, namely `storyViewConfig`, which determines the `namespace` for all configuration tiddlers. The default namespace is `$:/config/muuri/storyview/`</pre>
+</div>
+<div created="20201221155640024" modified="20201221162158797" muuri-tiddler-width="2" tags="Information" title="Configuration Options" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>The following ''suffixes'' for the `muuri namespace` given through the `storyViewConfig` attribute are possible:
+
+|suffix |purpose |h
+|drag-enabled |&quot;yes&quot; or &quot;no&quot; - enable or disable dragging |
+|storylist |the storylist tiddler where list changes through dragging should get saved |
+|storylist-field |the field of the storylist tiddler |
+|align-right |&quot;yes&quot; or &quot;no&quot; (&quot;yes&quot; by default) - determines if tiddlers are aligned right-to-left or left-to-right |
+|align-bottom |&quot;yes&quot; or &quot;no&quot; (&quot;no&quot; by default) - determines if tiddlers are aligned top-to-bottom or bottom-to-top |
+|drop-actions |an action string that gets triggered when dropping an item from another grid to the current one. within the action string, the actionTiddler variable contains the item-title, the modifier variable contains the modifier held while dragging |
+|dragsort-action |&quot;swap&quot; or &quot;move&quot; (defaults to &quot;move&quot;) |
+|dragsort-threshold |How many percent (defaults to 40) the intersection area between the dragged item and the compared item should be from the maximum potential intersection area between the items before sorting is triggered. |
+|dragsort-heuristics-interval |Defines the amount of time the dragged item must be still before the drag-sort is started. |
+|container-class |the class that gets applied to the parent element of the list widget. defaults to &quot;tc-muuri-river&quot; |
+|item-class |the class of the elements that should be included in the muuri grid. defaults to &quot;tc-tiddler-frame&quot; |
+|zindex-tiddler |an optional tiddler title that's used to store the item titles in the order they are displayed. can be used to set z-indexes for those items |
+|drag-handle |a css selector that defines the handle used for dragging. if none is given, the whole item is the handle |
+|connection-selector |a css selector that defines the grid instances that should be connected with the current grid |</pre>
 </div>
 <div created="20190221125559737" list="[[Item #5]] [[Item #6]] [[Item #7]] [[Item #8]]" modified="20201219151207037" tags="" title="done-list" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
