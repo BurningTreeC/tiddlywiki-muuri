@@ -620,7 +620,6 @@ MuuriStoryView.prototype.hardRefresh = function() {
 
 MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttributes) {
 	var self = this;
-	//var changedAttributes = this.listWidget.computeAttributes();
 	if(changedTiddlers[this.configNamespace + "drag-enabled"]) {
 		this.muuri._settings.dragEnabled = this.dragEnabled = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
 		this.hardRefresh();
