@@ -60,7 +60,6 @@ var MuuriStoryView = function(listWidget) {
 			self.updateZIndexList();
 		})
 		.on("dragInit",function(item,event) {
-			self.detectConnectedGrids();
 			self.inheritIframeEvents();
 		})
 		.on("dragStart",function(item,event) {
@@ -323,7 +322,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 			}
 		},
 		dragSort: function() {
-			//self.detectConnectedGrids();
+			self.detectConnectedGrids();
 			return self.connectedGrids;
 		},
 		dragRelease: {
