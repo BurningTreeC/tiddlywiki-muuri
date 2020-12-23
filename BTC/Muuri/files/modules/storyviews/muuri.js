@@ -33,59 +33,61 @@ var MuuriStoryView = function(listWidget) {
 	this.itemTitlesArray = [];
 	this.connectedGrids = [];
 	this.collectAttributes();
-	this.muuri = this.createMuuriGrid();
-	if(this.muuri) {
-		this.muuri.listWidget = listWidget;
-		var items = this.muuri.getItems();
-		for(var i=0; i<items.length; i++) {
-			var element = items[i].getElement();
-			this.itemTitlesArray.push(this.getItemTitle(items[i]));
-			this.addResizeListener(element,function() {
+	if(this.itemTemplate) {
+		this.muuri = this.createMuuriGrid();
+		if(this.muuri) {
+			this.muuri.listWidget = listWidget;
+			var items = this.muuri.getItems();
+			for(var i=0; i<items.length; i++) {
+				var element = items[i].getElement();
+				this.itemTitlesArray.push(this.getItemTitle(items[i]));
+				this.addResizeListener(element,function() {
+					self.refreshMuuriGrid();
+				});
+			}
+			this.addResizeListener(self.muuri._element,function() {
 				self.refreshMuuriGrid();
 			});
+			this.muuri.synchronizeGrid = function() {
+				self.synchronizeGrid();
+			}
+			this.muuri.on("dragReleaseEnd",function(item) {
+				self.onDragReleaseEnd(item);
+			})
+			.on("add",function(items) {
+				self.updateZIndexList();
+			})
+			.on("remove",function(items) {
+				self.updateZIndexList();
+			})
+			.on("dragInit",function(item,event) {
+				self.inheritIframeEvents();
+			})
+			.on("dragStart",function(item,event) {
+			})
+			.on("dragEnd",function(item,event) {
+				item.event = event;
+				self.restoreIframeEvents();
+			})
+			.on("layoutStart",function() {
+			})
+			.on("layoutEnd",function() {
+				self.updateZIndexList();
+			})
+			.on("beforeSend",function(data) {
+
+			})
+			.on("send",function(data) {
+				data.item.fromGrid = data.fromGrid;
+			})
+			.on("beforeReceive",function(data) {
+
+			})
+			.on("receive",function(data) {
+
+			});
+			this.addSelfToGlobalGrids();
 		}
-		this.addResizeListener(self.muuri._element,function() {
-			self.refreshMuuriGrid();
-		});
-		this.muuri.synchronizeGrid = function() {
-			self.synchronizeGrid();
-		}
-		this.muuri.on("dragReleaseEnd",function(item) {
-			self.onDragReleaseEnd(item);
-		})
-		.on("add",function(items) {
-			self.updateZIndexList();
-		})
-		.on("remove",function(items) {
-			self.updateZIndexList();
-		})
-		.on("dragInit",function(item,event) {
-			self.inheritIframeEvents();
-		})
-		.on("dragStart",function(item,event) {
-		})
-		.on("dragEnd",function(item,event) {
-			item.event = event;
-			self.restoreIframeEvents();
-		})
-		.on("layoutStart",function() {
-		})
-		.on("layoutEnd",function() {
-			self.updateZIndexList();
-		})
-		.on("beforeSend",function(data) {
-
-		})
-		.on("send",function(data) {
-			data.item.fromGrid = data.fromGrid;
-		})
-		.on("beforeReceive",function(data) {
-
-		})
-		.on("receive",function(data) {
-
-		});
-		this.addSelfToGlobalGrids();
 	}
 };
 
@@ -228,19 +230,21 @@ MuuriStoryView.prototype.insert = function(widget) {
 	if(!(targetElement instanceof Element)) {
 		return;
 	}
-	this.refreshItemTitlesArray();
-	var itemTitle = widget.parseTreeNode.itemTitle;
-	var targetIndex = this.listWidget.findListItem(0,itemTitle);
-	if(this.itemTitlesArray.indexOf(itemTitle) !== -1) {
-		var index = this.itemTitlesArray.indexOf(itemTitle);
-		this.muuri._items.splice(index,1);
-		this.muuri.refreshItems();
+	if(this.muuri) {
+		this.refreshItemTitlesArray();
+		var itemTitle = widget.parseTreeNode.itemTitle;
+		var targetIndex = this.listWidget.findListItem(0,itemTitle);
+		if(this.itemTitlesArray.indexOf(itemTitle) !== -1) {
+			var index = this.itemTitlesArray.indexOf(itemTitle);
+			this.muuri._items.splice(index,1);
+			this.muuri.refreshItems();
+		}
+		this.muuri.add(targetElement,{index: targetIndex, instant: true});
+		this.addResizeListener(targetElement,function() {
+			self.refreshMuuriGrid();
+		});
+		this.refreshItemTitlesArray();
 	}
-	this.muuri.add(targetElement,{index: targetIndex, instant: true});
-	this.addResizeListener(targetElement,function() {
-		self.refreshMuuriGrid();
-	});
-	this.refreshItemTitlesArray();
 };
 
 MuuriStoryView.prototype.remove = function(widget) {
@@ -254,13 +258,15 @@ MuuriStoryView.prototype.remove = function(widget) {
 		return;
 	}
 	removeElement();
-	this.removeResizeListener(targetElement,function() {
-		self.refreshMuuriGrid();
-	});
-	this.refreshItemTitlesArray();
-	this.muuri.refreshItems();
-	this.muuri.remove([targetElement],{removeElements: true});
-	this.muuri.layout();
+	if(this.muuri) {
+		this.removeResizeListener(targetElement,function() {
+			self.refreshMuuriGrid();
+		});
+		this.refreshItemTitlesArray();
+		this.muuri.refreshItems();
+		this.muuri.remove([targetElement],{removeElements: true});
+		this.muuri.layout();
+	}
 };
 
 MuuriStoryView.prototype.navigateTo = function(historyInfo) {
