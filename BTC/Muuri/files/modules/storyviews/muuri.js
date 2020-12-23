@@ -613,7 +613,7 @@ MuuriStoryView.prototype.hardRefresh = function() {
 		elements.push(items[i]._element);
 	}
 	this.muuri.remove(items,{removeElements:true,layout:false});
-	this.muuri.add(elements,{layout:false});
+	this.muuri.add(elements,{layout:false, instant: true});
 	this.muuri.layout(true);
 };
 
