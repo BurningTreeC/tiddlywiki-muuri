@@ -61,11 +61,10 @@ var MuuriStoryView = function(listWidget) {
 				self.updateZIndexList();
 			})
 			.on("dragInit",function(item,event) {
-			    self.detectConnectedGrids();
 				self.inheritIframeEvents();
 			})
 			.on("dragStart",function(item,event) {
-			    self.detectConnectedGrids();
+
 			})
 			.on("dragEnd",function(item,event) {
 				item.event = event;
@@ -73,9 +72,17 @@ var MuuriStoryView = function(listWidget) {
 			})
 			.on("layoutStart",function() {
 			})
-			.on("layoutEnd",function() {
-			    self.detectConnectedGrids();
-				self.updateZIndexList();
+			.on("layoutEnd",function(items) {
+				var isDragging = false;
+				for(var i=0; i<items.length; i++) {
+					if(items[i].isDragging() || items[i].isPositioning() || items[i].isReleasing()) {
+						isDragging = true;
+						break;
+					}
+				}
+				if(!isDragging) {
+					self.updateZIndexList();
+				}
 			})
 			.on("beforeSend",function(data) {
 
@@ -331,7 +338,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 			}
 		},
 		dragSort: function() {
-			//self.detectConnectedGrids();
+			self.detectConnectedGrids();
 			return self.connectedGrids;
 		},
 		dragRelease: {
