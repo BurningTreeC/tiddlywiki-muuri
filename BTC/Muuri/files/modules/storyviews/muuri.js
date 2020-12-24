@@ -688,7 +688,9 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 	}
 	if(changedTiddlers[this.itemTemplate] || changedTiddlers[this.itemEditTemplate]) {
 		setTimeout(function(){
-			self.muuri.destroy(true);
+			if(self.muuri) {
+				self.muuri.destroy(true);
+			}
 			self.listWidget.parentWidget.refreshSelf();
 		},100);
 	}
