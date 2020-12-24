@@ -33,7 +33,7 @@ var MuuriStoryView = function(listWidget) {
 	this.itemTitlesArray = [];
 	this.connectedGrids = [];
 	this.collectAttributes();
-	if(this.itemTemplate) {
+	if(this.itemTemplate && this.itemEditTemplate) {
 		this.muuri = this.createMuuriGrid();
 		if(this.muuri) {
 			this.muuri.listWidget = listWidget;
