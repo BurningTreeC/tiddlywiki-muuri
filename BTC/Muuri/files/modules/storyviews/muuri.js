@@ -246,7 +246,9 @@ MuuriStoryView.prototype.insert = function(widget) {
 		var targetIndex = this.listWidget.findListItem(0,itemTitle);
 		if(this.itemTitlesArray.indexOf(itemTitle) !== -1) {
 			var index = this.itemTitlesArray.indexOf(itemTitle);
-			this.muuri._items.splice(index,1);
+			//this.muuri._items.splice(index,1);
+			var items = this.muuri.getItems();
+			this.muuri.remove([items[index]],{removeElements: true});
 			this.muuri.refreshItems();
 		}
 		this.muuri.add(targetElement,{index: targetIndex, instant: true});
@@ -267,7 +269,9 @@ MuuriStoryView.prototype.remove = function(widget) {
 		removeElement();
 		return;
 	}
-	removeElement();
+	try {
+		removeElement();
+	} catch(e) {}
 	if(this.muuri) {
 		this.removeResizeListener(targetElement,function() {
 			self.refreshMuuriGrid();
