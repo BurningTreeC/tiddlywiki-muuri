@@ -625,11 +625,11 @@ MuuriStoryView.prototype.hardRefresh = function() {
 
 MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttributes) {
 	var self = this;
-	if(changedTiddlers[this.configNamespace + "drag-enabled"] && this.muuri) {
+	if(this.muuri && changedTiddlers[this.configNamespace + "drag-enabled"]) {
 		this.muuri._settings.dragEnabled = this.dragEnabled = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
 		this.hardRefresh();
 	}
-	if(changedTiddlers[this.configNamespace + "drag-handle"] && this.muuri) {
+	if(this.muuri && changedTiddlers[this.configNamespace + "drag-handle"]) {
 		var dragHandle = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-handle");
 		if(dragHandle === "" || dragHandle === undefined) {
 			dragHandle = null;
@@ -637,21 +637,21 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 		this.muuri._settings.dragHandle = this.dragHandle = dragHandle;
 		this.hardRefresh();
 	}
-	if(changedTiddlers[this.configNamespace + "align-right"] && this.muuri) {
+	if(this.muuri && changedTiddlers[this.configNamespace + "align-right"]) {
 		this.muuri._settings.layout.alignRight = this.alignRight = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-right") !== "no";
 		this.refreshMuuriGrid();
 	}
-	if(changedTiddlers[this.configNamespace + "align-bottom"] && this.muuri) {
+	if(this.muuri && changedTiddlers[this.configNamespace + "align-bottom"]) {
 		this.muuri._settings.layout.alignBottom = this.alignBottom = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-bottom") === "yes";
 		this.refreshMuuriGrid();
 	}
-	if(changedTiddlers[this.configNamespace + "dragsort-action"] && this.muuri) {
+	if(this.muuri && changedTiddlers[this.configNamespace + "dragsort-action"]) {
 		this.muuri._settings.dragSortPredicate.action = this.dragSortAction = this.listWidget.wiki.getTiddlerText(this.configNamespace + "dragsort-action") || "move";
 	}
-	if(changedTiddlers[this.configNamespace + "dragsort-threshold"] && this.muuri) {
+	if(this.muuri && changedTiddlers[this.configNamespace + "dragsort-threshold"]) {
 		this.muuri._settings.dragSortPredicate.threshold = this.dragSortThreshold = parseInt(this.listWidget.wiki.getTiddlerText(this.configNamespace + "dragsort-threshold")) || 40;
 	}
-	if(changedTiddlers[this.configNamespace + "dragsort-heuristics-interval"] && this.muuri) {
+	if(this.muuri && changedTiddlers[this.configNamespace + "dragsort-heuristics-interval"]) {
 		this.muuri._settings.dragSortHeuristics.sortInterval = this.dragSortHeuristicsInterval = parseInt(this.listWidget.wiki.getTiddlerText(this.configNamespace + "dragsort-heuristics-interval")) || 100;
 	}
 	if(changedTiddlers[this.configNamespace + "storylist"]) {
@@ -673,7 +673,7 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 		this.muuri.destroy(true);
 		this.listWidget.parentWidget.refreshSelf();
 	}
-	if(changedTiddlers["$:/config/AnimationDuration"] && this.muuri) {
+	if(this.muuri && changedTiddlers["$:/config/AnimationDuration"]) {
 		this.muuri._settings.showDuration = this.muuri._settings.layoutDuration = this.animationDuration = $tw.utils.getAnimationDuration();
 	}
 	if(changedTiddlers[this.itemTemplate] || changedTiddlers[this.itemEditTemplate]) {
