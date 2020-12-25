@@ -395,7 +395,7 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	this.alignRight = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-right") !== "no";
 	this.alignBottom = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-bottom") === "yes";
 	this.dragEnabled = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
-	this.storyListTitle = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist");
+	this.storyListTitle = this.listWidget.getVariable("tv-muuri-story-list") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist");
 	this.storyListField = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist-field") || "list";
 	this.zIndexTiddler = this.listWidget.wiki.getTiddlerText(this.configNamespace + "zindex-tiddler");
 	this.connectionSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "connection-selector");
@@ -677,7 +677,7 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 		this.muuri._settings.dragSortHeuristics.sortInterval = this.dragSortHeuristicsInterval = parseInt(this.listWidget.wiki.getTiddlerText(this.configNamespace + "dragsort-heuristics-interval")) || 100;
 	}
 	if(changedTiddlers[this.configNamespace + "storylist"]) {
-		this.storyListTitle = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist");
+		this.storyListTitle = this.listWidget.getVariable("tv-muuri-story-list") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist");
 	}
 	if(changedTiddlers[this.configNamespace + "storylist-field"]) {
 		this.storyListField = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist-field") || "list";
