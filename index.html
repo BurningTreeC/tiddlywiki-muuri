@@ -145,61 +145,7 @@ Error message and password prompt
 
 <li>$:/config/DefaultSidebarTab</li>
 
-<li>$:/config/muuri/kanban/align-right</li>
-
-<li>$:/config/muuri/kanban/connection-selector</li>
-
-<li>$:/config/muuri/kanban/container-class</li>
-
-<li>$:/config/muuri/kanban/done/connection-selector</li>
-
-<li>$:/config/muuri/kanban/done/container-class</li>
-
-<li>$:/config/muuri/kanban/done/dragsort-heuristics-interval</li>
-
-<li>$:/config/muuri/kanban/done/item-class</li>
-
-<li>$:/config/muuri/kanban/done/storylist</li>
-
-<li>$:/config/muuri/kanban/dragsort-action</li>
-
-<li>$:/config/muuri/kanban/dragsort-heuristics-interval</li>
-
-<li>$:/config/muuri/kanban/item-class</li>
-
-<li>$:/config/muuri/kanban/storylist</li>
-
-<li>$:/config/muuri/kanban/todo/connection-selector</li>
-
-<li>$:/config/muuri/kanban/todo/container-class</li>
-
-<li>$:/config/muuri/kanban/todo/dragsort-heuristics-interval</li>
-
-<li>$:/config/muuri/kanban/todo/item-class</li>
-
-<li>$:/config/muuri/kanban/todo/storylist</li>
-
-<li>$:/config/muuri/kanban/working/connection-selector</li>
-
-<li>$:/config/muuri/kanban/working/container-class</li>
-
-<li>$:/config/muuri/kanban/working/dragsort-heuristics-interval</li>
-
-<li>$:/config/muuri/kanban/working/item-class</li>
-
-<li>$:/config/muuri/kanban/working/storylist</li>
-
-<li>$:/config/muuri/sidebarview/connection-selector</li>
-
-<li>$:/config/muuri/sidebarview/drop-actions</li>
-
-<li>$:/config/muuri/sidebarview/storylist</li>
-
 <li>$:/config/muuri/storyview/columns</li>
-
-<li>$:/config/muuri/storyview/connection-selector</li>
-
-<li>$:/config/muuri/tiddler/margin</li>
 
 <li>$:/config/SidebarTags</li>
 
@@ -209,17 +155,19 @@ Error message and password prompt
 
 <li>$:/core/ui/PageTemplate/drafts</li>
 
-<li>$:/core/ui/SideBar/Grid/story</li>
-
 <li>$:/DefaultTiddlers</li>
 
 <li>$:/isEncrypted</li>
+
+<li>$:/palette</li>
 
 <li>$:/plugins/BTC/Muuri</li>
 
 <li>$:/plugins/tiddlywiki/codemirror</li>
 
 <li>$:/plugins/tiddlywiki/highlight</li>
+
+<li>$:/SidebarList</li>
 
 <li>$:/SiteSubtitle</li>
 
@@ -228,8 +176,6 @@ Error message and password prompt
 <li>$:/status/RequireReloadDueToPluginChange</li>
 
 <li>$:/StoryList</li>
-
-<li>$:/StoryList2</li>
 
 <li>$:/themes/tiddlywiki/snowwhite</li>
 
@@ -295,16 +241,8 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
-<div created="20201218163434681" modified="20201220101259454" tags="$:/tags/Stylesheet" title="$:/_styles" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>.tc-story-river {
-min-height: 200px;
-}
-
-.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) {
-min-height: calc(100vh - 2em);
-}
-
-.tc-story-river.tc-sidebar-river {
+<div created="20201218163434681" modified="20201225121757650" tags="$:/tags/Stylesheet" title="$:/_styles" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>.tc-story-river.tc-sidebar-river {
 margin-right: 0;
 border: 4px dashed &lt;&lt;colour foreground&gt;&gt;;
 border-radius: 4px;
@@ -334,93 +272,11 @@ color: &lt;&lt;colour foreground&gt;&gt;;
 fill: red;
 }</pre>
 </div>
-<div created="20201220101109470" modified="20201220101126792" tags="" title="$:/config/DefaultSidebarTab" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>$:/core/ui/SideBar/Grid/story</pre>
-</div>
-<div created="20201221164131344" modified="20201221164148627" tags="" title="$:/config/muuri/kanban/align-right" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>no</pre>
-</div>
-<div created="20201221164028832" modified="20201221164055059" tags="" title="$:/config/muuri/kanban/connection-selector" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>.kanban-demo</pre>
-</div>
-<div created="20201221164008670" modified="20201221164027618" tags="" title="$:/config/muuri/kanban/container-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>kanban-demo-board</pre>
-</div>
-<div created="20201221165531565" modified="20201221165553943" tags="" title="$:/config/muuri/kanban/done/connection-selector" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>.board-column-content</pre>
-</div>
-<div created="20201221165511468" modified="20201221165530643" tags="" title="$:/config/muuri/kanban/done/container-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>board-column-content</pre>
-</div>
-<div created="20201221165621134" modified="20201221165637269" tags="" title="$:/config/muuri/kanban/done/dragsort-heuristics-interval" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>0</pre>
-</div>
-<div created="20201221165455955" modified="20201221165510673" tags="" title="$:/config/muuri/kanban/done/item-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>board-item</pre>
-</div>
-<div created="20201221165554817" modified="20201221165612873" tags="" title="$:/config/muuri/kanban/done/storylist" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>done-list</pre>
-</div>
-<div created="20201221164114784" modified="20201221164130249" tags="" title="$:/config/muuri/kanban/dragsort-action" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>swap</pre>
-</div>
-<div created="20201221164150132" modified="20201221164210888" tags="" title="$:/config/muuri/kanban/dragsort-heuristics-interval" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>0</pre>
-</div>
-<div created="20201221163944711" modified="20201221164007222" tags="" title="$:/config/muuri/kanban/item-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>board-column</pre>
-</div>
-<div created="20201221164055860" modified="20201221164112592" tags="" title="$:/config/muuri/kanban/storylist" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>kanban-list</pre>
-</div>
-<div created="20201221164642829" modified="20201221164707298" tags="" title="$:/config/muuri/kanban/todo/connection-selector" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>.board-column-content</pre>
-</div>
-<div created="20201221164601073" modified="20201221164627326" tags="" title="$:/config/muuri/kanban/todo/container-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>board-column-content</pre>
-</div>
-<div created="20201221164728143" modified="20201221164749386" tags="" title="$:/config/muuri/kanban/todo/dragsort-heuristics-interval" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>0</pre>
-</div>
-<div created="20201221164500477" modified="20201221164600137" tags="" title="$:/config/muuri/kanban/todo/item-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>board-item</pre>
-</div>
-<div created="20201221164709215" modified="20201221164726173" tags="" title="$:/config/muuri/kanban/todo/storylist" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>todo-list</pre>
-</div>
-<div created="20201221165153749" modified="20201221165221955" tags="" title="$:/config/muuri/kanban/working/connection-selector" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>.board-column-content</pre>
-</div>
-<div created="20201221165128329" modified="20201221165152832" tags="" title="$:/config/muuri/kanban/working/container-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>board-column-content</pre>
-</div>
-<div created="20201221165320687" modified="20201221165337720" tags="" title="$:/config/muuri/kanban/working/dragsort-heuristics-interval" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>0</pre>
-</div>
-<div created="20201221165110073" modified="20201221165127588" tags="" title="$:/config/muuri/kanban/working/item-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>board-item</pre>
-</div>
-<div created="20201221165235259" modified="20201221165304099" tags="" title="$:/config/muuri/kanban/working/storylist" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>working-list</pre>
-</div>
-<div created="20201220193933527" modified="20201220193958001" tags="" title="$:/config/muuri/sidebarview/connection-selector" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>.tc-muuri-river</pre>
-</div>
-<div created="20201221050256471" modified="20201221050506352" tags="" title="$:/config/muuri/sidebarview/drop-actions" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>&lt;$list filter=&quot;[&lt;modifier&gt;match[shift]]&quot;&gt;&lt;$action-listops $tiddler=&lt;&lt;actionTiddler&gt;&gt; $field=&quot;tags&quot; $subfilter=&quot;[enlist{$:/config/SidebarTags!!text}]&quot;/&gt;&lt;/$list&gt;
-&lt;$list filter=&quot;[&lt;modifier&gt;match[ctrl-shift]]&quot;&gt;&lt;$action-sendmessage $message=&quot;tm-edit-tiddler&quot; $param=&lt;&lt;actionTiddler&gt;&gt;/&gt;&lt;/$list&gt;</pre>
-</div>
-<div created="20201220194547120" modified="20201220194604980" tags="" title="$:/config/muuri/sidebarview/storylist" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>$:/StoryList2</pre>
+<div created="20201220101109470" modified="20201225122635062" tags="" title="$:/config/DefaultSidebarTab" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>$:/plugins/BTC/Muuri/ui/Sidebar/Grid</pre>
 </div>
 <div created="20201216154323661" modified="20201220193609907" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>4</pre>
-</div>
-<div created="20201220152912999" modified="20201220152950165" tags="" title="$:/config/muuri/storyview/connection-selector" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>.tc-sidebar-river</pre>
-</div>
-<div created="20201214212746120" modified="20201214212751122" tags="" title="$:/config/muuri/tiddler/margin" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>0.5em</pre>
 </div>
 <div created="20201219150157563" modified="20201219150157575" title="$:/config/SidebarTags" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>TestTag</pre>
@@ -10303,25 +10159,14 @@ fill: red;
 &lt;/$reveal&gt;
 </pre>
 </div>
-<div caption="Grid" created="20201218163250928" modified="20201220193926174" tags="$:/tags/SideBar" title="$:/core/ui/SideBar/Grid/story" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>\whitespace trim
-&lt;$navigator story=&quot;$:/StoryList2&quot; history=&quot;$:/HistoryList2&quot;&gt;
-
-&lt;$vars currentTiddler=&quot;$:/config/SidebarTags&quot; tagField=&quot;text&quot;&gt;{{||$:/core/ui/EditTemplate/tags}}&lt;/$vars&gt;
-
-&lt;section class=&quot;tc-story-river tc-sidebar-river&quot;&gt;
-
-&lt;$list filter=&quot;[list[$:/StoryList2]]&quot; history=&quot;$:/HistoryList2&quot; storyList=&quot;$:/StoryList2&quot; template={{$:/config/ui/ViewTemplate}} editTemplate={{$:/config/ui/EditTemplate}} storyview={{$:/view}} emptyMessage={{$:/config/EmptyStoryMessage}} storyViewConfig=&quot;$:/config/muuri/sidebarview/&quot;/&gt;
-
-&lt;/section&gt;
-
-&lt;/$navigator&gt;</pre>
-</div>
 <div created="20201214215532609" modified="20201214215532623" title="$:/DefaultTiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[list[$:/StoryList]]</pre>
 </div>
 <div title="$:/isEncrypted" revision="0" bag="default">
 <pre>no</pre>
+</div>
+<div created="20201225121816249" modified="20201225122544550" title="$:/palette" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>$:/palettes/Vanilla</pre>
 </div>
 <div author="Simon Huber" dependents="" description="A gridded storyview" list="readme license usage" plugin-type="plugin" title="$:/plugins/BTC/Muuri" type="application/json" version="0.2.0" revision="0" bag="default">
 <pre>{
@@ -10329,6 +10174,10 @@ fill: red;
         &quot;$:/config/muuri/storyview/columns/max&quot;: {
             &quot;title&quot;: &quot;$:/config/muuri/storyview/columns/max&quot;,
             &quot;text&quot;: &quot;6&quot;
+        },
+        &quot;$:/config/muuri/storyview/connection-selector&quot;: {
+            &quot;title&quot;: &quot;$:/config/muuri/storyview/connection-selector&quot;,
+            &quot;text&quot;: &quot;.tc-sidebar-river&quot;
         },
         &quot;$:/config/muuri/storyview/dragsort-action&quot;: {
             &quot;title&quot;: &quot;$:/config/muuri/storyview/dragsort-action&quot;,
@@ -10345,6 +10194,18 @@ fill: red;
         &quot;$:/config/muuri/storyview/second-break-point&quot;: {
             &quot;title&quot;: &quot;$:/config/muuri/storyview/second-break-point&quot;,
             &quot;text&quot;: &quot;5&quot;
+        },
+        &quot;$:/config/muuri/sidebarview/connection-selector&quot;: {
+            &quot;title&quot;: &quot;$:/config/muuri/sidebarview/connection-selector&quot;,
+            &quot;text&quot;: &quot;.tc-story-river&quot;
+        },
+        &quot;$:/config/muuri/sidebarview/drop-actions&quot;: {
+            &quot;title&quot;: &quot;$:/config/muuri/sidebarview/drop-actions&quot;,
+            &quot;text&quot;: &quot;&lt;$list filter=\&quot;[&lt;modifier&gt;match[shift]]\&quot;&gt;&lt;$action-listops $tiddler=&lt;&lt;actionTiddler&gt;&gt; $field=\&quot;tags\&quot; $subfilter=\&quot;[enlist{$:/config/SidebarTags!!text}]\&quot;/&gt;&lt;/$list&gt;\n&lt;$list filter=\&quot;[&lt;modifier&gt;match[ctrl]]\&quot;&gt;&lt;$action-sendmessage $message=\&quot;tm-edit-tiddler\&quot; $param=&lt;&lt;actionTiddler&gt;&gt;/&gt;&lt;/$list&gt;\n&lt;$list filter=\&quot;[&lt;modifier&gt;match[alt]]\&quot;&gt;&lt;/$list&gt;&quot;
+        },
+        &quot;$:/config/muuri/sidebarview/storylist&quot;: {
+            &quot;title&quot;: &quot;$:/config/muuri/sidebarview/storylist&quot;,
+            &quot;text&quot;: &quot;$:/SidebarList&quot;
         },
         &quot;$:/config/muuri/storyview/story-river/margin-top&quot;: {
             &quot;title&quot;: &quot;$:/config/muuri/storyview/story-river/margin-top&quot;,
@@ -10407,7 +10268,7 @@ fill: red;
         &quot;$:/plugins/BTC/Muuri/css&quot;: {
             &quot;title&quot;: &quot;$:/plugins/BTC/Muuri/css&quot;,
             &quot;tags&quot;: &quot;$:/tags/Stylesheet&quot;,
-            &quot;text&quot;: &quot;\\define z-indexes()\n\\rules only\n.tc-story-river.tc-muuri-river &gt; [data-tiddler-title=\&quot;$(cssEscapedTitle)$\&quot;].tc-tiddler-frame:not(.tc-muuri-dragging):not(.tc-muuri-positioning) {\n\tz-index: $(zIndex)$;\n}\n\\end\n\\define set-muuri-tiddler-width(suffix)\n.tc-story-river.tc-muuri-river &gt; [data-tiddler-title=\&quot;$(cssEscapedTitle)$\&quot;].tc-tiddler-frame {\n\twidth: calc((100$suffix$ / &lt;&lt;columns&gt;&gt;) - &lt;&lt;margin&gt;&gt; - (&lt;&lt;margin&gt;&gt; / &lt;&lt;columns&gt;&gt;));\n}\n\\end\n\n.tc-muuri-dragging {\n\tz-index: 1;\n}\n\n.muuri-item-shown {\n\tposition: absolute;\n}\n\n&lt;$reveal state=\&quot;$:/view\&quot; type=\&quot;match\&quot; text=\&quot;muuri\&quot;&gt;\n\n&lt;$vars count={{{ [{$:/config/muuri/storyview/columns}!match[]] ~[[1]] }}} margin={{$:/config/muuri/tiddler/margin}} marginSuffix={{{ [{$:/config/muuri/storyview/align-right}match[yes]addprefix[right]removesuffix[yes]] ~[[$:/config/muuri/storyview/align-right]is[missing]then[right]] ~[[left]] }}} sidebarBreakPoint={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}} marginBottom={{$:/config/muuri/tiddler/margin-bottom}} storyHighZIndex={{{ [list[$:/StoryList]count[]add[201]] }}} firstBreakPoint={{$:/config/muuri/storyview/first-break-point}} secondBreakPoint={{$:/config/muuri/storyview/second-break-point}}&gt;\n\n@media(min-width:&lt;&lt;sidebarBreakPoint&gt;&gt;) {\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\tposition: absolute;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\twidth: calc((100% / &lt;&lt;count&gt;&gt;) - &lt;&lt;margin&gt;&gt; - (&lt;&lt;margin&gt;&gt; / &lt;&lt;count&gt;&gt;));\n\tmargin-&lt;&lt;marginSuffix&gt;&gt;: &lt;&lt;margin&gt;&gt;;\n\tmargin-bottom: &lt;&lt;marginBottom&gt;&gt;;\n}\n\n&lt;$list filter=\&quot;[list[$:/StoryList]has[muuri-tiddler-width]]\&quot;&gt;\n\n\t&lt;$set name=\&quot;columns\&quot; value={{{ [&lt;currentTiddler&gt;get[muuri-tiddler-width]] }}}&gt;\n\t\n\t\t&lt;$set name=\&quot;cssEscapedTitle\&quot; value={{{ [&lt;currentTiddler&gt;escapecss[]] }}}&gt;\n\t\t\n\t\t\t&lt;&lt;set-muuri-tiddler-width \&quot;%\&quot;&gt;&gt;\n\t\t\n\t\t&lt;/$set&gt;\n\n\t&lt;/$set&gt;\n\n&lt;/$list&gt;\n\n.tc-story-river.tc-muuri-river {\n\tmargin-top: {{$:/config/muuri/storyview/story-river/margin-top}};\n}\n\n.tc-sidebar-scrollable {\n\tpadding-left: calc(42px - &lt;&lt;margin&gt;&gt;);\n}\n\n&lt;$reveal state=\&quot;$:/config/muuri/storyview/columns\&quot; type=\&quot;gt\&quot; text=&lt;&lt;firstBreakPoint&gt;&gt;&gt;\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-tiddler-info {\n\tpadding: 0;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-unfold-banner {\n\tmargin-left: -29px;\n}\n\n&lt;$reveal state=\&quot;$:/config/muuri/storyview/columns\&quot; type=\&quot;lt\&quot; text=&lt;&lt;secondBreakPoint&gt;&gt;&gt;\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\tpadding: 2em;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-tiddler-info {\n\tmargin: 0 -2em 0 -2em;\n}\n\n&lt;/$reveal&gt;\n\n&lt;$reveal state=\&quot;$:/config/muuri/storyview/columns\&quot; type=\&quot;gteq\&quot; text=&lt;&lt;secondBreakPoint&gt;&gt;&gt;\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\tpadding: 1em;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-tiddler-info {\n\tmargin: 0 -1em 0 -1em;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-unfold-banner {\n\tmargin-left: -15px;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-unfold-banner {\n\tmargin-top: -6px;\n}\n\n&lt;/$reveal&gt;\n\n&lt;/$reveal&gt;\n\n&lt;$reveal state=\&quot;$:/themes/tiddlywiki/vanilla/options/sidebarlayout\&quot; type=\&quot;match\&quot; text=\&quot;fixed-fluid\&quot;&gt;\n\n.tc-sidebar-scrollable {\n\tleft: calc({{$:/themes/tiddlywiki/vanilla/metrics/storyright}} + 42px);\n}\n\n\t&lt;$reveal state=\&quot;$:/state/sidebar\&quot; type=\&quot;nomatch\&quot; text=\&quot;no\&quot;&gt;\n\n\t\t\t.tc-story-river.tc-muuri-river {\n\t\t\t\twidth: {{$:/themes/tiddlywiki/vanilla/metrics/storywidth}};\n\t\t\t}\n\n\t&lt;/$reveal&gt;\n\n&lt;/$reveal&gt;\n\n\t.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-unfold-banner {\n\t\tz-index: -1;\n\t}\n\n}\n\n@media(max-width:&lt;&lt;sidebarBreakPoint&gt;&gt;) {\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\tposition: absolute;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\twidth: calc((100% / 2) - &lt;&lt;margin&gt;&gt; - (&lt;&lt;margin&gt;&gt; / 2));\n\tmargin-&lt;&lt;marginSuffix&gt;&gt;: &lt;&lt;margin&gt;&gt;;\n\tmargin-bottom: &lt;&lt;marginBottom&gt;&gt;;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-titlebar {\n\tfont-size: 1.5em;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-titlebar .tc-tiddler-controls .tc-drop-down {\n\tfont-size: 1em;\n}\n\n.tc-story-river.tc-muuri-river {\n\tmargin-top: {{$:/config/muuri/storyview/story-river/margin-top}};\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-tiddler-info {\n\tpadding: 0;\n}\n\n&lt;$reveal state=\&quot;$:/state/sidebar\&quot; type=\&quot;match\&quot; text=\&quot;no\&quot;&gt;\n\n.tc-sidebar-scrollable {\n\tdisplay: none;\n}\n\n&lt;/$reveal&gt;\n\n\t.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-unfold-banner {\n\t\tz-index: -1;\n\t}\n\n}\n\n&lt;$reveal state=\&quot;$:/state/config/muuri/storyview/drag-enabled\&quot; type=\&quot;match\&quot; text=\&quot;yes\&quot;&gt;\n\n\t.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame img {\n\t\tpointer-events: none;\n\t}\n\n&lt;/$reveal&gt;\n\n&lt;$reveal state=\&quot;$:/config/muuri/storyview/fill-gaps\&quot; type=\&quot;match\&quot; text=\&quot;yes\&quot;&gt;\n\n\t@media (min-width: &lt;&lt;sidebarBreakPoint&gt;&gt;) {\n\t\t.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\t\t\twidth: calc(100% / &lt;&lt;count&gt;&gt;);\n\t\t}\n\t\t\n\t\t.tc-story-river.tc-muuri-river {\n\t\t\tmargin-top: 0;\n\t\t}\n\t}\n\t\n\t@media (max-width: &lt;&lt;sidebarBreakPoint&gt;&gt;) {\n\t\t.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\t\t\twidth: calc(100% / 2);\n\t\t}\n\n\t\t.tc-story-river.tc-muuri-river {\n\t\t\tmargin-top: 0;\n\t\t}\n\t}\n\t\n\t@media(min-width:&lt;&lt;sidebarBreakPoint&gt;&gt;) {\n\t\n\t.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\t\tborder: none;\n\t\tborder-radius: 0px;\n\t\tbox-shadow: 1px 1px 1px &lt;&lt;colour tiddler-background&gt;&gt;;\n\t\t-webkit-box-shadow: 1px 1px 1px &lt;&lt;colour tiddler-background&gt;&gt;;\n\t\t-moz-box-shadow: 1px 1px 1px &lt;&lt;colour tiddler-background&gt;&gt;;\n\t\tmargin-top: 0em;\n\t\tmargin-left: 0em;\n\t\tmargin-right: 0em;\n\t\tmargin-bottom: 0em;\n\t}\n\n}\n\n\t@media(max-width:&lt;&lt;sidebarBreakPoint&gt;&gt;) {\n\t\n\t.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\t\tborder: none;\n\t\tborder-radius: 0px;\n\t\tbox-shadow: 1px 1px 1px &lt;&lt;colour tiddler-background&gt;&gt;;\n\t\t-webkit-box-shadow: 1px 1px 1px &lt;&lt;colour tiddler-background&gt;&gt;;\n\t\t-moz-box-shadow: 1px 1px 1px &lt;&lt;colour tiddler-background&gt;&gt;;\n\t\tmargin-top: 0em;\n\t\tmargin-left: 0em;\n\t\tmargin-right: 0em;\n\t\tmargin-bottom: 0em;\n\t}\n\n}\n\n&lt;/$reveal&gt;\n\n&lt;$reveal state=\&quot;$:/state/config/muuri/storyview/drag-enabled\&quot; type=\&quot;match\&quot; text=\&quot;no\&quot;&gt;\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\ttouch-action: auto !important;\n\tuser-select: auto !important;\n\t-ms-user-select: text !important;\n\t-moz-user-select: text !important;\n\t-webkit-user-select: text !important;\n}\n\n&lt;/$reveal&gt;\n\n&lt;$list filter=\&quot;[all[tiddlers]prefix[$:/state/popup/more-]limit[1]]\&quot;&gt;\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-tag-list-item {\n\tz-index: -1;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame [data-grid=\&quot;muuri\&quot;] {\n\tz-index: -1 !important;\n}\n\n&lt;/$list&gt;\n\n.tc-story-river.tc-muuri-river {\n\tpadding: 0;\n}\n\n&lt;$reveal state=\&quot;$:/themes/tiddlywiki/vanilla/options/stickytitles\&quot; type=\&quot;match\&quot; text=\&quot;yes\&quot;&gt;\n\n\t\t/*\n\t\tposition: sticky doesn't work well in the muuri view, it's disabled\n\t\t*/\n\t.tc-tiddler-title {\n\t\tposition: initial;\n\t\ttop: initial;\n\t\tbackground: initial;\n\t}\n\n&lt;/$reveal&gt;\n\n\t&lt;$list filter=\&quot;[list[$:/state/muuri/storyriver/z-indexes]]\&quot; variable=\&quot;zIndexTiddler\&quot;&gt;\n\n\t\t&lt;$set name=\&quot;zIndex\&quot; value={{{[list[$:/state/muuri/storyriver/z-indexes]allafter&lt;zIndexTiddler&gt;] +[count[]] }}}&gt;\n\n\t\t\t&lt;$set name=\&quot;cssEscapedTitle\&quot; value={{{ [&lt;zIndexTiddler&gt;escapecss[]] }}}&gt;\n\n\t\t\t\t&lt;&lt;z-indexes&gt;&gt;\n\n\t\t\t&lt;/$set&gt;\n\n\t\t&lt;/$set&gt;\n\n\t&lt;/$list&gt;\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame.tc-muuri-dragging, .tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame.tc-muuri-releasing {\n\tz-index: &lt;&lt;storyHighZIndex&gt;&gt;;\n}\n\n&lt;$reveal state=\&quot;$:/config/muuri/storyview/hide-titles-tags\&quot; type=\&quot;match\&quot; text=\&quot;yes\&quot;&gt;\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-titlebar, .tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-subtitle, .tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-tags-wrapper {\n\tdisplay: none;\n}\n\n&lt;/$reveal&gt;\n\n&lt;/$reveal&gt;\n\n&lt;/$vars&gt;\n\n&lt;/$reveal&gt;\n&quot;
+            &quot;text&quot;: &quot;\\define z-indexes()\n\\rules only\n.tc-story-river.tc-muuri-river &gt; [data-tiddler-title=\&quot;$(cssEscapedTitle)$\&quot;].tc-tiddler-frame:not(.tc-muuri-dragging):not(.tc-muuri-positioning) {\n\tz-index: $(zIndex)$;\n}\n\\end\n\\define set-muuri-tiddler-width(suffix)\n.tc-story-river.tc-muuri-river &gt; [data-tiddler-title=\&quot;$(cssEscapedTitle)$\&quot;].tc-tiddler-frame {\n\twidth: calc((100$suffix$ / &lt;&lt;columns&gt;&gt;) - &lt;&lt;margin&gt;&gt; - (&lt;&lt;margin&gt;&gt; / &lt;&lt;columns&gt;&gt;));\n}\n\\end\n\n.tc-muuri-dragging {\n\tz-index: 1;\n}\n\n.muuri-item-shown {\n\tposition: absolute;\n}\n\n&lt;$reveal state=\&quot;$:/view\&quot; type=\&quot;match\&quot; text=\&quot;muuri\&quot;&gt;\n\n&lt;$vars count={{{ [{$:/config/muuri/storyview/columns}!match[]] ~[[1]] }}} margin={{$:/config/muuri/tiddler/margin}} marginSuffix={{{ [{$:/config/muuri/storyview/align-right}match[yes]addprefix[right]removesuffix[yes]] ~[[$:/config/muuri/storyview/align-right]is[missing]then[right]] ~[[left]] }}} sidebarBreakPoint={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}} marginBottom={{$:/config/muuri/tiddler/margin-bottom}} storyHighZIndex={{{ [list[$:/StoryList]count[]add[201]] }}} firstBreakPoint={{$:/config/muuri/storyview/first-break-point}} secondBreakPoint={{$:/config/muuri/storyview/second-break-point}}&gt;\n\n@media(min-width:&lt;&lt;sidebarBreakPoint&gt;&gt;) {\n\n.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) {\n\tmin-height: calc(100vh - 2em);\n}\n\n.tc-story-river.tc-sidebar-river {\n\tmin-height: 250px;\n}\n\n.tc-story-river.tc-sidebar-river &gt; .tc-tiddler-frame {\n\tcolor: &lt;&lt;colour foreground&gt;&gt;;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\tposition: absolute;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\twidth: calc((100% / &lt;&lt;count&gt;&gt;) - &lt;&lt;margin&gt;&gt; - (&lt;&lt;margin&gt;&gt; / &lt;&lt;count&gt;&gt;));\n\tmargin-&lt;&lt;marginSuffix&gt;&gt;: &lt;&lt;margin&gt;&gt;;\n\tmargin-bottom: &lt;&lt;marginBottom&gt;&gt;;\n}\n\n&lt;$list filter=\&quot;[list[$:/StoryList]has[muuri-tiddler-width]]\&quot;&gt;\n\n\t&lt;$set name=\&quot;columns\&quot; value={{{ [&lt;currentTiddler&gt;get[muuri-tiddler-width]] }}}&gt;\n\t\n\t\t&lt;$set name=\&quot;cssEscapedTitle\&quot; value={{{ [&lt;currentTiddler&gt;escapecss[]] }}}&gt;\n\t\t\n\t\t\t&lt;&lt;set-muuri-tiddler-width \&quot;%\&quot;&gt;&gt;\n\t\t\n\t\t&lt;/$set&gt;\n\n\t&lt;/$set&gt;\n\n&lt;/$list&gt;\n\n.tc-story-river.tc-muuri-river {\n\tmargin-top: {{$:/config/muuri/storyview/story-river/margin-top}};\n}\n\n.tc-sidebar-scrollable {\n\tpadding-left: calc(42px - &lt;&lt;margin&gt;&gt;);\n}\n\n&lt;$reveal state=\&quot;$:/config/muuri/storyview/columns\&quot; type=\&quot;gt\&quot; text=&lt;&lt;firstBreakPoint&gt;&gt;&gt;\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-tiddler-info {\n\tpadding: 0;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-unfold-banner {\n\tmargin-left: -29px;\n}\n\n&lt;$reveal state=\&quot;$:/config/muuri/storyview/columns\&quot; type=\&quot;lt\&quot; text=&lt;&lt;secondBreakPoint&gt;&gt;&gt;\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\tpadding: 2em;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-tiddler-info {\n\tmargin: 0 -2em 0 -2em;\n}\n\n&lt;/$reveal&gt;\n\n&lt;$reveal state=\&quot;$:/config/muuri/storyview/columns\&quot; type=\&quot;gteq\&quot; text=&lt;&lt;secondBreakPoint&gt;&gt;&gt;\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\tpadding: 1em;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-tiddler-info {\n\tmargin: 0 -1em 0 -1em;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-unfold-banner {\n\tmargin-left: -15px;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-unfold-banner {\n\tmargin-top: -6px;\n}\n\n&lt;/$reveal&gt;\n\n&lt;/$reveal&gt;\n\n&lt;$reveal state=\&quot;$:/themes/tiddlywiki/vanilla/options/sidebarlayout\&quot; type=\&quot;match\&quot; text=\&quot;fixed-fluid\&quot;&gt;\n\n.tc-sidebar-scrollable {\n\tleft: calc({{$:/themes/tiddlywiki/vanilla/metrics/storyright}} + 42px);\n}\n\n\t&lt;$reveal state=\&quot;$:/state/sidebar\&quot; type=\&quot;nomatch\&quot; text=\&quot;no\&quot;&gt;\n\n\t\t\t.tc-story-river.tc-muuri-river {\n\t\t\t\twidth: {{$:/themes/tiddlywiki/vanilla/metrics/storywidth}};\n\t\t\t}\n\n\t&lt;/$reveal&gt;\n\n&lt;/$reveal&gt;\n\n\t.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-unfold-banner {\n\t\tz-index: -1;\n\t}\n\n}\n\n@media(max-width:&lt;&lt;sidebarBreakPoint&gt;&gt;) {\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\tposition: absolute;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\twidth: calc((100% / 2) - &lt;&lt;margin&gt;&gt; - (&lt;&lt;margin&gt;&gt; / 2));\n\tmargin-&lt;&lt;marginSuffix&gt;&gt;: &lt;&lt;margin&gt;&gt;;\n\tmargin-bottom: &lt;&lt;marginBottom&gt;&gt;;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-titlebar {\n\tfont-size: 1.5em;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-titlebar .tc-tiddler-controls .tc-drop-down {\n\tfont-size: 1em;\n}\n\n.tc-story-river.tc-muuri-river {\n\tmargin-top: {{$:/config/muuri/storyview/story-river/margin-top}};\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-tiddler-info {\n\tpadding: 0;\n}\n\n&lt;$reveal state=\&quot;$:/state/sidebar\&quot; type=\&quot;match\&quot; text=\&quot;no\&quot;&gt;\n\n.tc-sidebar-scrollable {\n\tdisplay: none;\n}\n\n&lt;/$reveal&gt;\n\n\t.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame button.tc-unfold-banner {\n\t\tz-index: -1;\n\t}\n\n}\n\n&lt;$reveal state=\&quot;$:/state/config/muuri/storyview/drag-enabled\&quot; type=\&quot;match\&quot; text=\&quot;yes\&quot;&gt;\n\n\t.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame img {\n\t\tpointer-events: none;\n\t}\n\n&lt;/$reveal&gt;\n\n&lt;$reveal state=\&quot;$:/config/muuri/storyview/fill-gaps\&quot; type=\&quot;match\&quot; text=\&quot;yes\&quot;&gt;\n\n\t@media (min-width: &lt;&lt;sidebarBreakPoint&gt;&gt;) {\n\t\t.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\t\t\twidth: calc(100% / &lt;&lt;count&gt;&gt;);\n\t\t}\n\t\t\n\t\t.tc-story-river.tc-muuri-river {\n\t\t\tmargin-top: 0;\n\t\t}\n\t}\n\t\n\t@media (max-width: &lt;&lt;sidebarBreakPoint&gt;&gt;) {\n\t\t.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\t\t\twidth: calc(100% / 2);\n\t\t}\n\n\t\t.tc-story-river.tc-muuri-river {\n\t\t\tmargin-top: 0;\n\t\t}\n\t}\n\t\n\t@media(min-width:&lt;&lt;sidebarBreakPoint&gt;&gt;) {\n\t\n\t.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\t\tborder: none;\n\t\tborder-radius: 0px;\n\t\tbox-shadow: 1px 1px 1px &lt;&lt;colour tiddler-background&gt;&gt;;\n\t\t-webkit-box-shadow: 1px 1px 1px &lt;&lt;colour tiddler-background&gt;&gt;;\n\t\t-moz-box-shadow: 1px 1px 1px &lt;&lt;colour tiddler-background&gt;&gt;;\n\t\tmargin-top: 0em;\n\t\tmargin-left: 0em;\n\t\tmargin-right: 0em;\n\t\tmargin-bottom: 0em;\n\t}\n\n}\n\n\t@media(max-width:&lt;&lt;sidebarBreakPoint&gt;&gt;) {\n\t\n\t.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\t\tborder: none;\n\t\tborder-radius: 0px;\n\t\tbox-shadow: 1px 1px 1px &lt;&lt;colour tiddler-background&gt;&gt;;\n\t\t-webkit-box-shadow: 1px 1px 1px &lt;&lt;colour tiddler-background&gt;&gt;;\n\t\t-moz-box-shadow: 1px 1px 1px &lt;&lt;colour tiddler-background&gt;&gt;;\n\t\tmargin-top: 0em;\n\t\tmargin-left: 0em;\n\t\tmargin-right: 0em;\n\t\tmargin-bottom: 0em;\n\t}\n\n}\n\n&lt;/$reveal&gt;\n\n&lt;$reveal state=\&quot;$:/state/config/muuri/storyview/drag-enabled\&quot; type=\&quot;match\&quot; text=\&quot;no\&quot;&gt;\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame {\n\ttouch-action: auto !important;\n\tuser-select: auto !important;\n\t-ms-user-select: text !important;\n\t-moz-user-select: text !important;\n\t-webkit-user-select: text !important;\n}\n\n&lt;/$reveal&gt;\n\n&lt;$list filter=\&quot;[all[tiddlers]prefix[$:/state/popup/more-]limit[1]]\&quot;&gt;\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-tag-list-item {\n\tz-index: -1;\n}\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame [data-grid=\&quot;muuri\&quot;] {\n\tz-index: -1 !important;\n}\n\n&lt;/$list&gt;\n\n.tc-story-river.tc-muuri-river {\n\tpadding: 0;\n}\n\n&lt;$reveal state=\&quot;$:/themes/tiddlywiki/vanilla/options/stickytitles\&quot; type=\&quot;match\&quot; text=\&quot;yes\&quot;&gt;\n\n\t\t/*\n\t\tposition: sticky doesn't work well in the muuri view, it's disabled\n\t\t*/\n\t.tc-tiddler-title {\n\t\tposition: initial;\n\t\ttop: initial;\n\t\tbackground: initial;\n\t}\n\n&lt;/$reveal&gt;\n\n\t&lt;$list filter=\&quot;[list[$:/state/muuri/storyriver/z-indexes]]\&quot; variable=\&quot;zIndexTiddler\&quot;&gt;\n\n\t\t&lt;$set name=\&quot;zIndex\&quot; value={{{[list[$:/state/muuri/storyriver/z-indexes]allafter&lt;zIndexTiddler&gt;] +[count[]] }}}&gt;\n\n\t\t\t&lt;$set name=\&quot;cssEscapedTitle\&quot; value={{{ [&lt;zIndexTiddler&gt;escapecss[]] }}}&gt;\n\n\t\t\t\t&lt;&lt;z-indexes&gt;&gt;\n\n\t\t\t&lt;/$set&gt;\n\n\t\t&lt;/$set&gt;\n\n\t&lt;/$list&gt;\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame.tc-muuri-dragging, .tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame.tc-muuri-releasing {\n\tz-index: &lt;&lt;storyHighZIndex&gt;&gt;;\n}\n\n&lt;$reveal state=\&quot;$:/config/muuri/storyview/hide-titles-tags\&quot; type=\&quot;match\&quot; text=\&quot;yes\&quot;&gt;\n\n.tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-titlebar, .tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-subtitle, .tc-story-river.tc-muuri-river &gt; .tc-tiddler-frame .tc-tags-wrapper {\n\tdisplay: none;\n}\n\n&lt;/$reveal&gt;\n\n&lt;/$reveal&gt;\n\n&lt;/$vars&gt;\n\n&lt;/$reveal&gt;\n&quot;
         },
         &quot;$:/plugins/BTC/Muuri/ui/Buttons/column&quot;: {
             &quot;title&quot;: &quot;$:/plugins/BTC/Muuri/ui/Buttons/column&quot;,
@@ -10418,6 +10279,12 @@ fill: red;
             &quot;title&quot;: &quot;$:/plugins/BTC/Muuri/ui/Buttons/dragging-toggle&quot;,
             &quot;tags&quot;: &quot;$:/tags/PageControls&quot;,
             &quot;text&quot;: &quot;\\define get-button-class(class)\n$(tv-config-toolbar-class)$ tc-toolbar-icon $class$\n\\end\n\\define get-dragging-tooltip(onoff)\ndragging $onoff$ - [$(draggingShortcut)$]\n\\end\n\n\\whitespace trim\n&lt;$vars draggingShortcut={{$:/config/shortcuts/drag-enabled}} state=\&quot;$:/config/muuri/storyview/drag-enabled\&quot;&gt;\n&lt;$reveal state=&lt;&lt;state&gt;&gt; type=\&quot;nomatch\&quot; text=\&quot;no\&quot;&gt;\n&lt;$button class=&lt;&lt;get-button-class \&quot;tc-selected\&quot;&gt;&gt; tooltip=&lt;&lt;get-dragging-tooltip \&quot;off\&quot;&gt;&gt;&gt;\n&lt;$action-setfield $tiddler=&lt;&lt;state&gt;&gt; text=\&quot;no\&quot;/&gt;\n&lt;$list filter=\&quot;[&lt;tv-config-toolbar-icons&gt;prefix[yes]]\&quot;&gt;\n{{$:/plugins/BTC/Muuri/icons/dragging-toggle}}\n&lt;/$list&gt;\n&lt;$list filter=\&quot;[&lt;tv-config-toolbar-text&gt;prefix[yes]]\&quot;&gt;\n&lt;span class=\&quot;tc-btn-text\&quot;&gt;&lt;$text text=\&quot;dragging\&quot;/&gt;&lt;/span&gt;\n&lt;/$list&gt;\n&lt;/$button&gt;\n&lt;/$reveal&gt;\n&lt;$reveal state=&lt;&lt;state&gt;&gt; type=\&quot;match\&quot; text=\&quot;no\&quot;&gt;\n&lt;$button class=&lt;&lt;get-button-class&gt;&gt; tooltip=&lt;&lt;get-dragging-tooltip \&quot;on\&quot;&gt;&gt;&gt;\n&lt;$action-deletetiddler $tiddler=&lt;&lt;state&gt;&gt;/&gt;\n&lt;$list filter=\&quot;[&lt;tv-config-toolbar-icons&gt;prefix[yes]]\&quot;&gt;\n{{$:/plugins/BTC/Muuri/icons/dragging-toggle}}\n&lt;/$list&gt;\n&lt;$list filter=\&quot;[&lt;tv-config-toolbar-text&gt;prefix[yes]]\&quot;&gt;\n&lt;span class=\&quot;tc-btn-text\&quot;&gt;&lt;$text text=\&quot;dragging\&quot;/&gt;&lt;/span&gt;\n&lt;/$list&gt;\n&lt;/$button&gt;\n&lt;/$reveal&gt;\n&lt;/$vars&gt;\n&quot;
+        },
+        &quot;$:/plugins/BTC/Muuri/ui/Sidebar/Grid&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/BTC/Muuri/ui/Sidebar/Grid&quot;,
+            &quot;tags&quot;: &quot;$:/tags/SideBar&quot;,
+            &quot;caption&quot;: &quot;Grid&quot;,
+            &quot;text&quot;: &quot;\\whitespace trim\n&lt;$navigator story=\&quot;$:/SidebarList\&quot; history=\&quot;$:/SidebarHistoryList\&quot;&gt;\n\n&lt;$vars currentTiddler=\&quot;$:/config/SidebarTags\&quot; tagField=\&quot;text\&quot;&gt;{{||$:/core/ui/EditTemplate/tags}}&lt;/$vars&gt;\n\n&lt;section class=\&quot;tc-story-river tc-sidebar-river\&quot;&gt;\n\n&lt;$list filter=\&quot;[list[$:/SidebarList]]\&quot; template={{$:/config/ui/ViewTemplate}} editTemplate={{$:/config/ui/EditTemplate}} storyview=\&quot;muuri\&quot; storyViewConfig=\&quot;$:/config/muuri/sidebarview/\&quot;/&gt;\n\n&lt;/section&gt;\n\n&lt;/$navigator&gt;&quot;
         }
     }
 }</pre>
@@ -10870,6 +10737,9 @@ fill: red;
     }
 }</pre>
 </div>
+<div created="20201225121930215" list="" modified="20201225122104680" title="$:/SidebarList" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre></pre>
+</div>
 <div created="20201219093611298" modified="20201219093628233" title="$:/SiteSubtitle" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>a gridded, drag&amp;drop enabled ~StoryView</pre>
 </div>
@@ -10880,9 +10750,6 @@ fill: red;
 <pre>no</pre>
 </div>
 <div list="[[Mona Lisa]] [[I am Mr. Van Gogh]] [[I am one of that guy's paintings]] [[Ceci n’est pas une pipe.]] [[The Great Wave off the Coast of Kanagawa]] [[Star me on GitHub]] [[The Birth of Venus]] [[The Kiss]] [[Works best with the CodeMirror plugin]] [[Configuration Options]] [[El jardin de las Delicias]] [[This Louvre moment]] [[Configuration by Namespace]] [[Change the amount of columns]] [[The Muuri StoryView requires to use templates]] [[Actions can be triggered on Drop]] [[Moving Items between Grids]] [[Dragging Tiddlers]]" title="$:/StoryList" revision="1" bag="default">
-<pre></pre>
-</div>
-<div created="20201218163957875" list="" modified="20201225092812030" title="$:/StoryList2" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23" revision="0" bag="default">
