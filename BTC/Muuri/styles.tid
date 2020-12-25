@@ -27,6 +27,18 @@ tags: $:/tags/Stylesheet
 
 @media(min-width:<<sidebarBreakPoint>>) {
 
+.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) {
+	min-height: calc(100vh - 2em);
+}
+
+.tc-story-river.tc-sidebar-river {
+	min-height: 250px;
+}
+
+.tc-story-river.tc-sidebar-river > .tc-tiddler-frame {
+	color: <<colour foreground>>;
+}
+
 .tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 	position: absolute;
 }
