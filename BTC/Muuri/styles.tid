@@ -25,7 +25,7 @@ tags: $:/tags/Stylesheet
 
 <$vars count={{{ [{$:/config/muuri/storyview/columns}!match[]] ~[[1]] }}} margin={{$:/config/muuri/tiddler/margin}} marginSuffix={{{ [{$:/config/muuri/storyview/align-right}match[yes]addprefix[right]removesuffix[yes]] ~[[$:/config/muuri/storyview/align-right]is[missing]then[right]] ~[[left]] }}} sidebarBreakPoint={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}} marginBottom={{$:/config/muuri/tiddler/margin-bottom}} storyHighZIndex={{{ [list[$:/StoryList]count[]add[201]] }}} firstBreakPoint={{$:/config/muuri/storyview/first-break-point}} secondBreakPoint={{$:/config/muuri/storyview/second-break-point}}>
 
-.tc-story-river.tc-sidebar-river {
+.tc-story-river.tc-muuri-river.tc-sidebar-river {
 	min-height: 250px;
 	width: 100%;
 }
