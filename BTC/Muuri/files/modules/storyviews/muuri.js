@@ -75,7 +75,7 @@ var MuuriStoryView = function(listWidget) {
 			.on("layoutEnd",function(items) {
 				var isDragging = false;
 				for(var i=0; i<items.length; i++) {
-					if(items[i].isDragging() || items[i].isPositioning() || items[i].isReleasing()) {
+					if(items[i].isDragging()) {// || items[i].isPositioning() || items[i].isReleasing()) {
 						isDragging = true;
 						break;
 					}
@@ -83,6 +83,9 @@ var MuuriStoryView = function(listWidget) {
 				if(!isDragging) {
 					self.updateZIndexList();
 				}
+			})
+			.on("layoutAbort",function(items) {
+
 			})
 			.on("beforeSend",function(data) {
 
@@ -97,6 +100,7 @@ var MuuriStoryView = function(listWidget) {
 
 			});
 			this.addSelfToGlobalGrids();
+			this.updateZIndexList();
 		}
 	}
 };
@@ -353,6 +357,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 		showDuration: self.animationDuration,
 		layoutDurattion: self.animationDuration,
 		layoutOnResize: true,
+		layoutOnInit: true,
 		containerClass: self.containerClass,
 		itemClass: self.itemClass,
 		itemDraggingClass: "tc-muuri-dragging",
@@ -518,20 +523,23 @@ MuuriStoryView.prototype.updateZIndexList = function(options) {
 				if(valueA < valueB) return -1;
 				return 0;
 			});
+			self.detectConnectedGrids();
 			for(k=0; k<columnMembers.length; k++) {
 				var itemTitle = self.getItemTitle(columnMembers[k]);
 				sortedArray.push(itemTitle);
 			}
 		});
 		//store the array in a tiddler-list that's used for applying z-indices
-		var tiddler = this.listWidget.wiki.getTiddler(this.zIndexTiddler);
-		this.listWidget.wiki.addTiddler(new $tw.Tiddler(
-			this.listWidget.wiki.getCreationFields(),
-			{title: this.zIndexTiddler},
-			tiddler,
-			{list: sortedArray},
-			this.listWidget.wiki.getModificationFields()
-		));
+		if(sortedArray.indexOf(null) === -1) {
+			var tiddler = this.listWidget.wiki.getTiddler(this.zIndexTiddler);
+			this.listWidget.wiki.addTiddler(new $tw.Tiddler(
+				this.listWidget.wiki.getCreationFields(),
+				{title: this.zIndexTiddler},
+				tiddler,
+				{list: sortedArray},
+				this.listWidget.wiki.getModificationFields()
+			));
+		}
 	}
 };
 
