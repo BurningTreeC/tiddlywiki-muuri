@@ -27,6 +27,7 @@ tags: $:/tags/Stylesheet
 
 .tc-story-river.tc-sidebar-river {
 	min-height: 250px;
+	width: 100%;
 }
 
 .tc-story-river.tc-sidebar-river {
@@ -37,6 +38,7 @@ tags: $:/tags/Stylesheet
 
 .tc-story-river.tc-sidebar-river > .tc-tiddler-frame {
 	margin-bottom: 0;
+	width: 100%;
 }
 
 .tc-story-river.tc-sidebar-river > .tc-tiddler-frame:not(:last-child) {
