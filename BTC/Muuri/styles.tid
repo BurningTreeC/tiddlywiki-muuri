@@ -103,7 +103,7 @@ tags: $:/tags/Stylesheet
 
 <$reveal state="$:/config/muuri/storyview/columns" type="lt" text=<<secondBreakPoint>>>
 
-.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame {
+.tc-page-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame {
 	padding: 2em;
 }
 
@@ -115,7 +115,7 @@ tags: $:/tags/Stylesheet
 
 <$reveal state="$:/config/muuri/storyview/columns" type="gteq" text=<<secondBreakPoint>>>
 
-.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame {
+.tc-page-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame {
 	padding: 1em;
 }
 
@@ -123,11 +123,11 @@ tags: $:/tags/Stylesheet
 	margin: 0 -1em 0 -1em;
 }
 
-.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame button.tc-unfold-banner {
+.tc-page-container > .tc-tiddler-frame button.tc-fold-banner, .tc-page-container > .tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame button.tc-unfold-banner {
 	margin-left: -15px;
 }
 
-.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame button.tc-unfold-banner {
+.tc-page-container > .tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame button.tc-unfold-banner {
 	margin-top: -6px;
 }
 
