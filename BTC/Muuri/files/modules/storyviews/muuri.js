@@ -435,14 +435,12 @@ MuuriStoryView.prototype.detectWithinCodemirror = function(event) {
 
 MuuriStoryView.prototype.detectGridWithinGrid = function(element) {
 	var gridNode = this.muuri.getItems()[0] ? this.muuri.getItems()[0].getGrid()._element : null;
-
 	if(!gridNode) {
 		return true;
 	}
 	var elementChildNodes = element.childNodes;
 	var isCurrentGrid = false,
 		foundGrid = false;
-
 	if(elementChildNodes.length === 0) {
 		return true;
 	}
