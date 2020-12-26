@@ -318,7 +318,7 @@ tags: $:/tags/Stylesheet
 
 	</$list>
 
-.tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-dragging, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-releasing {
+.tc-page-container > .tc-tiddler-frame.tc-muuri-dragging, .tc-page-container > .tc-tiddler-frame.tc-muuri-releasing, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-dragging, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-releasing {
 	z-index: <<storyHighZIndex>>;
 }
 

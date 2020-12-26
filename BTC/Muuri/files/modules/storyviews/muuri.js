@@ -53,6 +53,10 @@ var MuuriStoryView = function(listWidget) {
 			}
 			this.muuri.on("dragReleaseEnd",function(item) {
 				self.onDragReleaseEnd(item);
+				var style = item.getElement().style;
+				style.width = '';
+				style.height = '';
+				self.muuri.refreshItems([item]);
 			})
 			.on("add",function(items) {
 				self.updateZIndexList();
@@ -62,6 +66,9 @@ var MuuriStoryView = function(listWidget) {
 			})
 			.on("dragInit",function(item,event) {
 				self.inheritIframeEvents();
+				var style = item.getElement().style;
+				style.width = item.getWidth() + 'px';
+				style.height = item.getHeight() + 'px';
 			})
 			.on("dragStart",function(item,event) {
 
@@ -316,6 +323,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 	var self = this;
 	return {
 		items: self.itemSelector,
+		dragContainer: self.dragContainer,
 		dragEnabled: self.dragEnabled,
 		dragHandle: self.dragHandle,
 		dragSortPredicate: {
@@ -392,6 +400,8 @@ MuuriStoryView.prototype.collectAttributes = function() {
 		dragHandle = null;
 	}
 	this.dragHandle = dragHandle;
+	var dragContainerSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-container");
+	this.dragContainer = this.listWidget.document.documentElement.querySelector(dragContainerSelector);
 	this.alignRight = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-right") !== "no";
 	this.alignBottom = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-bottom") === "yes";
 	this.dragEnabled = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
@@ -688,6 +698,10 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 	}
 	if(changedTiddlers[this.configNamespace + "drop-actions"]) {
 		this.dropActions = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
+	}
+	if(this.muuri && changedTiddlers[this.configNamespace + "drag-container"]) {
+		var dragContainerSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-container");
+		this.muuri._settings.dragContainer = this.dragContainer = this.listWidget.document.documentElement.querySelector(dragContainerSelector);
 	}
 	if(this.muuri && (changedTiddlers[this.configNamespace + "container-class"] || changedTiddlers[this.configNamespace + "item-class"])) {
 		this.muuri.destroy(true);
