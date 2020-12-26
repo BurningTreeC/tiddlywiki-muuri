@@ -95,7 +95,7 @@ var MuuriStoryView = function(listWidget) {
 
 			})
 			.on("beforeSend",function(data) {
-
+				data.toGrid.refreshItems([data.item]);
 			})
 			.on("send",function(data) {
 				data.item.fromGrid = data.fromGrid;
@@ -359,7 +359,8 @@ MuuriStoryView.prototype.collectOptions = function() {
 		},
 		dragRelease: {
 			duration: self.animationDuration,
-			easing: easing
+			easing: easing,
+			useDragContainer: true
 		},
 		dragSortInterval: self.dragSortInterval,
 		showDuration: self.animationDuration,
