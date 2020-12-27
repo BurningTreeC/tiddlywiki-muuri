@@ -61,9 +61,11 @@ var MuuriStoryView = function(listWidget) {
 			})
 			.on("add",function(items) {
 				self.updateZIndexList();
+				self.muuri._element.style.height = "";
 			})
 			.on("remove",function(items) {
 				self.updateZIndexList();
+				self.muuri._element.style.height = "";
 			})
 			.on("dragInit",function(item,event) {
 				self.inheritIframeEvents();
