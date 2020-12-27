@@ -411,7 +411,7 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	this.storyListField = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist-field") || "list";
 	this.zIndexTiddler = this.listWidget.wiki.getTiddlerText(this.configNamespace + "zindex-tiddler");
 	this.connectionSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "connection-selector");
-	this.dropActions = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
+	this.dropActions = this.listWidget.getVariable("tv-muuri-drop-actions") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
 };
 
 MuuriStoryView.prototype.findListWidget = function(element) {
@@ -699,7 +699,7 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 		this.connectionSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "connection-selector");
 	}
 	if(changedTiddlers[this.configNamespace + "drop-actions"]) {
-		this.dropActions = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
+		this.dropActions = this.listWidget.getVariable("tv-muuri-drop-actions") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
 	}
 	if(this.muuri && changedTiddlers[this.configNamespace + "drag-container"]) {
 		var dragContainerSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-container");
