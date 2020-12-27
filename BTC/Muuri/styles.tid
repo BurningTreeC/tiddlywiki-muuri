@@ -199,9 +199,9 @@ tags: $:/tags/Stylesheet
 
 }
 
-<$reveal state="$:/state/config/muuri/storyview/drag-enabled" type="match" text="yes">
+<$reveal state="$:/config/muuri/storyview/drag-enabled" type="match" text="yes">
 
-	.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame img {
+	.tc-story-river.tc-muuri-river > .tc-tiddler-frame img {
 		pointer-events: none;
 	}
 
