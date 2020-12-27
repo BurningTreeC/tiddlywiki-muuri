@@ -57,7 +57,7 @@ var MuuriStoryView = function(listWidget) {
 				style.width = '';
 				style.height = '';
 				self.refreshMuuriGrid();
-				self.muuri.refreshItems([item]);
+				//self.muuri.refreshItems([item]);
 			})
 			.on("add",function(items) {
 				self.updateZIndexList();
@@ -83,7 +83,7 @@ var MuuriStoryView = function(listWidget) {
 			.on("layoutEnd",function(items) {
 				var isDragging = false;
 				for(var i=0; i<items.length; i++) {
-					if(items[i].isDragging()) {// || items[i].isPositioning() || items[i].isReleasing()) {
+					if(items[i].isDragging()) {
 						isDragging = true;
 						break;
 					}
