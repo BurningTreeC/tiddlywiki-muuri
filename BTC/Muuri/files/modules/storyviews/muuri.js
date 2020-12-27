@@ -383,7 +383,7 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	this.configNamespace = this.listWidget.getAttribute("storyViewConfig","$:/config/muuri/storyview/");
 	this.itemTemplate = this.listWidget.getAttribute("template");
 	this.itemEditTemplate = this.listWidget.getAttribute("editTemplate");
-	this.noDragTags = ["input","INPUT","textarea","TEXTAREA","button","BUTTON","select","SELECT"];
+	this.noDragTags = ["input","INPUT","textarea","TEXTAREA","button","BUTTON","select","SELECT","a","A"];
 	this.containerClass = this.listWidget.wiki.getTiddlerText(this.configNamespace + "container-class") || "tc-muuri-river";
 	var itemClass = this.listWidget.wiki.getTiddlerText(this.configNamespace + "item-class") || "tc-tiddler-frame";
 	if(itemClass === undefined || itemClass === "" || itemClass === "*") {
