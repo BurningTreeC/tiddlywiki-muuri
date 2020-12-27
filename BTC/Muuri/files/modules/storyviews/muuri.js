@@ -442,14 +442,14 @@ MuuriStoryView.prototype.collectAttributes = function() {
 };
 
 MuuriStoryView.prototype.findMuuriWidget = function() {
-    var widget = this.listWidget;
-    while(widget) {
-        if(widget.domNodes[0] === this.muuri._element) {
-            return widget;
-        }
-        widget = widget.parentWidget;
-    }
-    return this.listWidget.parentWidget;
+	var widget = this.listWidget;
+	while(widget) {
+		if(widget.domNodes[0] === this.muuri._element) {
+			return widget;
+		}
+		widget = widget.parentWidget;
+	}
+	return this.listWidget.parentWidget;
 }
 
 MuuriStoryView.prototype.findListWidget = function(element) {
