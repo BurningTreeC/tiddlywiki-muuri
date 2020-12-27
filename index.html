@@ -338,8 +338,8 @@ fill: red;
 <div created="20201226172239869" modified="20201226172546185" tags="" title="$:/config/muuri/sidebarview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>.tc-page-container</pre>
 </div>
-<div created="20201216154323661" modified="20201227150017389" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>1</pre>
+<div created="20201216154323661" modified="20201227152822999" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>4</pre>
 </div>
 <div created="20201226171916321" modified="20201226172548902" tags="" title="$:/config/muuri/storyview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>.tc-page-container</pre>
@@ -10829,7 +10829,7 @@ exports.widget = Widget;
 <div title="$:/isEncrypted" revision="0" bag="default">
 <pre>no</pre>
 </div>
-<div created="20201226105926723" list="" modified="20201227150249189" tags="" title="$:/KanbanColumnEditTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226105926723" list="" modified="20201227152735497" tags="" title="$:/KanbanColumnEditTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 \define get-history() $:/HistoryList/Kanban/$(currentTiddler)$
 \define get-styles() background-color: $(bgColor)$
@@ -10842,6 +10842,7 @@ exports.widget = Widget;
 				&lt;$keyboard key=&quot;((save-tiddler))&quot; message=&quot;tm-save-tiddler&quot;&gt;
 				&lt;$keyboard key=&quot;((cancel-edit-tiddler))&quot; message=&quot;tm-cancel-tiddler&quot;&gt;
 					&lt;$edit-text field=&quot;draft.title&quot; tag=&quot;input&quot; placeholder=&quot; title&quot; focus=&quot;true&quot;/&gt;&lt;br&gt;
+					&lt;$edit-text field=&quot;caption&quot; tag=&quot;input&quot; placeholder=&quot; caption&quot;/&gt;&lt;br&gt;
 					&lt;$edit-text field=&quot;color&quot; tag=&quot;input&quot;/&gt;
 				&lt;/$keyboard&gt;
 				&lt;/$keyboard&gt;
@@ -10917,7 +10918,7 @@ exports.widget = Widget;
 &lt;/$navigator&gt;
 &lt;/$set&gt;</pre>
 </div>
-<div created="20201226120511731" current-tiddler="Todo" modified="20201227151236946" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
+<div created="20201226120511731" current-tiddler="Done" modified="20201227152809170" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
 <pre>[
     {
         &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
@@ -11374,6 +11375,21 @@ exports.widget = Widget;
     },
     {
         &quot;title&quot;: &quot;Todo&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Done'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Done&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Done'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Done&quot;
     }
 ]</pre>
 </div>
@@ -11433,10 +11449,10 @@ exports.widget = Widget;
  	&lt;/div&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20201226140433928" list="Todo Done Working" modified="20201227151237066" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226140433928" list="Todo Done Working" modified="20201227152809278" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20201226110827646" modified="20201227150555420" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226110827646" modified="20201227152455160" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;$set name=&quot;amount&quot; value={{{ [list[$:/KanbanList]count[]] }}}&gt;
 
 .tc-board-container {
@@ -11632,9 +11648,13 @@ exports.widget = Widget;
 }
 .tc-board-item-content input {
 	width: 100%;
+	border: 1px solid &lt;&lt;colour muted-foreground&gt;&gt;;
+	border-radius: 2px;
+	margin-bottom: 2px;
 }
 .tc-board-item-content input + br + div {
 	width: 100%;
+	border-radius: 2px;
 }
 .tc-board-item.muuri-item-placeholder .tc-board-item-content {
   border-style: dashed;
@@ -12479,10 +12499,10 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <pre>* Style it more the TiddlyWiki way
 * Add keyboard shortcuts for save and cancel when in edit mode</pre>
 </div>
-<div caption="" created="20201226162849128" modified="20201227145754130" tags="" title="Do the laundry" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div caption="" created="20201226162849128" modified="20201227152536573" tags="" title="Do the laundry" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div color="#66a079" created="20201226140352252" list="[[Do the laundry]] [[Buy some milk]]" modified="20201227151222208" tags="" title="Done" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div color="#66a079" created="20201226140352252" list="[[Do the laundry]] [[Buy some milk]]" modified="20201227152536722" tags="" title="Done" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div created="20201218053417117" modified="20201218053428540" tags="Features" title="Dragging Tiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
