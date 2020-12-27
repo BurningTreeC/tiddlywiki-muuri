@@ -109,6 +109,27 @@ var MuuriStoryView = function(listWidget) {
 			});
 			this.addSelfToGlobalGrids();
 			this.updateZIndexList();
+			this.observer = new MutationObserver(function(mutations) {
+				$tw.utils.each(mutations,function(mutation) {
+					if(mutation.removedNodes) {
+						var items = self.muuri.getItems();
+						self.muuri.refreshItems();
+						var newItems = self.muuri.getItems();
+						var needsRefresh = false;
+						for(var i=0; i<items.length; i++) {
+							if(items[i]._width === 0 && items[i]._height === 0) {
+								needsRefresh = true;
+							}
+						}
+						if(needsRefresh) {
+							self.observer.disconnect();
+							self.muuri.destroy(true);
+							self.listWidget.parentWidget.refreshSelf();
+						}
+					}
+				});
+			});
+			this.observer.observe(this.muuri._element,{attributes: true, childList: true, characterData: true});
 		}
 	}
 };
@@ -315,7 +336,11 @@ MuuriStoryView.prototype.createMuuriGrid = function() {
 	var domNode = this.listWidget.parentDomNode;
 	if(domNode) {
 		domNode.setAttribute("data-grid","muuri");
-		return new Muuri(domNode,options);
+		try {
+			return new Muuri(domNode,options);
+		} catch(e) {
+			return false;
+		}
 	}
 	return false;
 };
