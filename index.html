@@ -331,8 +331,8 @@ fill: red;
 <div created="20201226172239869" modified="20201226172546185" tags="" title="$:/config/muuri/sidebarview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>.tc-page-container</pre>
 </div>
-<div created="20201216154323661" modified="20201227092409549" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>1</pre>
+<div created="20201216154323661" modified="20201227093815998" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>4</pre>
 </div>
 <div created="20201226171916321" modified="20201226172548902" tags="" title="$:/config/muuri/storyview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>.tc-page-container</pre>
@@ -12404,7 +12404,7 @@ exports.widget = Widget;
 <div created="20201221045948964" modified="20201221160728440" tags="Features" title="Configuration by Namespace" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>The list widget accepts ''one'' additional attribute, namely `storyViewConfig`, which determines the `namespace` for all configuration tiddlers. The default namespace is `$:/config/muuri/storyview/`</pre>
 </div>
-<div created="20201221155640024" modified="20201225145013894" muuri-tiddler-width="2" tags="Information" title="Configuration Options" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201221155640024" modified="20201227094002471" muuri-tiddler-width="2" tags="Information" title="Configuration Options" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>The following ''suffixes'' for the `muuri namespace` given through the `storyViewConfig` attribute are possible:
 
 |suffix |purpose |h
@@ -12422,8 +12422,11 @@ exports.widget = Widget;
 |zindex-tiddler |an optional tiddler title that's used to store the item titles in the order they are displayed. can be used to set z-indexes for those items |
 |drag-handle |a css selector that defines the handle used for dragging. if none is given, the whole item is the handle |
 |connection-selector |a css selector that defines the grid instances that should be connected with the current grid |
+|drag-container |a css selector for the container element where the items will be appended to during the time of the drag. defaults to the current grid |
 
-The ''storylist'' can also be defined by the `tv-muuri-story-list` variable</pre>
+The ''storylist'' can also be defined by the `tv-muuri-story-list` variable
+
+The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable</pre>
 </div>
 <div created="20201226162904107" modified="20201227093149195" tags="" title="Create a Kanban" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>* Style it more the TiddlyWiki way
