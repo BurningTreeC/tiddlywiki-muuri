@@ -54,10 +54,10 @@ var MuuriStoryView = function(listWidget) {
 			this.muuri.on("dragReleaseEnd",function(item) {
 				self.onDragReleaseEnd(item);
 				var style = item.getElement().style;
-				style.width = '';
-				style.height = '';
-				//self.refreshMuuriGrid();
-				self.muuri.refreshItems([item]);
+				style.width = "";
+				style.height = "";
+				self.refreshMuuriGrid();
+				//self.muuri.refreshItems([item]);
 			})
 			.on("add",function(items) {
 				self.updateZIndexList();
@@ -70,8 +70,8 @@ var MuuriStoryView = function(listWidget) {
 			.on("dragInit",function(item,event) {
 				self.inheritIframeEvents();
 				var style = item.getElement().style;
-				style.width = item.getWidth() + 'px';
-				style.height = item.getHeight() + 'px';
+				style.width = item.getWidth() + "px";
+				style.height = item.getHeight() + "px";
 			})
 			.on("dragStart",function(item,event) {
 
