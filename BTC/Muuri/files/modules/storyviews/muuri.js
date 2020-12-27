@@ -57,7 +57,7 @@ var MuuriStoryView = function(listWidget) {
 				style.width = '';
 				style.height = '';
 				self.refreshMuuriGrid();
-				//self.muuri.refreshItems([item]);
+				self.muuri.refreshItems([item]);
 			})
 			.on("add",function(items) {
 				self.updateZIndexList();
