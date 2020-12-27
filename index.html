@@ -338,8 +338,8 @@ fill: red;
 <div created="20201226172239869" modified="20201226172546185" tags="" title="$:/config/muuri/sidebarview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>.tc-page-container</pre>
 </div>
-<div created="20201216154323661" modified="20201227153758831" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>4</pre>
+<div created="20201216154323661" modified="20201227155144815" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>1</pre>
 </div>
 <div created="20201226171916321" modified="20201226172548902" tags="" title="$:/config/muuri/storyview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>.tc-page-container</pre>
@@ -10829,7 +10829,7 @@ exports.widget = Widget;
 <div title="$:/isEncrypted" revision="0" bag="default">
 <pre>no</pre>
 </div>
-<div created="20201226105926723" list="" modified="20201227152735497" tags="" title="$:/KanbanColumnEditTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226105926723" list="" modified="20201227155441044" tags="" title="$:/KanbanColumnEditTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 \define get-history() $:/HistoryList/Kanban/$(currentTiddler)$
 \define get-styles() background-color: $(bgColor)$
@@ -10843,6 +10843,7 @@ exports.widget = Widget;
 				&lt;$keyboard key=&quot;((cancel-edit-tiddler))&quot; message=&quot;tm-cancel-tiddler&quot;&gt;
 					&lt;$edit-text field=&quot;draft.title&quot; tag=&quot;input&quot; placeholder=&quot; title&quot; focus=&quot;true&quot;/&gt;&lt;br&gt;
 					&lt;$edit-text field=&quot;caption&quot; tag=&quot;input&quot; placeholder=&quot; caption&quot;/&gt;&lt;br&gt;
+					&lt;$edit-text field=&quot;drop-actions&quot; tag=&quot;input&quot; placeholder=&quot; drop-actions&quot;/&gt;&lt;br&gt;
 					&lt;$edit-text field=&quot;color&quot; tag=&quot;input&quot;/&gt;
 				&lt;/$keyboard&gt;
 				&lt;/$keyboard&gt;
@@ -10862,9 +10863,11 @@ exports.widget = Widget;
 			&lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history&gt;&gt;&gt;
       &lt;div class=&quot;tc-board-column-items-container&quot;&gt;
 					&lt;$set name=&quot;tv-muuri-story-list&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;
+					&lt;$set name=&quot;tv-muuri-drop-actions&quot; value={{!!drop-actions}}&gt;
        	&lt;div class=&quot;tc-board-column-items&quot;&gt;
 						&lt;$list filter=&quot;[list&lt;currentTiddler&gt;]&quot; storyview=&quot;muuri&quot; template=&quot;$:/KanbanItemTemplate&quot; editTemplate=&quot;$:/KanbanItemEditTemplate&quot; storyViewConfig=&quot;$:/config/kanban/items/&quot;/&gt;
 				&lt;/div&gt;
+				&lt;/$set&gt;
 				&lt;/$set&gt;
 			&lt;/div&gt;
 			&lt;/$navigator&gt;
@@ -10872,7 +10875,7 @@ exports.widget = Widget;
 	&lt;/div&gt;
 &lt;/$set&gt;</pre>
 </div>
-<div created="20201226102529782" list="" modified="20201227145608345" tags="" title="$:/KanbanColumnTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226102529782" list="" modified="20201227155335149" tags="" title="$:/KanbanColumnTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 \define get-history() $:/HistoryList/Kanban/$(currentTiddler)$
 \define get-classes() tc-board-column $(currentTiddler)$
@@ -10908,9 +10911,11 @@ exports.widget = Widget;
 			&lt;/div&gt;
       &lt;div class=&quot;tc-board-column-items-container&quot;&gt;
 				&lt;$set name=&quot;tv-muuri-story-list&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;
+				&lt;$set name=&quot;tv-muuri-drop-actions&quot; value={{!!drop-actions}}&gt;
        	&lt;div class=&quot;tc-board-column-items&quot;&gt;
 						&lt;$list filter=&quot;[list&lt;currentTiddler&gt;]&quot; storyview=&quot;muuri&quot; template=&quot;$:/KanbanItemTemplate&quot; editTemplate=&quot;$:/KanbanItemEditTemplate&quot; storyViewConfig=&quot;$:/config/kanban/items/&quot;/&gt;
 				&lt;/div&gt;
+				&lt;/$set&gt;
 				&lt;/$set&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
@@ -10918,7 +10923,7 @@ exports.widget = Widget;
 &lt;/$navigator&gt;
 &lt;/$set&gt;</pre>
 </div>
-<div created="20201226120511731" current-tiddler="Done" modified="20201227153511060" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
+<div created="20201226120511731" current-tiddler="Done" modified="20201227155253156" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
 <pre>[
     {
         &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
@@ -11411,6 +11416,12 @@ exports.widget = Widget;
     },
     {
         &quot;title&quot;: &quot;Done&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Done'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Done&quot;
     }
 ]</pre>
 </div>
@@ -11441,7 +11452,7 @@ exports.widget = Widget;
  	&lt;/div&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20201226104439282" modified="20201227145740071" tags="" title="$:/KanbanItemTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226104439282" modified="20201227155536339" tags="" title="$:/KanbanItemTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;div class=&quot;tc-board-item&quot;&gt;
 	&lt;div class=&quot;tc-board-item-content&quot;&gt;
   	&lt;div class=&quot;tc-board-item-title&quot;&gt;
@@ -11453,12 +11464,16 @@ exports.widget = Widget;
 			&lt;hr class=&quot;simple&quot;&gt;
 			&lt;$transclude mode=&quot;block&quot;/&gt;
 		&lt;/div&gt;
-    &lt;div class=&quot;tc-board-item-handle&quot;&gt;
-		&lt;/div&gt;
     &lt;div class=&quot;tc-board-item-action tc-edit&quot;&gt;
 			&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
 			&lt;$action-sendmessage $message=&quot;tm-edit-tiddler&quot;/&gt;
 			{{$:/core/images/edit-button}}
+			&lt;/$button&gt;
+   	&lt;/div&gt;
+    &lt;div class=&quot;tc-board-item-action tc-close&quot;&gt;
+			&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
+			&lt;$action-sendmessage $message=&quot;tm-close-tiddler&quot;/&gt;
+			{{$:/core/images/close-button}}
 			&lt;/$button&gt;
    	&lt;/div&gt;
    	&lt;div class=&quot;tc-board-item-action tc-delete&quot;&gt;
@@ -11470,10 +11485,10 @@ exports.widget = Widget;
  	&lt;/div&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20201226140433928" list="Todo Done Working" modified="20201227153511158" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226140433928" list="Todo Done Working" modified="20201227155253276" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20201226110827646" modified="20201227153137983" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226110827646" modified="20201227155723523" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;$set name=&quot;amount&quot; value={{{ [list[$:/KanbanList]count[]] }}}&gt;
 
 .tc-board-container {
@@ -11743,6 +11758,11 @@ exports.widget = Widget;
 .tc-board-item.tc-editing .tc-board-item-action.tc-delete {
   display: none;
 }
+.tc-board-item-action.tc-close {
+	left: -0.5rem;
+	bottom: -0.5rem;
+}
+
 .tc-board-item.tc-editing .tc-board-item-action,
 .tc-board-item:hover .tc-board-item-action,
 .tc-board-column-header-wrapper:hover .tc-board-item-action,
@@ -12590,7 +12610,7 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <div created="20201011123841783" modified="20201214222300078" tags="" title="This Louvre moment" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img[https://upload.wikimedia.org/wikipedia/commons/c/c3/Scuola_di_fontainebleau%2C_presunti_ritratti_di_gabrielle_d%27estr%C3%A9es_sua_sorella_la_duchessa_di_villars%2C_1594_ca._06.jpg]]</pre>
 </div>
-<div color="#b25342" created="20201226152301492" list="[[Create a Kanban]]" modified="20201227151237143" tags="" title="Todo" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div color="#b25342" created="20201226152301492" list="[[Create a Kanban]]" modified="20201227155756498" tags="" title="Todo" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div color="#669fb2" created="20201226140410781" list="[[Happy Tiddlering]]" modified="20201227120242336" tags="" title="Working" type="text/vnd.tiddlywiki" revision="0" bag="default">
