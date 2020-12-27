@@ -306,26 +306,26 @@ fill: red;
 <div created="20201226103826988" modified="20201226120308827" tags="" title="$:/config/kanban/align-right" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>no</pre>
 </div>
-<div created="20201226103139592" modified="20201226120308852" tags="" title="$:/config/kanban/container-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>board</pre>
+<div created="20201226103139592" modified="20201227144401061" tags="" title="$:/config/kanban/container-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>tc-board</pre>
 </div>
-<div created="20201226103236217" modified="20201226120308965" tags="" title="$:/config/kanban/item-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>board-column</pre>
+<div created="20201226103236217" modified="20201227144401323" tags="" title="$:/config/kanban/item-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>tc-board-column</pre>
 </div>
-<div created="20201226110243765" modified="20201226120308975" tags="" title="$:/config/kanban/items/connection-selector" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>.board-column-items</pre>
+<div created="20201226110243765" modified="20201227144401471" tags="" title="$:/config/kanban/items/connection-selector" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>.tc-board-column-items</pre>
 </div>
-<div created="20201226110111245" modified="20201226120308982" tags="" title="$:/config/kanban/items/container-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>board-column-items</pre>
+<div created="20201226110111245" modified="20201227144401572" tags="" title="$:/config/kanban/items/container-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>tc-board-column-items</pre>
 </div>
-<div created="20201226170325838" modified="20201226172551175" tags="" title="$:/config/kanban/items/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>.board-container</pre>
+<div created="20201226170325838" modified="20201227144401624" tags="" title="$:/config/kanban/items/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>.tc-board-container</pre>
 </div>
 <div created="20201226142649816" modified="20201226142704499" tags="" title="$:/config/kanban/items/dragsort-heuristics-interval" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>0</pre>
 </div>
-<div created="20201226110157927" modified="20201226120308990" tags="" title="$:/config/kanban/items/item-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>board-item</pre>
+<div created="20201226110157927" modified="20201227144401809" tags="" title="$:/config/kanban/items/item-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>tc-board-item</pre>
 </div>
 <div created="20201226103103242" modified="20201226120309006" tags="" title="$:/config/kanban/storylist" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>$:/KanbanList</pre>
@@ -333,7 +333,7 @@ fill: red;
 <div created="20201226172239869" modified="20201226172546185" tags="" title="$:/config/muuri/sidebarview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>.tc-page-container</pre>
 </div>
-<div created="20201216154323661" modified="20201227112557945" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201216154323661" modified="20201227144923439" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>4</pre>
 </div>
 <div created="20201226171916321" modified="20201226172548902" tags="" title="$:/config/muuri/storyview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -10824,16 +10824,16 @@ exports.widget = Widget;
 <div title="$:/isEncrypted" revision="0" bag="default">
 <pre>no</pre>
 </div>
-<div created="20201226105926723" list="" modified="20201227092559039" tags="" title="$:/KanbanColumnEditTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226105926723" list="" modified="20201227144401921" tags="" title="$:/KanbanColumnEditTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 \define get-history() $:/HistoryList/Kanban/$(currentTiddler)$
 \define get-styles() background-color: $(bgColor)$
 &lt;$set name=&quot;bgColor&quot; value={{!!color}}&gt;
-	&lt;div class=&quot;board-column todo muuri-item muuri-item-shown&quot;&gt;
-  	&lt;div class=&quot;board-column-content&quot;&gt;
-		&lt;div class=&quot;board-column-header-wrapper&quot;&gt;
-    	&lt;div class=&quot;board-column-header board-column-edit-header&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
-      	&lt;div class=&quot;board-column-title&quot;&gt;
+	&lt;div class=&quot;tc-board-column&quot;&gt;
+  	&lt;div class=&quot;tc-board-column-content&quot;&gt;
+		&lt;div class=&quot;tc-board-column-header-wrapper&quot;&gt;
+    	&lt;div class=&quot;tc-board-column-header tc-board-column-edit-header&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
+      	&lt;div class=&quot;tc-board-column-title&quot;&gt;
 				&lt;$keyboard key=&quot;((save-tiddler))&quot; message=&quot;tm-save-tiddler&quot;&gt;
 				&lt;$keyboard key=&quot;((cancel-edit-tiddler))&quot; message=&quot;tm-cancel-tiddler&quot;&gt;
 					&lt;$edit-text field=&quot;draft.title&quot; tag=&quot;input&quot; placeholder=&quot; title&quot; focus=&quot;true&quot;/&gt;&lt;br&gt;
@@ -10841,24 +10841,22 @@ exports.widget = Widget;
 				&lt;/$keyboard&gt;
 				&lt;/$keyboard&gt;
 				&lt;/div&gt;
-			&lt;/div&gt;
-				&lt;div class=&quot;board-item-action edit&quot;&gt;
-        	&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
+				&lt;div style=&quot;position: absolute; right: 0; top: 0;&quot;&gt;
+        	&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-edit&quot;&gt;
 					&lt;$action-sendmessage $message=&quot;tm-save-tiddler&quot;/&gt;
 					{{$:/core/images/save-button}}
           &lt;/$button&gt;
-				&lt;/div&gt;
-				&lt;div class=&quot;board-item-action delete&quot;&gt;
-        	&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
+        	&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-delete&quot;&gt;
 					&lt;$action-sendmessage $message=&quot;tm-cancel-tiddler&quot;/&gt;
 					{{$:/core/images/cancel-button}}
           &lt;/$button&gt;
-				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;/div&gt;
 			&lt;/div&gt;
 			&lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history&gt;&gt;&gt;
-      &lt;div class=&quot;board-column-items-container&quot;&gt;
+      &lt;div class=&quot;tc-board-column-items-container&quot;&gt;
 					&lt;$set name=&quot;tv-muuri-story-list&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;
-       	&lt;div class=&quot;board-column-items muuri&quot;&gt;
+       	&lt;div class=&quot;tc-board-column-items&quot;&gt;
 						&lt;$list filter=&quot;[list&lt;currentTiddler&gt;]&quot; storyview=&quot;muuri&quot; template=&quot;$:/KanbanItemTemplate&quot; editTemplate=&quot;$:/KanbanItemEditTemplate&quot; storyViewConfig=&quot;$:/config/kanban/items/&quot;/&gt;
 				&lt;/div&gt;
 				&lt;/$set&gt;
@@ -10868,45 +10866,41 @@ exports.widget = Widget;
 	&lt;/div&gt;
 &lt;/$set&gt;</pre>
 </div>
-<div created="20201226102529782" list="" modified="20201227091130700" tags="" title="$:/KanbanColumnTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226102529782" list="" modified="20201227144401992" tags="" title="$:/KanbanColumnTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 \define get-history() $:/HistoryList/Kanban/$(currentTiddler)$
-\define get-classes() board-column $(currentTiddler)$
+\define get-classes() tc-board-column $(currentTiddler)$
 \define get-styles() background-color: $(bgColor)$;
 &lt;$set name=&quot;bgColor&quot; value={{!!color}}&gt;
 &lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history&gt;&gt;&gt;
 	&lt;div class=&lt;&lt;get-classes&gt;&gt;&gt;
-  	&lt;div class=&quot;board-column-content&quot;&gt;
-			&lt;div class=&quot;board-column-header-wrapper&quot;&gt;
-    		&lt;div class=&quot;board-column-header&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
-      		&lt;div class=&quot;board-column-title&quot;&gt;
+  	&lt;div class=&quot;tc-board-column-content&quot;&gt;
+			&lt;div class=&quot;tc-board-column-header-wrapper&quot;&gt;
+    		&lt;div class=&quot;tc-board-column-header&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
+      		&lt;div class=&quot;tc-board-column-title&quot;&gt;
 						&lt;$transclude field=&quot;caption&quot;&gt;
 						&lt;$transclude field=&quot;title&quot;/&gt;
 						&lt;/$transclude&gt;
 					&lt;/div&gt;
-        		&lt;$button class=&quot;tc-btn-invisible board-column-action add&quot;&gt;
+        		&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-add&quot;&gt;
 						&lt;$action-sendmessage $message=&quot;tm-new-tiddler&quot;/&gt;
 						{{$:/core/images/new-button}}
           	&lt;/$button&gt;
-				&lt;/div&gt;
 				&lt;$navigator story=&quot;$:/KanbanList&quot; history=&quot;$:/KanbanHistoryList&quot;&gt;
-    			&lt;div class=&quot;board-item-action edit&quot;&gt;
-						&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
+						&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-edit&quot;&gt;
 						&lt;$action-sendmessage $message=&quot;tm-edit-tiddler&quot;/&gt;
 						{{$:/core/images/edit-button}}
 						&lt;/$button&gt;
-   				&lt;/div&gt;
-   				&lt;div class=&quot;board-item-action delete&quot;&gt;
-						&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
+						&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-delete&quot;&gt;
 						&lt;$action-sendmessage $message=&quot;tm-delete-tiddler&quot;/&gt;
 						{{$:/core/images/delete-button}}
 						&lt;/$button&gt;
-   				&lt;/div&gt;
 				&lt;/$navigator&gt;
+				&lt;/div&gt;
 			&lt;/div&gt;
-      &lt;div class=&quot;board-column-items-container&quot;&gt;
+      &lt;div class=&quot;tc-board-column-items-container&quot;&gt;
 				&lt;$set name=&quot;tv-muuri-story-list&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;
-       	&lt;div class=&quot;board-column-items muuri&quot;&gt;
+       	&lt;div class=&quot;tc-board-column-items&quot;&gt;
 						&lt;$list filter=&quot;[list&lt;currentTiddler&gt;]&quot; storyview=&quot;muuri&quot; template=&quot;$:/KanbanItemTemplate&quot; editTemplate=&quot;$:/KanbanItemEditTemplate&quot; storyViewConfig=&quot;$:/config/kanban/items/&quot;/&gt;
 				&lt;/div&gt;
 				&lt;/$set&gt;
@@ -11319,10 +11313,10 @@ exports.widget = Widget;
     }
 ]</pre>
 </div>
-<div created="20201226110433248" modified="20201227111306097" tags="" title="$:/KanbanItemEditTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>&lt;div class=&quot;board-item muuri-item muuri-item-shown&quot;&gt;
-	&lt;div class=&quot;board-item-content&quot;&gt;
-  	&lt;div class=&quot;board-item-title&quot;&gt;
+<div created="20201226110433248" modified="20201227144402006" tags="" title="$:/KanbanItemEditTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>&lt;div class=&quot;tc-board-item&quot;&gt;
+	&lt;div class=&quot;tc-board-item-content&quot;&gt;
+  	&lt;div class=&quot;tc-board-item-title&quot;&gt;
 			&lt;$keyboard key=&quot;((save-tiddler))&quot; message=&quot;tm-save-tiddler&quot;&gt;
 			&lt;$keyboard key=&quot;((cancel-edit-tiddler))&quot; message=&quot;tm-delete-tiddler&quot;&gt;
 			&lt;$edit-text field=&quot;draft.title&quot; tag=&quot;input&quot; placeholder=&quot; title&quot; focus=&quot;true&quot;/&gt;&lt;br&gt;
@@ -11331,13 +11325,13 @@ exports.widget = Widget;
 			&lt;/$keyboard&gt;
 			&lt;/$keyboard&gt;
 		&lt;/div&gt;
-    &lt;div class=&quot;board-item-action edit&quot;&gt;
+    &lt;div class=&quot;tc-board-item-action tc-edit&quot;&gt;
 			&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
 			&lt;$action-sendmessage $message=&quot;tm-save-tiddler&quot;/&gt;
 			{{$:/core/images/save-button}}
 			&lt;/$button&gt;
    	&lt;/div&gt;
-   	&lt;div class=&quot;board-item-action delete&quot;&gt;
+   	&lt;div class=&quot;tc-board-item-action tc-delete&quot;&gt;
 			&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
 			&lt;$action-sendmessage $message=&quot;tm-cancel-tiddler&quot;/&gt;
 			{{$:/core/images/cancel-button}}
@@ -11346,25 +11340,23 @@ exports.widget = Widget;
  	&lt;/div&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20201226104439282" modified="20201227092220252" tags="" title="$:/KanbanItemTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>&lt;div class=&quot;board-item muuri-item muuri-item-shown&quot;&gt;
-	&lt;div class=&quot;board-item-content&quot;&gt;
-  	&lt;div class=&quot;board-item-title&quot;&gt;
+<div created="20201226104439282" modified="20201227144402015" tags="" title="$:/KanbanItemTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>&lt;div class=&quot;tc-board-item&quot;&gt;
+	&lt;div class=&quot;tc-board-item-content&quot;&gt;
+  	&lt;div class=&quot;tc-board-item-title&quot;&gt;
 			&lt;$text text={{!!title}}/&gt;
 			&lt;hr class=&quot;simple&quot;&gt;
-			&lt;div style=&quot;font-size: 1.2rem;&quot;&gt;
 			&lt;$transclude mode=&quot;block&quot;/&gt;
-			&lt;/div&gt;
 		&lt;/div&gt;
-    &lt;div class=&quot;board-item-handle&quot;&gt;
+    &lt;div class=&quot;tc-board-item-handle&quot;&gt;
 		&lt;/div&gt;
-    &lt;div class=&quot;board-item-action edit&quot;&gt;
+    &lt;div class=&quot;tc-board-item-action tc-edit&quot;&gt;
 			&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
 			&lt;$action-sendmessage $message=&quot;tm-edit-tiddler&quot;/&gt;
 			{{$:/core/images/edit-button}}
 			&lt;/$button&gt;
    	&lt;/div&gt;
-   	&lt;div class=&quot;board-item-action delete&quot;&gt;
+   	&lt;div class=&quot;tc-board-item-action tc-delete&quot;&gt;
 			&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
 			&lt;$action-sendmessage $message=&quot;tm-delete-tiddler&quot;/&gt;
 			{{$:/core/images/delete-button}}
@@ -11373,18 +11365,18 @@ exports.widget = Widget;
  	&lt;/div&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20201226140433928" list="Todo Done Working" modified="20201227112603231" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226140433928" list="Done Todo Working" modified="20201227122251587" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20201226110827646" modified="20201226155657838" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226110827646" modified="20201227144902340" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;$set name=&quot;amount&quot; value={{{ [list[$:/KanbanList]count[]] }}}&gt;
 
-.board-container {
+.tc-board-container {
   position: relative;
-  height: 80vh;
+  height: 70vh;
 }
 
-.board {
+.tc-board {
   position: relative;
   display: flex;
   height: 100%;
@@ -11395,7 +11387,7 @@ exports.widget = Widget;
   user-select: none;
 }
 
-.board-column {
+.tc-board-column {
   display: flex;
   position: absolute;
   left: 0;
@@ -11404,70 +11396,70 @@ exports.widget = Widget;
   min-height: 100%;
   z-index: 1;
 }
-.board-column.tc-muuri-releasing {
+.tc-board-column.tc-muuri-releasing {
   z-index: 2;
 }
-.board-column.tc-muuri-dragging {
+.tc-board-column.tc-muuri-dragging {
   z-index: 3;
   cursor: move;
 }
 
-.board-column-content {
+.tc-board-column-content {
   display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
   min-height: 100%;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
-.board-column-header {
+.tc-board-column-header {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 5rem;
+  height: 2.5rem;
 	width: 100%;
-  min-height: 5rem;
-  font-size: 2rem;
-  line-height: 5rem;
+  min-height: 2.5rem;
+  font-size: 1rem;
+  line-height: 2.5rem;
   overflow: hidden;
-  padding: 0 2rem;
+  padding: 0 1rem;
   text-align: center;
   font-weight: 700;
   font-style: italic;
   text-transform: lowercase;
   background: #333;
   color: #fff;
-  border-radius: 0.5rem;
+  border-radius: 0.2rem;
 }
-.board-column-header.board-column-edit-header {
+.tc-board-column-header.tc-board-column-edit-header {
 	height: auto;
 }
-.board-column-header.board-column-edit-header svg {
+.tc-board-column-header.tc-board-column-edit-header svg {
 	fill: &lt;&lt;colour background&gt;&gt;;
 }
-.board-column-header-wrapper {
+.tc-board-column-header-wrapper {
 	position: relative;
 	display: flex;
-	font-size: 2rem;
+	font-size: 1rem;
 	font-weight: 700;
 	height: auto;
 }
-.board-column.Todo .board-column-header {
+.tc-board-column.Todo .tc-board-column-header {
   background: #ff69ea;
   color: #ffe67b;
 }
-.board-column.Working .board-column-header {
+.tc-board-column.Working .tc-board-column-header {
   background: #8b98ff;
   color: #aaffdc;
 }
-.board-column.Done .board-column-header {
+.tc-board-column.Done .tc-board-column-header {
   background: #aaffdc;
   color: #55f;
 }
 
-.board-column-title {
+.tc-board-column-title {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -11478,21 +11470,19 @@ exports.widget = Widget;
   padding-left: 2rem;
 }
 
-.board-column-action {
+.tc-board-column-action {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   margin: 0;
   border: 0;
-  width: 4rem;
-  height: 4rem;
-  min-width: 4rem;
-  min-height: 4rem;
-  border: 0.7rem double transparent;
+  width: 2rem;
+  height: 2rem;
+  min-width: 2rem;
+  min-height: 2rem;
   padding: 0.3rem;
-  margin-right: -1rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
   white-space: nowrap;
   cursor: pointer;
   -ms-touch-action: manipulation;
@@ -11504,40 +11494,26 @@ exports.widget = Widget;
   transform: rotateZ(0deg);
   transition: transform 0.2s ease-in-out;
 }
-.board-column-action:hover {
+.tc-board-column-action:hover {
   transform: rotateZ(180deg);
 }
-.board-column-action:focus {
-  outline: 0;
+.tc-board-column-action.tc-edit, .tc-board-column-action.tc-delete {
+	transition: transform 0.4s ease-in-out;
 }
-.board-column.Todo .board-column-action {
-  background: #ff69ea;
-  color: #ffe67a;
-}
-.board-column.Todo .board-column-action:focus {
-  border-color: #ffe67a;
-}
-.board-column.Working .board-column-action {
-  background: #8b98ff;
-  color: #aaffdc;
-}
-.board-column.Working .board-column-action:focus {
-  border-color: #aaffdc;
-}
-.board-column.Done .board-column-action {
-  background: #aaffdc;
-  color: #55f;
-}
-.board-column.Done .board-column-action:focus {
-  border-color: #55f;
+.tc-board-column-action.tc-edit:hover, .tc-board-column-action.tc-delete:hover {
+	transform: rotateZ(360deg);
 }
 
-.board-column-action svg {
+.tc-board-column-action:focus {
+  outline: 0;
+}
+
+.tc-board-column-action svg {
   flex-grow: 1;
   pointer-events: none;
 }
 
-.board-column-items-container {
+.tc-board-column-items-container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -11545,7 +11521,7 @@ exports.widget = Widget;
   overflow: hidden;
   overflow-y: auto;
 }
-.board-column-items {
+.tc-board-column-items {
   position: absolute;
   left: 0;
   top: 0;
@@ -11554,136 +11530,131 @@ exports.widget = Widget;
   border-bottom: 1.5rem solid transparent;
 }
 
-.board-item {
+.tc-board-item {
   position: absolute;
-  width: calc(100% - 2rem);
-  margin: 1.5rem 1rem 0 1rem;
+  width: calc(100% - 1rem);
+  margin: 0.5rem 0.5rem 0 0.5rem;
   z-index: 10;
 }
-.board-item.tc-muuri-releasing {
+.tc-board-item.tc-muuri-releasing {
   z-index: 11;
 }
-.board-item.tc-muuri-dragging {
+.tc-board-item.tc-muuri-dragging {
   z-index: 12;
   cursor: move;
 }
-.board-item.muuri-item-hidden {
+.tc-board-item.tc-muuri-hidden {
   z-index: 8;
 }
-.board-item.muuri-item-placeholder {
+.tc-board-item.muuri-item-placeholder {
   z-index: 9;
   margin: 0;
   opacity: 0.7;
 }
 
-.board-item-content {
+.tc-board-item-content {
   position: relative;
-  padding: 1.5rem;
-  background: #fff;
-  border: 0.5rem solid #ffe884;
-  color: #3e3e3e;
-  border-radius: 1rem;
-  font-size: 1.8rem;
+  padding: 0.5rem;
+  background: &lt;&lt;colour tiddler-background&gt;&gt;;
+  border: 0.2rem solid &lt;&lt;colour tag-background&gt;&gt;;
+  color: &lt;&lt;colour foreground&gt;&gt;;
+  border-radius: 4px;
+  font-size: 1rem;
   font-weight: 500;
 }
-.board-item-content input {
+.tc-board-item-content input {
 	width: 100%;
 }
-.board-item-content input + br + div {
+.tc-board-item-content input + br + div {
 	width: 100%;
 }
-.board-item.muuri-item-placeholder .board-item-content {
+.tc-board-item.muuri-item-placeholder .tc-board-item-content {
   border-style: dashed;
-  border-color: #8b98ff;
+  border-color: &lt;&lt;colour primary&gt;&gt;;
 }
-.board-item.editing .board-item-content {
-  border-color: #ff69ea;
+.tc-board-item.editing .tc-board-item-content {
+  border-color: &lt;&lt;colour primary&gt;&gt;;
 }
-.board-item:focus-within .board-item-content {
-  border: 0.7rem double #ff69ea;
-  padding: 1.3rem;
+.tc-board-item:focus-within .tc-board-item-content {
+  border: 0.2rem solid &lt;&lt;colour primary&gt;&gt;;
+  padding: 0.5rem;
 }
-.board-item-title {
-  font-size: 1.8rem;
-  line-height: 1.5;
+.tc-board-item-title {
+  font-size: 1rem;
+  line-height: 1.2;
   word-break: break-word;
-  caret-color: #ff69ea;
+  caret-color: &lt;&lt;colour primary&gt;&gt;;
   outline: none;
   outline-offset: 0.5rem;
-  min-height: calc(1.8rem * 1.5);
+  min-height: calc(1rem * 1.2);
 }
-.board-item-handle {
+.tc-board-item-handle {
   position: absolute;
-  left: -0.5rem;
-  right: -0.5rem;
-  top: -0.5rem;
-  bottom: -0.5rem;
-  border-radius: 1rem;
+  left: -0.25rem;
+  right: -0.25rem;
+  top: -0.25rem;
+  bottom: -0.25rem;
+  border-radius: 0.5rem;
   cursor: move;
 }
-.board-item.editing .board-item-handle {
+.tc-board-item.tc-editing .tc-board-item-handle {
   display: none;
 }
-.board-item-action {
+.tc-board-item-action {
   position: absolute;
   display: flex;
-  width: 3rem;
-  height: 3rem;
-  padding: 0.5rem;
-  border-radius: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0rem;
   opacity: 0;
   transform: scale(0, 0);
   transition: transform 0.3s 0s ease-out, opacity 0.3s 0s linear;
 }
-.board-item-action.edit {
-  right: -1rem;
-  top: -1rem;
-  background: #ffe884;
-  color: #ff69ea;
+.tc-board-item-action.tc-edit {
+  right: -0.5rem;
+  top: -0.5rem;
 }
-.board-item:focus-within .board-item-action.edit {
-  right: -1.2rem;
-  top: -1.2rem;
+.tc-board-item:focus-within .tc-board-item-action.tc-edit {
+  right: -0.5rem;
+  top: -0.5rem;
 }
-.board-item-action.delete {
-  right: -1rem;
-  bottom: -1rem;
-  background: #ff6262;
-  color: #ffe67a;
+.tc-board-item-action.tc-delete {
+  right: -0.5rem;
+  bottom: -0.5rem;
 }
-.board-item:focus-within .board-item-action.delete {
-  right: -1.2rem;
-  bottom: -1.2rem;
+.tc-board-item:focus-within .tc-board-item-action.tc-delete {
+  right: -0.5rem;
+  bottom: -0.5rem;
 }
-.board-item.editing .board-item-action.delete {
+.tc-board-item.tc-editing .tc-board-item-action.tc-delete {
   display: none;
 }
-.board-item.editing .board-item-action,
-.board-item:hover .board-item-action,
-.board-column-header-wrapper:hover .board-item-action,
-.board-item:focus .board-item-action,
-.board-item.tc-muuri-dragging .board-item-action,
-.board-item.tc-muuri-releasing .board-item-action {
+.tc-board-item.tc-editing .tc-board-item-action,
+.tc-board-item:hover .tc-board-item-action,
+.tc-board-column-header-wrapper:hover .tc-board-item-action,
+.tc-board-item:focus .tc-board-item-action,
+.tc-board-item.tc-muuri-dragging .tc-board-item-action,
+.tc-board-item.tc-muuri-releasing .tc-board-item-action {
   opacity: 1;
   transform: scale(1, 1);
   transition: transform 0.2s 0.1s ease, opacity 0.2s 0.1s linear;
 }
-.board-item.editing .board-item-action:hover,
-.board-item:hover .board-item-action:hover,
-.board-item:focus .board-item-action:hover,
-.board-item.tc-muuri-dragging .board-item-action:hover,
-.board-item.tc-muuri-releasing .board-item-action:hover {
+.tc-board-item.tc-editing .tc-board-item-action:hover,
+.tc-board-item:hover .tc-board-item-action:hover,
+.tc-board-item:focus .tc-board-item-action:hover,
+.tc-board-item.tc-muuri-dragging .tc-board-item-action:hover,
+.tc-board-item.tc-muuri-releasing .tc-board-item-action:hover {
   transform: scale(1.2, 1.2);
 }
-.board-item-action-icon {
+.tc-board-item-action-icon {
   flex-grow: 1;
   pointer-events: none;
 }
-.board-item.editing .board-item-action-icon.icon-edit,
-.board-item-action-icon.icon-save {
+.tc-board-item.tc-editing .tc-board-item-action-icon.tc-icon-edit,
+.tc-board-item-action-icon.tc-icon-save {
   display: none;
 }
-.board-item.editing .board-item-action-icon.icon-save {
+.tc-board-item.tc-editing .tc-board-item-action-icon.tc-icon-save {
   display: block;
 }
 
@@ -12440,10 +12411,10 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <pre>* Style it more the TiddlyWiki way
 * Add keyboard shortcuts for save and cancel when in edit mode</pre>
 </div>
-<div created="20201226162849128" modified="20201226163455952" tags="" title="Do the laundry" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226162849128" modified="20201227144913304" tags="" title="Do the laundry" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div color="#4da269" created="20201226140352252" list="[[Do the laundry]] [[Buy some milk]]" modified="20201227120242288" tags="" title="Done" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div color="#4da269" created="20201226140352252" list="[[Do the laundry]] [[Buy some milk]]" modified="20201227144930582" tags="" title="Done" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div created="20201218053417117" modified="20201218053428540" tags="Features" title="Dragging Tiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -12462,20 +12433,19 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <div created="20201011123604658" modified="20201225131230472" tags="" title="I am one of that guy's paintings" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img [https://upload.wikimedia.org/wikipedia/commons/c/cd/VanGogh-starry_night.jpg]]</pre>
 </div>
-<div created="20201226101813477" modified="20201227091752577" muuri-tiddler-width="1" tags="" title="Kanban under Construction" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226101813477" modified="20201227144459215" muuri-tiddler-width="1" tags="" title="Kanban under Construction" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 &lt;$navigator story=&quot;$:/KanbanList&quot; history=&quot;$:/KanbanHistoryList&quot;&gt;
-&lt;$button class=&quot;tc-btn-invisible board-column-action add&quot;&gt;
+&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-add&quot; tooltip=&quot;new column&quot; aria-label=&quot;new column&quot;&gt;
 &lt;$action-sendmessage $message=&quot;tm-new-tiddler&quot;/&gt;
 {{$:/core/images/new-button}}
 &lt;/$button&gt;
-&lt;div class=&quot;board-container&quot;&gt;
-	&lt;div class=&quot;board muuri&quot;&gt;
+&lt;div class=&quot;tc-board-container&quot;&gt;
+	&lt;div class=&quot;tc-board&quot;&gt;
 		&lt;$list filter=&quot;[list[$:/KanbanList]]&quot; storyview=&quot;muuri&quot; template=&quot;$:/KanbanColumnTemplate&quot; editTemplate=&quot;$:/KanbanColumnEditTemplate&quot; storyViewConfig=&quot;$:/config/kanban/&quot;/&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
-&lt;/$navigator&gt;
-&lt;div style=&quot;clear:both;&quot;/&gt;</pre>
+&lt;/$navigator&gt;</pre>
 </div>
 <div created="20201011123647469" modified="20201226100231436" tags="" title="Mona Lisa" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img [https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/687px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg]]
@@ -12506,7 +12476,7 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <div created="20201011123841783" modified="20201214222300078" tags="" title="This Louvre moment" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img[https://upload.wikimedia.org/wikipedia/commons/c/c3/Scuola_di_fontainebleau%2C_presunti_ritratti_di_gabrielle_d%27estr%C3%A9es_sua_sorella_la_duchessa_di_villars%2C_1594_ca._06.jpg]]</pre>
 </div>
-<div color="#b87535" created="20201226152301492" list="[[Create a Kanban]]" modified="20201227111552931" tags="" title="Todo" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div color="#b87535" created="20201226152301492" list="[[Create a Kanban]]" modified="20201227144930650" tags="" title="Todo" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div color="#669fb2" created="20201226140410781" list="[[Happy Tiddlering]]" modified="20201227120242336" tags="" title="Working" type="text/vnd.tiddlywiki" revision="0" bag="default">
