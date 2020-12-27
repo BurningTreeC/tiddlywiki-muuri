@@ -126,7 +126,7 @@ var MuuriStoryView = function(listWidget) {
 						if(needsRefresh) {
 							self.observer.disconnect();
 							self.muuri.destroy(true);
-							self.listWidget.parentWidget.refreshSelf();
+							self.findMuuriWidget().refreshSelf();
 						}
 					}
 				});
@@ -441,6 +441,17 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	this.dropActions = this.listWidget.getVariable("tv-muuri-drop-actions") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
 };
 
+MuuriStoryView.prototype.findMuuriWidget = function() {
+    var widget = this.listWidget;
+    while(widget) {
+        if(widget.domNodes[0] === this.muuri._element) {
+            return widget;
+        }
+        widget = widget.parentWidget;
+    }
+    return this.listWidget.parentWidget;
+}
+
 MuuriStoryView.prototype.findListWidget = function(element) {
 	for(var i=0; i<this.connectedGrids.length; i++) {
 		var listWidgetChildren = this.connectedGrids[i].listWidget.children;
@@ -734,7 +745,7 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 	}
 	if(this.muuri && (changedTiddlers[this.configNamespace + "container-class"] || changedTiddlers[this.configNamespace + "item-class"])) {
 		this.muuri.destroy(true);
-		this.listWidget.parentWidget.refreshSelf();
+		this.findMuuriWidget().refreshSelf();
 	}
 	if(this.muuri && changedTiddlers["$:/config/AnimationDuration"]) {
 		this.muuri._settings.showDuration = this.muuri._settings.layoutDuration = this.animationDuration = $tw.utils.getAnimationDuration();
@@ -744,11 +755,11 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 			if(self.muuri) {
 				self.muuri.destroy(true);
 			}
-			self.listWidget.parentWidget.refreshSelf();
+			self.findMuuriWidget().refreshSelf();
 		},100);
 	}
 	if(changedAttributes.storyViewConfig) {
-		this.listWidget.refreshSelf();
+		this.findMuuriWidget().refreshSelf();
 	}
 	return true;
 };
