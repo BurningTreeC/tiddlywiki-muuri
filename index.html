@@ -149,6 +149,8 @@ Error message and password prompt
 
 <li>$:/config/kanban/container-class</li>
 
+<li>$:/config/kanban/dragsort-action</li>
+
 <li>$:/config/kanban/item-class</li>
 
 <li>$:/config/kanban/items/connection-selector</li>
@@ -308,6 +310,9 @@ fill: red;
 </div>
 <div created="20201226103139592" modified="20201227144401061" tags="" title="$:/config/kanban/container-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>tc-board</pre>
+</div>
+<div created="20201227151013952" modified="20201227151024917" tags="" title="$:/config/kanban/dragsort-action" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>swap</pre>
 </div>
 <div created="20201226103236217" modified="20201227144401323" tags="" title="$:/config/kanban/item-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>tc-board-column</pre>
@@ -10912,7 +10917,7 @@ exports.widget = Widget;
 &lt;/$navigator&gt;
 &lt;/$set&gt;</pre>
 </div>
-<div created="20201226120511731" current-tiddler="New Tiddler" modified="20201227150615669" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
+<div created="20201226120511731" current-tiddler="Todo" modified="20201227151236946" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
 <pre>[
     {
         &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
@@ -11339,6 +11344,36 @@ exports.widget = Widget;
     },
     {
         &quot;title&quot;: &quot;New Tiddler&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Todo&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Todo&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Working'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Working&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Done'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Done&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Todo&quot;
     }
 ]</pre>
 </div>
@@ -11398,7 +11433,7 @@ exports.widget = Widget;
  	&lt;/div&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20201226140433928" list="Done Todo Working" modified="20201227150639096" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226140433928" list="Todo Done Working" modified="20201227151237066" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div created="20201226110827646" modified="20201227150555420" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -12447,7 +12482,7 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <div caption="" created="20201226162849128" modified="20201227145754130" tags="" title="Do the laundry" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div color="#4da269" created="20201226140352252" list="[[Do the laundry]] [[Buy some milk]]" modified="20201227145754194" tags="" title="Done" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div color="#66a079" created="20201226140352252" list="[[Do the laundry]] [[Buy some milk]]" modified="20201227151222208" tags="" title="Done" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div created="20201218053417117" modified="20201218053428540" tags="Features" title="Dragging Tiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -12509,7 +12544,7 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <div created="20201011123841783" modified="20201214222300078" tags="" title="This Louvre moment" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img[https://upload.wikimedia.org/wikipedia/commons/c/c3/Scuola_di_fontainebleau%2C_presunti_ritratti_di_gabrielle_d%27estr%C3%A9es_sua_sorella_la_duchessa_di_villars%2C_1594_ca._06.jpg]]</pre>
 </div>
-<div color="#b87535" created="20201226152301492" list="[[Create a Kanban]]" modified="20201227144930650" tags="" title="Todo" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div color="#b25342" created="20201226152301492" list="[[Create a Kanban]]" modified="20201227151237143" tags="" title="Todo" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div color="#669fb2" created="20201226140410781" list="[[Happy Tiddlering]]" modified="20201227120242336" tags="" title="Working" type="text/vnd.tiddlywiki" revision="0" bag="default">
