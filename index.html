@@ -257,6 +257,8 @@ Error message and password prompt
 
 <li>I am one of that guy's paintings</li>
 
+<li>Images</li>
+
 <li>Kanban under Construction</li>
 
 <li>Mona Lisa</li>
@@ -338,8 +340,8 @@ fill: red;
 <div created="20201226172239869" modified="20201226172546185" tags="" title="$:/config/muuri/sidebarview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>.tc-page-container</pre>
 </div>
-<div created="20201216154323661" modified="20201227190031625" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>4</pre>
+<div created="20201216154323661" modified="20201227190836546" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>1</pre>
 </div>
 <div created="20201226171916321" modified="20201226172548902" tags="" title="$:/config/muuri/storyview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>.tc-page-container</pre>
@@ -10929,7 +10931,7 @@ exports.widget = Widget;
 &lt;/$navigator&gt;
 &lt;/$set&gt;</pre>
 </div>
-<div created="20201226120511731" current-tiddler="New Tiddler" modified="20201227184954371" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
+<div created="20201226120511731" current-tiddler="Images" modified="20201227190944031" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
 <pre>[
     {
         &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
@@ -11566,6 +11568,18 @@ exports.widget = Widget;
     },
     {
         &quot;title&quot;: &quot;New Tiddler&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Images&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Images'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Images&quot;
     }
 ]</pre>
 </div>
@@ -11629,10 +11643,10 @@ exports.widget = Widget;
  	&lt;/div&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20201226140433928" list="Todo Done Working" modified="20201227190026071" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226140433928" list="Done Todo Working Images" modified="20201227191008721" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20201226110827646" modified="20201227162148208" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226110827646" modified="20201227190911096" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;$set name=&quot;amount&quot; value={{{ [list[$:/KanbanList]count[]] }}}&gt;
 
 .tc-board-container {
@@ -11825,6 +11839,10 @@ exports.widget = Widget;
   z-index: 9;
   margin: 0;
   opacity: 0.7;
+}
+
+.tc-board-item img, .tc-board-item hr {
+	pointer-events: none;
 }
 
 .tc-board-item-content {
@@ -12717,6 +12735,9 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 </div>
 <div created="20201011123604658" modified="20201225131230472" tags="" title="I am one of that guy's paintings" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img [https://upload.wikimedia.org/wikipedia/commons/c/cd/VanGogh-starry_night.jpg]]</pre>
+</div>
+<div color="#ff9c63" created="20201227190921011" list="[[The Great Wave off the Coast of Kanagawa]]" modified="20201227190957670" tags="" title="Images" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre></pre>
 </div>
 <div created="20201226101813477" modified="20201227161716780" muuri-tiddler-width="1" tags="" title="Kanban under Construction" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
