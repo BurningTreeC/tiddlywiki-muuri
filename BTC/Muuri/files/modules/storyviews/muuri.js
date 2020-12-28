@@ -404,6 +404,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 };
 
 MuuriStoryView.prototype.collectAttributes = function() {
+	var self = this;
 	this.animationDuration = $tw.utils.getAnimationDuration();
 	this.attachEvent = this.listWidget.document.attachEvent;
 	this.isIE = $tw.browser.isIE;
@@ -430,7 +431,17 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	}
 	this.dragHandle = dragHandle;
 	var dragContainerSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-container");
-	this.dragContainer = this.listWidget.document.documentElement.querySelector(dragContainerSelector);
+	var dragContainers = this.listWidget.document.documentElement.querySelectorAll(dragContainerSelector);
+	var node = this.listWidget.parentDomNode;
+	for(var i=0; i<dragContainers.length; i++) {
+		while(node) {
+			if(node === dragContainers[i]) {
+				this.dragContainer = dragContainers[i];
+				break;
+			}
+			node = node.parentNode;
+		}
+	}
 	this.alignRight = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-right") !== "no";
 	this.alignBottom = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-bottom") === "yes";
 	this.dragEnabled = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
