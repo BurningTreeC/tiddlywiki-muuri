@@ -344,7 +344,7 @@ fill: red;
 <div created="20201226172239869" modified="20201226172546185" tags="" title="$:/config/muuri/sidebarview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>.tc-page-container</pre>
 </div>
-<div created="20201216154323661" modified="20201228091802943" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201216154323661" modified="20201228101751678" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>4</pre>
 </div>
 <div created="20201226171916321" modified="20201226172548902" tags="" title="$:/config/muuri/storyview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -10835,11 +10835,18 @@ exports.widget = Widget;
 <div title="$:/isEncrypted" revision="0" bag="default">
 <pre>no</pre>
 </div>
-<div created="20201226105926723" list="" modified="20201228081934966" tags="" title="$:/KanbanColumnEditTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226105926723" list="" modified="20201228101529493" tags="" title="$:/KanbanColumnEditTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 \define get-history() $:/HistoryList/Kanban/$(currentTiddler)$
-\define get-styles() background-color: $(bgColor)$; border-color: $(bgColor)$;
-&lt;$set name=&quot;bgColor&quot; value={{!!color}}&gt;
+\define get-styles() background-color: $(bgColor)$; border-color: $(bgColor)$; fill: $(foregroundColor)$;
+\define get-foreground-color-inner(colour,colourA,colourB)
+&lt;$macrocall $name=&quot;contrastcolour&quot; target=&quot;&quot;&quot;$colour$&quot;&quot;&quot; colourA=&quot;&quot;&quot;$colourA$&quot;&quot;&quot; colourB=&quot;&quot;&quot;$colourB$&quot;&quot;&quot;/&gt;
+\end
+\define get-foreground-color(palette)
+&lt;$macrocall $name=&quot;get-foreground-color-inner&quot; colour={{!!color}} colourA={{$palette$##foreground}} colourB={{$palette$##background}}/&gt;
+\end
+&lt;$vars bgColor={{!!color}} palette={{$:/palette}}&gt;
+&lt;$wikify name=&quot;foregroundColor&quot; text=&quot;&quot;&quot;&lt;$macrocall $name=&quot;get-foreground-color&quot; palette=&lt;&lt;palette&gt;&gt;/&gt;&quot;&quot;&quot;&gt;
 	&lt;div class=&quot;tc-board-column&quot;&gt;
   	&lt;div class=&quot;tc-board-column-content&quot;&gt;
 		&lt;div class=&quot;tc-board-column-header-wrapper&quot;&gt;
@@ -10855,11 +10862,11 @@ exports.widget = Widget;
 				&lt;/$keyboard&gt;
 				&lt;/div&gt;
 				&lt;div style=&quot;position: absolute; right: 0; top: 0;&quot;&gt;
-        	&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-edit&quot;&gt;
+        	&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-edit&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
 					&lt;$action-sendmessage $message=&quot;tm-save-tiddler&quot;/&gt;
 					{{$:/core/images/save-button}}
           &lt;/$button&gt;
-        	&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-delete&quot;&gt;
+        	&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-delete&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
 					&lt;$action-sendmessage $message=&quot;tm-cancel-tiddler&quot;/&gt;
 					{{$:/core/images/cancel-button}}
           &lt;/$button&gt;
@@ -10879,13 +10886,14 @@ exports.widget = Widget;
 			&lt;/$navigator&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
-&lt;/$set&gt;</pre>
+	&lt;/$wikify&gt;
+&lt;/$vars&gt;</pre>
 </div>
-<div created="20201226102529782" list="" modified="20201228084332631" tags="" title="$:/KanbanColumnTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226102529782" list="" modified="20201228101609881" tags="" title="$:/KanbanColumnTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 \define get-history() $:/HistoryList/Kanban/$(currentTiddler)$
 \define get-classes() tc-board-column $(currentTiddler)$
-\define get-styles() background-color: $(bgColor)$; border-color: $(bgColor)$; color: $(foregroundColor)$;
+\define get-styles() background-color: $(bgColor)$; border-color: $(bgColor)$; color: $(foregroundColor)$; fill: $(foregroundColor)$;
 \define get-foreground-color-inner(colour,colourA,colourB)
 &lt;$macrocall $name=&quot;contrastcolour&quot; target=&quot;&quot;&quot;$colour$&quot;&quot;&quot; colourA=&quot;&quot;&quot;$colourA$&quot;&quot;&quot; colourB=&quot;&quot;&quot;$colourB$&quot;&quot;&quot;/&gt;
 \end
@@ -10907,20 +10915,20 @@ exports.widget = Widget;
 						&lt;$transclude field=&quot;caption&quot;/&gt;
 					&lt;/$list&gt;
 					&lt;/div&gt;
-        		&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-add&quot;&gt;
+        		&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-add&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
 						&lt;$action-sendmessage $message=&quot;tm-new-tiddler&quot;/&gt;
 						{{$:/core/images/new-button}}
           	&lt;/$button&gt;
 				&lt;$navigator story=&quot;$:/KanbanList&quot; history=&quot;$:/KanbanHistoryList&quot;&gt;
-						&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-edit&quot;&gt;
+						&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-edit&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
 						&lt;$action-sendmessage $message=&quot;tm-edit-tiddler&quot;/&gt;
 						{{$:/core/images/edit-button}}
 						&lt;/$button&gt;
-						&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-add&quot;&gt;
+						&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-add&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
 						&lt;$action-sendmessage $message=&quot;tm-close-tiddler&quot;/&gt;
 						{{$:/core/images/close-button}}
 						&lt;/$button&gt;
-						&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-delete&quot;&gt;
+						&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-delete&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
 						&lt;$action-sendmessage $message=&quot;tm-delete-tiddler&quot;/&gt;
 						{{$:/core/images/delete-button}}
 						&lt;/$button&gt;
@@ -10943,7 +10951,7 @@ exports.widget = Widget;
 &lt;/$wikify&gt;
 &lt;/$vars&gt;</pre>
 </div>
-<div created="20201226120511731" current-tiddler="Draft of 'New Tiddler 1'" modified="20201228091848017" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
+<div created="20201226120511731" current-tiddler="Todo" modified="20201228101746519" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
 <pre>[
     {
         &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
@@ -11691,6 +11699,51 @@ exports.widget = Widget;
     },
     {
         &quot;title&quot;: &quot;Draft of 'New Tiddler 1'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Star me on GitHub&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Star me on GitHub'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Star me on GitHub&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Done'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Done&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Todo&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Todo&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Done'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Done&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'Images'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Images&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Todo&quot;
     }
 ]</pre>
 </div>
@@ -11754,10 +11807,10 @@ exports.widget = Widget;
  	&lt;/div&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20201226140433928" list="Todo Done Working Images" modified="20201228091851195" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226140433928" list="Todo Done Working Images" modified="20201228101746707" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20201226110827646" modified="20201228091754908" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226110827646" modified="20201228101725663" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;$set name=&quot;amount&quot; value={{{ [list[$:/KanbanList]count[]] }}}&gt;
 
 .tc-board-container {
@@ -11834,9 +11887,7 @@ exports.widget = Widget;
 	height: auto;
 	border: 0.2rem solid &lt;&lt;colour foreground&gt;&gt;;
 }
-.tc-board-column-header.tc-board-column-edit-header svg {
-	fill: &lt;&lt;colour foreground&gt;&gt;;
-}
+
 .tc-board-column-header input:not([type=&quot;color&quot;]) {
 	border: 1px solid &lt;&lt;colour muted-foreground&gt;&gt;;
 	border-radius: 2px;
@@ -12819,10 +12870,10 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 * ~~Add keyboard shortcuts for save and cancel when in edit mode~~
 * ~~Add drop-actions input to Column-input area~~</pre>
 </div>
-<div caption="" created="20201226162849128" modified="20201227195523733" tags="" title="Do the laundry" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre></pre>
+<div caption="" created="20201226162849128" modified="20201228094009424" tags="" title="Do the laundry" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>Someone needs to do it</pre>
 </div>
-<div color="#66a079" created="20201226140352252" list="[[Do the laundry]] [[Buy some milk]]" modified="20201228082331286" tags="" title="Done" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div color="#66a079" created="20201226140352252" list="[[Do the laundry]] [[Buy some milk]]" modified="20201228094009478" tags="" title="Done" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div created="20201218053417117" modified="20201218053428540" tags="Features" title="Dragging Tiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
