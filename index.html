@@ -344,8 +344,8 @@ fill: red;
 <div created="20201226172239869" modified="20201226172546185" tags="" title="$:/config/muuri/sidebarview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>.tc-page-container</pre>
 </div>
-<div created="20201216154323661" modified="20201227193259889" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>4</pre>
+<div created="20201216154323661" modified="20201228081648222" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>1</pre>
 </div>
 <div created="20201226171916321" modified="20201226172548902" tags="" title="$:/config/muuri/storyview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>.tc-page-container</pre>
@@ -10835,10 +10835,10 @@ exports.widget = Widget;
 <div title="$:/isEncrypted" revision="0" bag="default">
 <pre>no</pre>
 </div>
-<div created="20201226105926723" list="" modified="20201227155441044" tags="" title="$:/KanbanColumnEditTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226105926723" list="" modified="20201228081934966" tags="" title="$:/KanbanColumnEditTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 \define get-history() $:/HistoryList/Kanban/$(currentTiddler)$
-\define get-styles() background-color: $(bgColor)$
+\define get-styles() background-color: $(bgColor)$; border-color: $(bgColor)$;
 &lt;$set name=&quot;bgColor&quot; value={{!!color}}&gt;
 	&lt;div class=&quot;tc-board-column&quot;&gt;
   	&lt;div class=&quot;tc-board-column-content&quot;&gt;
@@ -10881,11 +10881,11 @@ exports.widget = Widget;
 	&lt;/div&gt;
 &lt;/$set&gt;</pre>
 </div>
-<div created="20201226102529782" list="" modified="20201227185936847" tags="" title="$:/KanbanColumnTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226102529782" list="" modified="20201228081855782" tags="" title="$:/KanbanColumnTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 \define get-history() $:/HistoryList/Kanban/$(currentTiddler)$
 \define get-classes() tc-board-column $(currentTiddler)$
-\define get-styles() background-color: $(bgColor)$;
+\define get-styles() background-color: $(bgColor)$; border-color: $(bgColor)$;
 &lt;$set name=&quot;bgColor&quot; value={{!!color}}&gt;
 &lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history&gt;&gt;&gt;
 	&lt;div class=&lt;&lt;get-classes&gt;&gt;&gt;
@@ -10935,7 +10935,7 @@ exports.widget = Widget;
 &lt;/$navigator&gt;
 &lt;/$set&gt;</pre>
 </div>
-<div created="20201226120511731" current-tiddler="Draft of 'New Tiddler'" modified="20201227214200190" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
+<div created="20201226120511731" current-tiddler="New Tiddler" modified="20201228082035433" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
 <pre>[
     {
         &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
@@ -11638,6 +11638,24 @@ exports.widget = Widget;
     },
     {
         &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;New Tiddler&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;New Tiddler&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;New Tiddler&quot;
     }
 ]</pre>
 </div>
@@ -11701,10 +11719,10 @@ exports.widget = Widget;
  	&lt;/div&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20201226140433928" list="Todo Done Working Images" modified="20201227214239275" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226140433928" list="Todo Done Working Images" modified="20201228082038416" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20201226110827646" modified="20201227190911096" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226110827646" modified="20201228082028785" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;$set name=&quot;amount&quot; value={{{ [list[$:/KanbanList]count[]] }}}&gt;
 
 .tc-board-container {
@@ -11773,6 +11791,7 @@ exports.widget = Widget;
   background: &lt;&lt;colour tiddler-background&gt;&gt;;
   color: &lt;&lt;colour foreground&gt;&gt;;
   border-radius: 0.2rem;
+	border: 0.2rem solid &lt;&lt;colour foreground&gt;&gt;;
 }
 .tc-board-column-header.tc-board-column-edit-header {
 	height: auto;
@@ -11966,19 +11985,19 @@ exports.widget = Widget;
   transition: transform 0.3s 0s ease-out, opacity 0.3s 0s linear;
 }
 .tc-board-item-action.tc-edit {
-  right: -0.5rem;
-  top: -0.5rem;
+  right: -1rem;
+  top: -1rem;
 }
 .tc-board-item:focus-within .tc-board-item-action.tc-edit {
-  right: -0.5rem;
-  top: -0.5rem;
+  right: -1rem;
+  top: -1rem;
 }
 .tc-board-item-action.tc-delete {
-  right: -0.5rem;
+  right: -1rem;
   bottom: -0.5rem;
 }
 .tc-board-item:focus-within .tc-board-item-action.tc-delete {
-  right: -0.5rem;
+  right: -1rem;
   bottom: -0.5rem;
 }
 .tc-board-item.tc-editing .tc-board-item-action.tc-delete {
