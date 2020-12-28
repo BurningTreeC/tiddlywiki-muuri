@@ -344,7 +344,7 @@ fill: red;
 <div created="20201226172239869" modified="20201226172546185" tags="" title="$:/config/muuri/sidebarview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>.tc-page-container</pre>
 </div>
-<div created="20201216154323661" modified="20201228090855128" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201216154323661" modified="20201228091802943" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>4</pre>
 </div>
 <div created="20201226171916321" modified="20201226172548902" tags="" title="$:/config/muuri/storyview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -10943,7 +10943,7 @@ exports.widget = Widget;
 &lt;/$wikify&gt;
 &lt;/$vars&gt;</pre>
 </div>
-<div created="20201226120511731" current-tiddler="Draft of 'New Tiddler'" modified="20201228084455411" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
+<div created="20201226120511731" current-tiddler="Draft of 'New Tiddler 1'" modified="20201228091848017" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
 <pre>[
     {
         &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
@@ -11679,6 +11679,18 @@ exports.widget = Widget;
     },
     {
         &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'New Tiddler 1'&quot;
     }
 ]</pre>
 </div>
@@ -11742,10 +11754,10 @@ exports.widget = Widget;
  	&lt;/div&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20201226140433928" list="Todo Done Working Images" modified="20201228084506273" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226140433928" list="Todo Done Working Images" modified="20201228091851195" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20201226110827646" modified="20201228084543618" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226110827646" modified="20201228091754908" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;$set name=&quot;amount&quot; value={{{ [list[$:/KanbanList]count[]] }}}&gt;
 
 .tc-board-container {
@@ -11757,6 +11769,8 @@ exports.widget = Widget;
 	position: relative;
 	width: 100%;
 	font-size: 1.5rem;
+	border: 0.2rem dashed &lt;&lt;colour muted-foreground&gt;&gt;;
+	border-radius: 4px;
 }
 
 .tc-board {
@@ -12821,9 +12835,9 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <pre>* Tiddlering is fun
 * Tiddlering makes you smile</pre>
 </div>
-<div created="20201227193517939" modified="20201228090913824" muuri-tiddler-width="1" tags="" title="How this Kanban works" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201227193517939" modified="20201228091949322" muuri-tiddler-width="1" tags="" title="How this Kanban works" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>* You can add a column by clicking the {{$:/core/images/new-button}} button in the top left corner
-* You can add an existing tiddler as a column by dragging its link onto the {{$:/core/images/new-button}} button in the top left corner
+* You can add an existing tiddler as a column by dragging its link onto the dashed area above the kanban columns
 * You can add new items to a column by clicking the {{$:/core/images/new-button}} button in the corresponding column header
 * You can add an existing tiddler to a column by dragging its link onto the corresponding column header
 * You can edit a column by clicking the {{$:/core/images/edit-button}} in the column header
@@ -12849,7 +12863,7 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <div color="#ff9c63" created="20201227190921011" list="[[The Great Wave off the Coast of Kanagawa]]" modified="20201227202527051" tags="" title="Images" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20201226101813477" modified="20201228083143251" muuri-tiddler-width="1" tags="" title="Kanban" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226101813477" modified="20201228091426758" muuri-tiddler-width="1" tags="" title="Kanban" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 &lt;$navigator story=&quot;$:/KanbanList&quot; history=&quot;$:/KanbanHistoryList&quot;&gt;
 &lt;$droppable actions=&quot;&quot;&quot;&lt;$action-navigate $to=&lt;&lt;actionTiddler&gt;&gt;/&gt;&quot;&quot;&quot;&gt;
