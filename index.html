@@ -263,7 +263,7 @@ Error message and password prompt
 
 <li>Images</li>
 
-<li>Kanban under Construction</li>
+<li>Kanban</li>
 
 <li>Mona Lisa</li>
 
@@ -10881,12 +10881,19 @@ exports.widget = Widget;
 	&lt;/div&gt;
 &lt;/$set&gt;</pre>
 </div>
-<div created="20201226102529782" list="" modified="20201228081855782" tags="" title="$:/KanbanColumnTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226102529782" list="" modified="20201228084332631" tags="" title="$:/KanbanColumnTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 \define get-history() $:/HistoryList/Kanban/$(currentTiddler)$
 \define get-classes() tc-board-column $(currentTiddler)$
-\define get-styles() background-color: $(bgColor)$; border-color: $(bgColor)$;
-&lt;$set name=&quot;bgColor&quot; value={{!!color}}&gt;
+\define get-styles() background-color: $(bgColor)$; border-color: $(bgColor)$; color: $(foregroundColor)$;
+\define get-foreground-color-inner(colour,colourA,colourB)
+&lt;$macrocall $name=&quot;contrastcolour&quot; target=&quot;&quot;&quot;$colour$&quot;&quot;&quot; colourA=&quot;&quot;&quot;$colourA$&quot;&quot;&quot; colourB=&quot;&quot;&quot;$colourB$&quot;&quot;&quot;/&gt;
+\end
+\define get-foreground-color(palette)
+&lt;$macrocall $name=&quot;get-foreground-color-inner&quot; colour={{!!color}} colourA={{$palette$##foreground}} colourB={{$palette$##background}}/&gt;
+\end
+&lt;$vars bgColor={{!!color}} palette={{$:/palette}}&gt;
+&lt;$wikify name=&quot;foregroundColor&quot; text=&quot;&quot;&quot;&lt;$macrocall $name=&quot;get-foreground-color&quot; palette=&lt;&lt;palette&gt;&gt;/&gt;&quot;&quot;&quot;&gt;
 &lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history&gt;&gt;&gt;
 	&lt;div class=&lt;&lt;get-classes&gt;&gt;&gt;
   	&lt;div class=&quot;tc-board-column-content&quot;&gt;
@@ -10933,9 +10940,10 @@ exports.widget = Widget;
 		&lt;/div&gt;
 	&lt;/div&gt;
 &lt;/$navigator&gt;
-&lt;/$set&gt;</pre>
+&lt;/$wikify&gt;
+&lt;/$vars&gt;</pre>
 </div>
-<div created="20201226120511731" current-tiddler="New Tiddler" modified="20201228082035433" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
+<div created="20201226120511731" current-tiddler="Draft of 'New Tiddler'" modified="20201228084455411" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
 <pre>[
     {
         &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
@@ -11656,6 +11664,21 @@ exports.widget = Widget;
     },
     {
         &quot;title&quot;: &quot;New Tiddler&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;New Tiddler&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
     }
 ]</pre>
 </div>
@@ -11719,10 +11742,10 @@ exports.widget = Widget;
  	&lt;/div&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20201226140433928" list="Todo Done Working Images" modified="20201228082328228" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226140433928" list="Todo Done Working Images" modified="20201228084506273" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20201226110827646" modified="20201228082841743" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226110827646" modified="20201228084543618" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;$set name=&quot;amount&quot; value={{{ [list[$:/KanbanList]count[]] }}}&gt;
 
 .tc-board-container {
@@ -11811,18 +11834,6 @@ exports.widget = Widget;
 	font-size: 1rem;
 	font-weight: 700;
 	height: auto;
-}
-.tc-board-column.Todo .tc-board-column-header {
-  background: #ff69ea;
-  color: #ffe67b;
-}
-.tc-board-column.Working .tc-board-column-header {
-  background: #8b98ff;
-  color: #aaffdc;
-}
-.tc-board-column.Done .tc-board-column-header {
-  background: #aaffdc;
-  color: #55f;
 }
 
 .tc-board-column-title {
@@ -12042,7 +12053,7 @@ exports.widget = Widget;
 <div created="20201226093820018" modified="20201226095544202" title="$:/layout" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>$:/core/ui/PageTemplate</pre>
 </div>
-<div created="20201225121816249" modified="20201227145330016" title="$:/palette" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201225121816249" modified="20201228084401175" title="$:/palette" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>$:/palettes/Vanilla</pre>
 </div>
 <div author="Simon Huber" dependents="" description="A gridded storyview" list="readme license usage" plugin-type="plugin" title="$:/plugins/BTC/Muuri" type="application/json" version="0.2.0" revision="0" bag="default">
@@ -12626,7 +12637,7 @@ exports.widget = Widget;
 <div title="$:/status/RequireReloadDueToPluginChange" revision="0" bag="default">
 <pre>no</pre>
 </div>
-<div list="[[Kanban under Construction]] [[How this Kanban works]] [[Mona Lisa]] [[I am Mr. Van Gogh]] [[I am one of that guy's paintings]] [[Ceci n’est pas une pipe.]] [[The Great Wave off the Coast of Kanagawa]] [[Star me on GitHub]] [[The Birth of Venus]] [[The Kiss]] [[Works best with the CodeMirror plugin]] [[Configuration Options]] [[El jardin de las Delicias]] [[This Louvre moment]] [[Configuration by Namespace]] [[Change the amount of columns]] [[The Muuri StoryView requires to use templates]] [[Actions can be triggered on Drop]] [[Moving Items between Grids]] [[Dragging Tiddlers]]" title="$:/StoryList" revision="1" bag="default">
+<div list="Kanban [[How this Kanban works]] [[Mona Lisa]] [[I am Mr. Van Gogh]] [[I am one of that guy's paintings]] [[Ceci n’est pas une pipe.]] [[The Great Wave off the Coast of Kanagawa]] [[Star me on GitHub]] [[The Birth of Venus]] [[The Kiss]] [[Works best with the CodeMirror plugin]] [[Configuration Options]] [[El jardin de las Delicias]] [[This Louvre moment]] [[Configuration by Namespace]] [[Change the amount of columns]] [[The Muuri StoryView requires to use templates]] [[Actions can be triggered on Drop]] [[Moving Items between Grids]] [[Dragging Tiddlers]]" title="$:/StoryList" revision="1" bag="default">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23" revision="0" bag="default">
@@ -12838,7 +12849,7 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <div color="#ff9c63" created="20201227190921011" list="[[The Great Wave off the Coast of Kanagawa]]" modified="20201227202527051" tags="" title="Images" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20201226101813477" modified="20201227161716780" muuri-tiddler-width="1" tags="" title="Kanban under Construction" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226101813477" modified="20201228083143251" muuri-tiddler-width="1" tags="" title="Kanban" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 &lt;$navigator story=&quot;$:/KanbanList&quot; history=&quot;$:/KanbanHistoryList&quot;&gt;
 &lt;$droppable actions=&quot;&quot;&quot;&lt;$action-navigate $to=&lt;&lt;actionTiddler&gt;&gt;/&gt;&quot;&quot;&quot;&gt;
