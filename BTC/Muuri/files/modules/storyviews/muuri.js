@@ -461,7 +461,7 @@ MuuriStoryView.prototype.findMuuriWidget = function() {
 		widget = widget.parentWidget;
 	}
 	return this.listWidget.parentWidget;
-}
+};
 
 MuuriStoryView.prototype.findListWidget = function(element) {
 	for(var i=0; i<this.connectedGrids.length; i++) {
@@ -469,6 +469,9 @@ MuuriStoryView.prototype.findListWidget = function(element) {
 		//find the widget corresponding to this element
 		for(var k=0; k<listWidgetChildren.length; k++) {
 			var listElement = listWidgetChildren[k] ? listWidgetChildren[k].findFirstDomNode() : null;
+			while(listElement && listElement.nodeType === Node.TEXT_NODE) {
+				listElement = listElement.firstChild;
+			}
 			if(listElement && (listElement === element)) {
 				return(listWidgetChildren[k]);
 			}
@@ -756,6 +759,7 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 	}
 	if(this.muuri && (changedTiddlers[this.configNamespace + "container-class"] || changedTiddlers[this.configNamespace + "item-class"])) {
 		this.muuri.destroy(true);
+		this.observer.disconnect();
 		this.findMuuriWidget().refreshSelf();
 	}
 	if(this.muuri && changedTiddlers["$:/config/AnimationDuration"]) {
@@ -766,11 +770,16 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 			if(self.muuri) {
 				self.muuri.destroy(true);
 			}
+			self.observer.disconnect();
 			self.findMuuriWidget().refreshSelf();
 		},100);
 	}
 	if(changedAttributes.storyViewConfig) {
+		this.observer.disconnect();
 		this.findMuuriWidget().refreshSelf();
+	}
+	if(changedAttributes.filter || changedAttributes.template || changedAttributes.editTemplate || changedAttributes.emptyMessage || changedAttributes.storyview || changedAttributes.history) {
+		this.observer.disconnect();
 	}
 	return true;
 };
