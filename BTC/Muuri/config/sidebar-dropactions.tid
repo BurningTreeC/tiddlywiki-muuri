@@ -1,5 +1,0 @@
-title: $:/config/muuri/sidebarview/drop-actions
-
-<$list filter="[<modifier>match[shift]]"><$action-listops $tiddler=<<actionTiddler>> $field="tags" $subfilter="[enlist{$:/config/SidebarTags!!text}]"/></$list>
-<$list filter="[<modifier>match[ctrl]]"><$list filter="[<actionTiddler>!is[draft]]"><$action-sendmessage $message="tm-edit-tiddler" $param=<<actionTiddler>>/></$list></$list>
-<$list filter="[<modifier>match[alt]]"></$list>
