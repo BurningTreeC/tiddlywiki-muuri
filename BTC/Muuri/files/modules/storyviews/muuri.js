@@ -314,7 +314,17 @@ MuuriStoryView.prototype.remove = function(widget) {
 		});
 		this.refreshItemTitlesArray();
 		this.muuri.refreshItems();
-		this.muuri.remove([targetElement],{removeElements: true});
+		var items = this.muuri.getItems(),
+			item;
+		for(var i=0; i<items.length; i++) {
+			var element = items[i].element;
+			if(element === targetElement) {
+				item = items[i];
+			}
+		}
+		if(item) {
+			this.muuri.remove([item],{removeElements: true, layout: false});
+		}
 		this.muuri.layout();
 	}
 };
