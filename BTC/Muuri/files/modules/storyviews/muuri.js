@@ -562,7 +562,7 @@ MuuriStoryView.prototype.updateZIndexList = function(options) {
 		var sortedArray = [];
 		//get the x-coordinates for each column
 		for(var i=0; i<items.length; i++) {
-			var itemColumnsValue = items[i]._left !== null && items[i]._left !== undefined ? items[i]._left : items[i]._layout._currentLeft;
+			var itemColumnsValue = items[i].left !== null && items[i].left !== undefined ? items[i].left : items[i]._layout._currentLeft;
 			if(itemColumns.indexOf(itemColumnsValue) === -1) {
 				itemColumns.push(itemColumnsValue);
 			}
@@ -580,7 +580,7 @@ MuuriStoryView.prototype.updateZIndexList = function(options) {
 		$tw.utils.each(itemColumns,function(columnValue) {
 			var columnMembers = [];
 			for(var k=0; k<items.length; k++) {
-				var currLeft = items[k]._left !== null && items[k]._left !== undefined ? items[k]._left : items[k]._layout._currentLeft;
+				var currLeft = items[k].left !== null && items[k].left !== undefined ? items[k].left : items[k]._layout._currentLeft;
 				if(currLeft === columnValue || (currLeft >= (columnValue - 5) && currLeft <= columnValue)) {
 					// there's a small variation when item positions have not yet been fully
 					// refreshed after they've moved ... some pixels, though they're still in
@@ -590,8 +590,8 @@ MuuriStoryView.prototype.updateZIndexList = function(options) {
 				}
 			}
 			columnMembers.sort(function(itemA,itemB) {
-				var valueA = itemA._layout._currentTop !== null && itemA._layout._currentTop !== undefined ? itemA._layout._currentTop : itemA._top,
-					valueB = itemB._layout._currentTop !== null && itemB._layout._currentTop !== undefined ? itemB._layout._currentTop : itemB._top;
+				var valueA = itemA._layout._currentTop !== null && itemA._layout._currentTop !== undefined ? itemA._layout._currentTop : itemA.top,
+					valueB = itemB._layout._currentTop !== null && itemB._layout._currentTop !== undefined ? itemB._layout._currentTop : itemB.top;
 				if(valueA >= valueB) return 1;
 				if(valueA < valueB) return -1;
 				return 0;
