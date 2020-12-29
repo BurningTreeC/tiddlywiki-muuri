@@ -108,6 +108,9 @@ var MuuriStoryView = function(listWidget) {
 			})
 			.on("receive",function(data) {
 
+			})
+			.on("destroy",function() {
+			    self.removeAllListeners();
 			});
 			this.addSelfToGlobalGrids();
 			this.updateZIndexList();
@@ -686,6 +689,20 @@ MuuriStoryView.prototype.removeResizeListener = function(element,fn) {
 			}
 		}
 	}
+};
+
+MuuriStoryView.prototype.removeAllListeners = function() {
+    var self = this;
+    var items = this.muuri.getItems();
+    for(var i=0; i<items.length; i++) {
+        var element = items[i].getElement();
+        this.removeResizeListener(element,function() {
+            self.refreshMuuriGrid();
+        });
+    }
+    this.removeResizeListener(this.muuri._element,function() {
+        self.refreshMuuriGrid();
+    });
 };
 
 MuuriStoryView.prototype.refreshMuuriGrid = function(item) {
