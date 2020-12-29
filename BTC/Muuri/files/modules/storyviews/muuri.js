@@ -110,7 +110,7 @@ var MuuriStoryView = function(listWidget) {
 
 			})
 			.on("destroy",function() {
-			    self.removeAllListeners();
+				self.removeAllListeners();
 			});
 			this.addSelfToGlobalGrids();
 			this.updateZIndexList();
@@ -702,17 +702,17 @@ MuuriStoryView.prototype.removeResizeListener = function(element,fn) {
 };
 
 MuuriStoryView.prototype.removeAllListeners = function() {
-    var self = this;
-    var items = this.muuri.getItems();
-    for(var i=0; i<items.length; i++) {
-        var element = items[i].element;
-        this.removeResizeListener(element,function() {
-            self.refreshMuuriGrid();
-        });
-    }
-    this.removeResizeListener(this.muuri.element,function() {
-        self.refreshMuuriGrid();
-    });
+	var self = this;
+	var items = this.muuri.getItems();
+	for(var i=0; i<items.length; i++) {
+		var element = items[i].element;
+		this.removeResizeListener(element,function() {
+			self.refreshMuuriGrid();
+		});
+	}
+	this.removeResizeListener(this.muuri.element,function() {
+		self.refreshMuuriGrid();
+	});
 };
 
 MuuriStoryView.prototype.refreshMuuriGrid = function(item) {
@@ -737,7 +737,7 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 	if(this.muuri && changedTiddlers[this.configNamespace + "drag-enabled"]) {
 		this.dragEnabled = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
 		this.muuri.updateSettings({
-  			dragEnabled: self.dragEnabled
+			dragEnabled: self.dragEnabled
 		});
 		this.hardRefresh();
 	}
