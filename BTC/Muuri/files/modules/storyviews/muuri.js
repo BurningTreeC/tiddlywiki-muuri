@@ -592,7 +592,7 @@ MuuriStoryView.prototype.updateZIndexList = function(options) {
 				sortedArray.push(itemTitle);
 			}
 		});
-		//store the array in a tiddler-list that's used for applying z-indices
+		//store the array in a tiddler-list that's used for applying z-indexes
 		if(sortedArray.indexOf(null) === -1) {
 			var tiddler = this.listWidget.wiki.getTiddler(this.zIndexTiddler);
 			this.listWidget.wiki.addTiddler(new $tw.Tiddler(
