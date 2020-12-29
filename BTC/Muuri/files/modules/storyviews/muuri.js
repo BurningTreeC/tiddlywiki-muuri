@@ -116,7 +116,6 @@ var MuuriStoryView = function(listWidget) {
 					if(mutation.removedNodes) {
 						var items = self.muuri.getItems();
 						self.muuri.refreshItems();
-						var newItems = self.muuri.getItems();
 						var needsRefresh = false;
 						for(var i=0; i<items.length; i++) {
 							if(items[i]._width === 0 && items[i]._height === 0) {
