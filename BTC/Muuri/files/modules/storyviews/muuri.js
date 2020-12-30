@@ -409,7 +409,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 						element: self.getScrollContainer(item.getGrid().element),
 						axis: self.dragAutoScrollAxis && self.dragAutoScrollAxis === "y" ? Muuri.ItemDragAutoScroll.AXIS_Y : 
 								self.dragAutoScrollAxis && self.dragAutoScrollAxis === "x" ? Muuri.ItemDragAutoScroll.AXIS_X : 
-								self.dragAutoScrollAxis && self.dragAutoScrollAxis === "xy" ? Muuri.ItemDragAutoScroll.AXIS_X || 
+								self.dragAutoScrollAxis && self.dragAutoScrollAxis === "xy" ? Muuri.ItemDragAutoScroll.AXIS_X | 
 								Muuri.ItemDragAutoScroll.AXIS_Y : Muuri.ItemDragAutoScroll.AXIS_Y
 					}
 				];
@@ -843,7 +843,7 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 							element: self.getScrollContainer(item.getGrid().element),
 							axis: self.dragAutoScrollAxis && self.dragAutoScrollAxis === "y" ? Muuri.ItemDragAutoScroll.AXIS_Y : 
 									self.dragAutoScrollAxis && self.dragAutoScrollAxis === "x" ? Muuri.ItemDragAutoScroll.AXIS_X : 
-									self.dragAutoScrollAxis && self.dragAutoScrollAxis === "xy" ? Muuri.ItemDragAutoScroll.AXIS_X || 
+									self.dragAutoScrollAxis && self.dragAutoScrollAxis === "xy" ? Muuri.ItemDragAutoScroll.AXIS_X | 
 									Muuri.ItemDragAutoScroll.AXIS_Y : Muuri.ItemDragAutoScroll.AXIS_Y
 						}
 					];
