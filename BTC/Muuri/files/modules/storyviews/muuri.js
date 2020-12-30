@@ -378,7 +378,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 			horizontal: false,
 			alignRight: self.alignRight,
 			alignBottom: self.alignBottom,
-			rounding: true
+			rounding: false
 		},
 		layoutEasing: easing,
 		dragStartPredicate: function(item,e) {
