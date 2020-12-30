@@ -35,7 +35,7 @@ tags: $:/tags/Stylesheet
 	position: absolute;
 }
 
-.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+.tc-drag-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 	width: calc((100% / <<count>>) - <<margin>> - (<<margin>> / <<count>>));
 	margin-<<marginSuffix>>: <<margin>>;
 	margin-bottom: <<marginBottom>>;
