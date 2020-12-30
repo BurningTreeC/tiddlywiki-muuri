@@ -587,7 +587,7 @@ MuuriStoryView.prototype.updateZIndexList = function(options) {
 		var sortedArray = [];
 		//get the x-coordinates for each column
 		for(var i=0; i<items.length; i++) {
-			var itemColumnsValue = items[i].left !== null && items[i].left !== undefined ? items[i].left : items[i]._layout._currentLeft;
+			var itemColumnsValue = items[i].left !== null && items[i].left !== undefined ? items[i].left + items[i].width : items[i]._layout._currentLeft;
 			if(itemColumns.indexOf(itemColumnsValue) === -1) {
 				itemColumns.push(itemColumnsValue);
 			}
@@ -600,12 +600,12 @@ MuuriStoryView.prototype.updateZIndexList = function(options) {
 		});
 		//now for each column, get the items that are members of it,
 		//push to a temporary array
-		//sort the temp array items so that by their _currentTop lowest to highest
+		//sort the temp array items by their _currentTop lowest to highest
 		//push the sorted items to the final sortedItems array
 		$tw.utils.each(itemColumns,function(columnValue) {
 			var columnMembers = [];
 			for(var k=0; k<items.length; k++) {
-				var currLeft = items[k].left !== null && items[k].left !== undefined ? items[k].left : items[k]._layout._currentLeft;
+				var currLeft = items[k].left !== null && items[k].left !== undefined ? items[k].left + items[k].width : items[k]._layout._currentLeft;
 				if(currLeft === columnValue || (currLeft >= (columnValue - 5) && currLeft <= columnValue)) {
 					// there's a small variation when item positions have not yet been fully
 					// refreshed after they've moved ... some pixels, though they're still in
