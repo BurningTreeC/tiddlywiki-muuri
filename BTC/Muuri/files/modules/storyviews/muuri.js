@@ -72,10 +72,6 @@ var MuuriStoryView = function(listWidget) {
 				var style = item.element.style;
 				style.width = item.width + "px";
 				style.height = item.height + "px";
-				style["margin-right"] = item.marginRight;
-				style["margin-left"] = item.marginLeft;
-				style["margin-top"] = item.marginTop;
-				style["margin-bottom"] = item.marginBottom;
 			})
 			.on("dragStart",function(item,event) {
 
@@ -406,12 +402,14 @@ MuuriStoryView.prototype.collectOptions = function() {
 			useDragContainer: true
 		},
 		dragAutoScroll: {
-			targets: self.dragAutoScrollTarget ? [
-				{
-					element: self.dragAutoScrollTarget,
-					axis: Muuri.ItemDragAutoScroll.AXIS_Y
-				}
-			] : [],
+			targets: function(item) {
+				return [
+					{
+						element: self.getScrollContainer(item.getGrid().element),
+						axis: Muuri.ItemDragAutoScroll.AXIS_Y
+					}
+				];
+			},
 			sortDuringScroll: false,
 			smoothStop: true
 		},
@@ -466,20 +464,6 @@ MuuriStoryView.prototype.collectAttributes = function() {
 						this.dragContainer = dragContainers[i];
 						break;
 					}
-				}
-				node = node.parentNode;
-			}
-		}
-	}
-	var dragAutoScrollTarget = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-autoscroll-target");
-	if(dragAutoScrollTarget) {
-		var dragAutoScrollTargets = this.listWidget.document.documentElement.querySelectorAll(dragAutoScrollTarget);
-		node = this.listWidget.parentDomNode;
-		for(var i=0; i<dragAutoScrollTargets.length; i++) {
-			while(node) {
-				if(node === dragAutoScrollTargets[i]) {
-					this.dragAutoScrollTarget = dragAutoScrollTargets[i];
-					break;
 				}
 				node = node.parentNode;
 			}
