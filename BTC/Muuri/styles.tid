@@ -3,7 +3,7 @@ tags: $:/tags/Stylesheet
 
 \define z-indexes()
 \rules only
-.tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame:not(.tc-muuri-dragging):not(.tc-muuri-positioning):not(:focus-within) {
+.tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame:not(.tc-muuri-dragging):not(.tc-muuri-positioning):not(:focus-within):not(.tc-active) {
 	z-index: $(zIndex)$;
 }
 \end
@@ -282,7 +282,7 @@ tags: $:/tags/Stylesheet
 
 	</$list>
 
-.tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-dragging, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-releasing, .tc-story-river.tc-muuri-river > .tc-tiddler-frame:focus-within {
+.tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-dragging, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-releasing, .tc-story-river.tc-muuri-river > .tc-tiddler-frame:focus-within, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-active {
 	z-index: <<storyHighZIndex>>;
 }
 

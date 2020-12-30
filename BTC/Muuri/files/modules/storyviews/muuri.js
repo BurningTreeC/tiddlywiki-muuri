@@ -382,7 +382,13 @@ MuuriStoryView.prototype.collectOptions = function() {
 		},
 		layoutEasing: easing,
 		dragStartPredicate: function(item,e) {
-			if (self.muuri.settings.dragEnabled) {
+			var items = self.muuri.getItems();
+			for(var i=0; i<items.length; i++) {
+				$tw.utils.removeClass(items[i].element,"tc-active");
+			}
+			var element = item.element;
+			$tw.utils.addClass(element,"tc-active");
+			if(self.muuri.settings.dragEnabled) {
 				if((e.target && e.target.tagName && (self.noDragTags.indexOf(e.target.tagName) > -1 || 
 					self.lookupDragTarget(e.target)) || self.detectWithinCodemirror(e) || !self.detectGridWithinGrid(e.target))) {
 					return false;
