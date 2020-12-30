@@ -171,8 +171,6 @@ Error message and password prompt
 
 <li>$:/config/muuri/storyview/columns</li>
 
-<li>$:/config/muuri/storyview/drag-container</li>
-
 <li>$:/config/RelinkOnRename</li>
 
 <li>$:/config/SidebarTags</li>
@@ -206,6 +204,8 @@ Error message and password prompt
 <li>$:/palette</li>
 
 <li>$:/plugins/BTC/Muuri</li>
+
+<li>$:/plugins/BTC/Muuri-Layout/ui/Kanban</li>
 
 <li>$:/plugins/BTC/Muuri-Layout/ui/Layout</li>
 
@@ -358,9 +358,6 @@ z-index: 1000;
 </div>
 <div created="20201216154323661" modified="20201230105649834" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>4</pre>
-</div>
-<div created="20201230084053890" modified="20201230084111829" tags="" title="$:/config/muuri/storyview/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>.tc-drag-container</pre>
 </div>
 <div created="20201227111434237" modified="20201227111434298" title="$:/config/RelinkOnRename" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>yes</pre>
@@ -10963,7 +10960,7 @@ exports.widget = Widget;
 &lt;/$wikify&gt;
 &lt;/$vars&gt;</pre>
 </div>
-<div created="20201226120511731" current-tiddler="Draft of 'New Tiddler'" modified="20201230100618989" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
+<div created="20201226120511731" current-tiddler="Draft of 'New Tiddler'" modified="20201230144220524" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
 <pre>[
     {
         &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
@@ -11771,6 +11768,9 @@ exports.widget = Widget;
     },
     {
         &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
     }
 ]</pre>
 </div>
@@ -11834,15 +11834,15 @@ exports.widget = Widget;
  	&lt;/div&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20201226140433928" list="Todo Done Working Images" modified="20201230111140826" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226140433928" list="Todo Done Working Images" modified="20201230144236463" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20201226110827646" modified="20201230105645553" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226110827646" modified="20201230143758117" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;$set name=&quot;amount&quot; value={{{ [list[$:/KanbanList]count[]] }}}&gt;
 
 .tc-board-container {
   position: relative;
-  height: 70vh;
+  height: 100vh;
 }
 
 .tc-kanban-droppable {
@@ -12143,7 +12143,7 @@ exports.widget = Widget;
 
 &lt;/$set&gt;</pre>
 </div>
-<div created="20201226093820018" modified="20201230100748746" title="$:/layout" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226093820018" modified="20201230144242775" title="$:/layout" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>$:/plugins/BTC/Muuri-Layout/ui/Layout</pre>
 </div>
 <div created="20201225121816249" modified="20201228084401175" title="$:/palette" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -12251,6 +12251,41 @@ exports.widget = Widget;
         }
     }
 }</pre>
+</div>
+<div created="20201230144030379" description="The Kanban Layout" modified="20201230144156043" name="Kanban" tags="$:/tags/Layout" title="$:/plugins/BTC/Muuri-Layout/ui/Kanban" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>\whitespace trim
+\define containerClasses()
+tc-page-container tc-page-view-$(storyviewTitle)$ tc-language-$(languageTitle)$
+\end
+\import [[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]
+
+&lt;$vars
+	tv-config-toolbar-icons={{$:/config/Toolbar/Icons}}
+	tv-config-toolbar-text={{$:/config/Toolbar/Text}}
+	tv-config-toolbar-class={{$:/config/Toolbar/ButtonClass}}
+	tv-enable-drag-and-drop={{$:/config/DragAndDrop/Enable}}
+	tv-show-missing-links={{$:/config/MissingLinks}}
+	storyviewTitle={{$:/view}}
+	languageTitle={{{ [{$:/language}get[name]] }}}&gt;
+
+&lt;div class=&quot;tc-drag-container&quot;/&gt;
+
+&lt;div class=&lt;&lt;containerClasses&gt;&gt;&gt;
+
+&lt;$navigator story=&quot;$:/StoryList&quot; history=&quot;$:/HistoryList&quot; openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}&gt;
+
+&lt;$dropzone enable=&lt;&lt;tv-enable-drag-and-drop&gt;&gt;&gt;
+
+{{Kanban}}
+
+&lt;/$dropzone&gt;
+
+&lt;/$navigator&gt;
+
+&lt;/div&gt;
+
+&lt;/$vars&gt;
+</pre>
 </div>
 <div created="20201230084000279" description="The Muuri Layout" modified="20201230085446419" name="Muuri" tags="$:/tags/Layout" title="$:/plugins/BTC/Muuri-Layout/ui/Layout" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
@@ -12751,7 +12786,7 @@ tc-page-container tc-page-view-$(storyviewTitle)$ tc-language-$(languageTitle)$
 <div title="$:/status/RequireReloadDueToPluginChange" revision="0" bag="default">
 <pre>no</pre>
 </div>
-<div list="Kanban [[How this Kanban works]] [[Mona Lisa]] [[I am Mr. Van Gogh]] [[I am one of that guy's paintings]] [[Ceci n’est pas une pipe.]] [[The Great Wave off the Coast of Kanagawa]] [[Star me on GitHub]] [[The Birth of Venus]] [[The Kiss]] [[Works best with the CodeMirror plugin]] [[Configuration Options]] [[El jardin de las Delicias]] [[This Louvre moment]] [[Configuration by Namespace]] [[Change the amount of columns]] [[The Muuri StoryView requires to use templates]] [[Actions can be triggered on Drop]] [[Moving Items between Grids]] [[Dragging Tiddlers]]" title="$:/StoryList" revision="1" bag="default">
+<div list="[[Mona Lisa]] [[I am Mr. Van Gogh]] [[I am one of that guy's paintings]] [[Ceci n’est pas une pipe.]] [[The Great Wave off the Coast of Kanagawa]] [[Star me on GitHub]] [[The Birth of Venus]] [[The Kiss]] [[Works best with the CodeMirror plugin]] [[Configuration Options]] [[El jardin de las Delicias]] [[This Louvre moment]] [[Configuration by Namespace]] [[Change the amount of columns]] [[The Muuri StoryView requires to use templates]] [[Actions can be triggered on Drop]] [[Moving Items between Grids]] [[Dragging Tiddlers]]" title="$:/StoryList" revision="1" bag="default">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23" revision="0" bag="default">
@@ -12869,7 +12904,7 @@ tc-page-container tc-page-view-$(storyviewTitle)$ tc-language-$(languageTitle)$
 <div created="20201214221228399" modified="20201226100516296" title="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>fluid-fixed</pre>
 </div>
-<div created="20201214210010844" modified="20201230085503958" title="$:/view" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201214210010844" modified="20201230144252378" title="$:/view" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>muuri</pre>
 </div>
 <div created="20201219130048052" modified="20201219140204019" tags="Features" title="Actions can be triggered on Drop" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -12923,7 +12958,7 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <div caption="" created="20201226162849128" modified="20201228094009424" tags="" title="Do the laundry" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>Someone needs to do it</pre>
 </div>
-<div color="#66a079" created="20201226140352252" list="[[Do the laundry]] [[Buy some milk]]" modified="20201229173124415" tags="" title="Done" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div color="#66a079" created="20201226140352252" list="[[Do the laundry]] [[Buy some milk]]" modified="20201230143724904" tags="" title="Done" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div created="20201218053417117" modified="20201218053428540" tags="Features" title="Dragging Tiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -12964,9 +12999,10 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <div color="#ff9c63" created="20201227190921011" list="[[The Great Wave off the Coast of Kanagawa]]" modified="20201230100355164" tags="" title="Images" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20201226101813477" modified="20201228140256128" muuri-tiddler-width="1" tags="" title="Kanban" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226101813477" modified="20201230143652062" muuri-tiddler-width="1" tags="" title="Kanban" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\whitespace trim
 &lt;$navigator story=&quot;$:/KanbanList&quot; history=&quot;$:/KanbanHistoryList&quot;&gt;
+&lt;div class=&quot;tc-board-container&quot;&gt;
 &lt;$droppable actions=&quot;&quot;&quot;&lt;$action-navigate $to=&lt;&lt;actionTiddler&gt;&gt;/&gt;&quot;&quot;&quot;&gt;
 &lt;div class=&quot;tc-kanban-droppable&quot;&gt;
 &lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-add&quot; tooltip=&quot;new column&quot; aria-label=&quot;new column&quot;&gt;
@@ -12975,7 +13011,6 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 &lt;/$button&gt;
 &lt;/div&gt;
 &lt;/$droppable&gt;
-&lt;div class=&quot;tc-board-container&quot;&gt;
 	&lt;div class=&quot;tc-board&quot;&gt;
 		&lt;$list filter=&quot;[list[$:/KanbanList]]&quot; storyview=&quot;muuri&quot; template=&quot;$:/KanbanColumnTemplate&quot; editTemplate=&quot;$:/KanbanColumnEditTemplate&quot; storyViewConfig=&quot;$:/config/kanban/&quot;/&gt;
 	&lt;/div&gt;
@@ -13014,7 +13049,7 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <div color="#b25342" created="20201226152301492" list="[[Create a Kanban]] [[Buy some eggs]]" modified="20201230101031199" tags="" title="Todo" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div color="#669fb2" created="20201226140410781" list="[[Happy Tiddlering]] [[Star me on GitHub]]" modified="20201230100355211" tags="" title="Working" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div color="#669fb2" created="20201226140410781" list="[[Happy Tiddlering]] [[Star me on GitHub]]" modified="20201230143724993" tags="" title="Working" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div created="20201218052427626" modified="20201218052520839" tags="Information" title="Works best with the CodeMirror plugin" type="text/vnd.tiddlywiki" revision="0" bag="default">
