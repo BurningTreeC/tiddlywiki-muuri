@@ -409,7 +409,8 @@ MuuriStoryView.prototype.collectOptions = function() {
 						element: self.getScrollContainer(item.getGrid().element),
 						axis: self.dragAutoScrollAxis && self.dragAutoScrollAxis === "y" ? Muuri.ItemDragAutoScroll.AXIS_Y : 
 								self.dragAutoScrollAxis && self.dragAutoScrollAxis === "x" ? Muuri.ItemDragAutoScroll.AXIS_X : 
-								Muuri.ItemDragAutoScroll.AXIS_Y
+								self.dragAutoScrollAxis && self.dragAutoScrollAxis === "xy" ? Muuri.ItemDragAutoScroll.AXIS_X || 
+								Muuri.ItemDragAutoScroll.AXIS_Y : Muuri.ItemDragAutoScroll.AXIS_Y
 					}
 				];
 			},
@@ -834,7 +835,6 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 	}
 	if(changedTiddlers[this.configNamespace + "drag-autoscroll-axis"]) {
 		this.dragAutoScrollAxis = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-autoscroll-axis");
-		console.log(this.dragAutoScrollAxis);
 		this.muuri.updateSettings({
 			dragAutoScroll: {
 				targets: function(item) {
@@ -843,13 +843,13 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 							element: self.getScrollContainer(item.getGrid().element),
 							axis: self.dragAutoScrollAxis && self.dragAutoScrollAxis === "y" ? Muuri.ItemDragAutoScroll.AXIS_Y : 
 									self.dragAutoScrollAxis && self.dragAutoScrollAxis === "x" ? Muuri.ItemDragAutoScroll.AXIS_X : 
-									Muuri.ItemDragAutoScroll.AXIS_Y
+									self.dragAutoScrollAxis && self.dragAutoScrollAxis === "xy" ? Muuri.ItemDragAutoScroll.AXIS_X || 
+									Muuri.ItemDragAutoScroll.AXIS_Y : Muuri.ItemDragAutoScroll.AXIS_Y
 						}
 					];
 				}
 			}
 		});
-		console.log(this.muuri.settings.dragAutoScroll);
 	}
 	if(this.muuri && changedTiddlers[this.configNamespace + "drag-container"]) {
 		var dragContainerSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-container");
