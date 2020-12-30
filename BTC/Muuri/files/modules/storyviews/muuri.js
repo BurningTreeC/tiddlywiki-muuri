@@ -460,8 +460,12 @@ MuuriStoryView.prototype.collectAttributes = function() {
 		var node = this.listWidget.parentDomNode;
 		for(var i=0; i<dragContainers.length; i++) {
 			while(node) {
+				if(node === dragContainers[i]) {
+					this.dragContainer = dragContainers[i];
+					break;
+				}
 				for(var k=0; k<node.childNodes.length; k++) {
-					if(node === dragContainers[i] || node.childNodes[k] === dragContainers[i]) {
+					if(node.childNodes[k] === dragContainers[i]) {
 						this.dragContainer = dragContainers[i];
 						break;
 					}
