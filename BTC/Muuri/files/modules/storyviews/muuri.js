@@ -401,6 +401,16 @@ MuuriStoryView.prototype.collectOptions = function() {
 			easing: easing,
 			useDragContainer: true
 		},
+		dragAutoScroll: {
+			targets: self.dragAutoScrollTarget ? [
+				{
+					element: self.dragAutoScrollTarget,
+					axis: Muuri.ItemDragAutoScroll.AXIS_Y
+				}
+			] : [],
+			sortDuringScroll: false,
+			smoothStop: true
+		},
 		dragSortInterval: self.dragSortInterval,
 		showDuration: self.animationDuration,
 		layoutDurattion: self.animationDuration,
@@ -442,15 +452,33 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	}
 	this.dragHandle = dragHandle;
 	var dragContainerSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-container");
-	var dragContainers = this.listWidget.document.documentElement.querySelectorAll(dragContainerSelector);
-	var node = this.listWidget.parentDomNode;
-	for(var i=0; i<dragContainers.length; i++) {
-		while(node) {
-			if(node === dragContainers[i]) {
-				this.dragContainer = dragContainers[i];
-				break;
+	if(dragContainerSelector) {
+		var dragContainers = this.listWidget.document.documentElement.querySelectorAll(dragContainerSelector);
+		var node = this.listWidget.parentDomNode;
+		for(var i=0; i<dragContainers.length; i++) {
+			while(node) {
+				for(var k=0; k<node.childNodes.length; k++) {
+					if(node.childNodes[k] === dragContainers[i]) {
+						this.dragContainer = dragContainers[i];
+						break;
+					}
+				}
+				node = node.parentNode;
 			}
-			node = node.parentNode;
+		}
+	}
+	var dragAutoScrollTarget = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-autoscroll-target");
+	if(dragAutoScrollTarget) {
+		var dragAutoScrollTargets = this.listWidget.document.documentElement.querySelectorAll(dragAutoScrollTarget);
+		node = this.listWidget.parentDomNode;
+		for(var i=0; i<dragAutoScrollTargets.length; i++) {
+			while(node) {
+				if(node === dragAutoScrollTargets[i]) {
+					this.dragAutoScrollTarget = dragAutoScrollTargets[i];
+					break;
+				}
+				node = node.parentNode;
+			}
 		}
 	}
 	this.alignRight = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-right") !== "no";

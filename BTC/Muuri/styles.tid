@@ -25,37 +25,9 @@ tags: $:/tags/Stylesheet
 
 <$vars count={{{ [{$:/config/muuri/storyview/columns}!match[]] ~[[1]] }}} margin={{$:/config/muuri/tiddler/margin}} marginSuffix={{{ [{$:/config/muuri/storyview/align-right}match[yes]addprefix[right]removesuffix[yes]] ~[[$:/config/muuri/storyview/align-right]is[missing]then[right]] ~[[left]] }}} sidebarBreakPoint={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}} marginBottom={{$:/config/muuri/tiddler/margin-bottom}} storyHighZIndex={{{ [list[$:/StoryList]count[]add[201]] }}} firstBreakPoint={{$:/config/muuri/storyview/first-break-point}} secondBreakPoint={{$:/config/muuri/storyview/second-break-point}}>
 
-.tc-story-river.tc-muuri-river.tc-sidebar-river {
-	min-height: 250px;
-	width: 100%;
-}
-
-.tc-story-river.tc-sidebar-river {
-	margin-right: 0;
-	border: 4px dashed <<colour foreground>>;
-	border-radius: 4px;
-}
-
-.tc-story-river.tc-sidebar-river > .tc-tiddler-frame {
-	margin-bottom: 0;
-	width: 100%;
-}
-
-.tc-story-river.tc-sidebar-river > .tc-tiddler-frame:not(:last-child) {
-	margin-bottom: 0.5em;
-}
-
-.tc-story-river.tc-sidebar-river > .tc-tiddler-frame {
-	color: <<colour foreground>>;
-}
-
-.tc-story-river.tc-sidebar-river > .tc-tiddler-frame a.tc-tiddlylink {
-	color: <<colour primary>>;
-}
-
 @media(min-width:<<sidebarBreakPoint>>) {
 
-.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) {
+.tc-story-river.tc-muuri-river {
 	min-height: calc(100vh - 2em);
 }
 
@@ -97,17 +69,17 @@ tags: $:/tags/Stylesheet
 	padding: 0;
 }
 
-.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame button.tc-unfold-banner {
+.tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
 	margin-left: -29px;
 }
 
 <$reveal state="$:/config/muuri/storyview/columns" type="lt" text=<<secondBreakPoint>>>
 
-.tc-page-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame {
+.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 	padding: 2em;
 }
 
-.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame .tc-tiddler-info {
+.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
 	margin: 0 -2em 0 -2em;
 }
 
@@ -115,19 +87,19 @@ tags: $:/tags/Stylesheet
 
 <$reveal state="$:/config/muuri/storyview/columns" type="gteq" text=<<secondBreakPoint>>>
 
-.tc-page-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame {
+.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 	padding: 1em;
 }
 
-.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame .tc-tiddler-info {
+.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
 	margin: 0 -1em 0 -1em;
 }
 
-.tc-page-container > .tc-tiddler-frame button.tc-fold-banner, .tc-page-container > .tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame button.tc-unfold-banner {
+.tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
 	margin-left: -15px;
 }
 
-.tc-page-container > .tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame button.tc-unfold-banner {
+.tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
 	margin-top: -6px;
 }
 
@@ -163,17 +135,17 @@ tags: $:/tags/Stylesheet
 	position: absolute;
 }
 
-.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame {
+.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 	width: calc((100% / 2) - <<margin>> - (<<margin>> / 2));
 	margin-<<marginSuffix>>: <<margin>>;
 	margin-bottom: <<marginBottom>>;
 }
 
-.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame .tc-titlebar {
+.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-titlebar {
 	font-size: 1.5em;
 }
 
-.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame .tc-titlebar .tc-tiddler-controls .tc-drop-down {
+.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-titlebar .tc-tiddler-controls .tc-drop-down {
 	font-size: 1em;
 }
 
@@ -184,14 +156,6 @@ tags: $:/tags/Stylesheet
 .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
 	padding: 0;
 }
-
-<$reveal state="$:/state/sidebar" type="match" text="no">
-
-.tc-sidebar-scrollable {
-	display: none;
-}
-
-</$reveal>
 
 	.tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
 		z-index: -1;
@@ -210,28 +174,28 @@ tags: $:/tags/Stylesheet
 <$reveal state="$:/config/muuri/storyview/fill-gaps" type="match" text="yes">
 
 	@media (min-width: <<sidebarBreakPoint>>) {
-		.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame {
+		.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 			width: calc(100% / <<count>>);
 		}
 		
-		.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) {
+		.tc-story-river.tc-muuri-river {
 			margin-top: 0;
 		}
 	}
 	
 	@media (max-width: <<sidebarBreakPoint>>) {
-		.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame {
+		.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 			width: calc(100% / 2);
 		}
 
-		.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) {
+		.tc-story-river.tc-muuri-river {
 			margin-top: 0;
 		}
 	}
 	
 	@media(min-width:<<sidebarBreakPoint>>) {
 	
-	.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame {
+	.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 		border: none;
 		border-radius: 0px;
 		box-shadow: 1px 1px 1px <<colour tiddler-background>>;
@@ -247,7 +211,7 @@ tags: $:/tags/Stylesheet
 
 	@media(max-width:<<sidebarBreakPoint>>) {
 	
-	.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame {
+	.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 		border: none;
 		border-radius: 0px;
 		box-shadow: 1px 1px 1px <<colour tiddler-background>>;
@@ -265,7 +229,7 @@ tags: $:/tags/Stylesheet
 
 <$reveal state="$:/state/config/muuri/storyview/drag-enabled" type="match" text="no">
 
-.tc-story-river.tc-muuri-river:not(.tc-sidebar-river) > .tc-tiddler-frame {
+.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 	touch-action: auto !important;
 	user-select: auto !important;
 	-ms-user-select: text !important;
@@ -318,7 +282,7 @@ tags: $:/tags/Stylesheet
 
 	</$list>
 
-.tc-page-container > .tc-tiddler-frame.tc-muuri-dragging, .tc-page-container > .tc-tiddler-frame.tc-muuri-releasing, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-dragging, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-releasing {
+.tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-dragging, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-releasing {
 	z-index: <<storyHighZIndex>>;
 }
 
