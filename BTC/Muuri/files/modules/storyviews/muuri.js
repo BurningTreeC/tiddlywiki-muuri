@@ -458,7 +458,7 @@ MuuriStoryView.prototype.collectAttributes = function() {
 		for(var i=0; i<dragContainers.length; i++) {
 			while(node) {
 				for(var k=0; k<node.childNodes.length; k++) {
-					if(node.childNodes[k] === dragContainers[i]) {
+					if(node === dragContainers[i] || node.childNodes[k] === dragContainers[i]) {
 						this.dragContainer = dragContainers[i];
 						break;
 					}
