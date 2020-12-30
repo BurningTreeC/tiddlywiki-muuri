@@ -72,6 +72,10 @@ var MuuriStoryView = function(listWidget) {
 				var style = item.element.style;
 				style.width = item.width + "px";
 				style.height = item.height + "px";
+				style["margin-right"] = item.marginRight;
+				style["margin-left"] = item.marginLeft;
+				style["margin-top"] = item.marginTop;
+				style["margin-bottom"] = item.marginBottom;
 			})
 			.on("dragStart",function(item,event) {
 
