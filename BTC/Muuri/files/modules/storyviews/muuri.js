@@ -407,7 +407,9 @@ MuuriStoryView.prototype.collectOptions = function() {
 				return [
 					{
 						element: self.getScrollContainer(item.getGrid().element),
-						axis: Muuri.ItemDragAutoScroll.AXIS_Y
+						axis: self.dragAutoScrollAxis && self.dragAutoScrollAxis === "y" ? Muuri.ItemDragAutoScroll.AXIS_Y : 
+								self.dragAutoScrollAxis && self.dragAutoScrollAxis === "x" ? Muuri.ItemDragAutoScroll.AXIS_X : 
+								Muuri.ItemDragAutoScroll.AXIS_Y
 					}
 				];
 			},
@@ -474,6 +476,7 @@ MuuriStoryView.prototype.collectAttributes = function() {
 			}
 		}
 	}
+	this.dragAutoScrollAxis = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-autoscroll-axis");
 	this.alignRight = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-right") !== "no";
 	this.alignBottom = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-bottom") === "yes";
 	this.dragEnabled = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
@@ -828,6 +831,25 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 	}
 	if(changedTiddlers[this.configNamespace + "drop-actions"]) {
 		this.dropActions = this.listWidget.getVariable("tv-muuri-drop-actions") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
+	}
+	if(changedTiddlers[this.configNamespace + "drag-autoscroll-axis"]) {
+		this.dragAutoScrollAxis = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-autoscroll-axis");
+		console.log(this.dragAutoScrollAxis);
+		this.muuri.updateSettings({
+			dragAutoScroll: {
+				targets: function(item) {
+					return [
+						{
+							element: self.getScrollContainer(item.getGrid().element),
+							axis: self.dragAutoScrollAxis && self.dragAutoScrollAxis === "y" ? Muuri.ItemDragAutoScroll.AXIS_Y : 
+									self.dragAutoScrollAxis && self.dragAutoScrollAxis === "x" ? Muuri.ItemDragAutoScroll.AXIS_X : 
+									Muuri.ItemDragAutoScroll.AXIS_Y
+						}
+					];
+				}
+			}
+		});
+		console.log(this.muuri.settings.dragAutoScroll);
 	}
 	if(this.muuri && changedTiddlers[this.configNamespace + "drag-container"]) {
 		var dragContainerSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-container");
