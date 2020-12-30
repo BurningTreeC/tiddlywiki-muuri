@@ -415,7 +415,8 @@ MuuriStoryView.prototype.collectOptions = function() {
 				];
 			},
 			sortDuringScroll: false,
-			smoothStop: true
+			smoothStop: false,
+			threshold: 0
 		},
 		dragSortInterval: self.dragSortInterval,
 		showDuration: self.animationDuration,
