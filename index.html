@@ -11842,7 +11842,7 @@ exports.widget = Widget;
 <div created="20201226140433928" list="Todo Done Working Images" modified="20201230161832727" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20201226110827646" modified="20201230143758117" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226110827646" modified="20201230180424374" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;$set name=&quot;amount&quot; value={{{ [list[$:/KanbanList]count[]] }}}&gt;
 
 .tc-board-container {
@@ -12026,8 +12026,12 @@ exports.widget = Widget;
   opacity: 0.7;
 }
 
-.tc-board-item img, .tc-board-item hr, .tc-board-item svg {
+.tc-board-item img, .tc-board-item hr {
 	pointer-events: none;
+	max-width: 100%;
+}
+
+.tc-board-item svg {
 	max-width: 100%;
 }
 
@@ -13001,7 +13005,7 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <div created="20201011123604658" modified="20201225131230472" tags="" title="I am one of that guy's paintings" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img [https://upload.wikimedia.org/wikipedia/commons/c/cd/VanGogh-starry_night.jpg]]</pre>
 </div>
-<div color="#ff9c63" created="20201227190921011" list="[[The Great Wave off the Coast of Kanagawa]]" modified="20201230161848523" tags="" title="Images" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div color="#ff9c63" created="20201227190921011" list="[[The Great Wave off the Coast of Kanagawa]]" modified="20201230180136775" tags="" title="Images" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div created="20201226101813477" modified="20201230175019837" muuri-tiddler-width="1" tags="" title="Kanban" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -13051,10 +13055,10 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <div created="20201011123841783" modified="20201214222300078" tags="" title="This Louvre moment" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img[https://upload.wikimedia.org/wikipedia/commons/c/c3/Scuola_di_fontainebleau%2C_presunti_ritratti_di_gabrielle_d%27estr%C3%A9es_sua_sorella_la_duchessa_di_villars%2C_1594_ca._06.jpg]]</pre>
 </div>
-<div color="#b25342" created="20201226152301492" list="[[Create a Kanban]] [[Buy some eggs]]" modified="20201230101031199" tags="" title="Todo" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div color="#b25342" created="20201226152301492" list="[[Create a Kanban]] [[Buy some eggs]]" modified="20201230180139981" tags="" title="Todo" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div color="#669fb2" created="20201226140410781" list="[[Happy Tiddlering]] [[Star me on GitHub]]" modified="20201230143724993" tags="" title="Working" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div color="#669fb2" created="20201226140410781" list="[[Happy Tiddlering]] [[Star me on GitHub]]" modified="20201230180140024" tags="" title="Working" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div created="20201218052427626" modified="20201218052520839" tags="Information" title="Works best with the CodeMirror plugin" type="text/vnd.tiddlywiki" revision="0" bag="default">
