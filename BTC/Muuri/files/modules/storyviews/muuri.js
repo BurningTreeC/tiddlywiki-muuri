@@ -118,9 +118,10 @@ var MuuriStoryView = function(listWidget) {
 				$tw.utils.each(mutations,function(mutation) {
 					if(mutation.removedNodes) {
 						var items = self.muuri.getItems();
+						self.muuri.refreshItems();
 						var needsRefresh = false;
 						for(var i=0; i<items.length; i++) {
-							if(items[i]._width === 0 && items[i]._height === 0) {
+							if(items[i].width === 0 && items[i].height === 0) {
 								needsRefresh = true;
 							}
 						}
