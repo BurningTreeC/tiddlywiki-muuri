@@ -3,7 +3,7 @@ tags: $:/tags/Stylesheet
 
 \define z-indexes()
 \rules only
-.tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame:not(.tc-muuri-dragging):not(.tc-muuri-positioning) {
+.tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame:not(.tc-muuri-dragging):not(.tc-muuri-positioning):not(:focus-within) {
 	z-index: $(zIndex)$;
 }
 \end
@@ -211,19 +211,19 @@ tags: $:/tags/Stylesheet
 
 	@media(max-width:<<sidebarBreakPoint>>) {
 	
-	.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-		border: none;
-		border-radius: 0px;
-		box-shadow: 1px 1px 1px <<colour tiddler-background>>;
-		-webkit-box-shadow: 1px 1px 1px <<colour tiddler-background>>;
-		-moz-box-shadow: 1px 1px 1px <<colour tiddler-background>>;
-		margin-top: 0em;
-		margin-left: 0em;
-		margin-right: 0em;
-		margin-bottom: 0em;
-	}
+		.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+			border: none;
+			border-radius: 0px;
+			box-shadow: 1px 1px 1px <<colour tiddler-background>>;
+			-webkit-box-shadow: 1px 1px 1px <<colour tiddler-background>>;
+			-moz-box-shadow: 1px 1px 1px <<colour tiddler-background>>;
+			margin-top: 0em;
+			margin-left: 0em;
+			margin-right: 0em;
+			margin-bottom: 0em;
+		}
 
-}
+	}
 
 </$reveal>
 
@@ -282,7 +282,7 @@ tags: $:/tags/Stylesheet
 
 	</$list>
 
-.tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-dragging, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-releasing {
+.tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-dragging, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-releasing, .tc-story-river.tc-muuri-river > .tc-tiddler-frame:focus-within {
 	z-index: <<storyHighZIndex>>;
 }
 
