@@ -33,108 +33,106 @@ var MuuriStoryView = function(listWidget) {
 	this.itemTitlesArray = [];
 	this.connectedGrids = [];
 	this.collectAttributes();
-	if(this.itemTemplate && this.itemEditTemplate) {
-		this.muuri = this.createMuuriGrid();
-		if(this.muuri) {
-			this.muuri.listWidget = listWidget;
-			var items = this.muuri.getItems();
-			for(var i=0; i<items.length; i++) {
-				var element = items[i].element;
-				this.itemTitlesArray.push(this.getItemTitle(items[i]));
-				this.addResizeListener(element,function() {
-					self.refreshMuuriGrid();
-				});
-			}
-			this.addResizeListener(self.muuri.element,function() {
+	this.muuri = this.createMuuriGrid();
+	if(this.muuri) {
+		this.muuri.listWidget = listWidget;
+		var items = this.muuri.getItems();
+		for(var i=0; i<items.length; i++) {
+			var element = items[i].element;
+			this.itemTitlesArray.push(this.getItemTitle(items[i]));
+			this.addResizeListener(element,function() {
 				self.refreshMuuriGrid();
 			});
-			this.muuri.synchronizeGrid = function() {
-				self.synchronizeGrid();
-			}
-			this.muuri.on("dragReleaseEnd",function(item) {
-				self.onDragReleaseEnd(item);
-				var style = item.element.style;
-				style.width = "";
-				style.height = "";
-				self.refreshMuuriGrid();
-				//self.muuri.refreshItems([item]);
-			})
-			.on("add",function(items) {
-				self.updateZIndexList();
-				self.muuri.element.style.height = "";
-			})
-			.on("remove",function(items) {
-				self.updateZIndexList();
-				self.muuri.element.style.height = "";
-			})
-			.on("dragInit",function(item,event) {
-				self.inheritIframeEvents();
-				var style = item.element.style;
-				style.width = item.width + "px";
-				style.height = item.height + "px";
-			})
-			.on("dragStart",function(item,event) {
-
-			})
-			.on("dragEnd",function(item,event) {
-				item.event = event;
-				self.restoreIframeEvents();
-			})
-			.on("layoutStart",function() {
-			})
-			.on("layoutEnd",function(items) {
-				var isDragging = false;
-				for(var i=0; i<items.length; i++) {
-					if(items[i].isDragging()) {
-						isDragging = true;
-						break;
-					}
-				}
-				if(!isDragging) {
-					self.updateZIndexList();
-				}
-			})
-			.on("layoutAbort",function(items) {
-
-			})
-			.on("beforeSend",function(data) {
-				data.toGrid.refreshItems([data.item]);
-			})
-			.on("send",function(data) {
-				data.item.fromGrid = data.fromGrid;
-			})
-			.on("beforeReceive",function(data) {
-
-			})
-			.on("receive",function(data) {
-
-			})
-			.on("destroy",function() {
-				self.removeAllListeners();
-			});
-			this.addSelfToGlobalGrids();
-			this.updateZIndexList();
-			this.observer = new MutationObserver(function(mutations) {
-				$tw.utils.each(mutations,function(mutation) {
-					if(mutation.removedNodes) {
-						var items = self.muuri.getItems();
-						self.muuri.refreshItems();
-						var needsRefresh = false;
-						for(var i=0; i<items.length; i++) {
-							if(items[i].width === 0 && items[i].height === 0) {
-								needsRefresh = true;
-							}
-						}
-						if(needsRefresh) {
-							self.observer.disconnect();
-							self.muuri.destroy(true);
-							self.findMuuriWidget().refreshSelf();
-						}
-					}
-				});
-			});
-			this.observer.observe(this.muuri.element,{attributes: true, childList: true, characterData: true});
 		}
+		this.addResizeListener(self.muuri.element,function() {
+			self.refreshMuuriGrid();
+		});
+		this.muuri.synchronizeGrid = function() {
+			self.synchronizeGrid();
+		}
+		this.muuri.on("dragReleaseEnd",function(item) {
+			self.onDragReleaseEnd(item);
+			var style = item.element.style;
+			style.width = "";
+			style.height = "";
+			self.refreshMuuriGrid();
+			//self.muuri.refreshItems([item]);
+		})
+		.on("add",function(items) {
+			self.updateZIndexList();
+			self.muuri.element.style.height = "";
+		})
+		.on("remove",function(items) {
+			self.updateZIndexList();
+			self.muuri.element.style.height = "";
+		})
+		.on("dragInit",function(item,event) {
+			self.inheritIframeEvents();
+			var style = item.element.style;
+			style.width = item.width + "px";
+			style.height = item.height + "px";
+		})
+		.on("dragStart",function(item,event) {
+
+		})
+		.on("dragEnd",function(item,event) {
+			item.event = event;
+			self.restoreIframeEvents();
+		})
+		.on("layoutStart",function() {
+		})
+		.on("layoutEnd",function(items) {
+			var isDragging = false;
+			for(var i=0; i<items.length; i++) {
+				if(items[i].isDragging()) {
+					isDragging = true;
+					break;
+				}
+			}
+			if(!isDragging) {
+				self.updateZIndexList();
+			}
+		})
+		.on("layoutAbort",function(items) {
+
+		})
+		.on("beforeSend",function(data) {
+			data.toGrid.refreshItems([data.item]);
+		})
+		.on("send",function(data) {
+			data.item.fromGrid = data.fromGrid;
+		})
+		.on("beforeReceive",function(data) {
+
+		})
+		.on("receive",function(data) {
+
+		})
+		.on("destroy",function() {
+			self.removeAllListeners();
+		});
+		this.addSelfToGlobalGrids();
+		this.updateZIndexList();
+		this.observer = new MutationObserver(function(mutations) {
+			$tw.utils.each(mutations,function(mutation) {
+				if(mutation.removedNodes) {
+					var items = self.muuri.getItems();
+					self.muuri.refreshItems();
+					var needsRefresh = false;
+					for(var i=0; i<items.length; i++) {
+						if(items[i].width === 0 && items[i].height === 0) {
+							needsRefresh = true;
+						}
+					}
+					if(needsRefresh) {
+						self.observer.disconnect();
+						self.muuri.destroy(true);
+						self.findMuuriWidget().refreshSelf();
+					}
+				}
+			});
+		});
+		this.observer.observe(this.muuri.element,{attributes: true, childList: true, characterData: true});
 	}
 };
 
