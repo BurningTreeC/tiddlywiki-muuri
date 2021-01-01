@@ -1,0 +1,70 @@
+title: $:/plugins/BTC/Muuri/ui/ControlPanel/settings
+tags: $:/tags/ControlPanel/Appearance
+caption: Muuri
+
+\define breakpoint-options()
+<$list filter="[range[1,$(rangeMax)$]]">
+	<option value=<<currentTiddler>>><$text text=<<currentTiddler>>/></option>
+</$list>
+\end
+
+!!! Configure the left/right alignment of tiddlers in the ~StoryRiver
+
+<$select tiddler="$:/config/muuri/storyview/align-right" default="yes">
+	<option value="yes">align from right to left</option>
+	<option value="no">align from left to right</option>
+</$select>
+
+!!! Configure the top/bottom alignment of tiddlers in the ~StoryRiver
+
+<$select tiddler="$:/config/muuri/storyview/align-bottom" default="no">
+	<option value="no">align from top to bottom</option>
+	<option value="yes">align from bottom to top</option>
+</$select>
+
+!!! Configure the maximum amount of columns
+
+<$edit-text tiddler="$:/config/muuri/storyview/columns/max" tag="input" default="" placeholder=" max-columns"/>
+
+!!! Configure the top margin of the ~StoryRiver
+
+<$edit-text tiddler="$:/config/muuri/storyview/story-river/margin-top" tag="input" default="" placeholder=" story-river top margin"/>
+
+!!! Configure the right and left margin of tiddlers in the ~StoryRiver
+
+<$edit-text tiddler="$:/config/muuri/tiddler/margin" tag="input" default="" placeholder=" tiddler left/right margin"/>
+
+!!! Configure the bottom margin of tiddlers in the ~StoryRiver
+
+<$edit-text tiddler="$:/config/muuri/tiddler/margin-bottom" tag="input" default="" placeholder=" tiddler bottom margin"/>
+
+!!! Configure the drag-sort action for tiddlers that are being dragged over other tiddlers in the ~StoryRiver
+
+<$select tiddler="$:/config/muuri/storyview/dragsort-action" default="move">
+	<option value="move">move</option>
+	<option value="swap">swap</option>
+</$select>
+
+!!! Configure the drag-sort threshold (after how many percent of overlap between two tiddlers a drag-sort is triggered) for tiddlers that are being dragged over other tiddlers in the ~StoryRiver
+
+<$edit-text tiddler="$:/config/muuri/storyview/dragsort-threshold" tag="input" default="" placeholder=" drag-sort threshold"/>
+
+!!! Configure the first breakpoint (in columns) after which the padding of tiddlers in the ~StoryRiver becomes smaller
+
+<$select tiddler="$:/config/muuri/storyview/first-break-point" default="3">
+	<$set name="rangeMax" value={{$:/config/muuri/storyview/columns/max}}>
+		<<breakpoint-options>>
+	</$set>
+</$select>
+
+!!! Configure the second breakpoint (in columns) after which the padding of tiddlers in the ~StoryRiver becomes smaller
+
+<$select tiddler="$:/config/muuri/storyview/second-break-point" default="5">
+	<$set name="rangeMax" value={{$:/config/muuri/storyview/columns/max}}>
+		<<breakpoint-options>>
+	</$set>
+</$select>
+
+!!! Configure the drag-handle (through a `CSS selector` - for example `.tc-tiddler-title`) for the dragging of tiddlers in the ~StoryRiver
+
+<$edit-text tiddler="$:/config/muuri/storyview/drag-handle" tag="input" default="" placeholder=" drag handle"/>

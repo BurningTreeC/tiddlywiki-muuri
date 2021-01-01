@@ -21,7 +21,7 @@ and all configuration options for your Muuri ~StoryView are then done using the 
 |drop-actions |an action string that gets triggered when dropping an item from another grid to the current one. within the action string, the actionTiddler variable contains the item-title, the modifier variable contains the modifier held while dragging |
 |dragsort-action |"swap" or "move" (defaults to "move") |
 |dragsort-threshold |How many percent (defaults to 40) the intersection area between the dragged item and the compared item should be from the maximum potential intersection area between the items before sorting is triggered. |
-|dragsort-heuristics-interval |Defines the amount of time the dragged item must be still before the drag-sort is started. |
+|dragsort-heuristics-interval |Defines the amount of time in ms the dragged item must be still before the drag-sort is started. Defaults to 100 |
 |container-class |the class that gets applied to the parent element of the list widget. defaults to "tc-muuri-river" |
 |item-class |the class of the elements that should be included in the muuri grid. defaults to "tc-tiddler-frame" |
 |drag-handle |a css selector that defines the handle used for dragging. if none is given, the whole item is the handle |
