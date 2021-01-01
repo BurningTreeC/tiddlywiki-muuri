@@ -7,7 +7,8 @@
 				"title": "$:/plugins/BTC/Muuri/modules/storyviews/muuri.js",
 				"module-type": "storyview",
 				"name": "muuri",
-				"description": "Muuri StoryView"
+				"description": "Muuri StoryView",
+				"muuri-tiddler-width": "1"
 			}
 		},{
 			"file": "lib/muuri.min.js",
