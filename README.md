@@ -33,6 +33,6 @@ enable the plugin in your tiddlywiki.info file (see https://tiddlywiki.com/#tidd
 ### The TiddlyWiki SingleFile way
 
 - go to https://burningtreec.github.io/tiddlywiki-muuri
-- drag the link to in the "Installation" tiddler to the Wiki where you want to install it
+- drag the link in the "Installation" tiddler to the Wiki where you want to install it
 - save your Wiki and reload
 
