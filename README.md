@@ -33,9 +33,6 @@ enable the plugin in your tiddlywiki.info file (see https://tiddlywiki.com/#tidd
 ### The TiddlyWiki SingleFile way
 
 - go to https://burningtreec.github.io/tiddlywiki-muuri
-- open the "More" Tab in the Sidebar
-- open the "Plugins" Tab in the "More" Submenu
-- locate the plugin titled "A gridded storyview"
-- drag the link to the Wiki where you want to install it
+- drag the link to in the "Installation" tiddler to the Wiki where you want to install it
 - save your Wiki and reload
 
