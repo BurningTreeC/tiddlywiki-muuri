@@ -1,5 +1,6 @@
 title: $:/plugins/BTC/Muuri/css
 tags: $:/tags/Stylesheet
+muuri-tiddler-width: 1
 
 \define set-muuri-tiddler-width(suffix)
 .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
