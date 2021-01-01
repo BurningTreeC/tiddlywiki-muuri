@@ -12,6 +12,9 @@ tags: $:/tags/Stylesheet
 	width: calc((100$suffix$ / <<columns>>) - <<margin>> - (<<margin>> / <<columns>>));
 }
 \end
+\define sidebarbreakpoint-minus-one()
+<$text text={{{ [[$(sidebarBreakPoint)$]removesuffix[px]subtract[1]addsuffix[px]] ~[[$(sidebarBreakPoint)$]] }}}/>
+\end
 
 .tc-muuri-dragging {
 	z-index: 1;
@@ -129,7 +132,7 @@ tags: $:/tags/Stylesheet
 
 		}
 
-		@media(max-width:<<sidebarBreakPoint>>) {
+		@media(max-width:<<sidebarbreakpoint-minus-one>>) {
 
 			.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 				position: absolute;
@@ -183,7 +186,7 @@ tags: $:/tags/Stylesheet
 				}
 			}
 	
-			@media (max-width: <<sidebarBreakPoint>>) {
+			@media (max-width: <<sidebarbreakpoint-minus-one>>) {
 				.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 					width: calc(100% / 2);
 				}
@@ -209,7 +212,7 @@ tags: $:/tags/Stylesheet
 
 			}
 
-			@media(max-width:<<sidebarBreakPoint>>) {
+			@media(max-width:<<sidebarbreakpoint-minus-one>>) {
 			
 				.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 					border: none;
