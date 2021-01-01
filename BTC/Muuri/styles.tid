@@ -21,281 +21,276 @@ tags: $:/tags/Stylesheet
 	position: absolute;
 }
 
-<$reveal state="$:/view" type="match" text="muuri">
+<$list filter="[{$:/view}match[muuri]]" variable="ignore">
 
-<$vars count={{{ [{$:/config/muuri/storyview/columns}!match[]] ~[[1]] }}} margin={{$:/config/muuri/tiddler/margin}} marginSuffix={{{ [{$:/config/muuri/storyview/align-right}match[yes]addprefix[right]removesuffix[yes]] ~[[$:/config/muuri/storyview/align-right]is[missing]then[right]] ~[[left]] }}} sidebarBreakPoint={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}} marginBottom={{$:/config/muuri/tiddler/margin-bottom}} storyHighZIndex={{{ [list[$:/StoryList]count[]add[201]] }}} firstBreakPoint={{$:/config/muuri/storyview/first-break-point}} secondBreakPoint={{$:/config/muuri/storyview/second-break-point}}>
+	<$vars count={{{ [{$:/config/muuri/storyview/columns}!match[]] ~[[1]] }}} margin={{$:/config/muuri/tiddler/margin}} marginSuffix={{{ [{$:/config/muuri/storyview/align-right}match[yes]addprefix[right]removesuffix[yes]] ~[[$:/config/muuri/storyview/align-right]is[missing]then[right]] ~[[left]] }}} sidebarBreakPoint={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}} marginBottom={{$:/config/muuri/tiddler/margin-bottom}} storyHighZIndex={{{ [list[$:/StoryList]count[]add[201]] }}} firstBreakPoint={{$:/config/muuri/storyview/first-break-point}} secondBreakPoint={{$:/config/muuri/storyview/second-break-point}}>
 
-@media(min-width:<<sidebarBreakPoint>>) {
-
-.tc-story-river.tc-muuri-river {
-	min-height: calc(100vh - 2em);
-}
-
-.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-	position: absolute;
-}
-
-.tc-drag-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-	width: calc((100% / <<count>>) - <<margin>> - (<<margin>> / <<count>>));
-	margin-<<marginSuffix>>: <<margin>>;
-	margin-bottom: <<marginBottom>>;
-}
-
-<$list filter="[list[$:/StoryList]has[muuri-tiddler-width]]">
-
-	<$set name="columns" value={{{ [<currentTiddler>get[muuri-tiddler-width]] }}}>
-	
-		<$set name="cssEscapedTitle" value={{{ [<currentTiddler>escapecss[]] }}}>
-		
-			<<set-muuri-tiddler-width "%">>
-		
-		</$set>
-
-	</$set>
-
-</$list>
-
-.tc-story-river.tc-muuri-river {
-	margin-top: {{$:/config/muuri/storyview/story-river/margin-top}};
-}
-
-.tc-sidebar-scrollable {
-	padding-left: calc(42px - <<margin>>);
-}
-
-<$reveal state="$:/config/muuri/storyview/columns" type="gt" text=<<firstBreakPoint>>>
-
-.tc-drag-container > .tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
-	padding: 0;
-}
-
-.tc-drag-container > .tc-tiddler-frame button.tc-fold-banner, .tc-drag-container > .tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
-	margin-left: -29px;
-}
-
-<$reveal state="$:/config/muuri/storyview/columns" type="lt" text=<<secondBreakPoint>>>
-
-.tc-drag-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-	padding: 2em;
-}
-
-.tc-drag-container > .tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
-	margin: 0 -2em 0 -2em;
-}
-
-</$reveal>
-
-<$reveal state="$:/config/muuri/storyview/columns" type="gteq" text=<<secondBreakPoint>>>
-
-.tc-drag-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-	padding: 1em;
-}
-
-.tc-drag-container > .tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
-	margin: 0 -1em 0 -1em;
-}
-
-.tc-drag-container > .tc-tiddler-frame button.tc-fold-banner, .tc-drag-container > .tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
-	margin-left: -15px;
-}
-
-.tc-drag-container > .tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
-	margin-top: -6px;
-}
-
-</$reveal>
-
-</$reveal>
-
-<$reveal state="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" type="match" text="fixed-fluid">
-
-.tc-sidebar-scrollable {
-	left: calc({{$:/themes/tiddlywiki/vanilla/metrics/storyright}} + 42px);
-}
-
-	<$reveal state="$:/state/sidebar" type="nomatch" text="no">
+		@media(min-width:<<sidebarBreakPoint>>) {
 
 			.tc-story-river.tc-muuri-river {
-				width: {{$:/themes/tiddlywiki/vanilla/metrics/storywidth}};
+				min-height: calc(100vh - 2em);
 			}
 
-	</$reveal>
+			.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+				position: absolute;
+			}
 
-</$reveal>
+			.tc-drag-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+				width: calc((100% / <<count>>) - <<margin>> - (<<margin>> / <<count>>));
+				margin-<<marginSuffix>>: <<margin>>;
+				margin-bottom: <<marginBottom>>;
+			}
 
-	.tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
-		z-index: -1;
-	}
+			<$list filter="[list[$:/StoryList]has[muuri-tiddler-width]]">
 
-}
+				<$set name="columns" value={{{ [<currentTiddler>get[muuri-tiddler-width]] }}}>
+				
+					<$set name="cssEscapedTitle" value={{{ [<currentTiddler>escapecss[]] }}}>
+					
+						<<set-muuri-tiddler-width "%">>
+					
+					</$set>
 
-@media(max-width:<<sidebarBreakPoint>>) {
+				</$set>
 
-.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-	position: absolute;
-}
+			</$list>
 
-.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-	width: calc((100% / 2) - <<margin>> - (<<margin>> / 2));
-	margin-<<marginSuffix>>: <<margin>>;
-	margin-bottom: <<marginBottom>>;
-}
+			.tc-story-river.tc-muuri-river {
+				margin-top: {{$:/config/muuri/storyview/story-river/margin-top}};
+			}
 
-.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-titlebar {
-	font-size: 1.5em;
-}
+			.tc-sidebar-scrollable {
+				padding-left: calc(42px - <<margin>>);
+			}
 
-.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-titlebar .tc-tiddler-controls .tc-drop-down {
-	font-size: 1em;
-}
+			<$list filter="[<count>compare:number:gt<firstBreakPoint>]" variable="ignore">
 
-.tc-story-river.tc-muuri-river {
-	margin-top: {{$:/config/muuri/storyview/story-river/margin-top}};
-}
+				.tc-drag-container > .tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
+					padding: 0;
+				}
 
-.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
-	padding: 0;
-}
+				.tc-drag-container > .tc-tiddler-frame button.tc-fold-banner, .tc-drag-container > .tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
+					margin-left: -29px;
+				}
 
-	.tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
-		z-index: -1;
-	}
+				<$list filter="[<count>compare:number:lt<secondBreakPoint>" variable="ignore">
 
-}
+					.tc-drag-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+						padding: 2em;
+					}
 
-<$reveal state="$:/config/muuri/storyview/drag-enabled" type="match" text="yes">
+					.tc-drag-container > .tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
+						margin: 0 -2em 0 -2em;
+					}
 
-	.tc-story-river.tc-muuri-river > .tc-tiddler-frame img {
-		pointer-events: none;
-	}
+				</$list>
 
-</$reveal>
+				<$list filter="[<count>compare:number:gteq<secondBreakPoint>" variable="ignore">
 
-<$reveal state="$:/config/muuri/storyview/fill-gaps" type="match" text="yes">
+					.tc-drag-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+						padding: 1em;
+					}
 
-	@media (min-width: <<sidebarBreakPoint>>) {
-		.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-			width: calc(100% / <<count>>);
+					.tc-drag-container > .tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
+						margin: 0 -1em 0 -1em;
+					}
+
+					.tc-drag-container > .tc-tiddler-frame button.tc-fold-banner, .tc-drag-container > .tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
+						margin-left: -15px;
+					}
+
+					.tc-drag-container > .tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
+						margin-top: -6px;
+					}
+
+				</$list>
+
+			</$list>
+
+			<$list filter="[{$:/themes/tiddlywiki/vanilla/options/sidebarlayout}match[fixed-fluid]" variable="ignore">
+
+				.tc-sidebar-scrollable {
+					left: calc({{$:/themes/tiddlywiki/vanilla/metrics/storyright}} + 42px);
+				}
+
+				<$list filter="[{$:/state/sidebar}!match[no]]" variable="ignore">
+
+					.tc-story-river.tc-muuri-river {
+						width: {{$:/themes/tiddlywiki/vanilla/metrics/storywidth}};
+					}
+
+				</$list>
+
+			</$list>
+
+			.tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
+				z-index: -1;
+			}
+
 		}
-		
+
+		@media(max-width:<<sidebarBreakPoint>>) {
+
+			.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+				position: absolute;
+			}
+
+			.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+				width: calc((100% / 2) - <<margin>> - (<<margin>> / 2));
+				margin-<<marginSuffix>>: <<margin>>;
+				margin-bottom: <<marginBottom>>;
+			}
+
+			.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-titlebar {
+				font-size: 1.5em;
+			}
+
+			.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-titlebar .tc-tiddler-controls .tc-drop-down {
+				font-size: 1em;
+			}
+
+			.tc-story-river.tc-muuri-river {
+				margin-top: {{$:/config/muuri/storyview/story-river/margin-top}};
+			}
+
+			.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
+				padding: 0;
+			}
+
+			.tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
+				z-index: -1;
+			}
+
+		}
+
+		<$list filter="[{$:/config/muuri/storyview/drag-enabled}match[yes]]" variable="ignore">
+
+			.tc-story-river.tc-muuri-river > .tc-tiddler-frame img {
+				pointer-events: none;
+			}
+
+		</$list>
+
+		<$list filter="[{$:/config/muuri/storyview/fill-gaps}match[yes]]" variable="ignore">
+
+			@media (min-width: <<sidebarBreakPoint>>) {
+				.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+					width: calc(100% / <<count>>);
+				}
+				
+				.tc-story-river.tc-muuri-river {
+					margin-top: 0;
+				}
+			}
+	
+			@media (max-width: <<sidebarBreakPoint>>) {
+				.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+					width: calc(100% / 2);
+				}
+
+				.tc-story-river.tc-muuri-river {
+					margin-top: 0;
+				}
+			}
+	
+			@media(min-width:<<sidebarBreakPoint>>) {
+			
+				.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+					border: none;
+					border-radius: 0px;
+					box-shadow: 1px 1px 1px <<colour tiddler-background>>;
+					-webkit-box-shadow: 1px 1px 1px <<colour tiddler-background>>;
+					-moz-box-shadow: 1px 1px 1px <<colour tiddler-background>>;
+					margin-top: 0em;
+					margin-left: 0em;
+					margin-right: 0em;
+					margin-bottom: 0em;
+				}
+
+			}
+
+			@media(max-width:<<sidebarBreakPoint>>) {
+			
+				.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+					border: none;
+					border-radius: 0px;
+					box-shadow: 1px 1px 1px <<colour tiddler-background>>;
+					-webkit-box-shadow: 1px 1px 1px <<colour tiddler-background>>;
+					-moz-box-shadow: 1px 1px 1px <<colour tiddler-background>>;
+					margin-top: 0em;
+					margin-left: 0em;
+					margin-right: 0em;
+					margin-bottom: 0em;
+				}
+
+			}
+
+		</$list>
+
+		<$list filter="[{$:/config/muuri/storyview/drag-enabled}match[no]]" variable="ignore">
+
+			.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+				touch-action: auto !important;
+				user-select: auto !important;
+				-ms-user-select: text !important;
+				-moz-user-select: text !important;
+				-webkit-user-select: text !important;
+			}
+
+		</$list>
+
+		<$list filter="[all[tiddlers]prefix[$:/state/popup/more-]limit[1]]">
+
+			.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tag-list-item {
+				z-index: -1;
+			}
+
+			.tc-story-river.tc-muuri-river > .tc-tiddler-frame [data-grid="muuri"] {
+				z-index: -1 !important;
+			}
+
+		</$list>
+
 		.tc-story-river.tc-muuri-river {
-			margin-top: 0;
-		}
-	}
-	
-	@media (max-width: <<sidebarBreakPoint>>) {
-		.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-			width: calc(100% / 2);
+			padding: 0;
 		}
 
-		.tc-story-river.tc-muuri-river {
-			margin-top: 0;
-		}
-	}
-	
-	@media(min-width:<<sidebarBreakPoint>>) {
-	
-	.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-		border: none;
-		border-radius: 0px;
-		box-shadow: 1px 1px 1px <<colour tiddler-background>>;
-		-webkit-box-shadow: 1px 1px 1px <<colour tiddler-background>>;
-		-moz-box-shadow: 1px 1px 1px <<colour tiddler-background>>;
-		margin-top: 0em;
-		margin-left: 0em;
-		margin-right: 0em;
-		margin-bottom: 0em;
-	}
+		<$list filter="[{$:/themes/tiddlywiki/vanilla/options/stickytitles}match[yes]]" variable="ignore">
 
-}
+			.tc-tiddler-title {
+				position: initial;
+				top: initial;
+				background: initial;
+			}
 
-	@media(max-width:<<sidebarBreakPoint>>) {
-	
-		.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-			border: none;
-			border-radius: 0px;
-			box-shadow: 1px 1px 1px <<colour tiddler-background>>;
-			-webkit-box-shadow: 1px 1px 1px <<colour tiddler-background>>;
-			-moz-box-shadow: 1px 1px 1px <<colour tiddler-background>>;
-			margin-top: 0em;
-			margin-left: 0em;
-			margin-right: 0em;
-			margin-bottom: 0em;
-		}
+		</$list>
 
-	}
+		<$list filter="[list[$:/state/muuri/storyriver/z-indexes]]" variable="zIndexTiddler">
 
-</$reveal>
+			<$set name="zIndex" value={{{[list[$:/state/muuri/storyriver/z-indexes]allafter<zIndexTiddler>] +[count[]] }}}>
 
-<$reveal state="$:/state/config/muuri/storyview/drag-enabled" type="match" text="no">
+				<$set name="cssEscapedTitle" value={{{ [<zIndexTiddler>escapecss[]] }}}>
 
-.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-	touch-action: auto !important;
-	user-select: auto !important;
-	-ms-user-select: text !important;
-	-moz-user-select: text !important;
-	-webkit-user-select: text !important;
-}
+					<<z-indexes>>
 
-</$reveal>
-
-<$list filter="[all[tiddlers]prefix[$:/state/popup/more-]limit[1]]">
-
-.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tag-list-item {
-	z-index: -1;
-}
-
-.tc-story-river.tc-muuri-river > .tc-tiddler-frame [data-grid="muuri"] {
-	z-index: -1 !important;
-}
-
-</$list>
-
-.tc-story-river.tc-muuri-river {
-	padding: 0;
-}
-
-<$reveal state="$:/themes/tiddlywiki/vanilla/options/stickytitles" type="match" text="yes">
-
-		/*
-		position: sticky doesn't work well in the muuri view, it's disabled
-		*/
-	.tc-tiddler-title {
-		position: initial;
-		top: initial;
-		background: initial;
-	}
-
-</$reveal>
-
-	<$list filter="[list[$:/state/muuri/storyriver/z-indexes]]" variable="zIndexTiddler">
-
-		<$set name="zIndex" value={{{[list[$:/state/muuri/storyriver/z-indexes]allafter<zIndexTiddler>] +[count[]] }}}>
-
-			<$set name="cssEscapedTitle" value={{{ [<zIndexTiddler>escapecss[]] }}}>
-
-				<<z-indexes>>
+				</$set>
 
 			</$set>
 
-		</$set>
+		</$list>
 
-	</$list>
+		.tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-dragging, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-releasing, .tc-story-river.tc-muuri-river > .tc-tiddler-frame:focus-within, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-active {
+			z-index: <<storyHighZIndex>>;
+		}
 
-.tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-dragging, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-releasing, .tc-story-river.tc-muuri-river > .tc-tiddler-frame:focus-within, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-active {
-	z-index: <<storyHighZIndex>>;
-}
+		<$list filter="[{$:/config/muuri/storyview/hide-titles-tags}match[yes]]" variable="ignore">
 
-<$reveal state="$:/config/muuri/storyview/hide-titles-tags" type="match" text="yes">
+			.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-titlebar, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-subtitle, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tags-wrapper {
+				display: none;
+			}
 
-.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-titlebar, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-subtitle, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tags-wrapper {
-	display: none;
-}
+		</$list>
 
-</$reveal>
+	</$vars>
 
-</$reveal>
-
-</$vars>
-
-</$reveal>
+</$list>
