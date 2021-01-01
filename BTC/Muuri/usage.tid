@@ -1,0 +1,34 @@
+title: $:/plugins/BTC/Muuri/usage
+
+You can use the Muuri ~StoryView by adding `storyview="muuri"` to a list widget and defining the configuration namespace through the attribute `storyViewConfig`
+
+The configuration namespace can for example look like this:
+
+```
+storyViewConfig="$:/config/muuri/"
+```
+
+and all configuration options for your Muuri ~StoryView are then done using the namespace `$:/config/muuri/` plus the ''configuration suffix'' shown below
+
+!!! Configuration
+
+|suffix |purpose |h
+|drag-enabled |"yes" or "no" - enable or disable dragging |
+|storylist |the storylist tiddler where list changes through dragging should get saved |
+|storylist-field |the field of the storylist tiddler (defaults to "list")|
+|align-right |"yes" or "no" ("yes" by default) - determines if tiddlers are aligned right-to-left or left-to-right |
+|align-bottom |"yes" or "no" ("no" by default) - determines if tiddlers are aligned top-to-bottom or bottom-to-top |
+|drop-actions |an action string that gets triggered when dropping an item from another grid to the current one. within the action string, the actionTiddler variable contains the item-title, the modifier variable contains the modifier held while dragging |
+|dragsort-action |"swap" or "move" (defaults to "move") |
+|dragsort-threshold |How many percent (defaults to 40) the intersection area between the dragged item and the compared item should be from the maximum potential intersection area between the items before sorting is triggered. |
+|dragsort-heuristics-interval |Defines the amount of time the dragged item must be still before the drag-sort is started. |
+|container-class |the class that gets applied to the parent element of the list widget. defaults to "tc-muuri-river" |
+|item-class |the class of the elements that should be included in the muuri grid. defaults to "tc-tiddler-frame" |
+|drag-handle |a css selector that defines the handle used for dragging. if none is given, the whole item is the handle |
+|connection-selector |a css selector that defines the grid instances that should be connected with the current grid |
+|drag-container |a css selector for the container element where the items will be appended to during the time of the drag. defaults to the current grid |
+|drag-autoscroll-axis |can be "x", "y" or "xy" |
+
+The ''storylist'' can also be defined by the `tv-muuri-story-list` variable
+
+The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
