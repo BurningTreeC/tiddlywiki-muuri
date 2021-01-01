@@ -399,13 +399,14 @@ MuuriStoryView.prototype.collectOptions = function() {
 				return [
 					{
 						element: self.getScrollContainer(item.getGrid().element),
-						axis: self.dragAutoScrollAxis && self.dragAutoScrollAxis === "y" ? Muuri.ItemDragAutoScroll.AXIS_Y : 
-								self.dragAutoScrollAxis && self.dragAutoScrollAxis === "x" ? Muuri.ItemDragAutoScroll.AXIS_X : 
-								self.dragAutoScrollAxis && self.dragAutoScrollAxis === "xy" ? Muuri.ItemDragAutoScroll.AXIS_X | 
-								Muuri.ItemDragAutoScroll.AXIS_Y : Muuri.ItemDragAutoScroll.AXIS_Y
+						axis: self.dragAutoScrollAxis && self.dragAutoScrollAxis === "y" ? Muuri.AutoScroller.AXIS_Y : 
+								self.dragAutoScrollAxis && self.dragAutoScrollAxis === "x" ? Muuri.AutoScroller.AXIS_X : 
+								self.dragAutoScrollAxis && self.dragAutoScrollAxis === "xy" ? Muuri.AutoScroller.AXIS_X | 
+								Muuri.AutoScroller.AXIS_Y : Muuri.AutoScroller.AXIS_Y
 					}
 				];
 			},
+			handle: Muuri.AutoScroller.pointerHandle(100),
 			sortDuringScroll: false,
 			smoothStop: false,
 			threshold: 0
