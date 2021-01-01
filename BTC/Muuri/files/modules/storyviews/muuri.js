@@ -702,7 +702,7 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 		this.muuri.updateSettings({
 			dragHandle: self.dragHandle
 		});
-		this.hardRefresh();
+		//this.hardRefresh();
 	}
 	if(this.muuri && changedTiddlers[this.configNamespace + "align-right"]) {
 		this.alignRight = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-right") !== "no";

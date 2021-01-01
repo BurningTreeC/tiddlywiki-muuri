@@ -64,7 +64,3 @@ caption: Muuri
 		<<breakpoint-options>>
 	</$set>
 </$select>
-
-!!! Configure the drag-handle (through a `CSS selector` - for example `.tc-tiddler-title`) for the dragging of tiddlers in the ~StoryRiver
-
-<$edit-text tiddler="$:/config/muuri/storyview/drag-handle" tag="input" default="" placeholder=" drag handle"/>
