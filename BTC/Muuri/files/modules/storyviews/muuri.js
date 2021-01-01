@@ -378,7 +378,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 				if((e.target && e.target.tagName && (self.noDragTags.indexOf(e.target.tagName) > -1 || 
 					self.lookupDragTarget(e.target)) || self.detectWithinCodemirror(e) || !self.detectGridWithinGrid(e.target))) {
 					return false;
-				} else if(e.deltaTime > 100) {
+				} else if(e.deltaTime > 100 && e.distance > 10) {
 					return Muuri.ItemDrag.defaultStartPredicate(item,e);
 				}
 			} else {
