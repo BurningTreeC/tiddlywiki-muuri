@@ -3,5 +3,6 @@
 	"description": "A gridded storyview",
 	"author": "Simon Huber",
 	"version": "0.2.0-prerelease",
-	"list": "readme license usage"
+	"list": "readme license usage",
+	"muuri-tiddler-width": "1"
 }
