@@ -15,6 +15,60 @@ tags: $:/tags/Stylesheet
 \define sidebarbreakpoint-minus-one()
 <$text text={{{ [[$(sidebarBreakPoint)$]removesuffix[px]subtract[1]addsuffix[px]] ~[[$(sidebarBreakPoint)$]] }}}/>
 \end
+\define set-muuri-tiddler-padding-high()
+.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
+	padding: 28px 42px 42px 42px;
+}
+
+.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
+	margin-left: -35px;
+}
+
+.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
+	margin-top: 0px;
+}
+
+.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame .tc-tiddler-info {
+	margin: 0 -42px 0 -42px;
+	padding: 14px 42px 14px 42px;
+}
+\end
+\define set-muuri-tiddler-padding-medium()
+.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
+	padding: 2em;
+}
+
+.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
+	margin-left: -29px;
+}
+
+.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
+	margin-top: 0px;
+}
+
+.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame .tc-tiddler-info {
+	margin: 0 -2em 0 -2em;
+	padding: 0;
+}
+\end
+\define set-muuri-tiddler-padding-low()
+.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
+	padding: 1em;
+}
+
+.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
+	margin-left: -15px;
+}
+
+.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
+	margin-top: -6px;
+}
+
+.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame .tc-tiddler-info {
+	margin: 0 -1em 0 -1em;
+	padding: 0;
+}
+\end
 
 .tc-muuri-dragging {
 	z-index: 1;
@@ -44,20 +98,6 @@ tags: $:/tags/Stylesheet
 				margin-bottom: <<marginBottom>>;
 			}
 
-			<$list filter="[list[$:/StoryList]has[muuri-tiddler-width]]">
-
-				<$set name="columns" value={{{ [<currentTiddler>get[muuri-tiddler-width]] }}}>
-				
-					<$set name="cssEscapedTitle" value={{{ [<currentTiddler>escapecss[]] }}}>
-					
-						<<set-muuri-tiddler-width "%">>
-					
-					</$set>
-
-				</$set>
-
-			</$list>
-
 			.tc-story-river.tc-muuri-river {
 				margin-top: {{$:/config/muuri/storyview/story-river/margin-top}};
 			}
@@ -76,7 +116,7 @@ tags: $:/tags/Stylesheet
 					margin-left: -29px;
 				}
 
-				<$list filter="[<count>compare:number:lt<secondBreakPoint>" variable="ignore">
+				<$list filter="[<count>compare:number:lt<secondBreakPoint>]" variable="ignore">
 
 					.tc-drag-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 						padding: 2em;
@@ -88,7 +128,7 @@ tags: $:/tags/Stylesheet
 
 				</$list>
 
-				<$list filter="[<count>compare:number:gteq<secondBreakPoint>" variable="ignore">
+				<$list filter="[<count>compare:number:gteq<secondBreakPoint>]" variable="ignore">
 
 					.tc-drag-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 						padding: 1em;
@@ -107,6 +147,42 @@ tags: $:/tags/Stylesheet
 					}
 
 				</$list>
+
+			</$list>
+
+			<$list filter="[list[$:/StoryList]has[muuri-tiddler-width]]">
+
+				<$set name="columns" value={{{ [<currentTiddler>get[muuri-tiddler-width]] }}}>
+				
+					<$set name="cssEscapedTitle" value={{{ [<currentTiddler>escapecss[]] }}}>
+					
+						<<set-muuri-tiddler-width "%">>
+
+						<$list filter="[<columns>compare:number:lteq<firstBreakPoint>]" variable="ignore">
+
+							<<set-muuri-tiddler-padding-high>>
+						
+						</$list>
+
+						<$list filter="[<columns>compare:number:gt<firstBreakPoint>]" variable="ignore">
+
+							<$list filter="[<columns>compare:number:lt<secondBreakPoint>]" variable="ignore">
+
+								<<set-muuri-tiddler-padding-medium>>
+
+							</$list>
+
+							<$list filter="[<columns>compare:number:gteq<secondBreakPoint>]" variable="ignore">
+
+								<<set-muuri-tiddler-padding-low>>
+
+							</$list>
+						
+						</$list>
+					
+					</$set>
+
+				</$set>
 
 			</$list>
 
