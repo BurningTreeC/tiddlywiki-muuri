@@ -1,3 +1,7 @@
 title: $:/plugins/BTC/Muuri/readme
 
-This plugin adds a new ~StoryView to TiddlyWiki5
+This plugin adds the Muuri ~StoryView to ~TiddlyWiki5
+
+The Muuri ~StoryView allows for building all kinds of layouts
+
+See the usage section for more details
