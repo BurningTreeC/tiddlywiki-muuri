@@ -59,11 +59,9 @@ var MuuriStoryView = function(listWidget) {
 			//self.muuri.refreshItems([item]);
 		})
 		.on("add",function(items) {
-			self.updateZIndexList();
 			self.muuri.element.style.height = "";
 		})
 		.on("remove",function(items) {
-			self.updateZIndexList();
 			self.muuri.element.style.height = "";
 		})
 		.on("dragInit",function(item,event) {
@@ -82,16 +80,7 @@ var MuuriStoryView = function(listWidget) {
 		.on("layoutStart",function() {
 		})
 		.on("layoutEnd",function(items) {
-			var isDragging = false;
-			for(var i=0; i<items.length; i++) {
-				if(items[i].isDragging()) {
-					isDragging = true;
-					break;
-				}
-			}
-			if(!isDragging) {
-				self.updateZIndexList();
-			}
+
 		})
 		.on("layoutAbort",function(items) {
 
@@ -112,7 +101,6 @@ var MuuriStoryView = function(listWidget) {
 			self.removeAllListeners();
 		});
 		this.addSelfToGlobalGrids();
-		this.updateZIndexList();
 		this.observer = new MutationObserver(function(mutations) {
 			$tw.utils.each(mutations,function(mutation) {
 				if(mutation.removedNodes) {
@@ -488,7 +476,6 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	this.dragEnabled = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
 	this.storyListTitle = this.listWidget.getVariable("tv-muuri-story-list") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist");
 	this.storyListField = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist-field") || "list";
-	this.zIndexTiddler = this.listWidget.wiki.getTiddlerText(this.configNamespace + "zindex-tiddler");
 	this.connectionSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "connection-selector");
 	this.dropActions = this.listWidget.getVariable("tv-muuri-drop-actions") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
 };
@@ -579,71 +566,6 @@ MuuriStoryView.prototype.lookupDragTarget = function(element) {
 		count += 1;
 	}
 	return false;
-};
-
-MuuriStoryView.prototype.updateZIndexList = function(options) {
-	var self = this;
-	if(this.zIndexTiddler) {
-		options = options || {};
-		//do something that updates z-indices
-		this.muuri.refreshItems(); //important
-		var items = this.muuri.getItems();
-		var itemColumns = [];
-		var sortedArray = [];
-		//get the x-coordinates for each column
-		for(var i=0; i<items.length; i++) {
-			var itemColumnsValue = items[i].left !== null && items[i].left !== undefined ? items[i].left + items[i].width : items[i]._layout._currentLeft;
-			if(itemColumns.indexOf(itemColumnsValue) === -1) {
-				itemColumns.push(itemColumnsValue);
-			}
-		}
-		//sort the columns left-to-right
-		itemColumns.sort(function(valueA,valueB) {
-			if(valueA >= valueB) return 1;
-			if(valueA < valueB) return -1;
-			return 0;
-		});
-		//now for each column, get the items that are members of it,
-		//push to a temporary array
-		//sort the temp array items by their _currentTop lowest to highest
-		//push the sorted items to the final sortedItems array
-		$tw.utils.each(itemColumns,function(columnValue) {
-			var columnMembers = [];
-			for(var k=0; k<items.length; k++) {
-				var currLeft = items[k].left !== null && items[k].left !== undefined ? items[k].left + items[k].width : items[k]._layout._currentLeft;
-				if(currLeft === columnValue || (currLeft >= (columnValue - 5) && currLeft <= columnValue)) {
-					// there's a small variation when item positions have not yet been fully
-					// refreshed after they've moved ... some pixels, though they're still in
-					// the same column
-					// because of the min-width on tiddlers, 5px should be ok
-					columnMembers.push(items[k]);
-				}
-			}
-			columnMembers.sort(function(itemA,itemB) {
-				var valueA = itemA._layout._currentTop !== null && itemA._layout._currentTop !== undefined ? itemA._layout._currentTop : itemA.top,
-					valueB = itemB._layout._currentTop !== null && itemB._layout._currentTop !== undefined ? itemB._layout._currentTop : itemB.top;
-				if(valueA >= valueB) return 1;
-				if(valueA < valueB) return -1;
-				return 0;
-			});
-			self.detectConnectedGrids();
-			for(k=0; k<columnMembers.length; k++) {
-				var itemTitle = self.getItemTitle(columnMembers[k]);
-				sortedArray.push(itemTitle);
-			}
-		});
-		//store the array in a tiddler-list that's used for applying z-indexes
-		if(sortedArray.indexOf(null) === -1) {
-			var tiddler = this.listWidget.wiki.getTiddler(this.zIndexTiddler);
-			this.listWidget.wiki.addTiddler(new $tw.Tiddler(
-				this.listWidget.wiki.getCreationFields(),
-				{title: this.zIndexTiddler},
-				tiddler,
-				{list: sortedArray},
-				this.listWidget.wiki.getModificationFields()
-			));
-		}
-	}
 };
 
 MuuriStoryView.prototype.restoreIframeEvents = function() {
@@ -828,9 +750,6 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 	}
 	if(changedTiddlers[this.configNamespace + "storylist-field"]) {
 		this.storyListField = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist-field") || "list";
-	}
-	if(changedTiddlers[this.configNamespace + "zindex-tiddler"]) {
-		this.zIndexTiddler = this.listWidget.wiki.getTiddlerText(this.configNamespace + "zindex-tiddler");
 	}
 	if(changedTiddlers[this.configNamespace + "connection-selector"]) {
 		this.connectionSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "connection-selector");

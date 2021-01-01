@@ -1,12 +1,6 @@
 title: $:/plugins/BTC/Muuri/css
 tags: $:/tags/Stylesheet
 
-\define z-indexes()
-\rules only
-.tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame:not(.tc-muuri-dragging):not(.tc-muuri-positioning):not(:focus-within):not(.tc-active) {
-	z-index: $(zIndex)$;
-}
-\end
 \define set-muuri-tiddler-width(suffix)
 .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
 	width: calc((100$suffix$ / <<columns>>) - <<margin>> - (<<margin>> / <<columns>>));
@@ -345,20 +339,6 @@ tags: $:/tags/Stylesheet
 				top: initial;
 				background: initial;
 			}
-
-		</$list>
-
-		<$list filter="[list[$:/state/muuri/storyriver/z-indexes]]" variable="zIndexTiddler">
-
-			<$set name="zIndex" value={{{[list[$:/state/muuri/storyriver/z-indexes]allafter<zIndexTiddler>] +[count[]] }}}>
-
-				<$set name="cssEscapedTitle" value={{{ [<zIndexTiddler>escapecss[]] }}}>
-
-					<<z-indexes>>
-
-				</$set>
-
-			</$set>
 
 		</$list>
 
