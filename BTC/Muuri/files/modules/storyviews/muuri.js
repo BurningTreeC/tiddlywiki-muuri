@@ -794,15 +794,6 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 			layoutDuration: self.animationDuration
 		});
 	}
-	if(changedTiddlers[this.itemTemplate] || changedTiddlers[this.itemEditTemplate]) {
-		setTimeout(function(){
-			if(self.muuri) {
-				self.muuri.destroy(true);
-			}
-			self.observer.disconnect();
-			self.findMuuriWidget().refreshSelf();
-		},100);
-	}
 	if(changedAttributes.storyViewConfig) {
 		this.observer.disconnect();
 		this.findMuuriWidget().refreshSelf();
