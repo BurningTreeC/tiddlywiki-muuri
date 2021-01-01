@@ -411,7 +411,6 @@ MuuriStoryView.prototype.collectOptions = function() {
 			smoothStop: false,
 			threshold: 0
 		},
-		dragSortInterval: self.dragSortInterval,
 		showDuration: self.animationDuration,
 		layoutDurattion: self.animationDuration,
 		layoutOnResize: true,
