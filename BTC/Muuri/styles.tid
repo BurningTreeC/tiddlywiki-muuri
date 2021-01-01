@@ -107,7 +107,7 @@ tags: $:/tags/Stylesheet
 
 			</$list>
 
-			<$list filter="[{$:/themes/tiddlywiki/vanilla/options/sidebarlayout}match[fixed-fluid]" variable="ignore">
+			<$list filter="[{$:/themes/tiddlywiki/vanilla/options/sidebarlayout}match[fixed-fluid]]" variable="ignore">
 
 				.tc-sidebar-scrollable {
 					left: calc({{$:/themes/tiddlywiki/vanilla/metrics/storyright}} + 42px);
