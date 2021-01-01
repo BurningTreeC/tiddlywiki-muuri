@@ -16,55 +16,55 @@ tags: $:/tags/Stylesheet
 <$text text={{{ [[$(sidebarBreakPoint)$]removesuffix[px]subtract[1]addsuffix[px]] ~[[$(sidebarBreakPoint)$]] }}}/>
 \end
 \define set-muuri-tiddler-padding-high()
-.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
+.tc-drag-container > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
 	padding: 28px 42px 42px 42px;
 }
 
-.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
+.tc-drag-container > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-drag-container > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
 	margin-left: -35px;
 }
 
-.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
+.tc-drag-container > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
 	margin-top: 0px;
 }
 
-.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame .tc-tiddler-info {
+.tc-drag-container > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame .tc-tiddler-info {
 	margin: 0 -42px 0 -42px;
 	padding: 14px 42px 14px 42px;
 }
 \end
 \define set-muuri-tiddler-padding-medium()
-.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
+.tc-drag-container > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
 	padding: 2em;
 }
 
-.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
+.tc-drag-container > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-drag-container > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
 	margin-left: -29px;
 }
 
-.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
+.tc-drag-container > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
 	margin-top: 0px;
 }
 
-.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame .tc-tiddler-info {
+.tc-drag-container > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame .tc-tiddler-info {
 	margin: 0 -2em 0 -2em;
 	padding: 0;
 }
 \end
 \define set-muuri-tiddler-padding-low()
-.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
+.tc-drag-container > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame {
 	padding: 1em;
 }
 
-.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
+.tc-drag-container > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-drag-container > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
 	margin-left: -15px;
 }
 
-.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
+.tc-drag-container > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame button.tc-unfold-banner {
 	margin-top: -6px;
 }
 
-.tc-drag-container > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscpapedTitle)$"].tc-tiddler-frame .tc-tiddler-info {
+.tc-drag-container > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > [data-tiddler-title="$(cssEscapedTitle)$"].tc-tiddler-frame .tc-tiddler-info {
 	margin: 0 -1em 0 -1em;
 	padding: 0;
 }
