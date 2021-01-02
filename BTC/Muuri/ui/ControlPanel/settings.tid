@@ -73,3 +73,17 @@ caption: Muuri
 		<<breakpoint-options>>
 	</$set>
 </$select>
+
+!!! Configure the visibility of tiddler-titles, subtitles and tags
+
+<$select tiddler="$:/config/muuri/storyview/hide-titles-tags" default="no">
+	<option value="no">show</option>
+	<option value="yes">hide</option>
+</$select>
+
+!!! Configure the seamless view of tiddlers in the ~StoryRiver
+
+<$select tiddler="$:/config/muuri/storyview/fill-gaps" default="no">
+	<option value="no">normal</option>
+	<option value="yes">seamless</option>
+</$select>
