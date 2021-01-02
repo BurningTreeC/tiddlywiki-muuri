@@ -9,7 +9,7 @@ tags: $:/tags/PageControls
 <$action-setfield $tiddler="$:/config/muuri/storyview/columns" text={{{ [range<rangeMax>after<columns>] }}}/>
 </$list>
 </$list>
-<$list filter="[<modifier>match[ctrl]]">
+<$list filter="[<modifier>match{$:/config/muuri/columns/modifier}]">
 <$list filter="[<columns>!match[1]]" emptyMessage="""
 <$action-setfield $tiddler="$:/config/muuri/storyview/columns" text=<<rangeMax>>/>
 """>

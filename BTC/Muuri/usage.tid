@@ -32,3 +32,9 @@ and all configuration options for your Muuri ~StoryView are then done using the 
 The ''storylist'' can also be defined by the `tv-muuri-story-list` variable
 
 The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
+
+!!! Tips
+
+The field `muuri-tiddler-width` can be used to give tiddlers a fixed width. For example `muuri-tiddler-width = 1` makes the tiddler full-width, `muuri-tiddler-width = 2` makes the tiddler half-width. Also floating-point numbers are allowed
+
+When you want to drag between two or more different grids, use the `drag-container` configuration to append the dragged item to a parent element of all concerned Grids during the time of the drag

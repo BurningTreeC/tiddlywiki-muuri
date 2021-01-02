@@ -22,6 +22,15 @@ caption: Muuri
 	<option value="yes">align from bottom to top</option>
 </$select>
 
+!!! Configure the modifier key for the columns-button
+
+<$select tiddler="$:/config/muuri/columns/modifier" default="ctrl">
+	<option value="ctrl">ctrl</option>
+	<option value="shift">shift</option>
+	<option value="alt">alt</option>
+	<option value="meta">meta</option>
+</$select>
+
 !!! Configure the maximum amount of columns
 
 <$edit-text tiddler="$:/config/muuri/storyview/columns/max" tag="input" default="" placeholder=" max-columns"/>
