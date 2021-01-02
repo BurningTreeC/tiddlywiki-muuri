@@ -219,11 +219,11 @@ muuri-tiddler-width: 1
 				margin-bottom: <<marginBottom>>;
 			}
 
-			.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-titlebar {
+			.tc-drag-container > .tc-tiddler-frame .tc-titlebar, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-titlebar {
 				font-size: 1.5em;
 			}
 
-			.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-titlebar .tc-tiddler-controls .tc-drop-down {
+			.tc-drag-container > .tc-tiddler-frame .tc-titlebar .tc-tiddler-controls .tc-drop-down, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-titlebar .tc-tiddler-controls .tc-drop-down {
 				font-size: 1em;
 			}
 
@@ -231,7 +231,7 @@ muuri-tiddler-width: 1
 				margin-top: {{$:/config/muuri/storyview/story-river/margin-top}};
 			}
 
-			.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
+			.tc-drag-container > .tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
 				padding: 0;
 			}
 
