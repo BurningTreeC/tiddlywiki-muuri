@@ -214,10 +214,25 @@ muuri-tiddler-width: 1
 			}
 
 			.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-				width: calc((100% / 2) - <<margin>> - (<<margin>> / 2));
 				margin-<<marginSuffix>>: <<margin>>;
 				margin-bottom: <<marginBottom>>;
 			}
+
+			<$list filter="[<count>compare:number:gteq[2]]">
+
+				.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+					width: calc((100% / 2) - <<margin>> - (<<margin>> / 2));
+				}
+
+			</$list>
+
+			<$list filter="[<count>compare:number:lt[2]]">
+
+				.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+					width: calc(100% - (<<margin>> * 2));
+				}
+
+			</$list>
 
 			.tc-drag-container > .tc-tiddler-frame .tc-titlebar, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-titlebar {
 				font-size: 1.5em;
