@@ -143,30 +143,6 @@ Error message and password prompt
 
 <li>$:/_styles</li>
 
-<li>$:/config/kanban/align-right</li>
-
-<li>$:/config/kanban/container-class</li>
-
-<li>$:/config/kanban/drag-autoscroll-axis</li>
-
-<li>$:/config/kanban/drag-container</li>
-
-<li>$:/config/kanban/dragsort-action</li>
-
-<li>$:/config/kanban/item-class</li>
-
-<li>$:/config/kanban/items/connection-selector</li>
-
-<li>$:/config/kanban/items/container-class</li>
-
-<li>$:/config/kanban/items/drag-container</li>
-
-<li>$:/config/kanban/items/dragsort-heuristics-interval</li>
-
-<li>$:/config/kanban/items/item-class</li>
-
-<li>$:/config/kanban/storylist</li>
-
 <li>$:/config/muuri/storyview/columns</li>
 
 <li>$:/config/muuri/storyview/drag-enabled</li>
@@ -199,13 +175,13 @@ Error message and password prompt
 
 <li>$:/KanbanList</li>
 
-<li>$:/KanbanStyles</li>
-
 <li>$:/layout</li>
 
 <li>$:/palette</li>
 
 <li>$:/plugins/BTC/Muuri</li>
+
+<li>$:/plugins/BTC/Muuri-Kanban</li>
 
 <li>$:/plugins/BTC/Muuri-Layout/ui/Kanban</li>
 
@@ -273,6 +249,10 @@ Error message and password prompt
 
 <li>Kanban</li>
 
+<li>Kanban Changelog</li>
+
+<li>Kanban Installation</li>
+
 <li>Mona Lisa</li>
 
 <li>Moving Items between Grids</li>
@@ -315,42 +295,6 @@ Error message and password prompt
 <pre>.tc-red-icon svg {
 fill: red;
 }</pre>
-</div>
-<div created="20201226103826988" modified="20201226120308827" tags="" title="$:/config/kanban/align-right" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>no</pre>
-</div>
-<div created="20201226103139592" modified="20201227144401061" tags="" title="$:/config/kanban/container-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>tc-board</pre>
-</div>
-<div created="20201230110035066" modified="20201230111126067" tags="" title="$:/config/kanban/drag-autoscroll-axis" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>x</pre>
-</div>
-<div created="20201230105433022" modified="20201230105448234" tags="" title="$:/config/kanban/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>.tc-drag-container</pre>
-</div>
-<div created="20201227151013952" modified="20201227151024917" tags="" title="$:/config/kanban/dragsort-action" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>swap</pre>
-</div>
-<div created="20201226103236217" modified="20201227144401323" tags="" title="$:/config/kanban/item-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>tc-board-column</pre>
-</div>
-<div created="20201226110243765" modified="20201227144401471" tags="" title="$:/config/kanban/items/connection-selector" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>.tc-board-column-items</pre>
-</div>
-<div created="20201226110111245" modified="20201227144401572" tags="" title="$:/config/kanban/items/container-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>tc-board-column-items</pre>
-</div>
-<div created="20201226170325838" modified="20201230095440837" tags="" title="$:/config/kanban/items/drag-container" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>.tc-drag-container</pre>
-</div>
-<div created="20201226142649816" modified="20201226142704499" tags="" title="$:/config/kanban/items/dragsort-heuristics-interval" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>0</pre>
-</div>
-<div created="20201226110157927" modified="20201227144401809" tags="" title="$:/config/kanban/items/item-class" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>tc-board-item</pre>
-</div>
-<div created="20201226103103242" modified="20201226120309006" tags="" title="$:/config/kanban/storylist" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>$:/KanbanList</pre>
 </div>
 <div created="20201216154323661" modified="20210103120549330" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>4</pre>
@@ -10962,7 +10906,7 @@ exports.widget = Widget;
 &lt;/$wikify&gt;
 &lt;/$vars&gt;</pre>
 </div>
-<div created="20201226120511731" current-tiddler="Draft of 'New Tiddler'" modified="20210103110932971" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
+<div created="20201226120511731" current-tiddler="Draft of 'New Tiddler'" modified="20210103142455052" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
 <pre>[
     {
         &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
@@ -11800,6 +11744,9 @@ exports.widget = Widget;
     },
     {
         &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
     }
 ]</pre>
 </div>
@@ -11863,326 +11810,8 @@ exports.widget = Widget;
  	&lt;/div&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20201226140433928" list="Todo Done Working Images" modified="20210103110934651" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201226140433928" list="Todo Done Working Images" modified="20210103142459419" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
-</div>
-<div created="20201226110827646" modified="20201230183731258" tags="$:/tags/Stylesheet" title="$:/KanbanStyles" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>&lt;$set name=&quot;amount&quot; value={{{ [list[$:/KanbanList]count[]] }}}&gt;
-
-.tc-board-container {
-  position: relative;
-  height: 100vh;
-}
-
-&lt;$list filter=&quot;[all[tiddlers]prefix[$:/state/popup/more-]limit[1]]&quot;&gt;
-
-.tc-board-container {
-	z-index: -1;
-}
-
-&lt;/$list&gt;
-
-.tc-kanban-droppable {
-	position: relative;
-	width: 100%;
-	font-size: 1.5rem;
-	border: 0.2rem dashed &lt;&lt;colour muted-foreground&gt;&gt;;
-	border-radius: 4px;
-}
-
-.tc-board {
-  position: relative;
-  display: flex;
-  height: 100%;
-  min-width: 100%;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.tc-board-column {
-  display: flex;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: calc(100% / &lt;&lt;amount&gt;&gt;);
-  min-height: 100%;
-  z-index: 1;
-}
-.tc-board-column.tc-muuri-releasing {
-  z-index: 2;
-}
-.tc-board-column.tc-muuri-dragging {
-  z-index: 3;
-  cursor: move;
-}
-
-.tc-board-column-content {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-  min-height: 100%;
-  padding: 0.5rem;
-}
-
-.tc-board-column-header {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 2.5rem;
-	width: 100%;
-  min-height: 2.5rem;
-  font-size: 1rem;
-  line-height: 2.5rem;
-  overflow: hidden;
-  padding: 0 1rem;
-  text-align: center;
-  font-weight: 700;
-  font-style: italic;
-  background: &lt;&lt;colour tiddler-background&gt;&gt;;
-  color: &lt;&lt;colour foreground&gt;&gt;;
-  border-radius: 0.2rem;
-	border: 0.2rem solid &lt;&lt;colour foreground&gt;&gt;;
-}
-.tc-board-column-header.tc-board-column-edit-header {
-	height: auto;
-	border: 0.2rem solid &lt;&lt;colour foreground&gt;&gt;;
-}
-
-.tc-board-column-header input:not([type=&quot;color&quot;]) {
-	border: 1px solid &lt;&lt;colour muted-foreground&gt;&gt;;
-	border-radius: 2px;
-	width: 80%;
-}
-.tc-board-column-header-wrapper {
-	position: relative;
-	display: flex;
-	font-size: 1rem;
-	font-weight: 700;
-	height: auto;
-}
-
-.tc-board-column-title {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  outline: none;
-  flex-grow: 1;
-  text-align: left;
-  margin-left: -2rem;
-  padding-left: 2rem;
-}
-
-.tc-board-column-action {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  margin: 0;
-  border: 0;
-  width: 2rem;
-  height: 2rem;
-  min-width: 2rem;
-  min-height: 2rem;
-  padding: 0.3rem;
-  border-radius: 1rem;
-  white-space: nowrap;
-  cursor: pointer;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  transform: rotateZ(0deg);
-  transition: transform 0.2s ease-in-out;
-}
-.tc-board-column-action:hover {
-  transform: rotateZ(180deg);
-}
-.tc-board-column-action.tc-edit, .tc-board-column-action.tc-delete {
-	transition: transform 0.4s ease-in-out;
-}
-.tc-board-column-action.tc-edit:hover, .tc-board-column-action.tc-delete:hover {
-	transform: rotateZ(360deg);
-}
-
-.tc-board-column-action:focus {
-  outline: 0;
-}
-
-.tc-board-column-action svg {
-  flex-grow: 1;
-  pointer-events: none;
-}
-
-.tc-board-column-items-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  overflow: hidden;
-  overflow-y: auto;
-}
-.tc-board-column-items {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  min-height: 100%;
-  border-bottom: 1.5rem solid transparent;
-}
-
-.tc-board-item {
-  position: absolute;
-  width: calc(100% - 1rem);
-  margin: 0.5rem 0.5rem 0 0.5rem;
-  z-index: 10;
-}
-.tc-board-item.tc-muuri-releasing {
-  z-index: 11;
-}
-.tc-board-item.tc-muuri-dragging {
-  z-index: 12;
-  cursor: move;
-}
-.tc-board-item.tc-muuri-hidden {
-  z-index: 8;
-}
-.tc-board-item.muuri-item-placeholder {
-  z-index: 9;
-  margin: 0;
-  opacity: 0.7;
-}
-
-.tc-board-item img, .tc-board-item hr {
-	pointer-events: none;
-	max-width: 100%;
-}
-
-.tc-board-item svg {
-	max-width: 100%;
-}
-
-.tc-board-item-content {
-  position: relative;
-  padding: 0.5rem;
-  background: &lt;&lt;colour tiddler-background&gt;&gt;;
-  border: 0.2rem solid &lt;&lt;colour tag-background&gt;&gt;;
-  color: &lt;&lt;colour foreground&gt;&gt;;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: 400;
-}
-.tc-board-item-content input {
-	width: 100%;
-	border: 1px solid &lt;&lt;colour muted-foreground&gt;&gt;;
-	border-radius: 2px;
-	margin-bottom: 2px;
-}
-.tc-board-item-content input + br + div {
-	width: 100%;
-	border-radius: 2px;
-}
-.tc-board-item.muuri-item-placeholder .tc-board-item-content {
-  border-style: dashed;
-  border-color: &lt;&lt;colour primary&gt;&gt;;
-}
-.tc-board-item.editing .tc-board-item-content {
-  border-color: &lt;&lt;colour primary&gt;&gt;;
-}
-.tc-board-item:focus-within .tc-board-item-content {
-  border: 0.2rem solid &lt;&lt;colour primary&gt;&gt;;
-  padding: 0.5rem;
-}
-.tc-board-item-title {
-  font-size: 1rem;
-  line-height: 1.2;
-  word-break: break-word;
-  caret-color: &lt;&lt;colour primary&gt;&gt;;
-  outline: none;
-  outline-offset: 0.5rem;
-  min-height: calc(1rem * 1.2);
-}
-.tc-board-item-handle {
-  position: absolute;
-  left: -0.25rem;
-  right: -0.25rem;
-  top: -0.25rem;
-  bottom: -0.25rem;
-  border-radius: 0.5rem;
-  cursor: move;
-}
-.tc-board-item.tc-editing .tc-board-item-handle {
-  display: none;
-}
-.tc-board-item-action {
-  position: absolute;
-  display: flex;
-  width: 1.5rem;
-  height: 1.5rem;
-  padding: 0rem;
-  opacity: 0;
-  transform: scale(0, 0);
-  transition: transform 0.3s 0s ease-out, opacity 0.3s 0s linear;
-}
-.tc-board-item-action.tc-edit {
-  right: -1rem;
-  top: -1rem;
-}
-.tc-board-item:focus-within .tc-board-item-action.tc-edit {
-  right: -1rem;
-  top: -1rem;
-}
-.tc-board-item-action.tc-delete {
-  right: -1rem;
-  bottom: -0.5rem;
-}
-.tc-board-item:focus-within .tc-board-item-action.tc-delete {
-  right: -1rem;
-  bottom: -0.5rem;
-}
-.tc-board-item.tc-editing .tc-board-item-action.tc-delete {
-  display: none;
-}
-.tc-board-item-action.tc-close {
-	left: -0.5rem;
-	bottom: -0.5rem;
-}
-
-.tc-board-item.tc-editing .tc-board-item-action,
-.tc-board-item:hover .tc-board-item-action,
-.tc-board-column-header-wrapper:hover .tc-board-item-action,
-.tc-board-item:focus .tc-board-item-action,
-.tc-board-item.tc-muuri-dragging .tc-board-item-action,
-.tc-board-item.tc-muuri-releasing .tc-board-item-action {
-  opacity: 1;
-  transform: scale(1, 1);
-  transition: transform 0.2s 0.1s ease, opacity 0.2s 0.1s linear;
-}
-.tc-board-item.tc-editing .tc-board-item-action:hover,
-.tc-board-item:hover .tc-board-item-action:hover,
-.tc-board-item:focus .tc-board-item-action:hover,
-.tc-board-item.tc-muuri-dragging .tc-board-item-action:hover,
-.tc-board-item.tc-muuri-releasing .tc-board-item-action:hover {
-  transform: scale(1.2, 1.2);
-}
-.tc-board-item-action-icon {
-  flex-grow: 1;
-  pointer-events: none;
-}
-.tc-board-item.tc-editing .tc-board-item-action-icon.tc-icon-edit,
-.tc-board-item-action-icon.tc-icon-save {
-  display: none;
-}
-.tc-board-item.tc-editing .tc-board-item-action-icon.tc-icon-save {
-  display: block;
-}
-
-&lt;/$set&gt;</pre>
 </div>
 <div created="20201226093820018" modified="20210103095806122" title="$:/layout" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>$:/plugins/BTC/Muuri/ui/Layout</pre>
@@ -12354,6 +11983,100 @@ exports.widget = Widget;
         &quot;$:/plugins/BTC/Muuri/usage&quot;: {
             &quot;title&quot;: &quot;$:/plugins/BTC/Muuri/usage&quot;,
             &quot;text&quot;: &quot;You can use the Muuri ~StoryView by adding `storyview=\&quot;muuri\&quot;` to a list widget and defining the configuration namespace through the attribute `storyViewConfig`\n\nThe configuration namespace can for example look like this:\n\n```\nstoryViewConfig=\&quot;$:/config/muuri/\&quot;\n```\n\nand all configuration options for your Muuri ~StoryView are then done using the namespace `$:/config/muuri/` plus the ''configuration suffix'' shown below\n\n!!! Configuration\n\n|suffix |purpose |h\n|drag-enabled |\&quot;yes\&quot; or \&quot;no\&quot; - enable or disable dragging |\n|storylist |the storylist tiddler where list changes through dragging should get saved |\n|storylist-field |the field of the storylist tiddler (defaults to \&quot;list\&quot;)|\n|align-right |\&quot;yes\&quot; or \&quot;no\&quot; (\&quot;yes\&quot; by default) - determines if tiddlers are aligned right-to-left or left-to-right |\n|align-bottom |\&quot;yes\&quot; or \&quot;no\&quot; (\&quot;no\&quot; by default) - determines if tiddlers are aligned top-to-bottom or bottom-to-top |\n|drop-actions |an action string that gets triggered when dropping an item from another grid to the current one. within the action string, the actionTiddler variable contains the item-title, the modifier variable contains the modifier held while dragging |\n|dragsort-action |\&quot;swap\&quot; or \&quot;move\&quot; (defaults to \&quot;move\&quot;) |\n|dragsort-threshold |How many percent (defaults to 40) the intersection area between the dragged item and the compared item should be from the maximum potential intersection area between the items before sorting is triggered. |\n|dragsort-heuristics-interval |Defines the amount of time in ms the dragged item must be still before the drag-sort is started. Defaults to 100 |\n|container-class |the class that gets applied to the parent element of the list widget. defaults to \&quot;tc-muuri-river\&quot; |\n|item-class |the class of the elements that should be included in the muuri grid. defaults to \&quot;tc-tiddler-frame\&quot; |\n|drag-handle |a css selector that defines the handle used for dragging. if none is given, the whole item is the handle |\n|connection-selector |a css selector that defines the grid instances that should be connected with the current grid |\n|drag-container |a css selector for the container element where the items will be appended to during the time of the drag. defaults to the current grid |\n|drag-autoscroll-axis |can be \&quot;x\&quot;, \&quot;y\&quot; or \&quot;xy\&quot; |\n\nThe ''storylist'' can also be defined by the `tv-muuri-story-list` variable\n\nThe ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable\n\n!!! Tips\n\nThe field `muuri-tiddler-width` can be used to give tiddlers a fixed width. For example `muuri-tiddler-width = 1` makes the tiddler full-width, `muuri-tiddler-width = 2` makes the tiddler half-width. Also floating-point numbers are allowed\n\nWhen you want to drag between two or more different grids, use the `drag-container` configuration to append the dragged item to a parent element of all involved Grids during the time of the drag\n\nThe ''class'' `tc-active` is applied to to the item that is being clicked on or dragged. There's always only one item with that class. You can use that class to apply a `z-index` to that element if needed&quot;
+        }
+    }
+}</pre>
+</div>
+<div author="Simon Huber" dependents="" description="A Kanban based on Muuri" list="readme license" muuri-tiddler-width="1" plugin-type="plugin" title="$:/plugins/BTC/Muuri-Kanban" type="application/json" version="0.1.0" revision="0" bag="default">
+<pre>{
+    &quot;tiddlers&quot;: {
+        &quot;$:/config/kanban/items/connection-selector&quot;: {
+            &quot;title&quot;: &quot;$:/config/kanban/items/connection-selector&quot;,
+            &quot;text&quot;: &quot;.tc-board-column-items&quot;
+        },
+        &quot;$:/config/kanban/items/container-class&quot;: {
+            &quot;title&quot;: &quot;$:/config/kanban/items/container-class&quot;,
+            &quot;text&quot;: &quot;tc-board-column-items&quot;
+        },
+        &quot;$:/config/kanban/items/drag-container&quot;: {
+            &quot;title&quot;: &quot;$:/config/kanban/items/drag-container&quot;,
+            &quot;text&quot;: &quot;.tc-drag-container&quot;
+        },
+        &quot;$:/config/kanban/items/dragsort-heuristics-interval&quot;: {
+            &quot;title&quot;: &quot;$:/config/kanban/items/dragsort-heuristics-interval&quot;,
+            &quot;text&quot;: &quot;0&quot;
+        },
+        &quot;$:/config/kanban/items/item-class&quot;: {
+            &quot;title&quot;: &quot;$:/config/kanban/items/item-class&quot;,
+            &quot;text&quot;: &quot;tc-board-item&quot;
+        },
+        &quot;$:/config/kanban/align-right&quot;: {
+            &quot;title&quot;: &quot;$:/config/kanban/align-right&quot;,
+            &quot;text&quot;: &quot;no&quot;
+        },
+        &quot;$:/config/kanban/container-class&quot;: {
+            &quot;title&quot;: &quot;$:/config/kanban/container-class&quot;,
+            &quot;text&quot;: &quot;tc-board&quot;
+        },
+        &quot;$:/config/kanban/drag-autoscroll-axis&quot;: {
+            &quot;title&quot;: &quot;$:/config/kanban/drag-autoscroll-axis&quot;,
+            &quot;text&quot;: &quot;x&quot;
+        },
+        &quot;$:/config/kanban/drag-container&quot;: {
+            &quot;title&quot;: &quot;$:/config/kanban/drag-container&quot;,
+            &quot;text&quot;: &quot;.tc-drag-container&quot;
+        },
+        &quot;$:/config/kanban/dragsort-action&quot;: {
+            &quot;title&quot;: &quot;$:/config/kanban/dragsort-action&quot;,
+            &quot;text&quot;: &quot;swap&quot;
+        },
+        &quot;$:/config/kanban/item-class&quot;: {
+            &quot;title&quot;: &quot;$:/config/kanban/item-class&quot;,
+            &quot;text&quot;: &quot;tc-board-column&quot;
+        },
+        &quot;$:/plugins/BTC/Muuri-Kanban/icons/kanban&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/icons/kanban&quot;,
+            &quot;tags&quot;: &quot;$:/tags/Image&quot;,
+            &quot;text&quot;: &quot;&lt;svg height=\&quot;24\&quot; viewBox=\&quot;0 0 24 24\&quot; width=\&quot;24\&quot;&gt;&lt;path d=\&quot;M0 0h24v24H0z\&quot; fill=\&quot;none\&quot;/&gt;&lt;path d=\&quot;M6 5H3c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h3c.55 0 1-.45 1-1V6c0-.55-.45-1-1-1zm14 0h-3c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h3c.55 0 1-.45 1-1V6c0-.55-.45-1-1-1zm-7 0h-3c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h3c.55 0 1-.45 1-1V6c0-.55-.45-1-1-1z\&quot;/&gt;&lt;/svg&gt;&quot;
+        },
+        &quot;$:/plugins/BTC/Muuri-Kanban/license&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/license&quot;,
+            &quot;text&quot;: &quot;!!! This plugin is distributed under MIT license:\n\n```\nMIT License\n\nCopyright (c) 2021 Simon Huber\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \&quot;Software\&quot;), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \&quot;AS IS\&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n```\n\n!!! Google Material Icons are distributed under Apache 2.0 License:\n\n```\n\n                                 Apache License\n                           Version 2.0, January 2004\n                        http://www.apache.org/licenses/\n\n   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n\n   1. Definitions.\n\n      \&quot;License\&quot; shall mean the terms and conditions for use, reproduction,\n      and distribution as defined by Sections 1 through 9 of this document.\n\n      \&quot;Licensor\&quot; shall mean the copyright owner or entity authorized by\n      the copyright owner that is granting the License.\n\n      \&quot;Legal Entity\&quot; shall mean the union of the acting entity and all\n      other entities that control, are controlled by, or are under common\n      control with that entity. For the purposes of this definition,\n      \&quot;control\&quot; means (i) the power, direct or indirect, to cause the\n      direction or management of such entity, whether by contract or\n      otherwise, or (ii) ownership of fifty percent (50%) or more of the\n      outstanding shares, or (iii) beneficial ownership of such entity.\n\n      \&quot;You\&quot; (or \&quot;Your\&quot;) shall mean an individual or Legal Entity\n      exercising permissions granted by this License.\n\n      \&quot;Source\&quot; form shall mean the preferred form for making modifications,\n      including but not limited to software source code, documentation\n      source, and configuration files.\n\n      \&quot;Object\&quot; form shall mean any form resulting from mechanical\n      transformation or translation of a Source form, including but\n      not limited to compiled object code, generated documentation,\n      and conversions to other media types.\n\n      \&quot;Work\&quot; shall mean the work of authorship, whether in Source or\n      Object form, made available under the License, as indicated by a\n      copyright notice that is included in or attached to the work\n      (an example is provided in the Appendix below).\n\n      \&quot;Derivative Works\&quot; shall mean any work, whether in Source or Object\n      form, that is based on (or derived from) the Work and for which the\n      editorial revisions, annotations, elaborations, or other modifications\n      represent, as a whole, an original work of authorship. For the purposes\n      of this License, Derivative Works shall not include works that remain\n      separable from, or merely link (or bind by name) to the interfaces of,\n      the Work and Derivative Works thereof.\n\n      \&quot;Contribution\&quot; shall mean any work of authorship, including\n      the original version of the Work and any modifications or additions\n      to that Work or Derivative Works thereof, that is intentionally\n      submitted to Licensor for inclusion in the Work by the copyright owner\n      or by an individual or Legal Entity authorized to submit on behalf of\n      the copyright owner. For the purposes of this definition, \&quot;submitted\&quot;\n      means any form of electronic, verbal, or written communication sent\n      to the Licensor or its representatives, including but not limited to\n      communication on electronic mailing lists, source code control systems,\n      and issue tracking systems that are managed by, or on behalf of, the\n      Licensor for the purpose of discussing and improving the Work, but\n      excluding communication that is conspicuously marked or otherwise\n      designated in writing by the copyright owner as \&quot;Not a Contribution.\&quot;\n\n      \&quot;Contributor\&quot; shall mean Licensor and any individual or Legal Entity\n      on behalf of whom a Contribution has been received by Licensor and\n      subsequently incorporated within the Work.\n\n   2. Grant of Copyright License. Subject to the terms and conditions of\n      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      copyright license to reproduce, prepare Derivative Works of,\n      publicly display, publicly perform, sublicense, and distribute the\n      Work and such Derivative Works in Source or Object form.\n\n   3. Grant of Patent License. Subject to the terms and conditions of\n      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      (except as stated in this section) patent license to make, have made,\n      use, offer to sell, sell, import, and otherwise transfer the Work,\n      where such license applies only to those patent claims licensable\n      by such Contributor that are necessarily infringed by their\n      Contribution(s) alone or by combination of their Contribution(s)\n      with the Work to which such Contribution(s) was submitted. If You\n      institute patent litigation against any entity (including a\n      cross-claim or counterclaim in a lawsuit) alleging that the Work\n      or a Contribution incorporated within the Work constitutes direct\n      or contributory patent infringement, then any patent licenses\n      granted to You under this License for that Work shall terminate\n      as of the date such litigation is filed.\n\n   4. Redistribution. You may reproduce and distribute copies of the\n      Work or Derivative Works thereof in any medium, with or without\n      modifications, and in Source or Object form, provided that You\n      meet the following conditions:\n\n      (a) You must give any other recipients of the Work or\n          Derivative Works a copy of this License; and\n\n      (b) You must cause any modified files to carry prominent notices\n          stating that You changed the files; and\n\n      (c) You must retain, in the Source form of any Derivative Works\n          that You distribute, all copyright, patent, trademark, and\n          attribution notices from the Source form of the Work,\n          excluding those notices that do not pertain to any part of\n          the Derivative Works; and\n\n      (d) If the Work includes a \&quot;NOTICE\&quot; text file as part of its\n          distribution, then any Derivative Works that You distribute must\n          include a readable copy of the attribution notices contained\n          within such NOTICE file, excluding those notices that do not\n          pertain to any part of the Derivative Works, in at least one\n          of the following places: within a NOTICE text file distributed\n          as part of the Derivative Works; within the Source form or\n          documentation, if provided along with the Derivative Works; or,\n          within a display generated by the Derivative Works, if and\n          wherever such third-party notices normally appear. The contents\n          of the NOTICE file are for informational purposes only and\n          do not modify the License. You may add Your own attribution\n          notices within Derivative Works that You distribute, alongside\n          or as an addendum to the NOTICE text from the Work, provided\n          that such additional attribution notices cannot be construed\n          as modifying the License.\n\n      You may add Your own copyright statement to Your modifications and\n      may provide additional or different license terms and conditions\n      for use, reproduction, or distribution of Your modifications, or\n      for any such Derivative Works as a whole, provided Your use,\n      reproduction, and distribution of the Work otherwise complies with\n      the conditions stated in this License.\n\n   5. Submission of Contributions. Unless You explicitly state otherwise,\n      any Contribution intentionally submitted for inclusion in the Work\n      by You to the Licensor shall be under the terms and conditions of\n      this License, without any additional terms or conditions.\n      Notwithstanding the above, nothing herein shall supersede or modify\n      the terms of any separate license agreement you may have executed\n      with Licensor regarding such Contributions.\n\n   6. Trademarks. This License does not grant permission to use the trade\n      names, trademarks, service marks, or product names of the Licensor,\n      except as required for reasonable and customary use in describing the\n      origin of the Work and reproducing the content of the NOTICE file.\n\n   7. Disclaimer of Warranty. Unless required by applicable law or\n      agreed to in writing, Licensor provides the Work (and each\n      Contributor provides its Contributions) on an \&quot;AS IS\&quot; BASIS,\n      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or\n      implied, including, without limitation, any warranties or conditions\n      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A\n      PARTICULAR PURPOSE. You are solely responsible for determining the\n      appropriateness of using or redistributing the Work and assume any\n      risks associated with Your exercise of permissions under this License.\n\n   8. Limitation of Liability. In no event and under no legal theory,\n      whether in tort (including negligence), contract, or otherwise,\n      unless required by applicable law (such as deliberate and grossly\n      negligent acts) or agreed to in writing, shall any Contributor be\n      liable to You for damages, including any direct, indirect, special,\n      incidental, or consequential damages of any character arising as a\n      result of this License or out of the use or inability to use the\n      Work (including but not limited to damages for loss of goodwill,\n      work stoppage, computer failure or malfunction, or any and all\n      other commercial damages or losses), even if such Contributor\n      has been advised of the possibility of such damages.\n\n   9. Accepting Warranty or Additional Liability. While redistributing\n      the Work or Derivative Works thereof, You may choose to offer,\n      and charge a fee for, acceptance of support, warranty, indemnity,\n      or other liability obligations and/or rights consistent with this\n      License. However, in accepting such obligations, You may act only\n      on Your own behalf and on Your sole responsibility, not on behalf\n      of any other Contributor, and only if You agree to indemnify,\n      defend, and hold each Contributor harmless for any liability\n      incurred by, or claims asserted against, such Contributor by reason\n      of your accepting any such warranty or additional liability.\n\n   END OF TERMS AND CONDITIONS\n\n   APPENDIX: How to apply the Apache License to your work.\n\n      To apply the Apache License to your work, attach the following\n      boilerplate notice, with the fields enclosed by brackets \&quot;[]\&quot;\n      replaced with your own identifying information. (Don't include\n      the brackets!)  The text should be enclosed in the appropriate\n      comment syntax for the file format. We also recommend that a\n      file or class name and description of purpose be included on the\n      same \&quot;printed page\&quot; as the copyright notice for easier\n      identification within third-party archives.\n\n   Copyright [yyyy] [name of copyright owner]\n\n   Licensed under the Apache License, Version 2.0 (the \&quot;License\&quot;);\n   you may not use this file except in compliance with the License.\n   You may obtain a copy of the License at\n\n       http://www.apache.org/licenses/LICENSE-2.0\n\n   Unless required by applicable law or agreed to in writing, software\n   distributed under the License is distributed on an \&quot;AS IS\&quot; BASIS,\n   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n   See the License for the specific language governing permissions and\n   limitations under the License.\n   ```&quot;
+        },
+        &quot;$:/plugins/BTC/Muuri-Kanban/readme&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/readme&quot;,
+            &quot;text&quot;: &quot;This plugin adds the Muuri Kanban to ~TiddlyWiki5\n\nIt needs the Muuri ~StoryView plugin installed in order to work&quot;
+        },
+        &quot;$:/plugins/BTC/Muuri-Kanban/css&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/css&quot;,
+            &quot;tags&quot;: &quot;$:/tags/Stylesheet&quot;,
+            &quot;muuri-tiddler-width&quot;: &quot;1&quot;,
+            &quot;text&quot;: &quot;\\define set-board-column-width()\n[data-board-container-title=\&quot;$(cssEscapedTitle)$\&quot;] .tc-board-column {\n\twidth: calc(100% / $(count)$);\n}\n\\end\n.tc-board-container {\n\tposition: relative;\n\theight: 75vh;\n}\n\n&lt;$list filter=\&quot;[all[tiddlers]prefix[$:/state/popup/more-]limit[1]]\&quot;&gt;\n\n.tc-board-container {\n\tz-index: -1;\n}\n\n&lt;/$list&gt;\n\n.tc-kanban-droppable {\n\tposition: relative;\n\twidth: 100%;\n\tfont-size: 1.5rem;\n\tborder: 0.2rem dashed &lt;&lt;colour muted-foreground&gt;&gt;;\n\tborder-radius: 4px;\n}\n\n.tc-board {\n\tposition: relative;\n\tdisplay: flex;\n\theight: 100%;\n\tmin-width: 100%;\n\t-webkit-user-select: none;\n\t-moz-user-select: none;\n\t-ms-user-select: none;\n\tuser-select: none;\n}\n\n.tc-board-column {\n\tdisplay: flex;\n\tposition: absolute;\n\tleft: 0;\n\ttop: 0;\n\tmin-height: 100%;\n\tz-index: 1;\n}\n\n&lt;$list filter=\&quot;[all[tiddlers+shadows]has[list]]\&quot; variable=\&quot;listItem\&quot;&gt;\n\t&lt;$vars count={{{ [list&lt;listItem&gt;count[]] }}} cssEscapedTitle={{{ [&lt;listItem&gt;escapecss[]] }}}&gt;\n\n\t\t&lt;&lt;set-board-column-width&gt;&gt;\n\n\t&lt;/$set&gt;\n&lt;/$list&gt;\n\n.tc-board-column.tc-muuri-releasing {\n\tz-index: 2;\n}\n.tc-board-column.tc-muuri-dragging {\n\tz-index: 3;\n\tcursor: move;\n}\n\n.tc-board-column-content {\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: relative;\n\twidth: 100%;\n\tmin-height: 100%;\n\tpadding: 0.5rem;\n}\n\n.tc-board-column-header {\n\tposition: relative;\n\tdisplay: flex;\n\tjustify-content: space-between;\n\talign-items: center;\n\theight: 2.5rem;\n\twidth: 100%;\n\tmin-height: 2.5rem;\n\tfont-size: 1rem;\n\tline-height: 2.5rem;\n\toverflow: hidden;\n\tpadding: 0 1rem;\n\ttext-align: center;\n\tfont-weight: 700;\n\tfont-style: italic;\n\tbackground: &lt;&lt;colour tiddler-background&gt;&gt;;\n\tcolor: &lt;&lt;colour foreground&gt;&gt;;\n\tborder-radius: 0.2rem;\n\tborder: 0.2rem solid &lt;&lt;colour foreground&gt;&gt;;\n}\n.tc-board-column-header.tc-board-column-edit-header {\n\theight: auto;\n\tborder: 0.2rem solid &lt;&lt;colour foreground&gt;&gt;;\n}\n\n.tc-board-column-header input:not([type=\&quot;color\&quot;]) {\n\tborder: 1px solid &lt;&lt;colour muted-foreground&gt;&gt;;\n\tborder-radius: 2px;\n\twidth: 80%;\n}\n.tc-board-column-header-wrapper {\n\tposition: relative;\n\tdisplay: flex;\n\tfont-size: 1rem;\n\tfont-weight: 700;\n\theight: auto;\n}\n\n.tc-board-column-title {\n\twhite-space: nowrap;\n\ttext-overflow: ellipsis;\n\toverflow: hidden;\n\toutline: none;\n\tflex-grow: 1;\n\ttext-align: left;\n\tmargin-left: -2rem;\n\tpadding-left: 2rem;\n}\n\n.tc-board-column-action {\n\tdisplay: flex;\n\tjustify-content: center;\n\talign-items: center;\n\tposition: relative;\n\tmargin: 0;\n\tborder: 0;\n\twidth: 2rem;\n\theight: 2rem;\n\tmin-width: 2rem;\n\tmin-height: 2rem;\n\tpadding: 0.3rem;\n\tborder-radius: 1rem;\n\twhite-space: nowrap;\n\tcursor: pointer;\n\t-ms-touch-action: manipulation;\n\ttouch-action: manipulation;\n\t-webkit-user-select: none;\n\t-moz-user-select: none;\n\t-ms-user-select: none;\n\tuser-select: none;\n\ttransform: rotateZ(0deg);\n\ttransition: transform 0.2s ease-in-out;\n}\n.tc-board-column-action:hover {\n\ttransform: rotateZ(180deg);\n}\n.tc-board-column-action.tc-edit, .tc-board-column-action.tc-delete {\n\ttransition: transform 0.4s ease-in-out;\n}\n.tc-board-column-action.tc-edit:hover, .tc-board-column-action.tc-delete:hover {\n\ttransform: rotateZ(360deg);\n}\n\n.tc-board-column-action:focus {\n\toutline: 0;\n}\n\n.tc-board-column-action svg {\n\tflex-grow: 1;\n\tpointer-events: none;\n}\n\n.tc-board-column-items-container {\n\tposition: relative;\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-grow: 1;\n\toverflow: hidden;\n\toverflow-y: auto;\n}\n.tc-board-column-items {\n\tposition: absolute;\n\tleft: 0;\n \ttop: 0;\n\twidth: 100%;\n\tmin-height: 100%;\n\tborder-bottom: 1.5rem solid transparent;\n}\n\n.tc-board-item {\n\tposition: absolute;\n\twidth: calc(100% - 1rem);\n\tmargin: 0.5rem 0.5rem 0 0.5rem;\n\tz-index: 10;\n}\n.tc-board-item.tc-muuri-releasing {\n\tz-index: 11;\n}\n.tc-board-item.tc-muuri-dragging {\n\tz-index: 12;\n\tcursor: move;\n}\n.tc-board-item.tc-muuri-hidden {\n\tz-index: 8;\n}\n.tc-board-item.muuri-item-placeholder {\n\tz-index: 9;\n\tmargin: 0;\n\topacity: 0.7;\n}\n\n.tc-board-item img, .tc-board-item hr {\n\tpointer-events: none;\n\tmax-width: 100%;\n}\n\n.tc-board-item svg {\n\tmax-width: 100%;\n}\n\n.tc-board-item-content {\n\tposition: relative;\n\tpadding: 0.5rem;\n\tbackground: &lt;&lt;colour tiddler-background&gt;&gt;;\n\tborder: 0.2rem solid &lt;&lt;colour tag-background&gt;&gt;;\n\tcolor: &lt;&lt;colour foreground&gt;&gt;;\n\tborder-radius: 4px;\n\tfont-size: 1rem;\n\tfont-weight: 400;\n}\n.tc-board-item-content input {\n\twidth: 100%;\n\tborder: 1px solid &lt;&lt;colour muted-foreground&gt;&gt;;\n\tborder-radius: 2px;\n\tmargin-bottom: 2px;\n}\n.tc-board-item-content input + br + div {\n\twidth: 100%;\n\tborder-radius: 2px;\n}\n.tc-board-item.muuri-item-placeholder .tc-board-item-content {\n\tborder-style: dashed;\n\tborder-color: &lt;&lt;colour primary&gt;&gt;;\n}\n.tc-board-item.editing .tc-board-item-content {\n\tborder-color: &lt;&lt;colour primary&gt;&gt;;\n}\n.tc-board-item:focus-within .tc-board-item-content {\n\tborder: 0.2rem solid &lt;&lt;colour primary&gt;&gt;;\n\tpadding: 0.5rem;\n}\n.tc-board-item-title {\n\tfont-size: 1rem;\n\tline-height: 1.2;\n\tword-break: break-word;\n\tcaret-color: &lt;&lt;colour primary&gt;&gt;;\n\toutline: none;\n\toutline-offset: 0.5rem;\n\tmin-height: calc(1rem * 1.2);\n}\n.tc-board-item-handle {\n\tposition: absolute;\n\tleft: -0.25rem;\n\tright: -0.25rem;\n\ttop: -0.25rem;\n\tbottom: -0.25rem;\n\tborder-radius: 0.5rem;\n\tcursor: move;\n}\n.tc-board-item.tc-editing .tc-board-item-handle {\n\tdisplay: none;\n}\n.tc-board-item-action {\n\tposition: absolute;\n\tdisplay: flex;\n\twidth: 1.5rem;\n\theight: 1.5rem;\n\tpadding: 0rem;\n\topacity: 0;\n\ttransform: scale(0, 0);\n\ttransition: transform 0.3s 0s ease-out, opacity 0.3s 0s linear;\n}\n.tc-board-item-action.tc-edit {\n\tright: -1rem;\n\ttop: -1rem;\n}\n.tc-board-item:focus-within .tc-board-item-action.tc-edit {\n\tright: -1rem;\n\ttop: -1rem;\n}\n.tc-board-item-action.tc-delete {\n\tright: -1rem;\n\tbottom: -0.5rem;\n}\n.tc-board-item:focus-within .tc-board-item-action.tc-delete {\n\tright: -1rem;\n\tbottom: -0.5rem;\n}\n.tc-board-item.tc-editing .tc-board-item-action.tc-delete {\n\tdisplay: none;\n}\n.tc-board-item-action.tc-close {\n\tleft: -0.5rem;\n\tbottom: -0.5rem;\n}\n\n.tc-board-item.tc-editing .tc-board-item-action,\n.tc-board-item:hover .tc-board-item-action,\n.tc-board-column-header-wrapper:hover .tc-board-item-action,\n.tc-board-item:focus .tc-board-item-action,\n.tc-board-item.tc-muuri-dragging .tc-board-item-action,\n.tc-board-item.tc-muuri-releasing .tc-board-item-action {\n\topacity: 1;\n\ttransform: scale(1, 1);\n\ttransition: transform 0.2s 0.1s ease, opacity 0.2s 0.1s linear;\n}\n.tc-board-item.tc-editing .tc-board-item-action:hover,\n.tc-board-item:hover .tc-board-item-action:hover,\n.tc-board-item:focus .tc-board-item-action:hover,\n.tc-board-item.tc-muuri-dragging .tc-board-item-action:hover,\n.tc-board-item.tc-muuri-releasing .tc-board-item-action:hover {\n\ttransform: scale(1.2, 1.2);\n}\n.tc-board-item-action-icon {\n\tflex-grow: 1;\n\tpointer-events: none;\n}\n.tc-board-item.tc-editing .tc-board-item-action-icon.tc-icon-edit,\n.tc-board-item-action-icon.tc-icon-save {\n\tdisplay: none;\n}\n.tc-board-item.tc-editing .tc-board-item-action-icon.tc-icon-save {\n\tdisplay: block;\n}\n&quot;
+        },
+        &quot;$:/plugins/BTC/Muuri-Kanban/ui/Buttons/new-kanban&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/ui/Buttons/new-kanban&quot;,
+            &quot;tags&quot;: &quot;$:/tags/PageControls&quot;,
+            &quot;text&quot;: &quot;\\define new-kanban-actions()\n&lt;$action-createtiddler $basetitle=\&quot;New Kanban\&quot; $savetitle=\&quot;$:/temp/new-kanban\&quot; $template=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanTemplate\&quot; muuri-tiddler-width=\&quot;1\&quot;/&gt;\n&lt;$action-sendmessage $message=\&quot;tm-edit-tiddler\&quot; $param={{$:/temp/new-kanban}}/&gt;\n\\end\n\\whitespace trim\n&lt;$button actions=&lt;&lt;new-kanban-actions&gt;&gt; tooltip=\&quot;new kanban\&quot; aria-label=\&quot;new kanban\&quot; class=&lt;&lt;tv-config-toolbar-class&gt;&gt;&gt;\n&lt;$list filter=\&quot;[&lt;tv-config-toolbar-icons&gt;match[yes]]\&quot;&gt;\n{{$:/plugins/BTC/Muuri-Kanban/icons/kanban}}\n&lt;/$list&gt;\n&lt;$list filter=\&quot;[&lt;tv-config-toolbar-text&gt;match[yes]]\&quot;&gt;\n&lt;span class=\&quot;tc-btn-text\&quot;&gt;&lt;$text text=\&quot; new kanban\&quot;/&gt;&lt;/span&gt;\n&lt;/$list&gt;\n&lt;/$button&gt;\n&quot;
+        },
+        &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnEditTemplate&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnEditTemplate&quot;,
+            &quot;text&quot;: &quot;\\whitespace trim\n\\define get-history() $:/HistoryList/Kanban/$(currentTiddler)$\n\\define get-styles() background-color: $(bgColor)$; border-color: $(bgColor)$; fill: $(foregroundColor)$;\n\\define get-foreground-color-inner(colour,colourA,colourB)\n&lt;$macrocall $name=\&quot;contrastcolour\&quot; target=\&quot;\&quot;\&quot;$colour$\&quot;\&quot;\&quot; colourA=\&quot;\&quot;\&quot;$colourA$\&quot;\&quot;\&quot; colourB=\&quot;\&quot;\&quot;$colourB$\&quot;\&quot;\&quot;/&gt;\n\\end\n\\define get-foreground-color(palette)\n&lt;$macrocall $name=\&quot;get-foreground-color-inner\&quot; colour={{!!color}} colourA={{$palette$##foreground}} colourB={{$palette$##background}}/&gt;\n\\end\n&lt;$vars bgColor={{!!color}} palette={{$:/palette}}&gt;\n&lt;$wikify name=\&quot;foregroundColor\&quot; text=\&quot;\&quot;\&quot;&lt;$macrocall $name=\&quot;get-foreground-color\&quot; palette=&lt;&lt;palette&gt;&gt;/&gt;\&quot;\&quot;\&quot;&gt;\n\t&lt;div class=\&quot;tc-board-column\&quot;&gt;\n\t\t&lt;div class=\&quot;tc-board-column-content\&quot;&gt;\n\t\t\t&lt;div class=\&quot;tc-board-column-header-wrapper\&quot;&gt;\n\t\t\t\t&lt;div class=\&quot;tc-board-column-header tc-board-column-edit-header\&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;\n\t\t\t\t\t&lt;div class=\&quot;tc-board-column-title\&quot;&gt;\n\t\t\t\t\t\t&lt;$keyboard key=\&quot;((save-tiddler))\&quot; message=\&quot;tm-save-tiddler\&quot;&gt;\n\t\t\t\t\t\t\t&lt;$keyboard key=\&quot;((cancel-edit-tiddler))\&quot; message=\&quot;tm-cancel-tiddler\&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;$edit-text field=\&quot;draft.title\&quot; tag=\&quot;input\&quot; placeholder=\&quot; title\&quot; focus=\&quot;true\&quot;/&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t&lt;$edit-text field=\&quot;caption\&quot; tag=\&quot;input\&quot; placeholder=\&quot; caption\&quot;/&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t&lt;$edit-text field=\&quot;drop-actions\&quot; tag=\&quot;input\&quot; placeholder=\&quot; drop-actions\&quot;/&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t&lt;$edit-text field=\&quot;color\&quot; tag=\&quot;input\&quot;/&gt;\n\t\t\t\t\t\t\t&lt;/$keyboard&gt;\n\t\t\t\t\t\t&lt;/$keyboard&gt;\n\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t\t&lt;div style=\&quot;position: absolute; right: 0; top: 0;\&quot;&gt;\n\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-edit\&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;\n\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-save-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t{{$:/core/images/save-button}}\n\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-delete\&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;\n\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-cancel-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t{{$:/core/images/cancel-button}}\n\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t\t&lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history&gt;&gt;&gt;\n\t\t\t\t&lt;div class=\&quot;tc-board-column-items-container\&quot;&gt;\n\t\t\t\t\t&lt;$set name=\&quot;tv-muuri-story-list\&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;\n\t\t\t\t\t\t&lt;$set name=\&quot;tv-muuri-drop-actions\&quot; value={{!!drop-actions}}&gt;\n\t\t\t\t\t\t\t&lt;div class=\&quot;tc-board-column-items\&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;$list filter=\&quot;[list&lt;currentTiddler&gt;]\&quot; storyview=\&quot;muuri\&quot; template=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemTemplate\&quot; editTemplate=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemEditTemplate\&quot; storyViewConfig=\&quot;$:/config/kanban/items/\&quot;/&gt;\n\t\t\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t\t\t&lt;/$set&gt;\n\t\t\t\t\t&lt;/$set&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t&lt;/$navigator&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\n&lt;/$wikify&gt;\n&lt;/$vars&gt;&quot;
+        },
+        &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnTemplate&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnTemplate&quot;,
+            &quot;text&quot;: &quot;\\whitespace trim\n\\define get-history() $:/HistoryList/KanbanColumn/$(currentTiddler)$\n\\define get-classes() tc-board-column $(currentTiddler)$\n\\define get-board-column-styles() width: calc(100% / $(amount)$);\n\\define get-styles() background-color: $(bgColor)$; border-color: $(bgColor)$; color: $(foregroundColor)$; fill: $(foregroundColor)$;\n\\define get-foreground-color-inner(colour,colourA,colourB)\n&lt;$macrocall $name=\&quot;contrastcolour\&quot; target=\&quot;\&quot;\&quot;$colour$\&quot;\&quot;\&quot; colourA=\&quot;\&quot;\&quot;$colourA$\&quot;\&quot;\&quot; colourB=\&quot;\&quot;\&quot;$colourB$\&quot;\&quot;\&quot;/&gt;\n\\end\n\\define get-foreground-color(palette)\n&lt;$macrocall $name=\&quot;get-foreground-color-inner\&quot; colour={{!!color}} colourA={{$palette$##foreground}} colourB={{$palette$##background}}/&gt;\n\\end\n&lt;$vars bgColor={{!!color}} palette={{$:/palette}}&gt;\n&lt;$wikify name=\&quot;foregroundColor\&quot; text=\&quot;\&quot;\&quot;&lt;$macrocall $name=\&quot;get-foreground-color\&quot; palette=&lt;&lt;palette&gt;&gt;/&gt;\&quot;\&quot;\&quot;&gt;\n&lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history&gt;&gt;&gt;\n\t&lt;div class=&lt;&lt;get-classes&gt;&gt;&gt;\n\t\t&lt;div class=\&quot;tc-board-column-content\&quot;&gt;\n\t\t\t&lt;$droppable actions=\&quot;\&quot;\&quot;&lt;$action-navigate $to=&lt;&lt;actionTiddler&gt;&gt;/&gt;\&quot;\&quot;\&quot;&gt;\n\t\t\t\t&lt;div class=\&quot;tc-board-column-header-wrapper\&quot;&gt;\n\t\t\t\t\t&lt;div class=\&quot;tc-board-column-header\&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;\n\t\t\t\t\t\t&lt;div class=\&quot;tc-board-column-title\&quot;&gt;\n\t\t\t\t\t\t\t&lt;$list filter=\&quot;[{!!caption}!match[]]\&quot; variable=\&quot;ignore\&quot; emptyMessage=\&quot;\&quot;\&quot;\n\t\t\t\t\t\t\t\t&lt;$transclude field=\&quot;title\&quot;/&gt;\n\t\t\t\t\t\t\t\t\&quot;\&quot;\&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;$transclude field=\&quot;caption\&quot;/&gt;\n\t\t\t\t\t\t\t&lt;/$list&gt;\n\t\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-add\&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;\n\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-new-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t{{$:/core/images/new-button}}\n\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t\t&lt;$navigator story=\&quot;$:/KanbanList\&quot; history=\&quot;$:/KanbanHistoryList\&quot;&gt;\n\t\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-edit\&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;\n\t\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-edit-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t\t{{$:/core/images/edit-button}}\n\t\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-add\&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;\n\t\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-close-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t\t{{$:/core/images/close-button}}\n\t\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-delete\&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;\n\t\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-delete-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t\t{{$:/core/images/delete-button}}\n\t\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t\t&lt;/$navigator&gt;\n\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t&lt;/$droppable&gt;\n\t\t\t&lt;div class=\&quot;tc-board-column-items-container\&quot;&gt;\n\t\t\t\t&lt;$set name=\&quot;tv-muuri-story-list\&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;\n\t\t\t\t\t&lt;$set name=\&quot;tv-muuri-drop-actions\&quot; value={{!!drop-actions}}&gt;\n\t\t\t\t\t\t&lt;div class=\&quot;tc-board-column-items\&quot;&gt;\n\t\t\t\t\t\t\t&lt;$list filter=\&quot;[list&lt;currentTiddler&gt;]\&quot; storyview=\&quot;muuri\&quot; template=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemTemplate\&quot; editTemplate=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemEditTemplate\&quot; storyViewConfig=\&quot;$:/config/kanban/items/\&quot;/&gt;\n\t\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t\t&lt;/$set&gt;\n\t\t\t\t&lt;/$set&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\n&lt;/$navigator&gt;\n&lt;/$wikify&gt;\n&lt;/$vars&gt;&quot;
+        },
+        &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemEditTemplate&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemEditTemplate&quot;,
+            &quot;text&quot;: &quot;&lt;div class=\&quot;tc-board-item\&quot;&gt;\n\t&lt;div class=\&quot;tc-board-item-content\&quot;&gt;\n\t\t&lt;div class=\&quot;tc-board-item-title\&quot;&gt;\n\t\t\t&lt;$keyboard key=\&quot;((save-tiddler))\&quot; message=\&quot;tm-save-tiddler\&quot;&gt;\n\t\t\t\t&lt;$keyboard key=\&quot;((cancel-edit-tiddler))\&quot; message=\&quot;tm-cancel-tiddler\&quot;&gt;\n\t\t\t\t\t&lt;$edit-text field=\&quot;draft.title\&quot; tag=\&quot;input\&quot; placeholder=\&quot; title\&quot; focus=\&quot;true\&quot;/&gt;&lt;br&gt;\n\t\t\t\t\t&lt;$edit-text field=\&quot;caption\&quot; tag=\&quot;input\&quot; placeholder=\&quot; caption\&quot;/&gt;&lt;br&gt;\n\t\t\t\t\t&lt;$edit field=\&quot;text\&quot; default=\&quot;\&quot; placeholder=\&quot; text\&quot;/&gt;\n\t\t\t\t&lt;/$keyboard&gt;\n\t\t\t&lt;/$keyboard&gt;\n\t\t&lt;/div&gt;\n\t\t&lt;div class=\&quot;tc-board-item-action tc-edit\&quot;&gt;\n\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot;&gt;\n\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-save-tiddler\&quot;/&gt;\n\t\t\t\t{{$:/core/images/save-button}}\n\t\t\t&lt;/$button&gt;\n\t\t&lt;/div&gt;\n\t\t&lt;div class=\&quot;tc-board-item-action tc-delete\&quot;&gt;\n\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot;&gt;\n\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-cancel-tiddler\&quot;/&gt;\n\t\t\t\t{{$:/core/images/cancel-button}}\n\t\t\t&lt;/$button&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\n&lt;/div&gt;&quot;
+        },
+        &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemTemplate&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemTemplate&quot;,
+            &quot;text&quot;: &quot;&lt;div class=\&quot;tc-board-item\&quot;&gt;\n\t&lt;div class=\&quot;tc-board-item-content\&quot;&gt;\n\t\t&lt;div class=\&quot;tc-board-item-title\&quot;&gt;\n\t\t\t&lt;$list filter=\&quot;[{!!caption}!match[]]\&quot; variable=\&quot;ignore\&quot; emptyMessage=\&quot;\&quot;\&quot;\n\t\t\t\t&lt;$transclude field=\&quot;title\&quot;/&gt;\n\t\t\t\t\&quot;\&quot;\&quot;&gt;\n\t\t\t\t&lt;$transclude field=\&quot;caption\&quot;/&gt;\n\t\t\t&lt;/$list&gt;\n\t\t\t&lt;hr class=\&quot;simple\&quot;&gt;\n\t\t\t&lt;$transclude mode=\&quot;block\&quot;/&gt;\n\t\t&lt;/div&gt;\n\t\t&lt;div class=\&quot;tc-board-item-action tc-edit\&quot;&gt;\n\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot;&gt;\n\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-edit-tiddler\&quot;/&gt;\n\t\t\t\t{{$:/core/images/edit-button}}\n\t\t\t&lt;/$button&gt;\n\t\t&lt;/div&gt;\n\t\t&lt;div class=\&quot;tc-board-item-action tc-close\&quot;&gt;\n\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot;&gt;\n\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-close-tiddler\&quot;/&gt;\n\t\t\t\t{{$:/core/images/close-button}}\n\t\t\t&lt;/$button&gt;\n\t\t&lt;/div&gt;\n\t\t&lt;div class=\&quot;tc-board-item-action tc-delete\&quot;&gt;\n\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot;&gt;\n\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-delete-tiddler\&quot;/&gt;\n\t\t\t\t{{$:/core/images/delete-button}}\n\t\t\t&lt;/$button&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\n&lt;/div&gt;&quot;
+        },
+        &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanTemplate&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanTemplate&quot;,
+            &quot;text&quot;: &quot;\\define get-history-list() $:/HistoryList/Kanban/$(currentTiddler)$\n\\whitespace trim\n&lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history-list&gt;&gt;&gt;\n&lt;div class=\&quot;tc-board-container\&quot; data-board-container-title=&lt;&lt;currentTiddler&gt;&gt;&gt;\n&lt;$droppable actions=\&quot;\&quot;\&quot;&lt;$action-navigate $to=&lt;&lt;actionTiddler&gt;&gt;/&gt;\&quot;\&quot;\&quot;&gt;\n&lt;div class=\&quot;tc-kanban-droppable\&quot;&gt;\n&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-add\&quot; tooltip=\&quot;new column\&quot; aria-label=\&quot;new column\&quot;&gt;\n&lt;$action-sendmessage $message=\&quot;tm-new-tiddler\&quot;/&gt;\n{{$:/core/images/new-button}}\n&lt;/$button&gt;\n&lt;/div&gt;\n&lt;/$droppable&gt;\n\t&lt;div class=\&quot;tc-board\&quot;&gt;\n\t\t&lt;$set name=\&quot;tv-muuri-story-list\&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;\n\t\t\t&lt;$list filter=\&quot;[list&lt;currentTiddler&gt;]\&quot; storyview=\&quot;muuri\&quot; template=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnTemplate\&quot; editTemplate=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnEditTemplate\&quot; storyViewConfig=\&quot;$:/config/kanban/\&quot;/&gt;\n\t\t&lt;/$set&gt;\n\t&lt;/div&gt;\n&lt;/div&gt;\n&lt;/$navigator&gt;&quot;
         }
     }
 }</pre>
@@ -12853,7 +12576,7 @@ tc-page-container tc-page-view-$(storyviewTitle)$ tc-language-$(languageTitle)$
 <div title="$:/status/RequireReloadDueToPluginChange" revision="0" bag="default">
 <pre>no</pre>
 </div>
-<div list="Installation Kanban [[Mona Lisa]] [[I am Mr. Van Gogh]] [[I am one of that guy's paintings]] [[Ceci n’est pas une pipe.]] [[The Great Wave off the Coast of Kanagawa]] [[Star me on GitHub]] [[The Birth of Venus]] [[The Kiss]] [[Works best with the CodeMirror plugin]] [[Configuration Options]] [[El jardin de las Delicias]] [[This Louvre moment]] [[Configuration by Namespace]] [[Change the amount of columns]] [[TiddlyWiki Version compatibility]] [[Actions can be triggered on Drop]] [[Moving Items between Grids]] [[Dragging Tiddlers]]" title="$:/StoryList" revision="1" bag="default">
+<div list="Installation Kanban [[Kanban Installation]] [[Mona Lisa]] [[I am Mr. Van Gogh]] [[I am one of that guy's paintings]] [[Ceci n’est pas une pipe.]] [[The Great Wave off the Coast of Kanagawa]] [[Star me on GitHub]] [[The Birth of Venus]] [[The Kiss]] [[Works best with the CodeMirror plugin]] [[Configuration Options]] [[El jardin de las Delicias]] [[This Louvre moment]] [[Configuration by Namespace]] [[Change the amount of columns]] [[TiddlyWiki Version compatibility]] [[Actions can be triggered on Drop]] [[Moving Items between Grids]] [[Dragging Tiddlers]]" title="$:/StoryList" revision="1" bag="default">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23" revision="0" bag="default">
@@ -13072,7 +12795,7 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <div color="#ff9c63" created="20201227190921011" list="[[The Great Wave off the Coast of Kanagawa]]" modified="20210101171507117" tags="" title="Images" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div created="20210101141719290" modified="20210103115820508" muuri-tiddler-width="1" tags="Information" title="Installation" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20210101141719290" modified="20210103145217643" muuri-tiddler-width="1" tags="Information" title="Installation" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>!! How to install the Muuri ~StoryView
 
 !!! On a single-file Wiki:
@@ -13089,16 +12812,17 @@ Drag the following Link into your Wiki:
 git clone --depth=&quot;1&quot; git@github.com:BurningTreeC/tiddlywiki-muuri.git $TIDDLYWIKI_PLUGIN_PATH
 ```
 
-* Enable the Plugin in your tiddlywiki.info
+* Enable the Plugin in your tiddlywiki.info file
 
 !!! Don't forget: If you like it - [ext[star it!|https://github.com/BurningTreeC/tiddlywiki-muuri]]
 
-!!! See the [[Changelog]] about recent changes</pre>
+!!! See the [[Changelog]] for recent changes</pre>
 </div>
-<div created="20201226101813477" modified="20210102163238387" muuri-tiddler-width="1" tags="" title="Kanban" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>\whitespace trim
-&lt;$navigator story=&quot;$:/KanbanList&quot; history=&quot;$:/KanbanHistoryList&quot;&gt;
-&lt;div class=&quot;tc-board-container&quot;&gt;
+<div created="20210103142519995" list="Todo Done Working Images" modified="20210103144537209" muuri-tiddler-width="1" title="Kanban" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>\define get-history-list() $:/HistoryList/Kanban/$(currentTiddler)$
+\whitespace trim
+&lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history-list&gt;&gt;&gt;
+&lt;div class=&quot;tc-board-container&quot; data-board-container-title=&lt;&lt;currentTiddler&gt;&gt;&gt;
 &lt;$droppable actions=&quot;&quot;&quot;&lt;$action-navigate $to=&lt;&lt;actionTiddler&gt;&gt;/&gt;&quot;&quot;&quot;&gt;
 &lt;div class=&quot;tc-kanban-droppable&quot;&gt;
 &lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-add&quot; tooltip=&quot;new column&quot; aria-label=&quot;new column&quot;&gt;
@@ -13108,10 +12832,40 @@ git clone --depth=&quot;1&quot; git@github.com:BurningTreeC/tiddlywiki-muuri.git
 &lt;/div&gt;
 &lt;/$droppable&gt;
 	&lt;div class=&quot;tc-board&quot;&gt;
-		&lt;$list filter=&quot;[list[$:/KanbanList]]&quot; storyview=&quot;muuri&quot; template=&quot;$:/KanbanColumnTemplate&quot; editTemplate=&quot;$:/KanbanColumnEditTemplate&quot; storyViewConfig=&quot;$:/config/kanban/&quot;/&gt;
+		&lt;$set name=&quot;tv-muuri-story-list&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;
+			&lt;$list filter=&quot;[list&lt;currentTiddler&gt;]&quot; storyview=&quot;muuri&quot; template=&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnTemplate&quot; editTemplate=&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnEditTemplate&quot; storyViewConfig=&quot;$:/config/kanban/&quot;/&gt;
+		&lt;/$set&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
 &lt;/$navigator&gt;</pre>
+</div>
+<div created="20210103145416211" modified="20210103145441199" title="Kanban Changelog" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>!!! __v0.1.0__
+
+* added the first version of the plugin</pre>
+</div>
+<div created="20210103144552042" modified="20210103145307115" muuri-tiddler-width="1" tags="Information" title="Kanban Installation" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>!! How to install the Muuri Kanban plugin
+
+!!! On a single-file Wiki:
+
+Drag the following Link into your Wiki:
+
+{{$:/plugins/BTC/Muuri-Kanban||$:/core/ui/Components/plugin-info}}
+
+!!! On ~NodeJs:
+
+* Clone the [ext[tiddlywiki-muuri-kanban repository|https://github.com/BurningTreeC/tiddlywiki-muuri-kanban]] to your `TIDDLYWIKI_PLUGIN_PATH`
+
+```
+git clone --depth=&quot;1&quot; git@github.com:BurningTreeC/tiddlywiki-muuri-kanban.git $TIDDLYWIKI_PLUGIN_PATH
+```
+
+* Enable the Plugin in your tiddlywiki.info file
+
+!!! Don't forget: If you like it - [ext[star it!|https://github.com/BurningTreeC/tiddlywiki-muuri-kanban]]
+
+!!! See the [[Changelog|Kanban Changelog]] for recent changes</pre>
 </div>
 <div created="20201011123647469" modified="20201226100231436" tags="" title="Mona Lisa" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img [https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/687px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg]]
