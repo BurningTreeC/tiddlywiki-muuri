@@ -1,6 +1,9 @@
 title: $:/plugins/BTC/Muuri/ui/Buttons/column
 tags: $:/tags/PageControls
 
+\define get-columns-tooltip()
+columns [$(shortcutUp)$] / [$(shortcutDown)$]
+\end
 \define set-next-column-actions()
 <$list filter="[<modifier>match[normal]]">
 <$list filter="[<columns>!match<rangeMax>]" emptyMessage="""
@@ -18,8 +21,8 @@ tags: $:/tags/PageControls
 </$list>
 \end
 \whitespace trim
-<$vars rangeMax={{$:/config/muuri/storyview/columns/max}} columns={{{ [[$:/config/muuri/storyview/columns]!is[missing]get[text]] ~[[1]] }}}>
-<$button tooltip={{$:/language/Buttons/Muuri/Columns/Hint}} aria-label={{$:/language/Buttons/Muuri/Columns/Caption}} class=<<tv-config-toolbar-class>> actions=<<set-next-column-actions>>>
+<$vars rangeMax={{$:/config/muuri/storyview/columns/max}} columns={{{ [[$:/config/muuri/storyview/columns]!is[missing]get[text]] ~[[1]] }}} shortcutUp=<<displayshortcuts ((columns-up))>> shortcutDown=<<displayshortcuts ((columns-down))>>>
+<$button tooltip=<<get-columns-tooltip>> aria-label={{$:/language/Buttons/Muuri/Columns/Caption}} class=<<tv-config-toolbar-class>> actions=<<set-next-column-actions>>>
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
 {{$:/plugins/BTC/Muuri/icons/column}}
 </$list>
