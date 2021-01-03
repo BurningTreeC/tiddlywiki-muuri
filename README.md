@@ -26,7 +26,7 @@ enable the plugin in your tiddlywiki.info file (see https://tiddlywiki.com/#tidd
 "plugins": [
 	"plugins/first-plugin",
 	"plugins/second-plugin",
-	"BTC/Muuri"
+	"tiddlywiki-muuri/BTC/Muuri"
 	]
 ```
 
