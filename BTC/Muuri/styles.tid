@@ -213,7 +213,7 @@ muuri-tiddler-width: 1
 				position: absolute;
 			}
 
-			.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+			.tc-drag-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 				margin-<<marginSuffix>>: <<margin>>;
 				margin-bottom: <<marginBottom>>;
 			}
@@ -252,6 +252,11 @@ muuri-tiddler-width: 1
 
 			.tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
 				z-index: -1;
+			}
+
+			.tc-drag-container > .tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
+				margin-left: -15px;
+				width: calc(100% + 30px);
 			}
 
 		}
