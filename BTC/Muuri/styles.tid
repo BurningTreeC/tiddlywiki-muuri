@@ -277,9 +277,22 @@ muuri-tiddler-width: 1
 			}
 	
 			@media (max-width: <<sidebarbreakpoint-minus-one>>) {
-				.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-					width: calc(100% / 2);
-				}
+
+				<$list filter="[<count>compare:number:gteq[2]]">
+
+					.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+						width: calc(100% / 2);
+					}
+
+				</$list>
+
+				<$list filter="[<count>compare:number:lt[2]]">
+
+					.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+						width: 100%;
+					}
+
+				</$list>					
 
 				.tc-story-river.tc-muuri-river {
 					margin-top: 0;
