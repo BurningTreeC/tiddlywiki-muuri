@@ -1,0 +1,11 @@
+title: $:/plugins/BTC/Muuri/ui/KeyboardShortcuts/columns-down
+tags: $:/tags/KeyboardShortcut
+key: ((columns-down))
+
+<$vars rangeMax={{$:/config/muuri/storyview/columns/max}} columns={{{ [[$:/config/muuri/storyview/columns]!is[missing]get[text]] ~[[1]] }}}>
+<$list filter="[<columns>!match[1]]" emptyMessage="""
+<$action-setfield $tiddler="$:/config/muuri/storyview/columns" text=<<rangeMax>>/>
+""">
+<$action-setfield $tiddler="$:/config/muuri/storyview/columns" text={{{ [range<rangeMax>before<columns>] }}}/>
+</$list>
+</$vars>
