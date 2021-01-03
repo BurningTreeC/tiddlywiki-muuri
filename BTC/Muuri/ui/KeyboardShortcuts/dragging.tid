@@ -1,0 +1,5 @@
+title: $:/plugins/BTC/Muuri/ui/KeyboardShortcuts/dragging
+key: ((dragging))
+tags: $:/tags/KeyboardShortcut
+
+<$action-listops $tiddler="$:/config/muuri/storyview/drag-enabled" $field="text" $subfilter="+[toggle[yes],[no]]"/>
