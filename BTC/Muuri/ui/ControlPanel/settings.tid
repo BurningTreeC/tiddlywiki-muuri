@@ -22,6 +22,13 @@ caption: Muuri
 	<option value="yes">align from bottom to top</option>
 </$select>
 
+!!! Configure the vertical / horizontal view
+
+<$select tiddler="$:/config/muuri/storyview/horizontal" default="no">
+	<option value="no">vertical</option>
+	<option value="yes">horizontal</option>
+</$select>
+
 !!! Configure the modifier key for the columns-button
 
 <$select tiddler="$:/config/muuri/columns/modifier" default="ctrl">

@@ -361,7 +361,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 		},
 		layout: {
 			fillGaps: false,
-			horizontal: false,
+			horizontal: self.horizontal,
 			alignRight: self.alignRight,
 			alignBottom: self.alignBottom,
 			rounding: false
@@ -478,6 +478,7 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	this.storyListField = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist-field") || "list";
 	this.connectionSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "connection-selector");
 	this.dropActions = this.listWidget.getVariable("tv-muuri-drop-actions") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
+	this.horizontal = this.listWidget.wiki.getTiddlerText(this.configNamespace + "horizontal") === "yes";
 };
 
 MuuriStoryView.prototype.findMuuriWidget = function() {
@@ -744,6 +745,16 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 				sortInterval: self.dragSortHeuristicsInterval
 			}
 		});
+	}
+	if(this.muuri && changedTiddlers[this.configNamespace + "horizontal"]) {
+		this.horizontal = this.listWidget.wiki.getTiddlerText(this.configNamespace + "horizontal") === "yes";
+		this.muuri.updateSettings({
+			layout: {
+				horizontal: self.horizontal
+			}
+		});
+		this.muuri.element.style.width = "";
+		this.muuri.element.style.height = "";
 	}
 	if(changedTiddlers[this.configNamespace + "storylist"]) {
 		this.storyListTitle = this.listWidget.getVariable("tv-muuri-story-list") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist");

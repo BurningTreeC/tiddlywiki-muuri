@@ -104,6 +104,14 @@ muuri-tiddler-width: 1
 				margin-bottom: <<marginBottom>>;
 			}
 
+			<$list filter="[{$:/config/muuri/storyview/horizontal}match[yes]]">
+
+				.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+					width: calc((100vw / <<count>>) - <<margin>> - (<<margin>> / <<count>>));
+				}
+
+			</$list>
+
 			.tc-story-river.tc-muuri-river {
 				margin-top: {{$:/config/muuri/storyview/story-river/margin-top}};
 			}
@@ -156,13 +164,21 @@ muuri-tiddler-width: 1
 
 			</$list>
 
-			<$list filter="[list[$:/StoryList]has[muuri-tiddler-width]]">
+			<$list filter="[list[$:/StoryList]has[muuri-tiddler-width]] $:/ControlPanel $:/Manager $:/TagManager">
 
-				<$set name="columns" value={{{ [<currentTiddler>get[muuri-tiddler-width]] }}}>
+				<$set name="columns" value={{{ [<currentTiddler>get[muuri-tiddler-width]] ~[[1]] }}}>
 				
 					<$set name="cssEscapedTitle" value={{{ [<currentTiddler>escapecss[]] }}}>
+
+						<$list filter="[{$:/config/muuri/storyview/horizontal}!match[yes]]" emptyMessage="""
+
+							<<set-muuri-tiddler-width "vw">>
+
+						""">
 					
-						<<set-muuri-tiddler-width "%">>
+							<<set-muuri-tiddler-width "%">>
+
+						</$list>
 
 						<$list filter="[<columns>compare:number:lteq<firstBreakPoint>]" variable="ignore">
 
@@ -237,6 +253,14 @@ muuri-tiddler-width: 1
 
 				.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 					width: calc(100% - (<<margin>> * 2));
+				}
+
+			</$list>
+
+			<$list filter="[{$:/config/muuri/storyview/horizontal}match[yes]]">
+
+				.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+					width: calc((100vw / <<count>>) - <<margin>> - (<<margin>> / <<count>>));
 				}
 
 			</$list>
@@ -392,6 +416,31 @@ muuri-tiddler-width: 1
 			.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-titlebar, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-subtitle, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tags-wrapper {
 				display: none;
 			}
+
+		</$list>
+
+		<$list filter="[{$:/config/muuri/storyview/horizontal}match[yes]]">
+
+			.tc-sidebar-scrollable {
+				position: fixed;
+				top: 0;
+				right: 0;
+				z-index: 999;
+				max-width: 80vw;
+				background-color: <<colour page-background>>;
+			}
+
+			.tc-story-river.tc-muuri-river {
+				height: 100vh;
+			}
+
+			<$list filter="[{$:/state/sidebar}match[no]]">
+
+				.tc-sidebar-scrollable {
+					display: none;
+				}
+
+			</$list>
 
 		</$list>
 
