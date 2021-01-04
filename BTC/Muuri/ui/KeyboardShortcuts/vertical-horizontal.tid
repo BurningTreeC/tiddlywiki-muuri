@@ -1,0 +1,11 @@
+title: $:/plugins/BTC/Muuri/ui/KeyboardShortcuts/vertical-horizontal
+tags: $:/tags/KeyboardShortcut
+key: ((vertical-horizontal))
+
+<$set name="state" value="$:/config/muuri/storyview/horizontal">
+<$list filter="[<state>get[text]!match[yes]]" emptyMessage="""
+<$action-setfield $tiddler=<<state>> text="no"/>
+""">
+<$action-setfield $tiddler=<<state>> text="yes"/>
+</$list>
+</$set>
