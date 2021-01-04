@@ -257,6 +257,28 @@ muuri-tiddler-width: 1
 
 			</$list>
 
+			<$list filter="[list[$:/StoryList]has[muuri-tiddler-width]] $:/ControlPanel $:/Manager $:/TagManager">
+
+				<$set name="columns" value={{{ [<currentTiddler>get[muuri-tiddler-width]compare:number:gteq[2]then[2]else[1]] ~[[1]] }}}>
+				
+					<$set name="cssEscapedTitle" value={{{ [<currentTiddler>escapecss[]] }}}>
+
+						<$list filter="[{$:/config/muuri/storyview/horizontal}!match[yes]]" emptyMessage="""
+
+							<<set-muuri-tiddler-width "vw">>
+
+						""">
+					
+							<<set-muuri-tiddler-width "%">>
+
+						</$list>
+					
+					</$set>
+
+				</$set>
+
+			</$list>
+
 			<$list filter="[{$:/config/muuri/storyview/horizontal}match[yes]]">
 
 				.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
