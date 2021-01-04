@@ -303,13 +303,13 @@ fill: red;
 <div created="20210104084450977" modified="20210104084456587" title="$:/config/muuri/storyview/align-right" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>yes</pre>
 </div>
-<div created="20201216154323661" modified="20210103120549330" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201216154323661" modified="20210104153546520" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>4</pre>
 </div>
 <div created="20210104095410188" modified="20210104100844249" title="$:/config/muuri/storyview/fill-gaps" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>no</pre>
 </div>
-<div created="20210104084025874" modified="20210104100256033" title="$:/config/muuri/storyview/horizontal" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20210104152444596" modified="20210104152538923" title="$:/config/muuri/storyview/horizontal" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>no</pre>
 </div>
 <div created="20201227111434237" modified="20201227111434298" title="$:/config/RelinkOnRename" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -11231,7 +11231,7 @@ fill: red;
 <div created="20201225121816249" modified="20201228084401175" title="$:/palette" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>$:/palettes/Vanilla</pre>
 </div>
-<div author="Simon Huber" dependents="" description="A gridded storyview" list="readme license usage" muuri-tiddler-width="1" plugin-type="plugin" title="$:/plugins/BTC/Muuri" type="application/json" version="0.2.4" revision="0" bag="default">
+<div author="Simon Huber" dependents="" description="A gridded storyview" list="readme license usage" muuri-tiddler-width="1" plugin-type="plugin" title="$:/plugins/BTC/Muuri" type="application/json" version="0.2.5" revision="0" bag="default">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/config/ShortcutInfo/columns-down&quot;: {
@@ -11245,6 +11245,10 @@ fill: red;
         &quot;$:/config/ShortcutInfo/dragging&quot;: {
             &quot;title&quot;: &quot;$:/config/ShortcutInfo/dragging&quot;,
             &quot;text&quot;: &quot;Enable or disable dragging&quot;
+        },
+        &quot;$:/config/ShortcutInfo/vertical-horizontal&quot;: {
+            &quot;title&quot;: &quot;$:/config/ShortcutInfo/vertical-horizontal&quot;,
+            &quot;text&quot;: &quot;Change from vertical to horizontal view and vice versa&quot;
         },
         &quot;$:/config/muuri/storyview/columns/max&quot;: {
             &quot;title&quot;: &quot;$:/config/muuri/storyview/columns/max&quot;,
@@ -11285,6 +11289,10 @@ fill: red;
         &quot;$:/config/shortcuts/dragging&quot;: {
             &quot;title&quot;: &quot;$:/config/shortcuts/dragging&quot;,
             &quot;text&quot;: &quot;alt-shift-D&quot;
+        },
+        &quot;$:/config/shortcuts/vertical-horizontal&quot;: {
+            &quot;title&quot;: &quot;$:/config/shortcuts/vertical-horizontal&quot;,
+            &quot;text&quot;: &quot;alt-shift-a&quot;
         },
         &quot;$:/config/muuri/storyview/story-river/margin-top&quot;: {
             &quot;title&quot;: &quot;$:/config/muuri/storyview/story-river/margin-top&quot;,
@@ -11384,6 +11392,12 @@ fill: red;
             &quot;key&quot;: &quot;((dragging))&quot;,
             &quot;tags&quot;: &quot;$:/tags/KeyboardShortcut&quot;,
             &quot;text&quot;: &quot;&lt;$action-listops $tiddler=\&quot;$:/config/muuri/storyview/drag-enabled\&quot; $field=\&quot;text\&quot; $subfilter=\&quot;+[toggle[yes],[no]]\&quot;/&gt;&quot;
+        },
+        &quot;$:/plugins/BTC/Muuri/ui/KeyboardShortcuts/vertical-horizontal&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/BTC/Muuri/ui/KeyboardShortcuts/vertical-horizontal&quot;,
+            &quot;tags&quot;: &quot;$:/tags/KeyboardShortcut&quot;,
+            &quot;key&quot;: &quot;((vertical-horizontal))&quot;,
+            &quot;text&quot;: &quot;&lt;$set name=\&quot;state\&quot; value=\&quot;$:/config/muuri/storyview/horizontal\&quot;&gt;\n&lt;$list filter=\&quot;[&lt;state&gt;get[text]!match[yes]]\&quot; emptyMessage=\&quot;\&quot;\&quot;\n&lt;$action-setfield $tiddler=&lt;&lt;state&gt;&gt; text=\&quot;no\&quot;/&gt;\n\&quot;\&quot;\&quot;&gt;\n&lt;$action-setfield $tiddler=&lt;&lt;state&gt;&gt; text=\&quot;yes\&quot;/&gt;\n&lt;/$list&gt;\n&lt;/$set&gt;&quot;
         },
         &quot;$:/plugins/BTC/Muuri/ui/Layout&quot;: {
             &quot;title&quot;: &quot;$:/plugins/BTC/Muuri/ui/Layout&quot;,
@@ -12124,8 +12138,18 @@ tc-page-container tc-page-view-$(storyviewTitle)$ tc-language-$(languageTitle)$
 <div created="20201220101933342" modified="20201220102206969" tags="Features" title="Change the amount of columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>Click the columns Button for more columns, hold &lt;kbd&gt;ctrl&lt;/kbd&gt; while clicking it for less columns</pre>
 </div>
-<div created="20210103115000441" modified="20210104094240162" muuri-tiddler-width="1" tags="Information" title="Changelog" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>!!! __v0.2.3__
+<div created="20210103115000441" modified="20210104155408677" muuri-tiddler-width="1" tags="Information" title="Changelog" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>!!! __v0.2.5__
+
+* added keyboard shortcut to change from vertical to horizontal view and vice versa (&lt;kbd&gt;&lt;&lt;displayshortcuts ((vertical-horizontal))&gt;&gt;&lt;/kbd&gt;)
+
+!!! __v0.2.4__
+
+* fixed styles for horizontal view
+* fixed styles for narrow screens
+* fixed styles for seamless view
+
+!!! __v0.2.3__
 
 * added the horizontal view ($:/ControlPanel -&gt; Appearance -&gt; Muuri)
 * made $:/ControlPanel, $:/TagManager and $:/Manager full-width
@@ -12236,7 +12260,7 @@ git clone --depth=&quot;1&quot; git@github.com:BurningTreeC/tiddlywiki-muuri.git
 
 !!! See the [[Changelog]] for recent changes</pre>
 </div>
-<div created="20210103142519995" list="Todo Done Working Images" modified="20210104140613080" muuri-tiddler-width="1" title="Kanban" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20210103142519995" list="Todo Done Working Images" modified="20210104153652402" muuri-tiddler-width="1" title="Kanban" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\define get-history-list() $:/HistoryList/Kanban/$(currentTiddler)$
 \whitespace trim
 &lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history-list&gt;&gt;&gt;
