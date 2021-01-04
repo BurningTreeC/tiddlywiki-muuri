@@ -325,9 +325,20 @@ muuri-tiddler-width: 1
 		<$list filter="[{$:/config/muuri/storyview/fill-gaps}match[yes]]" variable="ignore">
 
 			@media (min-width: <<sidebarBreakPoint>>) {
-				.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-					width: calc(100% / <<count>>);
-				}
+
+				<$list filter="[{$:/config/muuri/storyview/horizontal}!match[yes]]" emptyMessage="""
+
+					.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+						width: calc(100vw / <<count>>);
+					}
+
+				""">
+				
+					.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+						width: calc(100% / <<count>>);
+					}
+
+				</$list>
 				
 				.tc-story-river.tc-muuri-river {
 					margin-top: 0;
@@ -338,19 +349,39 @@ muuri-tiddler-width: 1
 
 				<$list filter="[<count>compare:number:gteq[2]]">
 
-					.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-						width: calc(100% / 2);
-					}
+					<$list filter="[{$:/config/muuri/storyview/horizontal}!match[yes]]" emptyMessage="""
+
+						.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+							width: calc(100vw / 2);
+						}
+
+					""">
+
+						.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+							width: calc(100% / 2);
+						}
+
+					</$list>
 
 				</$list>
 
 				<$list filter="[<count>compare:number:lt[2]]">
 
-					.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
-						width: 100%;
-					}
+					<$list filter="[{$:/config/muuri/storyview/horizontal}!match[yes]]" emptyMessage="""
 
-				</$list>					
+						.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+							width: 100vw;
+						}
+
+					""">
+
+						.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
+							width: 100%;
+						}
+
+					</$list>
+
+				</$list>
 
 				.tc-story-river.tc-muuri-river {
 					margin-top: 0;
