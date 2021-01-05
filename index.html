@@ -165,18 +165,6 @@ Error message and password prompt
 
 <li>$:/isEncrypted</li>
 
-<li>$:/KanbanColumnEditTemplate</li>
-
-<li>$:/KanbanColumnTemplate</li>
-
-<li>$:/KanbanHistoryList</li>
-
-<li>$:/KanbanItemEditTemplate</li>
-
-<li>$:/KanbanItemTemplate</li>
-
-<li>$:/KanbanList</li>
-
 <li>$:/layout</li>
 
 <li>$:/palette</li>
@@ -309,7 +297,7 @@ fill: red;
 <div created="20210104095410188" modified="20210104100844249" title="$:/config/muuri/storyview/fill-gaps" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>no</pre>
 </div>
-<div created="20210104152444596" modified="20210104152538923" title="$:/config/muuri/storyview/horizontal" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20210104152444596" modified="20210104203929156" title="$:/config/muuri/storyview/horizontal" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>no</pre>
 </div>
 <div created="20201227111434237" modified="20201227111434298" title="$:/config/RelinkOnRename" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -10202,1029 +10190,6 @@ fill: red;
 <div title="$:/isEncrypted" revision="0" bag="default">
 <pre>no</pre>
 </div>
-<div created="20201226105926723" list="" modified="20201228101529493" tags="" title="$:/KanbanColumnEditTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>\whitespace trim
-\define get-history() $:/HistoryList/Kanban/$(currentTiddler)$
-\define get-styles() background-color: $(bgColor)$; border-color: $(bgColor)$; fill: $(foregroundColor)$;
-\define get-foreground-color-inner(colour,colourA,colourB)
-&lt;$macrocall $name=&quot;contrastcolour&quot; target=&quot;&quot;&quot;$colour$&quot;&quot;&quot; colourA=&quot;&quot;&quot;$colourA$&quot;&quot;&quot; colourB=&quot;&quot;&quot;$colourB$&quot;&quot;&quot;/&gt;
-\end
-\define get-foreground-color(palette)
-&lt;$macrocall $name=&quot;get-foreground-color-inner&quot; colour={{!!color}} colourA={{$palette$##foreground}} colourB={{$palette$##background}}/&gt;
-\end
-&lt;$vars bgColor={{!!color}} palette={{$:/palette}}&gt;
-&lt;$wikify name=&quot;foregroundColor&quot; text=&quot;&quot;&quot;&lt;$macrocall $name=&quot;get-foreground-color&quot; palette=&lt;&lt;palette&gt;&gt;/&gt;&quot;&quot;&quot;&gt;
-	&lt;div class=&quot;tc-board-column&quot;&gt;
-  	&lt;div class=&quot;tc-board-column-content&quot;&gt;
-		&lt;div class=&quot;tc-board-column-header-wrapper&quot;&gt;
-    	&lt;div class=&quot;tc-board-column-header tc-board-column-edit-header&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
-      	&lt;div class=&quot;tc-board-column-title&quot;&gt;
-				&lt;$keyboard key=&quot;((save-tiddler))&quot; message=&quot;tm-save-tiddler&quot;&gt;
-				&lt;$keyboard key=&quot;((cancel-edit-tiddler))&quot; message=&quot;tm-cancel-tiddler&quot;&gt;
-					&lt;$edit-text field=&quot;draft.title&quot; tag=&quot;input&quot; placeholder=&quot; title&quot; focus=&quot;true&quot;/&gt;&lt;br&gt;
-					&lt;$edit-text field=&quot;caption&quot; tag=&quot;input&quot; placeholder=&quot; caption&quot;/&gt;&lt;br&gt;
-					&lt;$edit-text field=&quot;drop-actions&quot; tag=&quot;input&quot; placeholder=&quot; drop-actions&quot;/&gt;&lt;br&gt;
-					&lt;$edit-text field=&quot;color&quot; tag=&quot;input&quot;/&gt;
-				&lt;/$keyboard&gt;
-				&lt;/$keyboard&gt;
-				&lt;/div&gt;
-				&lt;div style=&quot;position: absolute; right: 0; top: 0;&quot;&gt;
-        	&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-edit&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
-					&lt;$action-sendmessage $message=&quot;tm-save-tiddler&quot;/&gt;
-					{{$:/core/images/save-button}}
-          &lt;/$button&gt;
-        	&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-delete&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
-					&lt;$action-sendmessage $message=&quot;tm-cancel-tiddler&quot;/&gt;
-					{{$:/core/images/cancel-button}}
-          &lt;/$button&gt;
-			&lt;/div&gt;
-			&lt;/div&gt;
-			&lt;/div&gt;
-			&lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history&gt;&gt;&gt;
-      &lt;div class=&quot;tc-board-column-items-container&quot;&gt;
-					&lt;$set name=&quot;tv-muuri-story-list&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;
-					&lt;$set name=&quot;tv-muuri-drop-actions&quot; value={{!!drop-actions}}&gt;
-       	&lt;div class=&quot;tc-board-column-items&quot;&gt;
-						&lt;$list filter=&quot;[list&lt;currentTiddler&gt;]&quot; storyview=&quot;muuri&quot; template=&quot;$:/KanbanItemTemplate&quot; editTemplate=&quot;$:/KanbanItemEditTemplate&quot; storyViewConfig=&quot;$:/config/kanban/items/&quot;/&gt;
-				&lt;/div&gt;
-				&lt;/$set&gt;
-				&lt;/$set&gt;
-			&lt;/div&gt;
-			&lt;/$navigator&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;/$wikify&gt;
-&lt;/$vars&gt;</pre>
-</div>
-<div created="20201226102529782" list="" modified="20210101191741359" tags="" title="$:/KanbanColumnTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>\whitespace trim
-\define get-history() $:/HistoryList/Kanban/$(currentTiddler)$
-\define get-classes() tc-board-column $(currentTiddler)$
-\define get-styles() background-color: $(bgColor)$; border-color: $(bgColor)$; color: $(foregroundColor)$; fill: $(foregroundColor)$;
-\define get-foreground-color-inner(colour,colourA,colourB)
-&lt;$macrocall $name=&quot;contrastcolour&quot; target=&quot;&quot;&quot;$colour$&quot;&quot;&quot; colourA=&quot;&quot;&quot;$colourA$&quot;&quot;&quot; colourB=&quot;&quot;&quot;$colourB$&quot;&quot;&quot;/&gt;
-\end
-\define get-foreground-color(palette)
-&lt;$macrocall $name=&quot;get-foreground-color-inner&quot; colour={{!!color}} colourA={{$palette$##foreground}} colourB={{$palette$##background}}/&gt;
-\end
-&lt;$vars bgColor={{!!color}} palette={{$:/palette}}&gt;
-&lt;$wikify name=&quot;foregroundColor&quot; text=&quot;&quot;&quot;&lt;$macrocall $name=&quot;get-foreground-color&quot; palette=&lt;&lt;palette&gt;&gt;/&gt;&quot;&quot;&quot;&gt;
-&lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history&gt;&gt;&gt;
-	&lt;div class=&lt;&lt;get-classes&gt;&gt;&gt;
-  	&lt;div class=&quot;tc-board-column-content&quot;&gt;
-		&lt;$droppable actions=&quot;&quot;&quot;&lt;$action-navigate $to=&lt;&lt;actionTiddler&gt;&gt;/&gt;&quot;&quot;&quot;&gt;
-			&lt;div class=&quot;tc-board-column-header-wrapper&quot;&gt;
-    		&lt;div class=&quot;tc-board-column-header&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
-      		&lt;div class=&quot;tc-board-column-title&quot;&gt;
-					&lt;$list filter=&quot;[{!!caption}!match[]]&quot; variable=&quot;ignore&quot; emptyMessage=&quot;&quot;&quot;
-						&lt;$transclude field=&quot;title&quot;/&gt;
-					&quot;&quot;&quot;&gt;
-						&lt;$transclude field=&quot;caption&quot;/&gt;
-					&lt;/$list&gt;
-					&lt;/div&gt;
-        		&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-add&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
-						&lt;$action-sendmessage $message=&quot;tm-new-tiddler&quot;/&gt;
-						{{$:/core/images/new-button}}
-          	&lt;/$button&gt;
-				&lt;$navigator story=&quot;$:/KanbanList&quot; history=&quot;$:/KanbanHistoryList&quot;&gt;
-						&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-edit&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
-						&lt;$action-sendmessage $message=&quot;tm-edit-tiddler&quot;/&gt;
-						{{$:/core/images/edit-button}}
-						&lt;/$button&gt;
-						&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-add&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
-						&lt;$action-sendmessage $message=&quot;tm-close-tiddler&quot;/&gt;
-						{{$:/core/images/close-button}}
-						&lt;/$button&gt;
-						&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-delete&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;
-						&lt;$action-sendmessage $message=&quot;tm-delete-tiddler&quot;/&gt;
-						{{$:/core/images/delete-button}}
-						&lt;/$button&gt;
-				&lt;/$navigator&gt;
-				&lt;/div&gt;
-			&lt;/div&gt;
-			&lt;/$droppable&gt;
-      &lt;div class=&quot;tc-board-column-items-container&quot;&gt;
-				&lt;$set name=&quot;tv-muuri-story-list&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;
-				&lt;$set name=&quot;tv-muuri-drop-actions&quot; value={{!!drop-actions}}&gt;
-       	&lt;div class=&quot;tc-board-column-items&quot;&gt;
-						&lt;$list filter=&quot;[list&lt;currentTiddler&gt;]&quot; storyview=&quot;muuri&quot; template=&quot;$:/KanbanItemTemplate&quot; editTemplate=&quot;$:/KanbanItemEditTemplate&quot; storyViewConfig=&quot;$:/config/kanban/items/&quot;/&gt;
-				&lt;/div&gt;
-				&lt;/$set&gt;
-				&lt;/$set&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-&lt;/$navigator&gt;
-&lt;/$wikify&gt;
-&lt;/$vars&gt;</pre>
-</div>
-<div created="20201226120511731" current-tiddler="Draft of 'New Tiddler'" modified="20210103142455052" title="$:/KanbanHistoryList" type="application/json" revision="0" bag="default">
-<pre>[
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft 2 of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft 2 of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft 2 of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft 2 of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Almost Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft 2 of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft 2 of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Test&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft 2 of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft 2 of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft 2 of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;TestTiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler 1'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler 1'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Do something&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of '$:/KanbanColumnTemplate'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;$:/KanbanColumnTemplate&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Working'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Working&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Mona Lisa&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Mona Lisa'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Mona Lisa&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Images&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Images'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Images&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;TiddlyWiki&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'TiddlyWiki'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;TiddlyWiki&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Images'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Images&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Images'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Images&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Images'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Images&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Images'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Images&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;New Tiddler&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler 1'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Star me on GitHub&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Star me on GitHub'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Star me on GitHub&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Done'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Done&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Images'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Images&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'Todo'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Todo&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler 1'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler 2'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler 3'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler 4'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    },
-    {
-        &quot;title&quot;: &quot;Draft of 'New Tiddler'&quot;
-    }
-]</pre>
-</div>
-<div created="20201226110433248" modified="20210102073149456" tags="" title="$:/KanbanItemEditTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>&lt;div class=&quot;tc-board-item&quot;&gt;
-	&lt;div class=&quot;tc-board-item-content&quot;&gt;
-  	&lt;div class=&quot;tc-board-item-title&quot;&gt;
-			&lt;$keyboard key=&quot;((save-tiddler))&quot; message=&quot;tm-save-tiddler&quot;&gt;
-			&lt;$keyboard key=&quot;((cancel-edit-tiddler))&quot; message=&quot;tm-cancel-tiddler&quot;&gt;
-			&lt;$edit-text field=&quot;draft.title&quot; tag=&quot;input&quot; placeholder=&quot; title&quot; focus=&quot;true&quot;/&gt;&lt;br&gt;
-			&lt;$edit-text field=&quot;caption&quot; tag=&quot;input&quot; placeholder=&quot; caption&quot;/&gt;&lt;br&gt;
-			&lt;$edit field=&quot;text&quot; default=&quot;&quot; placeholder=&quot; text&quot;/&gt;
-			&lt;/$keyboard&gt;
-			&lt;/$keyboard&gt;
-		&lt;/div&gt;
-    &lt;div class=&quot;tc-board-item-action tc-edit&quot;&gt;
-			&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
-			&lt;$action-sendmessage $message=&quot;tm-save-tiddler&quot;/&gt;
-			{{$:/core/images/save-button}}
-			&lt;/$button&gt;
-   	&lt;/div&gt;
-   	&lt;div class=&quot;tc-board-item-action tc-delete&quot;&gt;
-			&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
-			&lt;$action-sendmessage $message=&quot;tm-cancel-tiddler&quot;/&gt;
-			{{$:/core/images/cancel-button}}
-			&lt;/$button&gt;
-   	&lt;/div&gt;
- 	&lt;/div&gt;
-&lt;/div&gt;</pre>
-</div>
-<div created="20201226104439282" modified="20201227155536339" tags="" title="$:/KanbanItemTemplate" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>&lt;div class=&quot;tc-board-item&quot;&gt;
-	&lt;div class=&quot;tc-board-item-content&quot;&gt;
-  	&lt;div class=&quot;tc-board-item-title&quot;&gt;
-		&lt;$list filter=&quot;[{!!caption}!match[]]&quot; variable=&quot;ignore&quot; emptyMessage=&quot;&quot;&quot;
-			&lt;$transclude field=&quot;title&quot;/&gt;
-		&quot;&quot;&quot;&gt;
-			&lt;$transclude field=&quot;caption&quot;/&gt;
-		&lt;/$list&gt;
-			&lt;hr class=&quot;simple&quot;&gt;
-			&lt;$transclude mode=&quot;block&quot;/&gt;
-		&lt;/div&gt;
-    &lt;div class=&quot;tc-board-item-action tc-edit&quot;&gt;
-			&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
-			&lt;$action-sendmessage $message=&quot;tm-edit-tiddler&quot;/&gt;
-			{{$:/core/images/edit-button}}
-			&lt;/$button&gt;
-   	&lt;/div&gt;
-    &lt;div class=&quot;tc-board-item-action tc-close&quot;&gt;
-			&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
-			&lt;$action-sendmessage $message=&quot;tm-close-tiddler&quot;/&gt;
-			{{$:/core/images/close-button}}
-			&lt;/$button&gt;
-   	&lt;/div&gt;
-   	&lt;div class=&quot;tc-board-item-action tc-delete&quot;&gt;
-			&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
-			&lt;$action-sendmessage $message=&quot;tm-delete-tiddler&quot;/&gt;
-			{{$:/core/images/delete-button}}
-			&lt;/$button&gt;
-   	&lt;/div&gt;
- 	&lt;/div&gt;
-&lt;/div&gt;</pre>
-</div>
-<div created="20201226140433928" list="Todo Done Working Images" modified="20210103142459419" title="$:/KanbanList" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre></pre>
-</div>
 <div created="20201226093820018" modified="20210103095806122" title="$:/layout" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>$:/plugins/BTC/Muuri/ui/Layout</pre>
 </div>
@@ -11413,7 +10378,7 @@ fill: red;
     }
 }</pre>
 </div>
-<div author="Simon Huber" dependents="" description="A Kanban based on Muuri" list="readme license" muuri-tiddler-width="1" plugin-type="plugin" title="$:/plugins/BTC/Muuri-Kanban" type="application/json" version="0.1.2" revision="0" bag="default">
+<div author="Simon Huber" dependents="" description="A Kanban based on Muuri" list="readme license config" muuri-tiddler-width="1" plugin-type="plugin" title="$:/plugins/BTC/Muuri-Kanban" type="application/json" version="0.1.3" revision="0" bag="default">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/config/kanban/items/connection-selector&quot;: {
@@ -11440,6 +10405,10 @@ fill: red;
             &quot;title&quot;: &quot;$:/config/kanban/align-right&quot;,
             &quot;text&quot;: &quot;no&quot;
         },
+        &quot;$:/config/kanban/animations&quot;: {
+            &quot;title&quot;: &quot;$:/config/kanban/animations&quot;,
+            &quot;text&quot;: &quot;yes&quot;
+        },
         &quot;$:/config/kanban/container-class&quot;: {
             &quot;title&quot;: &quot;$:/config/kanban/container-class&quot;,
             &quot;text&quot;: &quot;tc-board&quot;
@@ -11460,6 +10429,10 @@ fill: red;
             &quot;title&quot;: &quot;$:/config/kanban/item-class&quot;,
             &quot;text&quot;: &quot;tc-board-column&quot;
         },
+        &quot;$:/plugins/BTC/Muuri-Kanban/config&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/config&quot;,
+            &quot;text&quot;: &quot;&lt;$checkbox tiddler=\&quot;$:/config/kanban/animations\&quot; field=\&quot;text\&quot; checked=\&quot;yes\&quot; unchecked=\&quot;no\&quot; default=\&quot;yes\&quot;&gt; Enable animations for toolbar buttons&lt;/$checkbox&gt;\n\n&lt;$checkbox tiddler=\&quot;$:/config/kanban/items/show-toolbar\&quot; field=\&quot;text\&quot; checked=\&quot;yes\&quot; unchecked=\&quot;no\&quot; default=\&quot;no\&quot;&gt; Show the items-toolbar&lt;/$checkbox&gt;&quot;
+        },
         &quot;$:/plugins/BTC/Muuri-Kanban/icons/kanban&quot;: {
             &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/icons/kanban&quot;,
             &quot;tags&quot;: &quot;$:/tags/Image&quot;,
@@ -11477,7 +10450,7 @@ fill: red;
             &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/css&quot;,
             &quot;tags&quot;: &quot;$:/tags/Stylesheet&quot;,
             &quot;muuri-tiddler-width&quot;: &quot;1&quot;,
-            &quot;text&quot;: &quot;\\define set-board-column-width()\n[data-board-container-title=\&quot;$(cssEscapedTitle)$\&quot;] .tc-board-column {\n\twidth: calc(100% / $(count)$);\n}\n\\end\n.tc-board-container {\n\tposition: relative;\n\theight: 75vh;\n}\n\n&lt;$list filter=\&quot;[all[tiddlers]prefix[$:/state/popup/more-]limit[1]]\&quot;&gt;\n\n.tc-board-container {\n\tz-index: -1;\n}\n\n&lt;/$list&gt;\n\n.tc-kanban-droppable {\n\tposition: relative;\n\twidth: 100%;\n\tfont-size: 1.5rem;\n\tborder: 0.2rem dashed &lt;&lt;colour muted-foreground&gt;&gt;;\n\tborder-radius: 4px;\n}\n\n.tc-board {\n\tposition: relative;\n\tdisplay: flex;\n\theight: 100%;\n\tmin-width: 100%;\n\t-webkit-user-select: none;\n\t-moz-user-select: none;\n\t-ms-user-select: none;\n\tuser-select: none;\n}\n\n.tc-board-column {\n\tdisplay: flex;\n\tposition: absolute;\n\tleft: 0;\n\ttop: 0;\n\tmin-height: 100%;\n\tz-index: 1;\n}\n\n&lt;$list filter=\&quot;[all[tiddlers+shadows]has[list]]\&quot; variable=\&quot;listItem\&quot;&gt;\n\t&lt;$vars count={{{ [list&lt;listItem&gt;count[]] }}} cssEscapedTitle={{{ [&lt;listItem&gt;escapecss[]] }}}&gt;\n\n\t\t&lt;&lt;set-board-column-width&gt;&gt;\n\n\t&lt;/$set&gt;\n&lt;/$list&gt;\n\n.tc-board-column.tc-muuri-releasing {\n\tz-index: 2;\n}\n.tc-board-column.tc-muuri-dragging {\n\tz-index: 3;\n\tcursor: move;\n}\n\n.tc-board-column-content {\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: relative;\n\twidth: 100%;\n\tmin-height: 100%;\n\tpadding: 0.5rem;\n}\n\n.tc-board-column-header {\n\tposition: relative;\n\tdisplay: flex;\n\tjustify-content: space-between;\n\talign-items: center;\n\theight: 2.5rem;\n\twidth: 100%;\n\tmin-height: 2.5rem;\n\tfont-size: 1rem;\n\tline-height: 2.5rem;\n\toverflow: hidden;\n\tpadding: 0 1rem;\n\ttext-align: center;\n\tfont-weight: 700;\n\tfont-style: italic;\n\tbackground: &lt;&lt;colour tiddler-background&gt;&gt;;\n\tcolor: &lt;&lt;colour foreground&gt;&gt;;\n\tborder-radius: 0.2rem;\n\tborder: 0.2rem solid &lt;&lt;colour foreground&gt;&gt;;\n}\n.tc-board-column-header.tc-board-column-edit-header {\n\theight: auto;\n\tborder: 0.2rem solid &lt;&lt;colour foreground&gt;&gt;;\n}\n\n.tc-board-column-header input:not([type=\&quot;color\&quot;]) {\n\tborder: 1px solid &lt;&lt;colour muted-foreground&gt;&gt;;\n\tborder-radius: 2px;\n\twidth: 80%;\n}\n.tc-board-column-header-wrapper {\n\tposition: relative;\n\tdisplay: flex;\n\tfont-size: 1rem;\n\tfont-weight: 700;\n\theight: auto;\n}\n\n.tc-board-column-title {\n\twhite-space: nowrap;\n\ttext-overflow: ellipsis;\n\toverflow: hidden;\n\toutline: none;\n\tflex-grow: 1;\n\ttext-align: left;\n\tmargin-left: -2rem;\n\tpadding-left: 2rem;\n}\n\n.tc-board-column-action {\n\tdisplay: flex;\n\tjustify-content: center;\n\talign-items: center;\n\tposition: relative;\n\tmargin: 0;\n\tborder: 0;\n\twidth: 2rem;\n\theight: 2rem;\n\tmin-width: 2rem;\n\tmin-height: 2rem;\n\tpadding: 0.3rem;\n\tborder-radius: 1rem;\n\twhite-space: nowrap;\n\tcursor: pointer;\n\t-ms-touch-action: manipulation;\n\ttouch-action: manipulation;\n\t-webkit-user-select: none;\n\t-moz-user-select: none;\n\t-ms-user-select: none;\n\tuser-select: none;\n\ttransform: rotateZ(0deg);\n\ttransition: transform 0.2s ease-in-out;\n}\n.tc-board-column-action:hover {\n\ttransform: rotateZ(180deg);\n}\n.tc-board-column-action.tc-edit, .tc-board-column-action.tc-delete {\n\ttransition: transform 0.4s ease-in-out;\n}\n.tc-board-column-action.tc-edit:hover, .tc-board-column-action.tc-delete:hover {\n\ttransform: rotateZ(360deg);\n}\n\n.tc-board-column-action:focus {\n\toutline: 0;\n}\n\n.tc-board-column-action svg {\n\tflex-grow: 1;\n\tpointer-events: none;\n}\n\n.tc-board-column-items-container {\n\tposition: relative;\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-grow: 1;\n\toverflow: hidden;\n\toverflow-y: auto;\n}\n.tc-board-column-items {\n\tposition: absolute;\n\tleft: 0;\n \ttop: 0;\n\twidth: 100%;\n\tmin-height: 100%;\n\tborder-bottom: 1.5rem solid transparent;\n}\n\n.tc-board-item {\n\tposition: absolute;\n\twidth: calc(100% - 1rem);\n\tmargin: 0.5rem 0.5rem 0 0.5rem;\n\tz-index: 10;\n}\n.tc-board-item.tc-muuri-releasing {\n\tz-index: 11;\n}\n.tc-board-item.tc-muuri-dragging {\n\tz-index: 12;\n\tcursor: move;\n}\n.tc-board-item.tc-muuri-hidden {\n\tz-index: 8;\n}\n.tc-board-item.muuri-item-placeholder {\n\tz-index: 9;\n\tmargin: 0;\n\topacity: 0.7;\n}\n\n.tc-board-item img, .tc-board-item hr {\n\tpointer-events: none;\n\tmax-width: 100%;\n}\n\n.tc-board-item svg {\n\tmax-width: 100%;\n}\n\n.tc-board-item-content {\n\tposition: relative;\n\tpadding: 0.5rem;\n\tbackground: &lt;&lt;colour tiddler-background&gt;&gt;;\n\tborder: 0.2rem solid &lt;&lt;colour tag-background&gt;&gt;;\n\tcolor: &lt;&lt;colour foreground&gt;&gt;;\n\tborder-radius: 4px;\n\tfont-size: 1rem;\n\tfont-weight: 400;\n}\n.tc-board-item-content input {\n\twidth: 100%;\n\tborder: 1px solid &lt;&lt;colour muted-foreground&gt;&gt;;\n\tborder-radius: 2px;\n\tmargin-bottom: 2px;\n}\n.tc-board-item-content input + br + div {\n\twidth: 100%;\n\tborder-radius: 2px;\n}\n.tc-board-item.muuri-item-placeholder .tc-board-item-content {\n\tborder-style: dashed;\n\tborder-color: &lt;&lt;colour primary&gt;&gt;;\n}\n.tc-board-item.editing .tc-board-item-content {\n\tborder-color: &lt;&lt;colour primary&gt;&gt;;\n}\n.tc-board-item:focus-within .tc-board-item-content {\n\tborder: 0.2rem solid &lt;&lt;colour primary&gt;&gt;;\n\tpadding: 0.5rem;\n}\n.tc-board-item-title {\n\tfont-size: 1rem;\n\tline-height: 1.2;\n\tword-break: break-word;\n\tcaret-color: &lt;&lt;colour primary&gt;&gt;;\n\toutline: none;\n\toutline-offset: 0.5rem;\n\tmin-height: calc(1rem * 1.2);\n}\n.tc-board-item-handle {\n\tposition: absolute;\n\tleft: -0.25rem;\n\tright: -0.25rem;\n\ttop: -0.25rem;\n\tbottom: -0.25rem;\n\tborder-radius: 0.5rem;\n\tcursor: move;\n}\n.tc-board-item.tc-editing .tc-board-item-handle {\n\tdisplay: none;\n}\n.tc-board-item-action {\n\tposition: absolute;\n\tdisplay: flex;\n\twidth: 1.5rem;\n\theight: 1.5rem;\n\tpadding: 0rem;\n\topacity: 0;\n\ttransform: scale(0, 0);\n\ttransition: transform 0.3s 0s ease-out, opacity 0.3s 0s linear;\n}\n.tc-board-item-action.tc-edit {\n\tright: -1rem;\n\ttop: -1rem;\n}\n.tc-board-item:focus-within .tc-board-item-action.tc-edit {\n\tright: -1rem;\n\ttop: -1rem;\n}\n.tc-board-item-action.tc-delete {\n\tright: -1rem;\n\tbottom: -0.5rem;\n}\n.tc-board-item:focus-within .tc-board-item-action.tc-delete {\n\tright: -1rem;\n\tbottom: -0.5rem;\n}\n.tc-board-item.tc-editing .tc-board-item-action.tc-delete {\n\tdisplay: none;\n}\n.tc-board-item-action.tc-close {\n\tleft: -0.5rem;\n\tbottom: -0.5rem;\n}\n\n.tc-board-item.tc-editing .tc-board-item-action,\n.tc-board-item:hover .tc-board-item-action,\n.tc-board-column-header-wrapper:hover .tc-board-item-action,\n.tc-board-item:focus .tc-board-item-action,\n.tc-board-item.tc-muuri-dragging .tc-board-item-action,\n.tc-board-item.tc-muuri-releasing .tc-board-item-action {\n\topacity: 1;\n\ttransform: scale(1, 1);\n\ttransition: transform 0.2s 0.1s ease, opacity 0.2s 0.1s linear;\n}\n.tc-board-item.tc-editing .tc-board-item-action:hover,\n.tc-board-item:hover .tc-board-item-action:hover,\n.tc-board-item:focus .tc-board-item-action:hover,\n.tc-board-item.tc-muuri-dragging .tc-board-item-action:hover,\n.tc-board-item.tc-muuri-releasing .tc-board-item-action:hover {\n\ttransform: scale(1.2, 1.2);\n}\n.tc-board-item-action-icon {\n\tflex-grow: 1;\n\tpointer-events: none;\n}\n.tc-board-item.tc-editing .tc-board-item-action-icon.tc-icon-edit,\n.tc-board-item-action-icon.tc-icon-save {\n\tdisplay: none;\n}\n.tc-board-item.tc-editing .tc-board-item-action-icon.tc-icon-save {\n\tdisplay: block;\n}\n&quot;
+            &quot;text&quot;: &quot;\\define set-board-column-width()\n[data-board-container-title=\&quot;$(cssEscapedTitle)$\&quot;] .tc-board-column {\n\twidth: calc(100% / $(count)$);\n}\n\\end\n.tc-board-container {\n\tposition: relative;\n\theight: 75vh;\n}\n\nhr.tc-kanban-line {\n    border: 0;\n    height: 1px;\n    background: &lt;&lt;colour muted-foreground&gt;&gt;;\n}\n\n&lt;$list filter=\&quot;[all[tiddlers]prefix[$:/state/popup/more-]limit[1]]\&quot;&gt;\n\n.tc-board-container {\n\tz-index: -1;\n}\n\n&lt;/$list&gt;\n\n.tc-kanban-droppable {\n\tposition: relative;\n\twidth: 100%;\n\tfont-size: 1.5rem;\n\tmin-height: 2.2rem;\n\tborder: 0.2rem dashed transparent;\n\tborder-radius: 4px;\n}\n\n.tc-kanban-droppable button.tc-btn-invisible {\n\tfill: &lt;&lt;colour tiddler-controls-foreground&gt;&gt;;\n\tfloat: right;\n}\n\n.tc-kanban-droppable button.tc-btn-invisible:hover {\n\tfill: &lt;&lt;colour tiddler-controls-foreground-hover&gt;&gt;;\n}\n\n.tc-dragover .tc-kanban-droppable {\n\tborder-color: &lt;&lt;colour dropzone-background&gt;&gt;;\n}\n\n.tc-board {\n\tposition: relative;\n\tdisplay: flex;\n\theight: 100%;\n\tmin-width: 100%;\n\t-webkit-user-select: none;\n\t-moz-user-select: none;\n\t-ms-user-select: none;\n\tuser-select: none;\n}\n\n.tc-board-column {\n\tdisplay: flex;\n\tposition: absolute;\n\tleft: 0;\n\ttop: 0;\n\tmin-height: 100%;\n\tz-index: 1;\n}\n\n&lt;$list filter=\&quot;[all[tiddlers+shadows]has[list]]\&quot; variable=\&quot;listItem\&quot;&gt;\n\t&lt;$vars count={{{ [list&lt;listItem&gt;count[]] }}} cssEscapedTitle={{{ [&lt;listItem&gt;escapecss[]] }}}&gt;\n\n\t\t&lt;&lt;set-board-column-width&gt;&gt;\n\n\t&lt;/$vars&gt;\n&lt;/$list&gt;\n\n.tc-board-item-toolbar {\n\tfloat: right;\n}\n\n.tc-board-item-toolbar button.tc-btn-invisible {\n\tfill: &lt;&lt;colour tiddler-controls-foreground&gt;&gt;;\n}\n\n.tc-board-item-toolbar button.tc-btn-invisible:hover {\n\tfill: &lt;&lt;colour tiddler-controls-foreground-hover&gt;&gt;;\n}\n\n.tc-board-column.tc-muuri-releasing {\n\tz-index: 2;\n}\n.tc-board-column.tc-muuri-dragging {\n\tz-index: 3;\n\tcursor: move;\n}\n\n.tc-board-column-content {\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: relative;\n\twidth: 100%;\n\tmin-height: 100%;\n\tpadding: 0.5rem;\n}\n\n.tc-board-column-header {\n\tposition: relative;\n\tdisplay: flex;\n\tjustify-content: space-between;\n\talign-items: center;\n\theight: 2.5rem;\n\twidth: 100%;\n\tmin-height: 2.5rem;\n\tfont-size: 1rem;\n\tline-height: 2.5rem;\n\toverflow: hidden;\n\tpadding-top: 0;\n\tpadding-bottom: 0;\n\tpadding-left: 1rem;\n\tpadding-right: 0.5rem;\n\ttext-align: center;\n\tfont-weight: 700;\n\tfont-style: italic;\n\tbackground: &lt;&lt;colour tiddler-background&gt;&gt;;\n\tcolor: &lt;&lt;colour foreground&gt;&gt;;\n\tborder-radius: 0.2rem;\n\tborder: 0.2rem solid &lt;&lt;colour foreground&gt;&gt;;\n}\n.tc-board-column-header.tc-board-column-edit-header {\n\theight: auto;\n\tborder: 0.2rem solid &lt;&lt;colour foreground&gt;&gt;;\n}\n\n.tc-board-column-header input:not([type=\&quot;color\&quot;]) {\n\tborder: 1px solid &lt;&lt;colour muted-foreground&gt;&gt;;\n\tborder-radius: 2px;\n\twidth: 80%;\n}\n.tc-board-column-header-wrapper {\n\tposition: relative;\n\tdisplay: flex;\n\tfont-size: 1rem;\n\tfont-weight: 700;\n\theight: auto;\n}\n\n.tc-board-column-title {\n\twhite-space: nowrap;\n\ttext-overflow: ellipsis;\n\toverflow: hidden;\n\toutline: none;\n\tflex-grow: 1;\n\ttext-align: left;\n\tmargin-left: -2rem;\n\tpadding-left: 2rem;\n}\n\n.tc-board-column-action {\n\tdisplay: flex;\n\tjustify-content: center;\n\talign-items: center;\n\tposition: relative;\n\tmargin: 0;\n\tborder: 0;\n\twidth: 2rem;\n\theight: 2rem;\n\tmin-width: 2rem;\n\tmin-height: 2rem;\n\tpadding: 0.3rem;\n\tborder-radius: 1rem;\n\twhite-space: nowrap;\n\tcursor: pointer;\n\t-ms-touch-action: manipulation;\n\ttouch-action: manipulation;\n\t-webkit-user-select: none;\n\t-moz-user-select: none;\n\t-ms-user-select: none;\n\tuser-select: none;\n}\n\n&lt;$list filter=\&quot;[{$:/config/kanban/animations}!match[no]]\&quot;&gt;\n\n.tc-board-column-action {\n\ttransform: rotateZ(0deg);\n\ttransition: transform 0.2s ease-in-out;\n}\n\n.tc-board-column-action:hover {\n\ttransform: rotateZ(180deg);\n}\n.tc-board-column-action.tc-edit, .tc-board-column-action.tc-delete {\n\ttransition: transform 0.4s ease-in-out;\n}\n.tc-board-column-action.tc-edit:hover, .tc-board-column-action.tc-delete:hover {\n\ttransform: rotateZ(360deg);\n}\n\n&lt;/$list&gt;\n\n.tc-board-column-action:focus {\n\toutline: 0;\n}\n\n.tc-board-column-action svg {\n\tflex-grow: 1;\n\tpointer-events: none;\n}\n\n.tc-board-column-items-container {\n\tposition: relative;\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-grow: 1;\n\toverflow: hidden;\n\toverflow-y: auto;\n}\n.tc-board-column-items {\n\tposition: absolute;\n\tleft: 0;\n \ttop: 0;\n\twidth: 100%;\n\tmin-height: 100%;\n\tborder-bottom: 1.5rem solid transparent;\n}\n\n.tc-board-item {\n\tposition: absolute;\n\twidth: calc(100% - 1rem);\n\tmargin: 0.5rem 0.5rem 0 0.5rem;\n\tz-index: 10;\n}\n.tc-board-item.tc-muuri-releasing {\n\tz-index: 11;\n}\n.tc-board-item.tc-muuri-dragging {\n\tz-index: 12;\n\tcursor: move;\n}\n.tc-board-item.tc-muuri-hidden {\n\tz-index: 8;\n}\n.tc-board-item.muuri-item-placeholder {\n\tz-index: 9;\n\tmargin: 0;\n\topacity: 0.7;\n}\n\n.tc-board-item img, .tc-board-item hr {\n\tpointer-events: none;\n\tmax-width: 100%;\n}\n\n.tc-board-item svg {\n\tmax-width: 100%;\n}\n\n.tc-board-item-content {\n\tposition: relative;\n\tpadding: 0.5rem;\n\tbackground: &lt;&lt;colour tiddler-background&gt;&gt;;\n\tborder: 0.2rem solid &lt;&lt;colour tag-background&gt;&gt;;\n\tcolor: &lt;&lt;colour foreground&gt;&gt;;\n\tborder-radius: 4px;\n\tfont-size: 1rem;\n\tfont-weight: 400;\n}\n.tc-board-item-content input {\n\twidth: 100%;\n\tborder: 1px solid &lt;&lt;colour muted-foreground&gt;&gt;;\n\tborder-radius: 2px;\n\tmargin-bottom: 2px;\n}\n.tc-board-item-content input + br + div {\n\twidth: 100%;\n\tborder-radius: 2px;\n}\n.tc-board-item.muuri-item-placeholder .tc-board-item-content {\n\tborder-style: dashed;\n\tborder-color: &lt;&lt;colour primary&gt;&gt;;\n}\n.tc-board-item.editing .tc-board-item-content {\n\tborder-color: &lt;&lt;colour primary&gt;&gt;;\n}\n.tc-board-item:focus-within .tc-board-item-content {\n\tborder: 0.2rem solid &lt;&lt;colour primary&gt;&gt;;\n\tpadding: 0.5rem;\n}\n.tc-board-item-title {\n\tfont-size: 1rem;\n\tline-height: 1.2;\n\tword-break: break-word;\n\tcaret-color: &lt;&lt;colour primary&gt;&gt;;\n\toutline: none;\n\toutline-offset: 0.5rem;\n\tmin-height: calc(1rem * 1.2);\n}\n.tc-board-item-handle {\n\tposition: absolute;\n\tleft: -0.25rem;\n\tright: -0.25rem;\n\ttop: -0.25rem;\n\tbottom: -0.25rem;\n\tborder-radius: 0.5rem;\n\tcursor: move;\n}\n.tc-board-item.tc-editing .tc-board-item-handle {\n\tdisplay: none;\n}\n.tc-board-item-action {\n\tposition: absolute;\n\tdisplay: flex;\n\twidth: 1.5rem;\n\theight: 1.5rem;\n\tpadding: 0rem;\n\topacity: 0;\n\ttransform: scale(0, 0);\n\ttransition: transform 0.3s 0s ease-out, opacity 0.3s 0s linear;\n}\n.tc-board-item-action.tc-edit {\n\tright: -1.1rem;\n\ttop: -1rem;\n}\n.tc-board-item:focus-within .tc-board-item-action.tc-edit {\n\tright: -1.1rem;\n\ttop: -1rem;\n}\n.tc-board-item-action.tc-delete {\n\tleft: -0.6rem;\n\tbottom: -0.6rem;\n}\n.tc-board-item:focus-within .tc-board-item-action.tc-delete {\n\tleft: -0.6rem;\n\tbottom: -0.6rem;\n}\n.tc-board-item-action.tc-close {\n\tright: -1.1rem;\n\tbottom: -0.6rem;\n}\n.tc-board-item:focus-within .tc-board-item-action.tc-close {\n\tright: -1.1rem;\n\tbottom: -0.6rem;\n}\n.tc-board-item-action.tc-link {\n\ttop: -0.9rem;\n\tleft: -0.5rem;\n}\n.tc-board-item:focus-within .tc-board-item-action.tc-link {\n\ttop: -0.9rem;\n\tleft: -0.5rem;\n}\n\n.tc-board-item.tc-editing .tc-board-item-action,\n.tc-board-item:hover .tc-board-item-action,\n.tc-board-column-header-wrapper:hover .tc-board-item-action,\n.tc-board-item:focus .tc-board-item-action,\n.tc-board-item.tc-muuri-dragging .tc-board-item-action,\n.tc-board-item.tc-muuri-releasing .tc-board-item-action {\n\topacity: 1;\n\ttransform: scale(1, 1);\n\ttransition: transform 0.2s 0.1s ease, opacity 0.2s 0.1s linear;\n}\n.tc-board-item.tc-editing .tc-board-item-action:hover,\n.tc-board-item:hover .tc-board-item-action:hover,\n.tc-board-item:focus .tc-board-item-action:hover,\n.tc-board-item.tc-muuri-dragging .tc-board-item-action:hover,\n.tc-board-item.tc-muuri-releasing .tc-board-item-action:hover {\n\ttransform: scale(1.2, 1.2);\n}\n.tc-board-item-action-icon {\n\tflex-grow: 1;\n\tpointer-events: none;\n}\n.tc-board-item.tc-editing .tc-board-item-action-icon.tc-icon-edit,\n.tc-board-item-action-icon.tc-icon-save {\n\tdisplay: none;\n}\n.tc-board-item.tc-editing .tc-board-item-action-icon.tc-icon-save {\n\tdisplay: block;\n}\n&quot;
         },
         &quot;$:/plugins/BTC/Muuri-Kanban/ui/Buttons/new-kanban&quot;: {
             &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/ui/Buttons/new-kanban&quot;,
@@ -11486,23 +10459,23 @@ fill: red;
         },
         &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnEditTemplate&quot;: {
             &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnEditTemplate&quot;,
-            &quot;text&quot;: &quot;\\whitespace trim\n\\define get-history() $:/HistoryList/Kanban/$(currentTiddler)$\n\\define get-styles() background-color: $(bgColor)$; border-color: $(bgColor)$; fill: $(foregroundColor)$;\n\\define get-foreground-color-inner(colour,colourA,colourB)\n&lt;$macrocall $name=\&quot;contrastcolour\&quot; target=\&quot;\&quot;\&quot;$colour$\&quot;\&quot;\&quot; colourA=\&quot;\&quot;\&quot;$colourA$\&quot;\&quot;\&quot; colourB=\&quot;\&quot;\&quot;$colourB$\&quot;\&quot;\&quot;/&gt;\n\\end\n\\define get-foreground-color(palette)\n&lt;$macrocall $name=\&quot;get-foreground-color-inner\&quot; colour={{!!color}} colourA={{$palette$##foreground}} colourB={{$palette$##background}}/&gt;\n\\end\n&lt;$vars bgColor={{!!color}} palette={{$:/palette}}&gt;\n&lt;$wikify name=\&quot;foregroundColor\&quot; text=\&quot;\&quot;\&quot;&lt;$macrocall $name=\&quot;get-foreground-color\&quot; palette=&lt;&lt;palette&gt;&gt;/&gt;\&quot;\&quot;\&quot;&gt;\n\t&lt;div class=\&quot;tc-board-column\&quot;&gt;\n\t\t&lt;div class=\&quot;tc-board-column-content\&quot;&gt;\n\t\t\t&lt;div class=\&quot;tc-board-column-header-wrapper\&quot;&gt;\n\t\t\t\t&lt;div class=\&quot;tc-board-column-header tc-board-column-edit-header\&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;\n\t\t\t\t\t&lt;div class=\&quot;tc-board-column-title\&quot;&gt;\n\t\t\t\t\t\t&lt;$keyboard key=\&quot;((save-tiddler))\&quot; message=\&quot;tm-save-tiddler\&quot;&gt;\n\t\t\t\t\t\t\t&lt;$keyboard key=\&quot;((cancel-edit-tiddler))\&quot; message=\&quot;tm-cancel-tiddler\&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;$edit-text field=\&quot;draft.title\&quot; tag=\&quot;input\&quot; placeholder=\&quot; title\&quot; focus=\&quot;true\&quot;/&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t&lt;$edit-text field=\&quot;caption\&quot; tag=\&quot;input\&quot; placeholder=\&quot; caption\&quot;/&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t&lt;$edit-text field=\&quot;drop-actions\&quot; tag=\&quot;input\&quot; placeholder=\&quot; drop-actions\&quot;/&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t&lt;$edit-text field=\&quot;color\&quot; tag=\&quot;input\&quot;/&gt;\n\t\t\t\t\t\t\t&lt;/$keyboard&gt;\n\t\t\t\t\t\t&lt;/$keyboard&gt;\n\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t\t&lt;div style=\&quot;position: absolute; right: 0; top: 0;\&quot;&gt;\n\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-edit\&quot; style=&lt;&lt;get-styles&gt;&gt; tooltip=\&quot;save column\&quot; aria-label=\&quot;save column\&quot;&gt;\n\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-save-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t{{$:/core/images/save-button}}\n\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-delete\&quot; style=&lt;&lt;get-styles&gt;&gt; tooltip=\&quot;cancel editing\&quot; aria-label=\&quot;cancel editing\&quot;&gt;\n\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-cancel-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t{{$:/core/images/cancel-button}}\n\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t\t&lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history&gt;&gt;&gt;\n\t\t\t\t&lt;div class=\&quot;tc-board-column-items-container\&quot;&gt;\n\t\t\t\t\t&lt;$set name=\&quot;tv-muuri-story-list\&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;\n\t\t\t\t\t\t&lt;$set name=\&quot;tv-muuri-drop-actions\&quot; value={{!!drop-actions}}&gt;\n\t\t\t\t\t\t\t&lt;div class=\&quot;tc-board-column-items\&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;$list filter=\&quot;[list&lt;currentTiddler&gt;]\&quot; storyview=\&quot;muuri\&quot; template=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemTemplate\&quot; editTemplate=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemEditTemplate\&quot; storyViewConfig=\&quot;$:/config/kanban/items/\&quot;/&gt;\n\t\t\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t\t\t&lt;/$set&gt;\n\t\t\t\t\t&lt;/$set&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t&lt;/$navigator&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\n&lt;/$wikify&gt;\n&lt;/$vars&gt;&quot;
+            &quot;text&quot;: &quot;\\whitespace trim\n\\define get-history() $:/HistoryList/Kanban/$(currentTiddler)$\n\\define get-styles() background-color: $(bgColor)$; border-color: $(bgColor)$; fill: $(foregroundColor)$;\n\\define get-foreground-color-inner(colour,colourA,colourB)\n&lt;$macrocall $name=\&quot;contrastcolour\&quot; target=\&quot;\&quot;\&quot;$colour$\&quot;\&quot;\&quot; colourA=\&quot;\&quot;\&quot;$colourA$\&quot;\&quot;\&quot; colourB=\&quot;\&quot;\&quot;$colourB$\&quot;\&quot;\&quot;/&gt;\n\\end\n\\define get-foreground-color(palette)\n&lt;$macrocall $name=\&quot;get-foreground-color-inner\&quot; colour={{!!color}} colourA={{$palette$##foreground}} colourB={{$palette$##background}}/&gt;\n\\end\n&lt;$vars bgColor={{!!color}} palette={{$:/palette}}&gt;\n\t&lt;$wikify name=\&quot;foregroundColor\&quot; text=\&quot;\&quot;\&quot;&lt;$macrocall $name=\&quot;get-foreground-color\&quot; palette=&lt;&lt;palette&gt;&gt;/&gt;\&quot;\&quot;\&quot;&gt;\n\t\t&lt;div class=\&quot;tc-board-column\&quot;&gt;\n\t\t\t&lt;div class=\&quot;tc-board-column-content\&quot;&gt;\n\t\t\t\t&lt;div class=\&quot;tc-board-column-header-wrapper\&quot;&gt;\n\t\t\t\t\t&lt;div class=\&quot;tc-board-column-header tc-board-column-edit-header\&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;\n\t\t\t\t\t\t&lt;div class=\&quot;tc-board-column-title\&quot;&gt;\n\t\t\t\t\t\t\t&lt;$keyboard key=\&quot;((save-tiddler))\&quot; message=\&quot;tm-save-tiddler\&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;$keyboard key=\&quot;((cancel-edit-tiddler))\&quot; message=\&quot;tm-cancel-tiddler\&quot;&gt;\n\t\t\t\t\t\t\t\t\t&lt;$edit-text field=\&quot;draft.title\&quot; tag=\&quot;input\&quot; placeholder=\&quot; title\&quot; focus=\&quot;true\&quot;/&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t&lt;$edit-text field=\&quot;caption\&quot; tag=\&quot;input\&quot; placeholder=\&quot; caption\&quot;/&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t&lt;$edit-text field=\&quot;drop-actions\&quot; tag=\&quot;input\&quot; placeholder=\&quot; drop-actions\&quot;/&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t&lt;$edit-text field=\&quot;color\&quot; tag=\&quot;input\&quot;/&gt;\n\t\t\t\t\t\t\t\t&lt;/$keyboard&gt;\n\t\t\t\t\t\t\t&lt;/$keyboard&gt;\n\t\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t\t\t&lt;div style=\&quot;position: absolute; right: 0; top: 0;\&quot;&gt;\n\t\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-edit\&quot; style=&lt;&lt;get-styles&gt;&gt; tooltip=\&quot;save column\&quot; aria-label=\&quot;save column\&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-save-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t\t{{$:/core/images/save-button}}\n\t\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-delete\&quot; style=&lt;&lt;get-styles&gt;&gt; tooltip=\&quot;cancel editing\&quot; aria-label=\&quot;cancel editing\&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-cancel-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t\t{{$:/core/images/cancel-button}}\n\t\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history&gt;&gt;&gt;\n\t\t\t\t\t&lt;div class=\&quot;tc-board-column-items-container\&quot;&gt;\n\t\t\t\t\t\t&lt;$set name=\&quot;tv-muuri-story-list\&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;\n\t\t\t\t\t\t\t&lt;$set name=\&quot;tv-muuri-drop-actions\&quot; value={{!!drop-actions}}&gt;\n\t\t\t\t\t\t\t\t&lt;div class=\&quot;tc-board-column-items\&quot;&gt;\n\t\t\t\t\t\t\t\t\t&lt;$list filter=\&quot;[list&lt;currentTiddler&gt;]\&quot; storyview=\&quot;muuri\&quot; template=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemTemplate\&quot; editTemplate=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemEditTemplate\&quot; storyViewConfig=\&quot;$:/config/kanban/items/\&quot;/&gt;\n\t\t\t\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t\t\t\t&lt;/$set&gt;\n\t\t\t\t\t\t&lt;/$set&gt;\n\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;/$navigator&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t&lt;/$wikify&gt;\n&lt;/$vars&gt;&quot;
         },
         &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnTemplate&quot;: {
             &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnTemplate&quot;,
-            &quot;text&quot;: &quot;\\whitespace trim\n\\define get-column-tooltip(prefix) $prefix$ column $(currentTiddler)$\n\\define get-history() $:/HistoryList/KanbanColumn/$(currentTiddler)$\n\\define get-classes() tc-board-column $(currentTiddler)$\n\\define get-board-column-styles() width: calc(100% / $(amount)$);\n\\define get-styles() background-color: $(bgColor)$; border-color: $(bgColor)$; color: $(foregroundColor)$; fill: $(foregroundColor)$;\n\\define get-foreground-color-inner(colour,colourA,colourB)\n&lt;$macrocall $name=\&quot;contrastcolour\&quot; target=\&quot;\&quot;\&quot;$colour$\&quot;\&quot;\&quot; colourA=\&quot;\&quot;\&quot;$colourA$\&quot;\&quot;\&quot; colourB=\&quot;\&quot;\&quot;$colourB$\&quot;\&quot;\&quot;/&gt;\n\\end\n\\define get-foreground-color(palette)\n&lt;$macrocall $name=\&quot;get-foreground-color-inner\&quot; colour={{!!color}} colourA={{$palette$##foreground}} colourB={{$palette$##background}}/&gt;\n\\end\n&lt;$vars bgColor={{!!color}} palette={{$:/palette}}&gt;\n&lt;$wikify name=\&quot;foregroundColor\&quot; text=\&quot;\&quot;\&quot;&lt;$macrocall $name=\&quot;get-foreground-color\&quot; palette=&lt;&lt;palette&gt;&gt;/&gt;\&quot;\&quot;\&quot;&gt;\n&lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history&gt;&gt;&gt;\n\t&lt;div class=&lt;&lt;get-classes&gt;&gt;&gt;\n\t\t&lt;div class=\&quot;tc-board-column-content\&quot;&gt;\n\t\t\t&lt;$droppable actions=\&quot;\&quot;\&quot;&lt;$action-navigate $to=&lt;&lt;actionTiddler&gt;&gt;/&gt;\&quot;\&quot;\&quot;&gt;\n\t\t\t\t&lt;div class=\&quot;tc-board-column-header-wrapper\&quot;&gt;\n\t\t\t\t\t&lt;div class=\&quot;tc-board-column-header\&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;\n\t\t\t\t\t\t&lt;div class=\&quot;tc-board-column-title\&quot;&gt;\n\t\t\t\t\t\t\t&lt;$list filter=\&quot;[{!!caption}!match[]]\&quot; variable=\&quot;ignore\&quot; emptyMessage=\&quot;\&quot;\&quot;\n\t\t\t\t\t\t\t\t&lt;$transclude field=\&quot;title\&quot;/&gt;\n\t\t\t\t\t\t\t\t\&quot;\&quot;\&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;$transclude field=\&quot;caption\&quot;/&gt;\n\t\t\t\t\t\t\t&lt;/$list&gt;\n\t\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-add\&quot; style=&lt;&lt;get-styles&gt;&gt; tooltip=\&quot;new item\&quot; aria-label=\&quot;new item\&quot;&gt;\n\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-new-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t{{$:/core/images/new-button}}\n\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t\t&lt;$navigator story=&lt;&lt;tv-muuri-story-list&gt;&gt; history=&lt;&lt;tv-muuri-history-list&gt;&gt;&gt;\n\t\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-edit\&quot; style=&lt;&lt;get-styles&gt;&gt; tooltip=&lt;&lt;get-column-tooltip \&quot;edit\&quot;&gt;&gt; aria-label=&lt;&lt;get-column-tooltip \&quot;edit\&quot;&gt;&gt;&gt;\n\t\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-edit-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t\t{{$:/core/images/edit-button}}\n\t\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-add\&quot; style=&lt;&lt;get-styles&gt;&gt; tooltip=&lt;&lt;get-column-tooltip \&quot;remove\&quot;&gt;&gt; aria-label=&lt;&lt;get-column-tooltiop \&quot;remove\&quot;&gt;&gt;&gt;\n\t\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-close-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t\t{{$:/core/images/close-button}}\n\t\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-delete\&quot; style=&lt;&lt;get-styles&gt;&gt; tooltip=&lt;&lt;get-column-tooltip \&quot;delete\&quot;&gt;&gt; aria-label=&lt;&lt;get-column-tooltip \&quot;delete\&quot;&gt;&gt;&gt;\n\t\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-delete-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t\t{{$:/core/images/delete-button}}\n\t\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t\t&lt;/$navigator&gt;\n\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t&lt;/$droppable&gt;\n\t\t\t&lt;div class=\&quot;tc-board-column-items-container\&quot;&gt;\n\t\t\t\t&lt;$set name=\&quot;tv-muuri-story-list\&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;\n\t\t\t\t\t&lt;$set name=\&quot;tv-muuri-drop-actions\&quot; value={{!!drop-actions}}&gt;\n\t\t\t\t\t\t&lt;div class=\&quot;tc-board-column-items\&quot;&gt;\n\t\t\t\t\t\t\t&lt;$list filter=\&quot;[list&lt;currentTiddler&gt;]\&quot; storyview=\&quot;muuri\&quot; template=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemTemplate\&quot; editTemplate=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemEditTemplate\&quot; storyViewConfig=\&quot;$:/config/kanban/items/\&quot;/&gt;\n\t\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t\t&lt;/$set&gt;\n\t\t\t\t&lt;/$set&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\n&lt;/$navigator&gt;\n&lt;/$wikify&gt;\n&lt;/$vars&gt;&quot;
+            &quot;text&quot;: &quot;\\whitespace trim\n\\define get-column-tooltip(prefix) $prefix$ column $(currentTiddler)$\n\\define get-history() $:/HistoryList/KanbanColumn/$(currentTiddler)$\n\\define get-classes() tc-board-column $(currentTiddler)$\n\\define get-board-column-styles() width: calc(100% / $(amount)$);\n\\define get-styles() background-color: $(bgColor)$; border-color: $(bgColor)$; color: $(foregroundColor)$; fill: $(foregroundColor)$;\n\\define get-foreground-color-inner(colour,colourA,colourB)\n&lt;$macrocall $name=\&quot;contrastcolour\&quot; target=\&quot;\&quot;\&quot;$colour$\&quot;\&quot;\&quot; colourA=\&quot;\&quot;\&quot;$colourA$\&quot;\&quot;\&quot; colourB=\&quot;\&quot;\&quot;$colourB$\&quot;\&quot;\&quot;/&gt;\n\\end\n\\define get-foreground-color(palette)\n&lt;$macrocall $name=\&quot;get-foreground-color-inner\&quot; colour={{!!color}} colourA={{$palette$##foreground}} colourB={{$palette$##background}}/&gt;\n\\end\n&lt;$vars bgColor={{!!color}} palette={{$:/palette}}&gt;\n\t&lt;$wikify name=\&quot;foregroundColor\&quot; text=\&quot;\&quot;\&quot;&lt;$macrocall $name=\&quot;get-foreground-color\&quot; palette=&lt;&lt;palette&gt;&gt;/&gt;\&quot;\&quot;\&quot;&gt;\n\t\t&lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history&gt;&gt; openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}&gt;\n\t\t\t&lt;div class=&lt;&lt;get-classes&gt;&gt;&gt;\n\t\t\t\t&lt;div class=\&quot;tc-board-column-content\&quot;&gt;\n\t\t\t\t\t&lt;$droppable actions=\&quot;\&quot;\&quot;&lt;$action-navigate $to=&lt;&lt;actionTiddler&gt;&gt;/&gt;\&quot;\&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;div class=\&quot;tc-board-column-header-wrapper\&quot;&gt;\n\t\t\t\t\t\t\t&lt;div class=\&quot;tc-board-column-header\&quot; style=&lt;&lt;get-styles&gt;&gt;&gt;\n\t\t\t\t\t\t\t\t&lt;div class=\&quot;tc-board-column-title\&quot;&gt;\n\t\t\t\t\t\t\t\t\t&lt;$list filter=\&quot;[{!!caption}!match[]]\&quot; variable=\&quot;ignore\&quot; emptyMessage=\&quot;\&quot;\&quot;\n\t\t\t\t\t\t\t\t\t\t&lt;$transclude field=\&quot;title\&quot;/&gt;\n\t\t\t\t\t\t\t\t\t\t\&quot;\&quot;\&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t&lt;$transclude field=\&quot;caption\&quot;/&gt;\n\t\t\t\t\t\t\t\t\t&lt;/$list&gt;\n\t\t\t\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-add\&quot; style=&lt;&lt;get-styles&gt;&gt; tooltip=\&quot;new item\&quot; aria-label=\&quot;new item\&quot;&gt;\n\t\t\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-new-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t\t\t{{$:/core/images/new-button}}\n\t\t\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t\t\t\t&lt;$navigator story=&lt;&lt;tv-muuri-story-list&gt;&gt; history=&lt;&lt;tv-muuri-history-list&gt;&gt;&gt;\n\t\t\t\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-edit\&quot; style=&lt;&lt;get-styles&gt;&gt; tooltip=&lt;&lt;get-column-tooltip \&quot;edit\&quot;&gt;&gt; aria-label=&lt;&lt;get-column-tooltip \&quot;edit\&quot;&gt;&gt;&gt;\n\t\t\t\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-edit-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t\t\t\t{{$:/core/images/edit-button}}\n\t\t\t\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-add\&quot; style=&lt;&lt;get-styles&gt;&gt; tooltip=&lt;&lt;get-column-tooltip \&quot;remove\&quot;&gt;&gt; aria-label=&lt;&lt;get-column-tooltiop \&quot;remove\&quot;&gt;&gt;&gt;\n\t\t\t\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-close-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t\t\t\t{{$:/core/images/close-button}}\n\t\t\t\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-delete\&quot; style=&lt;&lt;get-styles&gt;&gt; tooltip=&lt;&lt;get-column-tooltip \&quot;delete\&quot;&gt;&gt; aria-label=&lt;&lt;get-column-tooltip \&quot;delete\&quot;&gt;&gt;&gt;\n\t\t\t\t\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-delete-tiddler\&quot;/&gt;\n\t\t\t\t\t\t\t\t\t\t{{$:/core/images/delete-button}}\n\t\t\t\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t\t\t\t&lt;/$navigator&gt;\n\t\t\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t\t&lt;/$droppable&gt;\n\t\t\t\t\t&lt;div class=\&quot;tc-board-column-items-container\&quot;&gt;\n\t\t\t\t\t\t&lt;$set name=\&quot;tv-muuri-story-list\&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;\n\t\t\t\t\t\t\t&lt;$set name=\&quot;tv-muuri-drop-actions\&quot; value={{!!drop-actions}}&gt;\n\t\t\t\t\t\t\t\t&lt;div class=\&quot;tc-board-column-items\&quot;&gt;\n\t\t\t\t\t\t\t\t\t&lt;$list filter=\&quot;[list&lt;currentTiddler&gt;]\&quot; storyview=\&quot;muuri\&quot; template=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemTemplate\&quot; editTemplate=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemEditTemplate\&quot; storyViewConfig=\&quot;$:/config/kanban/items/\&quot;/&gt;\n\t\t\t\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t\t\t\t&lt;/$set&gt;\n\t\t\t\t\t\t&lt;/$set&gt;\n\t\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/$navigator&gt;\n\t&lt;/$wikify&gt;\n&lt;/$vars&gt;&quot;
         },
         &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemEditTemplate&quot;: {
             &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemEditTemplate&quot;,
-            &quot;text&quot;: &quot;&lt;div class=\&quot;tc-board-item\&quot;&gt;\n\t&lt;div class=\&quot;tc-board-item-content\&quot;&gt;\n\t\t&lt;div class=\&quot;tc-board-item-title\&quot;&gt;\n\t\t\t&lt;$keyboard key=\&quot;((save-tiddler))\&quot; message=\&quot;tm-save-tiddler\&quot;&gt;\n\t\t\t\t&lt;$keyboard key=\&quot;((cancel-edit-tiddler))\&quot; message=\&quot;tm-cancel-tiddler\&quot;&gt;\n\t\t\t\t\t&lt;$edit-text field=\&quot;draft.title\&quot; tag=\&quot;input\&quot; placeholder=\&quot; title\&quot; focus=\&quot;true\&quot;/&gt;&lt;br&gt;\n\t\t\t\t\t&lt;$edit-text field=\&quot;caption\&quot; tag=\&quot;input\&quot; placeholder=\&quot; caption\&quot;/&gt;&lt;br&gt;\n\t\t\t\t\t&lt;$edit field=\&quot;text\&quot; default=\&quot;\&quot; placeholder=\&quot; text\&quot;/&gt;\n\t\t\t\t&lt;/$keyboard&gt;\n\t\t\t&lt;/$keyboard&gt;\n\t\t&lt;/div&gt;\n\t\t&lt;div class=\&quot;tc-board-item-action tc-edit\&quot;&gt;\n\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot; tooltip=\&quot;save item\&quot; aria-label=\&quot;save item\&quot;&gt;\n\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-save-tiddler\&quot;/&gt;\n\t\t\t\t{{$:/core/images/save-button}}\n\t\t\t&lt;/$button&gt;\n\t\t&lt;/div&gt;\n\t\t&lt;div class=\&quot;tc-board-item-action tc-delete\&quot;&gt;\n\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot; tooltip=\&quot;cancel editing\&quot; aria-label=\&quot;cancel editing\&quot;&gt;\n\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-cancel-tiddler\&quot;/&gt;\n\t\t\t\t{{$:/core/images/cancel-button}}\n\t\t\t&lt;/$button&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\n&lt;/div&gt;&quot;
+            &quot;text&quot;: &quot;&lt;div class=\&quot;tc-board-item\&quot;&gt;\n\t&lt;div class=\&quot;tc-board-item-content\&quot;&gt;\n\t\t&lt;div class=\&quot;tc-board-item-title\&quot;&gt;\n\t\t\t&lt;$keyboard key=\&quot;((save-tiddler))\&quot; message=\&quot;tm-save-tiddler\&quot;&gt;\n\t\t\t\t&lt;$keyboard key=\&quot;((cancel-edit-tiddler))\&quot; message=\&quot;tm-cancel-tiddler\&quot;&gt;\n\t\t\t\t\t&lt;$edit-text field=\&quot;draft.title\&quot; tag=\&quot;input\&quot; placeholder=\&quot; title\&quot; focus=\&quot;true\&quot;/&gt;&lt;br&gt;\n\t\t\t\t\t&lt;$edit-text field=\&quot;caption\&quot; tag=\&quot;input\&quot; placeholder=\&quot; caption\&quot;/&gt;&lt;br&gt;\n\t\t\t\t\t&lt;$edit field=\&quot;text\&quot; default=\&quot;\&quot; placeholder=\&quot; text\&quot;/&gt;\n\t\t\t\t&lt;/$keyboard&gt;\n\t\t\t&lt;/$keyboard&gt;\n\t\t&lt;/div&gt;\n\t\t&lt;div class=\&quot;tc-board-item-action tc-edit\&quot;&gt;\n\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot; tooltip=\&quot;save item\&quot; aria-label=\&quot;save item\&quot;&gt;\n\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-save-tiddler\&quot;/&gt;\n\t\t\t\t{{$:/core/images/save-button}}\n\t\t\t&lt;/$button&gt;\n\t\t&lt;/div&gt;\n\t\t&lt;div class=\&quot;tc-board-item-action tc-close\&quot;&gt;\n\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot; tooltip=\&quot;cancel editing\&quot; aria-label=\&quot;cancel editing\&quot;&gt;\n\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-cancel-tiddler\&quot;/&gt;\n\t\t\t\t{{$:/core/images/cancel-button}}\n\t\t\t&lt;/$button&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\n&lt;/div&gt;&quot;
         },
         &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemTemplate&quot;: {
             &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanItemTemplate&quot;,
-            &quot;text&quot;: &quot;\\define get-item-tooltip(prefix) $prefix$ item $(currentTiddler)$\n&lt;div class=\&quot;tc-board-item\&quot;&gt;\n\t&lt;div class=\&quot;tc-board-item-content\&quot;&gt;\n\t\t&lt;div class=\&quot;tc-board-item-title\&quot;&gt;\n\t\t\t&lt;$list filter=\&quot;[{!!caption}!match[]]\&quot; variable=\&quot;ignore\&quot; emptyMessage=\&quot;\&quot;\&quot;\n\t\t\t\t&lt;$transclude field=\&quot;title\&quot;/&gt;\n\t\t\t\t\&quot;\&quot;\&quot;&gt;\n\t\t\t\t&lt;$transclude field=\&quot;caption\&quot;/&gt;\n\t\t\t&lt;/$list&gt;\n\t\t\t&lt;hr class=\&quot;simple\&quot;&gt;\n\t\t\t&lt;$transclude mode=\&quot;block\&quot;/&gt;\n\t\t&lt;/div&gt;\n\t\t&lt;div class=\&quot;tc-board-item-action tc-edit\&quot;&gt;\n\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot; tooltip=&lt;&lt;get-item-tooltip \&quot;edit\&quot;&gt;&gt; aria-label=&lt;&lt;get-item-tooltip \&quot;edit\&quot;&gt;&gt;&gt;\n\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-edit-tiddler\&quot;/&gt;\n\t\t\t\t{{$:/core/images/edit-button}}\n\t\t\t&lt;/$button&gt;\n\t\t&lt;/div&gt;\n\t\t&lt;div class=\&quot;tc-board-item-action tc-close\&quot;&gt;\n\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot; tooltip=&lt;&lt;get-item-tooltip \&quot;close\&quot;&gt;&gt; aria-label=&lt;&lt;get-item-tooltip \&quot;close\&quot;&gt;&gt;&gt;\n\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-close-tiddler\&quot;/&gt;\n\t\t\t\t{{$:/core/images/close-button}}\n\t\t\t&lt;/$button&gt;\n\t\t&lt;/div&gt;\n\t\t&lt;div class=\&quot;tc-board-item-action tc-delete\&quot;&gt;\n\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot; tooltip=&lt;&lt;get-item-tooltip \&quot;delete\&quot;&gt;&gt; aria-label=&lt;&lt;get-item-tooltip \&quot;delete\&quot;&gt;&gt;&gt;\n\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-delete-tiddler\&quot;/&gt;\n\t\t\t\t{{$:/core/images/delete-button}}\n\t\t\t&lt;/$button&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\n&lt;/div&gt;&quot;
+            &quot;text&quot;: &quot;\\define get-item-tooltip(prefix) $prefix$ item $(currentTiddler)$\n&lt;div class=\&quot;tc-board-item\&quot;&gt;\n\t&lt;$eventcatcher events=\&quot;dblclick\&quot; actions-dblclick=\&quot;\&quot;\&quot;&lt;$action-sendmessage $message=\&quot;tm-edit-tiddler\&quot; $param=&lt;&lt;currentTiddler&gt;&gt;/&gt;\&quot;\&quot;\&quot;&gt;\n\t\t&lt;div class=\&quot;tc-board-item-content\&quot;&gt;\n\t\t\t&lt;$list filter=\&quot;[{$:/config/kanban/items/show-toolbar}match[yes]]\&quot; variable=\&quot;ignore\&quot;&gt;\n\t\t\t\t&lt;div class=\&quot;tc-board-item-toolbar\&quot;&gt;\n\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot; tooltip=&lt;&lt;get-item-tooltip \&quot;edit\&quot;&gt;&gt; aria-label=&lt;&lt;get-item-tooltip \&quot;edit\&quot;&gt;&gt;&gt;\n\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-edit-tiddler\&quot;/&gt;\n\t\t\t\t\t\t{{$:/core/images/edit-button}}\n\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot; tooltip=&lt;&lt;get-item-tooltip \&quot;close\&quot;&gt;&gt; aria-label=&lt;&lt;get-item-tooltip \&quot;close\&quot;&gt;&gt;&gt;\n\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-close-tiddler\&quot;/&gt;\n\t\t\t\t\t\t{{$:/core/images/close-button}}\n\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot; tooltip=&lt;&lt;get-item-tooltip \&quot;delete\&quot;&gt;&gt; aria-label=&lt;&lt;get-item-tooltip \&quot;delete\&quot;&gt;&gt;&gt;\n\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-delete-tiddler\&quot;/&gt;\n\t\t\t\t\t\t{{$:/core/images/delete-button}}\n\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t&lt;$navigator story=\&quot;$:/StoryList\&quot; history=\&quot;$:/HistoryList\&quot; openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}&gt;\n\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot; tooltip=&lt;&lt;get-item-tooltip \&quot;open\&quot;&gt;&gt; aria-label=&lt;&lt;get-item-tooltip \&quot;open\&quot;&gt;&gt;&gt;\n\t\t\t\t\t\t\t&lt;$action-navigate $to=&lt;&lt;currentTiddler&gt;&gt;/&gt;\n\t\t\t\t\t\t\t{{$:/core/images/link}}\n\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t&lt;/$navigator&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t&lt;/$list&gt;\n\t\t\t&lt;div class=\&quot;tc-board-item-title\&quot;&gt;\n\t\t\t\t&lt;$list filter=\&quot;[{!!caption}!match[]]\&quot; variable=\&quot;ignore\&quot; emptyMessage=\&quot;\&quot;\&quot;\n\t\t\t\t\t&lt;$transclude field=\&quot;title\&quot;/&gt;\n\t\t\t\t\t\&quot;\&quot;\&quot;&gt;\n\t\t\t\t\t&lt;$transclude field=\&quot;caption\&quot;/&gt;\n\t\t\t\t&lt;/$list&gt;\n\t\t\t\t&lt;$list filter=\&quot;[&lt;currentTiddler&gt;get[text]!match[]]\&quot; variable=\&quot;ignore\&quot;&gt;\n\t\t\t\t\t&lt;hr class=\&quot;tc-kanban-line\&quot;&gt;\n\t\t\t\t\t&lt;$transclude mode=\&quot;block\&quot;/&gt;\n\t\t\t\t&lt;/$list&gt;\n\t\t\t&lt;/div&gt;\n\t\t\t&lt;$list filter=\&quot;[{$:/config/kanban/items/show-toolbar}!match[yes]]\&quot; variable=\&quot;ignore\&quot;&gt;\n\t\t\t\t&lt;div class=\&quot;tc-board-item-action tc-edit\&quot;&gt;\n\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot; tooltip=&lt;&lt;get-item-tooltip \&quot;edit\&quot;&gt;&gt; aria-label=&lt;&lt;get-item-tooltip \&quot;edit\&quot;&gt;&gt;&gt;\n\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-edit-tiddler\&quot;/&gt;\n\t\t\t\t\t\t{{$:/core/images/edit-button}}\n\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;div class=\&quot;tc-board-item-action tc-close\&quot;&gt;\n\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot; tooltip=&lt;&lt;get-item-tooltip \&quot;close\&quot;&gt;&gt; aria-label=&lt;&lt;get-item-tooltip \&quot;close\&quot;&gt;&gt;&gt;\n\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-close-tiddler\&quot;/&gt;\n\t\t\t\t\t\t{{$:/core/images/close-button}}\n\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;div class=\&quot;tc-board-item-action tc-delete\&quot;&gt;\n\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot; tooltip=&lt;&lt;get-item-tooltip \&quot;delete\&quot;&gt;&gt; aria-label=&lt;&lt;get-item-tooltip \&quot;delete\&quot;&gt;&gt;&gt;\n\t\t\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-delete-tiddler\&quot;/&gt;\n\t\t\t\t\t\t{{$:/core/images/delete-button}}\n\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;div class=\&quot;tc-board-item-action tc-link\&quot;&gt;\n\t\t\t\t\t&lt;$navigator story=\&quot;$:/StoryList\&quot; history=\&quot;$:/HistoryList\&quot; openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}&gt;\n\t\t\t\t\t\t&lt;$button class=\&quot;tc-btn-invisible\&quot; tooltip=&lt;&lt;get-item-tooltip \&quot;open\&quot;&gt;&gt; aria-label=&lt;&lt;get-item-tooltip \&quot;open\&quot;&gt;&gt;&gt;\n\t\t\t\t\t\t\t&lt;$action-navigate $to=&lt;&lt;currentTiddler&gt;&gt;/&gt;\n\t\t\t\t\t\t\t{{$:/core/images/link}}\n\t\t\t\t\t\t&lt;/$button&gt;\n\t\t\t\t\t&lt;/$navigator&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t&lt;/$list&gt;\n\t\t&lt;/div&gt;\n\t&lt;/$eventcatcher&gt;\n&lt;/div&gt;&quot;
         },
         &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanTemplate&quot;: {
             &quot;title&quot;: &quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanTemplate&quot;,
-            &quot;text&quot;: &quot;\\define get-history-list() $:/HistoryList/Kanban/$(currentTiddler)$\n\\whitespace trim\n&lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history-list&gt;&gt;&gt;\n&lt;div class=\&quot;tc-board-container\&quot; data-board-container-title=&lt;&lt;currentTiddler&gt;&gt;&gt;\n&lt;$droppable actions=\&quot;\&quot;\&quot;&lt;$action-navigate $to=&lt;&lt;actionTiddler&gt;&gt;/&gt;\&quot;\&quot;\&quot;&gt;\n&lt;div class=\&quot;tc-kanban-droppable\&quot;&gt;\n&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-add\&quot; tooltip=\&quot;new column\&quot; aria-label=\&quot;new column\&quot;&gt;\n&lt;$action-sendmessage $message=\&quot;tm-new-tiddler\&quot;/&gt;\n{{$:/core/images/new-button}}\n&lt;/$button&gt;\n&lt;/div&gt;\n&lt;/$droppable&gt;\n\t&lt;div class=\&quot;tc-board\&quot;&gt;\n\t\t&lt;$vars tv-muuri-story-list=&lt;&lt;currentTiddler&gt;&gt; tv-muuri-history-list=&lt;&lt;get-history-list&gt;&gt;&gt;\n\t\t\t&lt;$list filter=\&quot;[list&lt;currentTiddler&gt;]\&quot; storyview=\&quot;muuri\&quot; template=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnTemplate\&quot; editTemplate=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnEditTemplate\&quot; storyViewConfig=\&quot;$:/config/kanban/\&quot;/&gt;\n\t\t&lt;/$vars&gt;\n\t&lt;/div&gt;\n&lt;/div&gt;\n&lt;/$navigator&gt;&quot;
+            &quot;text&quot;: &quot;\\define get-history-list() $:/HistoryList/Kanban/$(currentTiddler)$\n\\whitespace trim\n&lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history-list&gt;&gt; openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}&gt;\n\t&lt;div class=\&quot;tc-board-container\&quot; data-board-container-title=&lt;&lt;currentTiddler&gt;&gt;&gt;\n\t\t&lt;div class=\&quot;tc-board\&quot;&gt;\n\t\t\t&lt;$vars tv-muuri-story-list=&lt;&lt;currentTiddler&gt;&gt; tv-muuri-history-list=&lt;&lt;get-history-list&gt;&gt;&gt;\n\t\t\t\t&lt;$list filter=\&quot;[list&lt;currentTiddler&gt;]\&quot; storyview=\&quot;muuri\&quot; template=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnTemplate\&quot; editTemplate=\&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnEditTemplate\&quot; storyViewConfig=\&quot;$:/config/kanban/\&quot;/&gt;\n\t\t\t&lt;/$vars&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\n\t&lt;$droppable actions=\&quot;\&quot;\&quot;&lt;$action-navigate $to=&lt;&lt;actionTiddler&gt;&gt;/&gt;\&quot;\&quot;\&quot;&gt;\n\t\t&lt;div class=\&quot;tc-kanban-droppable\&quot;&gt;\n\t\t\t&lt;$button class=\&quot;tc-btn-invisible tc-board-column-action tc-add\&quot; tooltip=\&quot;new column\&quot; aria-label=\&quot;new column\&quot;&gt;\n\t\t\t\t&lt;$action-sendmessage $message=\&quot;tm-new-tiddler\&quot;/&gt;\n\t\t\t\t{{$:/core/images/new-button}}\n\t\t\t&lt;/$button&gt;\n\t\t&lt;/div&gt;\n\t&lt;/$droppable&gt;\n&lt;/$navigator&gt;&quot;
         }
     }
 }</pre>
@@ -12120,7 +11093,7 @@ tc-page-container tc-page-view-$(storyviewTitle)$ tc-language-$(languageTitle)$
 <div created="20201214221228399" modified="20210101103449340" title="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>fluid-fixed</pre>
 </div>
-<div created="20201214210010844" modified="20210103120533921" title="$:/view" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201214210010844" modified="20210105183714880" title="$:/view" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>muuri</pre>
 </div>
 <div created="20201219130048052" modified="20210101185235219" tags="Features" title="Actions can be triggered on Drop" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -12193,10 +11166,10 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 * ~~Add keyboard shortcuts for save and cancel when in edit mode~~
 * ~~Add drop-actions input to Column-input area~~</pre>
 </div>
-<div caption="" created="20201226162849128" modified="20201228094009424" tags="" title="Do the laundry" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div caption="" created="20201226162849128" modified="20210105184927184" tags="" title="Do the laundry" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>Someone needs to do it</pre>
 </div>
-<div color="#66a079" created="20201226140352252" list="[[Do the laundry]] [[Buy some milk]]" modified="20201230143724904" tags="" title="Done" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div color="#66a079" created="20201226140352252" list="[[Do the laundry]] [[Buy some milk]]" modified="20210105195141612" tags="" title="Done" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div created="20201218053417117" modified="20201218053428540" tags="Features" title="Dragging Tiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -12205,7 +11178,7 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <div created="20201017085609060" modified="20201214222300094" tags="" title="El jardin de las Delicias" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img[https://upload.wikimedia.org/wikipedia/commons/a/ae/El_jard%C3%ADn_de_las_Delicias%2C_de_El_Bosco.jpg]]</pre>
 </div>
-<div created="20201227092756869" modified="20201227093232998" tags="" title="Happy Tiddlering" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201227092756869" modified="20210104195916160" tags="" title="Happy Tiddlering" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>* Tiddlering is fun
 * Tiddlering makes you smile</pre>
 </div>
@@ -12234,7 +11207,7 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 <div created="20201011123604658" modified="20201225131230472" tags="" title="I am one of that guy's paintings" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img [https://upload.wikimedia.org/wikipedia/commons/c/cd/VanGogh-starry_night.jpg]]</pre>
 </div>
-<div color="#ff9c63" created="20201227190921011" list="[[The Great Wave off the Coast of Kanagawa]]" modified="20210101171507117" tags="" title="Images" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div color="#ff9c63" created="20201227190921011" list="[[The Great Wave off the Coast of Kanagawa]]" modified="20210105191923026" tags="" title="Images" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div created="20210101141719290" modified="20210103145217643" muuri-tiddler-width="1" tags="Information" title="Installation" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -12260,29 +11233,39 @@ git clone --depth=&quot;1&quot; git@github.com:BurningTreeC/tiddlywiki-muuri.git
 
 !!! See the [[Changelog]] for recent changes</pre>
 </div>
-<div created="20210103142519995" list="Todo Done Working Images" modified="20210104153652402" muuri-tiddler-width="1" title="Kanban" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20210103142519995" list="Todo Done Working Images" modified="20210105184912549" muuri-tiddler-width="1" title="Kanban" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\define get-history-list() $:/HistoryList/Kanban/$(currentTiddler)$
 \whitespace trim
 &lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history-list&gt;&gt;&gt;
-&lt;div class=&quot;tc-board-container&quot; data-board-container-title=&lt;&lt;currentTiddler&gt;&gt;&gt;
-&lt;$droppable actions=&quot;&quot;&quot;&lt;$action-navigate $to=&lt;&lt;actionTiddler&gt;&gt;/&gt;&quot;&quot;&quot;&gt;
-&lt;div class=&quot;tc-kanban-droppable&quot;&gt;
-&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-add&quot; tooltip=&quot;new column&quot; aria-label=&quot;new column&quot;&gt;
-&lt;$action-sendmessage $message=&quot;tm-new-tiddler&quot;/&gt;
-{{$:/core/images/new-button}}
-&lt;/$button&gt;
-&lt;/div&gt;
-&lt;/$droppable&gt;
-	&lt;div class=&quot;tc-board&quot;&gt;
-		&lt;$set name=&quot;tv-muuri-story-list&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;
-			&lt;$list filter=&quot;[list&lt;currentTiddler&gt;]&quot; storyview=&quot;muuri&quot; template=&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnTemplate&quot; editTemplate=&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnEditTemplate&quot; storyViewConfig=&quot;$:/config/kanban/&quot;/&gt;
-		&lt;/$set&gt;
+	&lt;div class=&quot;tc-board-container&quot; data-board-container-title=&lt;&lt;currentTiddler&gt;&gt;&gt;
+		&lt;div class=&quot;tc-board&quot;&gt;
+			&lt;$vars tv-muuri-story-list=&lt;&lt;currentTiddler&gt;&gt; tv-muuri-history-list=&lt;&lt;get-history-list&gt;&gt;&gt;
+				&lt;$list filter=&quot;[list&lt;currentTiddler&gt;]&quot; storyview=&quot;muuri&quot; template=&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnTemplate&quot; editTemplate=&quot;$:/plugins/BTC/Muuri-Kanban/ui/KanbanColumnEditTemplate&quot; storyViewConfig=&quot;$:/config/kanban/&quot;/&gt;
+			&lt;/$vars&gt;
+		&lt;/div&gt;
 	&lt;/div&gt;
-&lt;/div&gt;
+	&lt;$droppable actions=&quot;&quot;&quot;&lt;$action-navigate $to=&lt;&lt;actionTiddler&gt;&gt;/&gt;&quot;&quot;&quot;&gt;
+		&lt;div class=&quot;tc-kanban-droppable&quot;&gt;
+			&lt;$button class=&quot;tc-btn-invisible tc-board-column-action tc-add&quot; tooltip=&quot;new column&quot; aria-label=&quot;new column&quot;&gt;
+				&lt;$action-sendmessage $message=&quot;tm-new-tiddler&quot;/&gt;
+				{{$:/core/images/new-button}}
+			&lt;/$button&gt;
+		&lt;/div&gt;
+	&lt;/$droppable&gt;
 &lt;/$navigator&gt;</pre>
 </div>
-<div created="20210103145416211" modified="20210104140655652" title="Kanban Changelog" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>!!! __v0.1.2__
+<div created="20210103145416211" modified="20210105195155625" title="Kanban Changelog" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>!!! __v0.1.3__
+
+* doubleclick to edit items
+* link to ~StoryRiver for each item
+* animations of buttons can be turned off in plugin config
+* item-toolbar can be enabled in plugin config
+* new-column button (and dropzone) are now at the bottom
+* fixed nasty stylesheet bug
+* some small style updates
+
+!!! __v0.1.2__
 
 * added tooltips and aria-labels to kanban buttons
 
@@ -12334,7 +11317,7 @@ git clone --depth=&quot;1&quot; git@github.com:BurningTreeC/tiddlywiki-muuri-kan
 <div created="20201022200345446" modified="20201214222300083" tags="" title="The Birth of Venus" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img[https://upload.wikimedia.org/wikipedia/commons/6/61/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg]]</pre>
 </div>
-<div created="20201017085712855" modified="20201225131240514" tags="" title="The Great Wave off the Coast of Kanagawa" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20201017085712855" modified="20210104202510106" tags="" title="The Great Wave off the Coast of Kanagawa" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img[https://upload.wikimedia.org/wikipedia/commons/b/b3/Katsushika_Hokusai_-_Thirty-Six_Views_of_Mount_Fuji-_The_Great_Wave_Off_the_Coast_of_Kanagawa_-_Google_Art_Project.jpg]]</pre>
 </div>
 <div created="20201017085415626" modified="20201214222300053" tags="" title="The Kiss" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -12352,10 +11335,10 @@ git clone --depth=&quot;1&quot; git@github.com:BurningTreeC/tiddlywiki-muuri-kan
 It is exactly like the standard ~TiddlyWiki layout but with a fixed positioned, invisible utility div on top that's used to append dragged items to during the time of the drag
 </pre>
 </div>
-<div color="#b25342" created="20201226152301492" list="[[Create a Kanban]] [[Buy some eggs]]" modified="20210101171509432" tags="" title="Todo" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div color="#b25342" created="20201226152301492" list="[[Create a Kanban]] [[Buy some eggs]]" modified="20210105194438950" tags="" title="Todo" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
-<div color="#669fb2" created="20201226140410781" list="[[Happy Tiddlering]] [[Star me on GitHub]]" modified="20210101171509488" tags="" title="Working" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div color="#669fb2" created="20201226140410781" list="[[Happy Tiddlering]] [[Star me on GitHub]]" modified="20210105194411802" tags="" title="Working" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div created="20201218052427626" modified="20201218052520839" tags="Information" title="Works best with the CodeMirror plugin" type="text/vnd.tiddlywiki" revision="0" bag="default">
