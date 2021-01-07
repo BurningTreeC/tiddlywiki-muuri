@@ -672,9 +672,7 @@ MuuriStoryView.prototype.removeAllListeners = function() {
 	});
 };
 
-MuuriStoryView.prototype.refreshMuuriGrid = function(item) {
-	this.muuri.element.style.height = "";
-	this.muuri.element.style.width = "";
+MuuriStoryView.prototype.refreshMuuriGrid = function() {
 	this.muuri.refreshItems();
 	//this.muuri._refreshDimensions();
 	this.muuri.layout(); //no .layout(true), make tiddlers move, not jump instantly
