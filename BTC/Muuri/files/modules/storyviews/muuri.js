@@ -353,7 +353,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 	return {
 		items: self.itemSelector,
 		dragContainer: self.dragContainer,
-		dragEnabled: self.dragEnabled,
+		dragEnabled: true,
 		dragHandle: self.dragHandle,
 		dragSortPredicate: {
 			action: self.dragSortAction,
@@ -377,7 +377,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 			}
 			var element = item.element;
 			$tw.utils.addClass(element,"tc-active");
-			if(self.muuri.settings.dragEnabled) {
+			if(self.dragEnabled) {
 				if((e.target && e.target.tagName && (self.noDragTags.indexOf(e.target.tagName) > -1 || 
 					self.lookupDragTarget(e.target)) || self.detectWithinCodemirror(e) || !self.detectGridWithinGrid(e.target))) {
 					return false;
@@ -693,10 +693,6 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 	var self = this;
 	if(this.muuri && changedTiddlers[this.configNamespace + "drag-enabled"]) {
 		this.dragEnabled = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
-		this.muuri.updateSettings({
-			dragEnabled: self.dragEnabled
-		});
-		this.hardRefresh();
 	}
 	if(this.muuri && changedTiddlers[this.configNamespace + "drag-handle"]) {
 		var dragHandle = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-handle");
