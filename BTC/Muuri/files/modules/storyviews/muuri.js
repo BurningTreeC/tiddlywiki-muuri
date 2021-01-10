@@ -114,8 +114,8 @@ var MuuriStoryView = function(listWidget) {
 					}
 					if(needsRefresh) {
 						self.observer.disconnect();
-						self.removeAllListeners();
-						//self.muuri.destroy(true);
+						//self.removeAllListeners();
+						self.muuri.destroy(true);
 						self.findMuuriWidget().refreshSelf();
 					}
 				}
