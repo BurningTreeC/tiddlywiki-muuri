@@ -114,7 +114,8 @@ var MuuriStoryView = function(listWidget) {
 					}
 					if(needsRefresh) {
 						self.observer.disconnect();
-						self.muuri.destroy(true);
+						self.removeAllListeners();
+						//self.muuri.destroy(true);
 						self.findMuuriWidget().refreshSelf();
 					}
 				}
@@ -814,7 +815,8 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 	}
 	if(this.muuri && (changedTiddlers[this.configNamespace + "container-class"] || changedTiddlers[this.configNamespace + "item-class"])) {
 		this.observer.disconnect();
-		this.muuri.destroy(true);
+		//this.muuri.destroy(true);
+		this.removeAllListeners();
 		this.findMuuriWidget().refreshSelf();
 	}
 	if(this.muuri && changedTiddlers["$:/config/AnimationDuration"]) {
@@ -826,6 +828,7 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 	}
 	if(changedAttributes.storyViewConfig) {
 		this.observer.disconnect();
+		this.removeAllListeners();
 		this.findMuuriWidget().refreshSelf();
 	}
 	if(changedAttributes.filter || changedAttributes.template || changedAttributes.editTemplate || changedAttributes.emptyMessage || changedAttributes.storyview || changedAttributes.history) {
