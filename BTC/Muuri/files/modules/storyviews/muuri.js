@@ -414,6 +414,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 			smoothStop: false,
 			threshold: 0
 		},
+		translate3d: true,
 		showDuration: self.animationDuration,
 		layoutDurattion: self.animationDuration,
 		layoutOnResize: true,
