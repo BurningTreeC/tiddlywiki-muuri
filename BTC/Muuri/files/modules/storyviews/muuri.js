@@ -813,8 +813,8 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 		});
 	}
 	if(this.muuri && (changedTiddlers[this.configNamespace + "container-class"] || changedTiddlers[this.configNamespace + "item-class"])) {
-		this.muuri.destroy(true);
 		this.observer.disconnect();
+		this.muuri.destroy(true);
 		this.findMuuriWidget().refreshSelf();
 	}
 	if(this.muuri && changedTiddlers["$:/config/AnimationDuration"]) {
