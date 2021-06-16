@@ -87,9 +87,34 @@ var MuuriStoryView = function(listWidget) {
 		})
 		.on("beforeSend",function(data) {
 			data.toGrid.refreshItems([data.item]);
+			var toGridItems = data.toGrid.getItems(),
+				toIndex = data.toIndex,
+				toGridItem = toGridItems[toIndex] ? toGridItems[toIndex] : (toGridItems[toIndex - 1] ? toGridItems[toIndex - 1] : toGridItems[toIndex + 1]),
+				newWidth;
+			if(toGridItem) {
+				newWidth = self.listWidget.document.defaultView.getComputedStyle(toGridItem.element).width;
+				data.item.element.style.width = newWidth;
+			} else {
+				newWidth = data.toGrid.element.offsetWidth;
+				data.item.element.style.width = newWidth + "px";
+			}
+			data.toGrid.refreshItems([data.item]);
 		})
 		.on("send",function(data) {
 			data.item.fromGrid = data.fromGrid;
+			data.toGrid.refreshItems([data.item]);
+			var toGridItems = data.toGrid.getItems(),
+				toIndex = data.toIndex,
+				toGridItem = toGridItems[toIndex],
+				newWidth;
+			if(toGridItem) {
+				newWidth = self.listWidget.document.defaultView.getComputedStyle(toGridItem.element).width;
+				data.item.element.style.width = newWidth;
+			} else {
+				newWidth = data.toGrid.element.offsetWidth;
+				data.item.element.style.width = newWidth + "px";
+			}
+			data.toGrid.refreshItems([data.item]);
 		})
 		.on("beforeReceive",function(data) {
 
@@ -200,6 +225,7 @@ MuuriStoryView.prototype.onDragReleaseEnd = function(item) {
 		var modifierKey = $tw.keyboardManager.getEventModifierKeyDescriptor(item.event.srcEvent);
 		this.listWidget.invokeActionString(this.dropActions,this.listWidget,item.event.srcEvent,{actionTiddler: this.getItemTitle(item), modifier: modifierKey});
 	}
+	item.element.style.width = "";
 };
 
 // From stackoverflow https://stackoverflow.com/questions/35939886/find-first-scrollable-parent
@@ -382,7 +408,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 				if((e.target && e.target.tagName && (self.noDragTags.indexOf(e.target.tagName) > -1 || 
 					self.lookupDragTarget(e.target)) || self.detectWithinCodemirror(e) || !self.detectGridWithinGrid(e.target))) {
 					return false;
-				} else if(e.deltaTime > 100 && e.distance > 10) {
+				} else if(e.deltaTime > self.dragDeltaTime && e.distance > self.dragDistance) {
 					return Muuri.ItemDrag.defaultStartPredicate(item,e);
 				}
 			} else {
@@ -476,6 +502,8 @@ MuuriStoryView.prototype.collectAttributes = function() {
 		}
 	}
 	this.dragAutoScrollAxis = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-autoscroll-axis");
+	this.dragDeltaTime = parseInt(this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-deltatime")) || 100;
+	this.dragDistance = parseInt(this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-distance")) || 10;
 	this.alignRight = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-right") !== "no";
 	this.alignBottom = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-bottom") === "yes";
 	this.dragEnabled = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
@@ -825,6 +853,12 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 			showDuration: self.animationDuration,
 			layoutDuration: self.animationDuration
 		});
+	}
+	if(this.muuri && changedTiddlers[this.configNamespace + "drag-deltatime"]) {
+		this.dragDeltaTime = parseInt(this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-deltatime")) || 100;
+	}
+	if(this.muuri && changedTiddlers[this.configNamespace + "drag-distance"]) {
+		this.dragDistance = parseInt(this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-distance")) || 10;
 	}
 	if(changedAttributes.storyViewConfig) {
 		this.observer.disconnect();

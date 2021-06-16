@@ -101,3 +101,11 @@ caption: Muuri
 	<option value="no">normal</option>
 	<option value="yes">seamless</option>
 </$select>
+
+!!! Configure the `drag-deltatime` (the time the pointer must move before dragging starts)
+
+<$edit-text tiddler="$:/config/muuri/storyview/drag-deltatime" tag="input" default="" placeholder=" drag-deltatime"/>
+
+!!! Configure the `drag-distance` (the distance the pointer must move before dragging starts)
+
+<$edit-text tiddler="$:/config/muuri/storyview/drag-distance" tag="input" default="" placeholder=" drag-distance"/>

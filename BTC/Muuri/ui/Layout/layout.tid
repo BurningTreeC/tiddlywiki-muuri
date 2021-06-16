@@ -1,7 +1,7 @@
 title: $:/plugins/BTC/Muuri/ui/Layout
 tags: $:/tags/Layout
 name: Muuri Layout
-description: The standard ~TiddlyWiki layout with a fixed drag-container utility div on top
+description: The standard ~TiddlyWiki layout with a special fixed-positioned div on top
 
 \whitespace trim
 \define containerClasses()
