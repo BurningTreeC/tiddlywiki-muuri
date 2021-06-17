@@ -87,7 +87,7 @@ var MuuriStoryView = function(listWidget) {
 		})
 		.on("beforeSend",function(data) {
 			data.toGrid.refreshItems([data.item]);
-			/*var toGridItems = data.toGrid.getItems(),
+			var toGridItems = data.toGrid.getItems(),
 				toIndex = data.toIndex,
 				toGridItem = toGridItems[toIndex] ? toGridItems[toIndex] : (toGridItems[toIndex - 1] ? toGridItems[toIndex - 1] : toGridItems[toIndex + 1]),
 				newWidth;
@@ -98,7 +98,7 @@ var MuuriStoryView = function(listWidget) {
 				newWidth = data.toGrid.element.offsetWidth;
 				data.item.element.style.width = newWidth + "px";
 			}
-			data.toGrid.refreshItems([data.item]);*/
+			data.toGrid.refreshItems([data.item]);
 		})
 		.on("send",function(data) {
 			data.item.fromGrid = data.fromGrid;
