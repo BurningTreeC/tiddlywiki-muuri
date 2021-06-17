@@ -63,7 +63,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE." />
 
 <!--~~ Static styles ~~-->
 <div id="styleArea">
-<style data-tiddler-title="$:/boot/boot.css" data-tiddler-type="text/css" data-tiddler-revision="0" data-tiddler-bag="default" type="text/css">/*
+<style data-tiddler-bag="default" data-tiddler-revision="0" data-tiddler-title="$:/boot/boot.css" data-tiddler-type="text/css" type="text/css">/*
 Basic styles used before we boot up the parsing engine
 */
 
@@ -170,6 +170,8 @@ Error message and password prompt
 
 <li>$:/SideBarMuuriList</li>
 
+<li>$:/state/tab/sidebar--595412856</li>
+
 <li>$:/status/RequireReloadDueToPluginChange</li>
 
 <li>$:/StoryList</li>
@@ -266,15 +268,23 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
-<div created="20201218163434681" modified="20210616174452843" tags="$:/tags/Stylesheet" title="$:/_styles" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201218163434681" modified="20210617144330274" revision="0" tags="$:/tags/Stylesheet" title="$:/_styles" type="text/vnd.tiddlywiki">
 <pre>.tc-red-icon svg {
 fill: red;
+}
+
+.tc-site-title, .tc-site-subtitle {
+display: none;
+}
+
+.tc-sidebar-scrollable {
+padding-top: 0;
 }</pre>
 </div>
-<div created="20210616154718863" modified="20210616200133374" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20210616154718863" modified="20210616200133374" revision="0" title="$:/config/muuri/storyview/columns" type="text/vnd.tiddlywiki">
 <pre>4</pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="TiddlyWiki5 core" list="readme" name="Core" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.1.24-prerelease" revision="0" bag="default">
+<div author="JeremyRuston" bag="default" core-version="&gt;=5.0.0" dependents="" description="TiddlyWiki5 core" list="readme" name="Core" plugin-priority="0" plugin-type="plugin" revision="0" title="$:/core" type="application/json" version="5.1.24-prerelease">
 <pre>{
     "tiddlers": {
         "$:/Acknowledgements": {
@@ -10258,16 +10268,16 @@ fill: red;
     }
 }</pre>
 </div>
-<div created="20210616150008003" modified="20210616150007510" title="$:/DefaultTiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20210616150008003" modified="20210616150007510" revision="0" title="$:/DefaultTiddlers" type="text/vnd.tiddlywiki">
 <pre>[list[$:/StoryList]]</pre>
 </div>
-<div title="$:/isEncrypted" revision="0" bag="default">
+<div bag="default" revision="0" title="$:/isEncrypted">
 <pre>no</pre>
 </div>
-<div created="20210616150222264" modified="20210616150221770" title="$:/layout" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20210616150222264" modified="20210616150221770" revision="0" title="$:/layout" type="text/vnd.tiddlywiki">
 <pre>$:/plugins/BTC/Muuri/ui/Layout</pre>
 </div>
-<div author="Simon Huber" dependents="" description="A gridded storyview" list="readme license usage" muuri-tiddler-width="1" plugin-type="plugin" title="$:/plugins/BTC/Muuri" type="application/json" version="0.2.12" revision="0" bag="default">
+<div author="Simon Huber" bag="default" dependents="" description="A gridded storyview" list="readme license usage" muuri-tiddler-width="1" plugin-type="plugin" revision="0" title="$:/plugins/BTC/Muuri" type="application/json" version="0.2.12">
 <pre>{
     "tiddlers": {
         "$:/config/ShortcutInfo/columns-down": {
@@ -10461,7 +10471,7 @@ fill: red;
     }
 }</pre>
 </div>
-<div author="Simon Huber" dependents="" description="A Kanban based on Muuri" list="readme license config" muuri-tiddler-width="1" plugin-type="plugin" title="$:/plugins/BTC/Muuri-Kanban" type="application/json" version="0.1.12" revision="0" bag="default">
+<div author="Simon Huber" bag="default" dependents="" description="A Kanban based on Muuri" list="readme license config" muuri-tiddler-width="1" plugin-type="plugin" revision="0" title="$:/plugins/BTC/Muuri-Kanban" type="application/json" version="0.1.12">
 <pre>{
     "tiddlers": {
         "$:/config/kanban/items/align-right": {
@@ -10599,9 +10609,13 @@ fill: red;
     }
 }</pre>
 </div>
-<div author="Simon Huber" dependents="" description="A Muuri Grid in the Sidebar" list="readme license usage" muuri-tiddler-width="1" plugin-type="plugin" title="$:/plugins/BTC/MuuriSidebar" type="application/json" version="0.1.0" revision="0" bag="default">
+<div author="Simon Huber" bag="default" dependents="" description="A Muuri Grid in the Sidebar" list="readme license usage" muuri-tiddler-width="1" plugin-type="plugin" revision="0" title="$:/plugins/BTC/MuuriSidebar" type="application/json" version="0.1.0">
 <pre>{
     "tiddlers": {
+        "$:/config/muuri-sidebar/storyview/align-right": {
+            "title": "$:/config/muuri-sidebar/storyview/align-right",
+            "text": "no"
+        },
         "$:/config/muuri-sidebar/storyview/connection-selector": {
             "title": "$:/config/muuri-sidebar/storyview/connection-selector",
             "text": ".tc-muuri-river"
@@ -10632,7 +10646,7 @@ fill: red;
     }
 }</pre>
 </div>
-<div dependents="" description="CodeMirror editor" list="readme usage keyboard license" name="CodeMirror" plugin-type="plugin" title="$:/plugins/tiddlywiki/codemirror" type="application/json" version="5.1.24-prerelease" revision="0" bag="default">
+<div bag="default" dependents="" description="CodeMirror editor" list="readme usage keyboard license" name="CodeMirror" plugin-type="plugin" revision="0" title="$:/plugins/tiddlywiki/codemirror" type="application/json" version="5.1.24-prerelease">
 <pre>{
     "tiddlers": {
         "$:/config/EditorTypeMappings/application/javascript": {
@@ -11010,7 +11024,7 @@ fill: red;
     }
 }</pre>
 </div>
-<div author="Joao Bolila" dependents="" description="Highlight.js syntax highlighting" list="readme usage howto license" name="Highlight" plugin-type="plugin" title="$:/plugins/tiddlywiki/highlight" type="application/json" version="5.1.24-prerelease" revision="0" bag="default">
+<div author="Joao Bolila" bag="default" dependents="" description="Highlight.js syntax highlighting" list="readme usage howto license" name="Highlight" plugin-type="plugin" revision="0" title="$:/plugins/tiddlywiki/highlight" type="application/json" version="5.1.24-prerelease">
 <pre>{
     "tiddlers": {
         "$:/config/HighlightPlugin/TypeMappings/application/javascript": {
@@ -11080,7 +11094,7 @@ fill: red;
     }
 }</pre>
 </div>
-<div created="20210616152351227" current-tiddler="$:/plugins/BTC/MuuriSidebar/styles" modified="20210616180900848" title="$:/SideBarMuuriHistoryList" type="application/json" revision="0" bag="default">
+<div bag="default" created="20210616152351227" current-tiddler="I am Mr. Van Gogh" modified="20210617145029229" revision="0" title="$:/SideBarMuuriHistoryList" type="application/json">
 <pre>[
     {
         "title": "Draft of '$:/config/muuri-sidebar/storyview/storylist'"
@@ -11249,19 +11263,28 @@ fill: red;
     },
     {
         "title": "$:/plugins/BTC/MuuriSidebar/styles"
+    },
+    {
+        "title": "Draft of 'I am Mr. Van Gogh'"
+    },
+    {
+        "title": "I am Mr. Van Gogh"
     }
 ]</pre>
 </div>
-<div created="20210616150928201" list="" modified="20210616182825294" title="$:/SideBarMuuriList" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20210616150928201" list="[[TiddlyWiki Version compatibility]] [[Works best with the CodeMirror plugin]] [[Dragging Tiddlers]] [[Right-to-left or Left-to-right View]] [[Change the amount of columns]] [[Moving Items between Grids]] [[Configuration by Namespace]] [[Actions can be triggered on Drop]] [[Tip: Use the Muuri Layout]]" modified="20210617150007019" revision="0" title="$:/SideBarMuuriList" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
-<div title="$:/status/RequireReloadDueToPluginChange" revision="0" bag="default">
+<div created="20210617150335533" modified="20210617150335533" title="$:/state/tab/sidebar--595412856">
+<pre>$:/plugins/BTC/MuuriSidebar/ui/SideBar</pre>
+</div>
+<div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[I am Mr. Van Gogh]] [[The Kiss]] [[This Louvre moment]] [[The Birth of Venus]] [[I am one of that guy's paintings]] [[The Great Wave off the Coast of Kanagawa]] [[El jardin de las Delicias]] [[Ceci n’est pas une pipe.]] [[Right-to-left or Left-to-right View]] [[Dragging Tiddlers]] [[Star me on GitHub]] [[Moving Items between Grids]] [[Actions can be triggered on Drop]] [[TiddlyWiki Version compatibility]] [[Change the amount of columns]] [[Tip: Use the Muuri Layout]] [[Configuration by Namespace]] [[Configuration Options]] [[Works best with the CodeMirror plugin]] Kanban Installation [[Kanban Installation]]" title="$:/StoryList" revision="1" bag="default">
+<div list="[[The Birth of Venus]] [[The Kiss]] [[This Louvre moment]] [[I am one of that guy's paintings]] [[The Great Wave off the Coast of Kanagawa]] [[El jardin de las Delicias]] [[Ceci n’est pas une pipe.]] [[I am Mr. Van Gogh]] [[Star me on GitHub]] [[Configuration Options]] Kanban Installation [[Kanban Installation]]" title="$:/StoryList">
 <pre></pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease" revision="0" bag="default">
+<div author="JeremyRuston" bag="default" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" revision="0" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
 <pre>{
     "tiddlers": {
         "$:/themes/tiddlywiki/snowwhite/base": {
@@ -11272,7 +11295,7 @@ fill: red;
     }
 }</pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="Basic theme" name="Vanilla" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/vanilla" type="application/json" version="5.1.24-prerelease" revision="0" bag="default">
+<div author="JeremyRuston" bag="default" core-version="&gt;=5.0.0" dependents="" description="Basic theme" name="Vanilla" plugin-priority="0" plugin-type="theme" revision="0" title="$:/themes/tiddlywiki/vanilla" type="application/json" version="5.1.24-prerelease">
 <pre>{
     "tiddlers": {
         "$:/themes/tiddlywiki/vanilla/themetweaks": {
@@ -11370,31 +11393,31 @@ fill: red;
     }
 }</pre>
 </div>
-<div created="20210616162436407" modified="20210616162437100" title="$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20210616162436407" modified="20210616162437100" revision="0" title="$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth" type="text/vnd.tiddlywiki">
 <pre>550px</pre>
 </div>
-<div created="20210616162428542" modified="20210616162428053" title="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20210616162428542" modified="20210616162428053" revision="0" title="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" type="text/vnd.tiddlywiki">
 <pre>fluid-fixed</pre>
 </div>
-<div created="20210616143946887" modified="20210616143946393" title="$:/view" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20210616143946887" modified="20210616143946393" revision="0" title="$:/view" type="text/vnd.tiddlywiki">
 <pre>muuri</pre>
 </div>
-<div created="20201219130048052" modified="20210616174428106" tags="Features" title="Actions can be triggered on Drop" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201219130048052" modified="20210616174428106" revision="0" tags="Features" title="Actions can be triggered on Drop" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
-<div created="20201227195049303" modified="20210616174428261" tags="" title="Buy some eggs" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201227195049303" modified="20210616174428261" revision="0" tags="" title="Buy some eggs" type="text/vnd.tiddlywiki">
 <pre>A six-pack of eggs from happy chicken</pre>
 </div>
-<div caption="" created="20201226162832484" modified="20210616174428272" tags="" title="Buy some milk" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" caption="" created="20201226162832484" modified="20210616174428272" revision="0" tags="" title="Buy some milk" type="text/vnd.tiddlywiki">
 <pre>Milk is good for your bones and you need it for your morning coffee</pre>
 </div>
-<div created="20201011123220797" modified="20210616174427980" tags="" title="Ceci n’est pas une pipe." type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201011123220797" modified="20210616174427980" revision="0" tags="" title="Ceci n’est pas une pipe." type="text/vnd.tiddlywiki">
 <pre>[img [https://upload.wikimedia.org/wikipedia/en/b/b9/MagrittePipe.jpg]]</pre>
 </div>
-<div created="20201220101933342" modified="20210616174428095" tags="Features" title="Change the amount of columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201220101933342" modified="20210616174428095" revision="0" tags="Features" title="Change the amount of columns" type="text/vnd.tiddlywiki">
 <pre>Click the columns Button for more columns, hold &lt;kbd&gt;ctrl&lt;/kbd&gt; while clicking it for less columns</pre>
 </div>
-<div created="20210103115000441" modified="20210616195946278" muuri-tiddler-width="1" tags="Information" title="Changelog" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20210103115000441" modified="20210616195946278" muuri-tiddler-width="1" revision="0" tags="Information" title="Changelog" type="text/vnd.tiddlywiki">
 <pre>!!! __v0.2.12__
 
 * Added configuration options for `drag-distance` and `drag-deltatime`
@@ -11443,10 +11466,10 @@ fill: red;
 * added Muuri Layout that is the standard ~TiddlyWiki layout but with a fixed drag-container utility div on top. can be used to append items to during the time of the drag (see the drag-container configuration)
 * added/fixed styles for narrow screens</pre>
 </div>
-<div created="20201221045948964" modified="20210616174428084" tags="Features" title="Configuration by Namespace" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201221045948964" modified="20210616174428084" revision="0" tags="Features" title="Configuration by Namespace" type="text/vnd.tiddlywiki">
 <pre>The list widget accepts ''one'' additional attribute, namely `storyViewConfig`, which determines the `namespace` for all configuration tiddlers. The default namespace (if none is given through the `storyViewConfig` attribute) is `$:/config/muuri/storyview/`</pre>
 </div>
-<div created="20201221155640024" modified="20210616174428065" muuri-tiddler-width="2" tags="Information" title="Configuration Options" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201221155640024" modified="20210617150214339" muuri-tiddler-width="2" revision="0" tags="Information" title="Configuration Options" type="text/vnd.tiddlywiki">
 <pre>The following ''suffixes'' for the `muuri namespace` given through the `storyViewConfig` attribute are possible:
 
 |suffix |purpose |h
@@ -11465,29 +11488,31 @@ fill: red;
 |connection-selector |a css selector that defines the grid instances that should be connected with the current grid |
 |drag-container |a css selector for the container element where the items will be appended to during the time of the drag. defaults to the current grid |
 |drag-autoscroll-axis |can be "x", "y" or "xy" |
+|drag-deltatime |the time in ms the pointer needs to move the item before dragging starts. defaults to 100 |
+|drag-distance |the distance in px the pointer needs to travel before dragging starts. defaults to 10 |
 
 The ''storylist'' can also be defined by the `tv-muuri-story-list` variable
 
 The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable</pre>
 </div>
-<div created="20201226162904107" modified="20210616174428266" tags="" title="Create a Kanban" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201226162904107" modified="20210616174428266" revision="0" tags="" title="Create a Kanban" type="text/vnd.tiddlywiki">
 <pre>* Style it more the TiddlyWiki way
 * ~~Add keyboard shortcuts for save and cancel when in edit mode~~
 * ~~Add drop-actions input to Column-input area~~</pre>
 </div>
-<div caption="" created="20201226162849128" icon="" modified="20210616174428206" tags="" title="Do the laundry" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" caption="" created="20201226162849128" icon="" modified="20210616174428206" revision="0" tags="" title="Do the laundry" type="text/vnd.tiddlywiki">
 <pre>Someone needs to do it</pre>
 </div>
-<div color="#66a079" created="20201226140352252" list="[[Do the laundry]] [[Buy some milk]]" modified="20210616174428194" tags="" title="Done" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" color="#66a079" created="20201226140352252" list="[[Do the laundry]] [[Buy some milk]]" modified="20210617144528365" revision="0" tags="" title="Done" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
-<div created="20201218053417117" modified="20210616174428115" tags="Features" title="Dragging Tiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201218053417117" modified="20210616174428115" revision="0" tags="Features" title="Dragging Tiddlers" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
-<div created="20201017085609060" modified="20210616174428074" tags="" title="El jardin de las Delicias" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201017085609060" modified="20210616174428074" revision="0" tags="" title="El jardin de las Delicias" type="text/vnd.tiddlywiki">
 <pre>[img[https://upload.wikimedia.org/wikipedia/commons/a/ae/El_jard%C3%ADn_de_las_Delicias%2C_de_El_Bosco.jpg]]</pre>
 </div>
-<div created="20201227193517939" modified="20210616174428255" muuri-tiddler-width="1" tags="" title="How this Kanban works" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201227193517939" modified="20210616174428255" muuri-tiddler-width="1" revision="0" tags="" title="How this Kanban works" type="text/vnd.tiddlywiki">
 <pre>* You can add a column by clicking the {{$:/core/images/new-button}} button in the top left corner
 * You can add an existing tiddler as a column by dragging its link onto the dashed area above the kanban columns
 * You can add new items to a column by clicking the {{$:/core/images/new-button}} button in the corresponding column header
@@ -11506,16 +11531,16 @@ The ''drop-actions'' can also be defined by the `tv-muuri-drop-actions` variable
 * You can delete an item by clicking the {{$:/core/images/delete-button}} button in its bottom right corner
 * You can close an item by clicking the {{$:/core/images/close-button}} button in its bottom left corner</pre>
 </div>
-<div created="20201011123527498" modified="20210616174427968" tags="" title="I am Mr. Van Gogh" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201011123527498" modified="20210616174427968" revision="0" tags="" title="I am Mr. Van Gogh" type="text/vnd.tiddlywiki">
 <pre>[img [https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Van_Gogh_Self-Portrait_with_Straw_Hat_1887-Metropolitan.jpg/1200px-Van_Gogh_Self-Portrait_with_Straw_Hat_1887-Metropolitan.jpg]]</pre>
 </div>
-<div created="20201011123604658" modified="20210616174427976" tags="" title="I am one of that guy's paintings" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201011123604658" modified="20210616174427976" revision="0" tags="" title="I am one of that guy's paintings" type="text/vnd.tiddlywiki">
 <pre>[img [https://upload.wikimedia.org/wikipedia/commons/c/cd/VanGogh-starry_night.jpg]]</pre>
 </div>
-<div color="#ff9c63" created="20201227190921011" list="[[Ceci n’est pas une pipe.]] [[The Great Wave off the Coast of Kanagawa]]" modified="20210616200226328" tags="" title="Images" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" color="#ff9c63" created="20201227190921011" list="[[Ceci n’est pas une pipe.]] [[The Great Wave off the Coast of Kanagawa]]" modified="20210617144516475" revision="0" tags="" title="Images" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
-<div created="20210101141719290" modified="20210616174427940" muuri-tiddler-width="1" tags="Information" title="Installation" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20210101141719290" modified="20210616174427940" muuri-tiddler-width="1" revision="0" tags="Information" title="Installation" type="text/vnd.tiddlywiki">
 <pre>!! How to install the Muuri ~StoryView
 
 !!! On a single-file Wiki:
@@ -11538,7 +11563,7 @@ git clone --depth="1" git@github.com:BurningTreeC/tiddlywiki-muuri.git $TIDDLYWI
 
 !!! See the [[Changelog]] for recent changes</pre>
 </div>
-<div created="20210103142519995" list="Todo Done Working Images" modified="20210616174427952" muuri-tiddler-width="1" title="Kanban" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20210103142519995" list="Todo Done Working Images" modified="20210616174427952" muuri-tiddler-width="1" revision="0" title="Kanban" type="text/vnd.tiddlywiki">
 <pre>\define get-history-list() $:/HistoryList/Kanban/$(currentTiddler)$
 \whitespace trim
 &lt;$navigator story=&lt;&lt;currentTiddler&gt;&gt; history=&lt;&lt;get-history-list&gt;&gt;&gt;
@@ -11559,7 +11584,7 @@ git clone --depth="1" git@github.com:BurningTreeC/tiddlywiki-muuri.git $TIDDLYWI
 	&lt;/$droppable&gt;
 &lt;/$navigator&gt;</pre>
 </div>
-<div created="20210103145416211" modified="20210616174428185" title="Kanban Changelog" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20210103145416211" modified="20210616174428185" revision="0" title="Kanban Changelog" type="text/vnd.tiddlywiki">
 <pre>!!! __v0.1.12__
 
 * made item-inputs cancel popups
@@ -11627,7 +11652,7 @@ git clone --depth="1" git@github.com:BurningTreeC/tiddlywiki-muuri.git $TIDDLYWI
 
 * added the first version of the plugin</pre>
 </div>
-<div created="20210103144552042" modified="20210616174427957" muuri-tiddler-width="1" tags="Information" title="Kanban Installation" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20210103144552042" modified="20210616174427957" muuri-tiddler-width="1" revision="0" tags="Information" title="Kanban Installation" type="text/vnd.tiddlywiki">
 <pre>!! How to install the Muuri Kanban plugin
 
 !!! On a single-file Wiki:
@@ -11650,36 +11675,36 @@ git clone --depth="1" git@github.com:BurningTreeC/tiddlywiki-muuri-kanban.git $T
 
 !!! See the [[Changelog|Kanban Changelog]] for recent changes</pre>
 </div>
-<div created="20201011123647469" modified="20210616174427962" tags="" title="Mona Lisa" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201011123647469" modified="20210616174427962" revision="0" tags="" title="Mona Lisa" type="text/vnd.tiddlywiki">
 <pre>[img [https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/687px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg]]
 </pre>
 </div>
-<div created="20201219083408307" modified="20210616174428111" tags="Features" title="Moving Items between Grids" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201219083408307" modified="20210616174428111" revision="0" tags="Features" title="Moving Items between Grids" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
-<div created="20201218053342155" modified="20210616174428277" tags="Features" title="Right-to-left or Left-to-right View" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201218053342155" modified="20210616174428277" revision="0" tags="Features" title="Right-to-left or Left-to-right View" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
-<div created="20201219182728557" modified="20210616174427993" tags="" title="Star me on GitHub" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201219182728557" modified="20210616174427993" revision="0" tags="" title="Star me on GitHub" type="text/vnd.tiddlywiki">
 <pre>&lt;a href="https://github.com/BurningTreeC/tiddlywiki-muuri" target="_blank" class="tc-red-icon"&gt;&lt;svg enable-background="new 0 0 24 24" viewBox="0 0 24 24" width="240pt" height="240pt"&gt;&lt;g&gt;&lt;rect fill="none" height="24" width="24" x="0"/&gt;&lt;polygon points="14.43,10 12,2 9.57,10 2,10 8.18,14.41 5.83,22 12,17.31 18.18,22 15.83,14.41 22,10"/&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/a&gt;
 </pre>
 </div>
-<div created="20201022200345446" modified="20210616174427998" tags="" title="The Birth of Venus" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201022200345446" modified="20210616174427998" revision="0" tags="" title="The Birth of Venus" type="text/vnd.tiddlywiki">
 <pre>[img[https://upload.wikimedia.org/wikipedia/commons/6/61/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg]]</pre>
 </div>
-<div created="20201017085712855" modified="20210616174427987" tags="" title="The Great Wave off the Coast of Kanagawa" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201017085712855" modified="20210616174427987" revision="0" tags="" title="The Great Wave off the Coast of Kanagawa" type="text/vnd.tiddlywiki">
 <pre>[img[https://upload.wikimedia.org/wikipedia/commons/b/b3/Katsushika_Hokusai_-_Thirty-Six_Views_of_Mount_Fuji-_The_Great_Wave_Off_the_Coast_of_Kanagawa_-_Google_Art_Project.jpg]]</pre>
 </div>
-<div created="20201017085415626" modified="20210616174428007" tags="" title="The Kiss" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201017085415626" modified="20210616174428007" revision="0" tags="" title="The Kiss" type="text/vnd.tiddlywiki">
 <pre>[img[https://upload.wikimedia.org/wikipedia/commons/4/40/The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg]]</pre>
 </div>
-<div created="20201011123841783" modified="20210616174428079" tags="" title="This Louvre moment" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201011123841783" modified="20210616174428079" revision="0" tags="" title="This Louvre moment" type="text/vnd.tiddlywiki">
 <pre>[img[https://upload.wikimedia.org/wikipedia/commons/c/c3/Scuola_di_fontainebleau%2C_presunti_ritratti_di_gabrielle_d%27estr%C3%A9es_sua_sorella_la_duchessa_di_villars%2C_1594_ca._06.jpg]]</pre>
 </div>
-<div created="20210103102351908" modified="20210616174428101" tags="Information" title="TiddlyWiki Version compatibility" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20210103102351908" modified="20210616174428101" revision="0" tags="Information" title="TiddlyWiki Version compatibility" type="text/vnd.tiddlywiki">
 <pre>`&gt; 5.1.23`</pre>
 </div>
-<div created="20210103180636884" modified="20210616174428089" tags="Information" title="Tip: Use the Muuri Layout" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20210103180636884" modified="20210616174428089" revision="0" tags="Information" title="Tip: Use the Muuri Layout" type="text/vnd.tiddlywiki">
 <pre>You can switch to the Muuri Layout using the keyboard key &lt;kbd&gt;&lt;&lt;displayshortcuts ((layout-switcher))&gt;&gt;&lt;/kbd&gt;
 
 It is exactly like the standard ~TiddlyWiki layout but with a fixed positioned, invisible utility div on top that's used to append dragged items to during the time of the drag
@@ -11690,13 +11715,13 @@ Alternatively, if you have your own ~PageTemplate or Layout, you can add the fol
 
 `&lt;div class="tc-drag-container"/&gt;`</pre>
 </div>
-<div color="#b25342" created="20201226152301492" list="[[Create a Kanban]] [[Buy some eggs]]" modified="20210616174428199" tags="" title="Todo" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" color="#b25342" created="20201226152301492" list="[[Create a Kanban]] [[Buy some eggs]]" modified="20210616174428199" revision="0" tags="" title="Todo" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
-<div color="#669fb2" created="20201226140410781" list="[[Star me on GitHub]]" modified="20210616200046623" tags="" title="Working" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" color="#669fb2" created="20201226140410781" list="[[Star me on GitHub]]" modified="20210617144528571" revision="0" tags="" title="Working" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
-<div created="20201218052427626" modified="20210616174428011" tags="Information" title="Works best with the CodeMirror plugin" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div bag="default" created="20201218052427626" modified="20210616174428011" revision="0" tags="Information" title="Works best with the CodeMirror plugin" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
 
@@ -11706,7 +11731,7 @@ Alternatively, if you have your own ~PageTemplate or Layout, you can add the fol
 
 <!--~~ Library modules ~~-->
 <div id="libraryModules" style="display:none;">
-<script data-tiddler-library="yes" data-tiddler-title="$:/library/sjcl.js" data-tiddler-type="application/javascript" data-tiddler-revision="0" data-tiddler-bag="default" type="text/javascript">"use strict";var sjcl={cipher:{},hash:{},keyexchange:{},mode:{},misc:{},codec:{},exception:{corrupt:function(a){this.toString=function(){return"CORRUPT: "+this.message};this.message=a},invalid:function(a){this.toString=function(){return"INVALID: "+this.message};this.message=a},bug:function(a){this.toString=function(){return"BUG: "+this.message};this.message=a},notReady:function(a){this.toString=function(){return"NOT READY: "+this.message};this.message=a}}};
+<script data-tiddler-bag="default" data-tiddler-library="yes" data-tiddler-revision="0" data-tiddler-title="$:/library/sjcl.js" data-tiddler-type="application/javascript" type="text/javascript">"use strict";var sjcl={cipher:{},hash:{},keyexchange:{},mode:{},misc:{},codec:{},exception:{corrupt:function(a){this.toString=function(){return"CORRUPT: "+this.message};this.message=a},invalid:function(a){this.toString=function(){return"INVALID: "+this.message};this.message=a},bug:function(a){this.toString=function(){return"BUG: "+this.message};this.message=a},notReady:function(a){this.toString=function(){return"NOT READY: "+this.message};this.message=a}}};
 sjcl.cipher.aes=function(a){this.s[0][0][0]||this.O();var b,c,d,e,f=this.s[0][4],g=this.s[1];b=a.length;var h=1;if(4!==b&&6!==b&&8!==b)throw new sjcl.exception.invalid("invalid aes key size");this.b=[d=a.slice(0),e=[]];for(a=b;a<4*b+28;a++){c=d[a-1];if(0===a%b||8===b&&4===a%b)c=f[c>>>24]<<24^f[c>>16&255]<<16^f[c>>8&255]<<8^f[c&255],0===a%b&&(c=c<<8^c>>>24^h<<24,h=h<<1^283*(h>>7));d[a]=d[a-b]^c}for(b=0;a;b++,a--)c=d[b&3?a:a-4],e[b]=4>=a||4>b?c:g[0][f[c>>>24]]^g[1][f[c>>16&255]]^g[2][f[c>>8&255]]^g[3][f[c&
 255]]};
 sjcl.cipher.aes.prototype={encrypt:function(a){return t(this,a,0)},decrypt:function(a){return t(this,a,1)},s:[[[],[],[],[],[]],[[],[],[],[],[]]],O:function(){var a=this.s[0],b=this.s[1],c=a[4],d=b[4],e,f,g,h=[],k=[],l,n,m,p;for(e=0;0x100>e;e++)k[(h[e]=e<<1^283*(e>>7))^e]=e;for(f=g=0;!c[f];f^=l||1,g=k[g]||1)for(m=g^g<<1^g<<2^g<<3^g<<4,m=m>>8^m&255^99,c[f]=m,d[m]=f,n=h[e=h[l=h[f]]],p=0x1010101*n^0x10001*e^0x101*l^0x1010100*f,n=0x101*h[m]^0x1010100*m,e=0;4>e;e++)a[e][f]=n=n<<24^n>>>8,b[e][m]=p=p<<24^p>>>8;for(e=
@@ -11770,7 +11795,7 @@ b){var c={},d;for(d=0;d<b.length;d++)void 0!==a[b[d]]&&(c[b[d]]=a[b[d]]);return 
 </div>
 <!--~~ Boot kernel prologue ~~-->
 <div id="bootKernelPrefix" style="display:none;">
-<script data-tiddler-title="$:/boot/bootprefix.js" data-tiddler-type="application/javascript" data-tiddler-revision="0" data-tiddler-bag="default" type="text/javascript">/*\
+<script data-tiddler-bag="default" data-tiddler-revision="0" data-tiddler-title="$:/boot/bootprefix.js" data-tiddler-type="application/javascript" type="text/javascript">/*\
 title: $:/boot/bootprefix.js
 type: application/javascript
 
@@ -11893,7 +11918,7 @@ if(typeof(exports) === "undefined") {
 </div>
 <!--~~ Boot kernel ~~-->
 <div id="bootKernel" style="display:none;">
-<script data-tiddler-title="$:/boot/boot.js" data-tiddler-type="application/javascript" data-tiddler-revision="0" data-tiddler-bag="default" type="text/javascript">/*\
+<script data-tiddler-bag="default" data-tiddler-revision="0" data-tiddler-title="$:/boot/boot.js" data-tiddler-type="application/javascript" type="text/javascript">/*\
 title: $:/boot/boot.js
 type: application/javascript
 
