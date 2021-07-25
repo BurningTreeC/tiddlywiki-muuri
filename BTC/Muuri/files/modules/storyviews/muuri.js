@@ -273,7 +273,7 @@ MuuriStoryView.prototype.refreshItemTitlesArray = function() {
 		muuriItems = [];
 	this.itemTitlesArray = [];
 	for(var i=0; i<items.length; i++) {
-		if(items[i].width !== 0 && items[i].height !== 0) {
+		if((items[i].width !== 0 && items[i].height !== 0) || (items[i].element.offsetParent === null)) {
 			this.itemTitlesArray.push(this.getItemTitle(items[i]));
 			muuriItems.push(items[i]);
 		} else {
