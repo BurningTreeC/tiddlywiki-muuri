@@ -1,7 +1,0 @@
-{
-	"title": "$:/plugins/BTC/Muuri",
-	"description": "A gridded storyview",
-	"author": "Simon Huber",
-	"version": "0.2.0",
-	"list": "readme license usage"
-}
