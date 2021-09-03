@@ -290,7 +290,7 @@ MuuriStoryView.prototype.refreshItemTitlesArray = function() {
 MuuriStoryView.prototype.insert = function(widget) {
 	var self = this;
 	var targetElement = widget.findFirstDomNode();
-	if(!(targetElement instanceof Element)) {
+	if(!targetElement || targetElement.nodeType === Node.TEXT_NODE) {
 		return;
 	}
 	if(this.muuri) {
@@ -318,7 +318,7 @@ MuuriStoryView.prototype.remove = function(widget) {
 	var removeElement = function() {
 		widget ? widget.removeChildDomNodes() : null;
 	};
-	if(!targetElement instanceof Element) {
+	if(!targetElement || targetElement.nodeType === Node.TEXT_NODE) {
 		removeElement();
 		return;
 	}
@@ -354,9 +354,13 @@ MuuriStoryView.prototype.navigateTo = function(historyInfo) {
 	var listItemWidget = this.listWidget.children[listElementIndex],
 		targetElement = listItemWidget.findFirstDomNode();
 	// Abandon if the list entry isn"t a DOM element (it might be a text node)
-	if(!(targetElement instanceof Element)) {
+	if(!targetElement || targetElement.nodeType === Node.TEXT_NODE) {
 		return;
 	}
+	setTimeout(function() {
+		$tw.utils.removeClass(targetElement,"tc-navigating-to");
+	},$tw.utils.getAnimationDuration());
+	$tw.utils.addClass(targetElement,"tc-navigating-to");
 	// Scroll the node into view
 	this.listWidget.dispatchEvent({type: "tm-scroll", target: targetElement});
 };
