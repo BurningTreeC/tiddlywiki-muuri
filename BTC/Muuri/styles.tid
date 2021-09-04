@@ -98,10 +98,11 @@ muuri-tiddler-width: 1
 
 	.tc-tiddler-frame.tc-navigating-to {
 		border-color: <<colour primary>>;
+		box-shadow: inset 0 0 20px <<colour primary>>, inset 0 0 20px <<colour primary>>, inset 0 0 20px <<colour primary>>;
 	}
 
 	.tc-tiddler-frame {
-		transition: border-color {{$:/config/AnimationDuration}}ms ease-in-out;
+		transition: border-color {{$:/config/AnimationDuration}}ms ease-in-out, box-shadow {{$:/config/AnimationDuration}}ms ease-in-out;
 	}
 
 	<$vars count={{{ [{$:/config/muuri/storyview/columns}!match[]] ~[[1]] }}} margin={{$:/config/muuri/tiddler/margin}} marginSuffix={{{ [{$:/config/muuri/storyview/align-right}match[yes]addprefix[right]removesuffix[yes]] ~[[$:/config/muuri/storyview/align-right]is[missing]then[right]] ~[[left]] }}} sidebarBreakPoint={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}} marginBottom={{$:/config/muuri/tiddler/margin-bottom}} storyHighZIndex={{{ [list[$:/StoryList]count[]add[201]] }}} firstBreakPoint={{$:/config/muuri/storyview/first-break-point}} secondBreakPoint={{$:/config/muuri/storyview/second-break-point}}>
