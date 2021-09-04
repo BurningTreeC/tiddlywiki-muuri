@@ -96,12 +96,17 @@ muuri-tiddler-width: 1
 
 <$list filter="[{$:/view}match[muuri]]" variable="ignore">
 
-	.tc-tiddler-frame.tc-navigating-to {
-		box-shadow: <<colour tag-background>> 0px 30px 60px -12px inset, <<colour tag-background>> 0px 18px 36px -18px inset;
+	.tc-tiddler-frame .tc-tiddler-title .tc-titlebar {
+		background-color: <<colour tiddler-background>>;
+	}
+	
+	.tc-tiddler-frame.tc-navigating-to, .tc-tiddler-frame.tc-navigating-to .tc-tiddler-title .tc-titlebar {
+		background-color: <<colour foreground>>;
+		color: <<colour tiddler-background>>;
 	}
 
-	.tc-tiddler-frame {
-		transition: border-color {{$:/config/AnimationDuration}}ms ease-in-out, box-shadow {{$:/config/AnimationDuration}}ms ease-in-out;
+	.tc-tiddler-frame, .tc-tiddler-frame .tc-tiddler-title .tc-titlebar {
+		transition: background-color {{$:/config/AnimationDuration}}ms ease-in-out, color {{$:/config/AnimationDuration}}ms ease-in-out;
 	}
 
 	<$vars count={{{ [{$:/config/muuri/storyview/columns}!match[]] ~[[1]] }}} margin={{$:/config/muuri/tiddler/margin}} marginSuffix={{{ [{$:/config/muuri/storyview/align-right}match[yes]addprefix[right]removesuffix[yes]] ~[[$:/config/muuri/storyview/align-right]is[missing]then[right]] ~[[left]] }}} sidebarBreakPoint={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}} marginBottom={{$:/config/muuri/tiddler/margin-bottom}} storyHighZIndex={{{ [list[$:/StoryList]count[]add[201]] }}} firstBreakPoint={{$:/config/muuri/storyview/first-break-point}} secondBreakPoint={{$:/config/muuri/storyview/second-break-point}}>
