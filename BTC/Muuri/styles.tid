@@ -96,7 +96,7 @@ muuri-tiddler-width: 1
 
 <$list filter="[{$:/view}match[muuri]]" variable="ignore">
 
-	.tc-tiddler-frame.tc-navigating-to, .tc-tiddler-frame.tc-navigating-to .tc-tiddler-title .tc-titlebar {
+	.tc-tiddler-frame.tc-navigating-to {
 		border-color: <<colour primary>>;
 	}
 
