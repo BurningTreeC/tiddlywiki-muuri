@@ -38,13 +38,6 @@ caption: Muuri
 	<option value="meta">meta</option>
 </$select>
 
-!!! Configure the ~AutoSaving after a drag process
-
-<$select tiddler="$:/config/muuri/storyview/auto-save-wiki" default="no">
-	<option value="no">AutoSaving off</option>
-	<option value="yes">AutoSaving on</option>
-</$select>
-
 !!! Configure the maximum amount of columns
 
 <$edit-text tiddler="$:/config/muuri/storyview/columns/max" tag="input" default="" placeholder=" max-columns"/>

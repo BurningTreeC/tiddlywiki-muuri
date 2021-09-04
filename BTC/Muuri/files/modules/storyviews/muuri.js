@@ -261,9 +261,6 @@ MuuriStoryView.prototype.synchronizeGrid = function() {
 	}
 	if(this.storyListTitle && hasChanged && this.itemTitlesArray.indexOf(undefined) === -1 && this.itemTitlesArray.indexOf(null) === -1) {
 		this.listWidget.wiki.setText(this.storyListTitle,this.storyListField,undefined,this.itemTitlesArray);
-		if(this.autoSaveWiki) {
-			$tw.rootWidget.dispatchEvent({type: "tm-auto-save-wiki"});
-		}
 	}
 };
 
@@ -516,7 +513,6 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	this.connectionSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "connection-selector");
 	this.dropActions = this.listWidget.getVariable("tv-muuri-drop-actions") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
 	this.horizontal = this.listWidget.wiki.getTiddlerText(this.configNamespace + "horizontal") === "yes";
-	this.autoSaveWiki = this.listWidget.wiki.getTiddlerText(this.configNamespace + "auto-save-wiki") === "yes";
 };
 
 MuuriStoryView.prototype.findMuuriWidget = function() {
@@ -816,9 +812,6 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 	}
 	if(changedTiddlers[this.configNamespace + "drop-actions"]) {
 		this.dropActions = this.listWidget.getVariable("tv-muuri-drop-actions") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
-	}
-	if(changedTiddlers[this.configNamespace + "auto-save-wiki"]) {
-		this.autoSaveWiki = this.listWidget.wiki.getTiddlerText(this.configNamespace + "auto-save-wiki") === "yes";
 	}
 	if(this.muuri && changedTiddlers[this.configNamespace + "drag-autoscroll-axis"]) {
 		this.dragAutoScrollAxis = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-autoscroll-axis");
