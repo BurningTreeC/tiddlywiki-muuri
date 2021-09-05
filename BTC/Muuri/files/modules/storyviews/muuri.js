@@ -231,7 +231,7 @@ MuuriStoryView.prototype.onDragReleaseEnd = function(item) {
 // From stackoverflow https://stackoverflow.com/questions/35939886/find-first-scrollable-parent
 MuuriStoryView.prototype.getScrollContainer = function (element,includeHidden) {
 	var doc = element.ownerDocument;
-	var style = getComputedStyle(el);
+	var style = getComputedStyle(element);
 	var excludeStaticParent = style.position === "absolute";
 	var overflowRegex = includeHidden ? /(auto|scroll|hidden)/ : /(auto|scroll)/;
 	if(style.position === "fixed") {
@@ -421,7 +421,13 @@ MuuriStoryView.prototype.collectOptions = function() {
 			}
 			var element = item.element;
 			$tw.utils.addClass(element,"tc-active");
-			if(self.dragEnabled) {
+			var isRightClick;
+			if(e.srcEvent.which) {
+				isRightClick = (e.srcEvent.which == 3);
+			} else if(e.srcEvent.button) {
+				isRightClick = (e.srcEvent.button == 2);
+			}
+			if(self.dragEnabled && !isRightClick) {
 				if((e.target && e.target.tagName && (self.noDragTags.indexOf(e.target.tagName) > -1 || 
 					self.lookupDragTarget(e.target)) || self.detectWithinCodemirror(e) || !self.detectGridWithinGrid(e.target))) {
 					return false;
