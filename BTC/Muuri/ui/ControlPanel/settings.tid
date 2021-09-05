@@ -8,6 +8,13 @@ caption: Muuri
 </$list>
 \end
 
+!!! Should tiddlers that are navigated to animate?
+
+<$select tiddler="$:/config/muuri/storyview/NavigateToAnimation" default="no">
+	<option value="no">No</option>
+	<option value="yes">Yes</option>
+</$select>
+
 !!! Configure the left/right alignment of tiddlers in the ~StoryRiver
 
 <$select tiddler="$:/config/muuri/storyview/align-right" default="yes">

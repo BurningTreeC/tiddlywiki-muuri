@@ -96,7 +96,7 @@ muuri-tiddler-width: 1
 
 <$list filter="[{$:/view}match[muuri]]" variable="ignore">
 
-	<$list filter="[{$:/config/muuri/NavigateToAnimation}match[yes]]" variable="ignore">
+	<$list filter="[{$:/config/muuri/storyview/NavigateToAnimation}match[yes]]" variable="ignore">
 
 		.tc-tiddler-frame .tc-tiddler-title .tc-titlebar {
 			background-color: <<colour tiddler-background>>;
