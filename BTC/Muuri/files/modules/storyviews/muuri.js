@@ -230,19 +230,35 @@ MuuriStoryView.prototype.onDragReleaseEnd = function(item) {
 
 // From stackoverflow https://stackoverflow.com/questions/35939886/find-first-scrollable-parent
 MuuriStoryView.prototype.getScrollContainer = function (element,includeHidden) {
-	var style = getComputedStyle(element);
+	var doc = element.ownerDocument;
+	var style = getComputedStyle(el);
 	var excludeStaticParent = style.position === "absolute";
 	var overflowRegex = includeHidden ? /(auto|scroll|hidden)/ : /(auto|scroll)/;
-
-	if (style.position === "fixed") return this.listWidget.document.body;
-	for (var parent = element; (parent = parent.parentElement);) {
+	if(style.position === "fixed") {
+		if("scrollingElement" in doc) {
+			return doc.scrollingElement;
+		}
+		if(navigator.userAgent.indexOf("WebKit") !== -1) {
+			return doc.body;
+		}
+		return doc.documentElement;
+	}
+	for(var parent=element; parent=parent.parentElement; ) {
 		style = getComputedStyle(parent);
-		if (excludeStaticParent && style.position === "static") {
+		if(excludeStaticParent && style.position === "static") {
 			continue;
 		}
-		if (overflowRegex.test(style.overflow + style.overflowY + style.overflowX)) return parent;
+		if(overflowRegex.test(style.overflow + style.overflowY + style.overflowX)) {
+			return parent;
+		}
 	}
-	return this.listWidget.document.body;
+	if("scrollingElement" in doc) {
+		return doc.scrollingElement;
+	}
+	if(navigator.userAgent.indexOf("WebKit") !== -1) {
+		return doc.body;
+	}
+	return doc.documentElement;
 };
 
 MuuriStoryView.prototype.synchronizeGrid = function() {
