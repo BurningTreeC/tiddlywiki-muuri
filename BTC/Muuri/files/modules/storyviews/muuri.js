@@ -153,6 +153,11 @@ var MuuriStoryView = function(listWidget) {
 		$tw.hooks.addHook("th-page-refreshed",function() {
 			self.restoreScrollPositions();
 		});
+		this.listWidget.document.defaultView.addEventListener("beforeunload",function(event) {
+			self.observer.disconnect();
+			self.removeAllListeners();
+			self.muuri.destroy(true);
+		});
 	}
 };
 
@@ -432,6 +437,7 @@ MuuriStoryView.prototype.createMuuriGrid = function() {
 		try {
 			return new Muuri(domNode,options);
 		} catch(e) {
+			console.log(e);
 			return false;
 		}
 	}
