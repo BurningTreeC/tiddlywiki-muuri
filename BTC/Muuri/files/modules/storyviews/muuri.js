@@ -35,130 +35,142 @@ var MuuriStoryView = function(listWidget) {
 	this.collectAttributes();
 	this.muuri = this.createMuuriGrid();
 	if(this.muuri) {
-		this.muuri.listWidget = listWidget;
-		var items = this.muuri.getItems();
-		for(var i=0; i<items.length; i++) {
-			var element = items[i].element;
-			this.itemTitlesArray.push(this.getItemTitle(items[i]));
-			this.addResizeListener(element,function() {
-				self.refreshMuuriGrid();
-			});
-		}
-		this.addResizeListener(self.muuri.element,function() {
-			self.refreshMuuriGrid();
-		});
-		this.muuri.synchronizeGrid = function() {
-			self.synchronizeGrid();
-		}
-		this.muuri.on("dragReleaseEnd",function(item) {
-			self.onDragReleaseEnd(item);
-			var style = item.element.style;
-			style.width = "";
-			style.height = "";
-			self.refreshMuuriGrid();
-			//self.muuri.refreshItems([item]);
-		})
-		.on("add",function(items) {
-			self.muuri.element.style.height = "";
-		})
-		.on("remove",function(items) {
-			self.muuri.element.style.height = "";
-		})
-		.on("dragInit",function(item,event) {
-			self.inheritIframeEvents();
-			var style = item.element.style;
-			style.width = item.width + "px";
-			style.height = item.height + "px";
-		})
-		.on("dragStart",function(item,event) {
-
-		})
-		.on("dragEnd",function(item,event) {
-			item.event = event;
-			self.restoreIframeEvents();
-		})
-		.on("layoutStart",function() {
-		})
-		.on("layoutEnd",function(items) {
-
-		})
-		.on("layoutAbort",function(items) {
-
-		})
-		.on("beforeSend",function(data) {
-			data.toGrid.refreshItems([data.item]);
-			var toGridItems = data.toGrid.getItems(),
-				toIndex = data.toIndex,
-				toGridItem = toGridItems[toIndex] ? toGridItems[toIndex] : (toGridItems[toIndex - 1] ? toGridItems[toIndex - 1] : toGridItems[toIndex + 1]),
-				newWidth;
-			if(toGridItem) {
-				newWidth = self.listWidget.document.defaultView.getComputedStyle(toGridItem.element).width;
-				data.item.element.style.width = newWidth;
-			} else {
-				newWidth = data.toGrid.element.offsetWidth;
-				data.item.element.style.width = newWidth + "px";
+		this.unleashMuuriGrid(listWidget);
+	} else {
+		setTimeout(function() {
+			self.muuri = self.createMuuriGrid();
+			if(self.muuri) {
+				self.unleashMuuriGrid(listWidget);
 			}
-			data.toGrid.refreshItems([data.item]);
-		})
-		.on("send",function(data) {
-			data.item.fromGrid = data.fromGrid;
-			data.toGrid.refreshItems([data.item]);
-			var toGridItems = data.toGrid.getItems(),
-				toIndex = data.toIndex,
-				toGridItem = toGridItems[toIndex],
-				newWidth;
-			if(toGridItem) {
-				newWidth = self.listWidget.document.defaultView.getComputedStyle(toGridItem.element).width;
-				data.item.element.style.width = newWidth;
-			} else {
-				newWidth = data.toGrid.element.offsetWidth;
-				data.item.element.style.width = newWidth + "px";
-			}
-			data.toGrid.refreshItems([data.item]);
-		})
-		.on("beforeReceive",function(data) {
+		},$tw.utils.getAnimationDuration());
+	}
+};
 
-		})
-		.on("receive",function(data) {
-
-		})
-		.on("destroy",function() {
-			self.removeAllListeners();
-		});
-		this.addSelfToGlobalGrids();
-		this.observer = new MutationObserver(function(mutations) {
-			$tw.utils.each(mutations,function(mutation) {
-				if(mutation.removedNodes) {
-					var items = self.muuri.getItems();
-					self.muuri.refreshItems();
-					var needsRefresh = false;
-					for(var i=0; i<items.length; i++) {
-						if(items[i].width === 0 && items[i].height === 0) {
-							needsRefresh = true;
-						}
-					}
-					if(needsRefresh) {
-						self.observer.disconnect();
-						//self.removeAllListeners();
-						self.muuri.destroy(true);
-						self.findMuuriWidget().refreshSelf();
-					}
-				}
-			});
-		});
-		this.observer.observe(this.muuri.element,{attributes: true, childList: true, characterData: true});
-		$tw.hooks.addHook("th-page-refreshing",function() {
-			self.storeScrollPositions();
-		});
-		$tw.hooks.addHook("th-page-refreshed",function() {
-			self.restoreScrollPositions();
-		});
-		this.listWidget.document.defaultView.addEventListener("beforeunload",function(event) {
-			self.observer.disconnect();
-			self.removeAllListeners();
-			self.muuri.destroy(true);
+MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
+	var self = this;
+	this.muuri.listWidget = listWidget;
+	var items = this.muuri.getItems();
+	for(var i=0; i<items.length; i++) {
+		var element = items[i].element;
+		this.itemTitlesArray.push(this.getItemTitle(items[i]));
+		this.addResizeListener(element,function() {
+			self.refreshMuuriGrid();
 		});
 	}
+	this.addResizeListener(self.muuri.element,function() {
+		self.refreshMuuriGrid();
+	});
+	this.muuri.synchronizeGrid = function() {
+		self.synchronizeGrid();
+	}
+	this.muuri.on("dragReleaseEnd",function(item) {
+		self.onDragReleaseEnd(item);
+		var style = item.element.style;
+		style.width = "";
+		style.height = "";
+		self.refreshMuuriGrid();
+		//self.muuri.refreshItems([item]);
+	})
+	.on("add",function(items) {
+		self.muuri.element.style.height = "";
+	})
+	.on("remove",function(items) {
+		self.muuri.element.style.height = "";
+	})
+	.on("dragInit",function(item,event) {
+		self.inheritIframeEvents();
+		var style = item.element.style;
+		style.width = item.width + "px";
+		style.height = item.height + "px";
+	})
+	.on("dragStart",function(item,event) {
+
+	})
+	.on("dragEnd",function(item,event) {
+		item.event = event;
+		self.restoreIframeEvents();
+	})
+	.on("layoutStart",function() {
+	})
+	.on("layoutEnd",function(items) {
+
+	})
+	.on("layoutAbort",function(items) {
+
+	})
+	.on("beforeSend",function(data) {
+		data.toGrid.refreshItems([data.item]);
+		var toGridItems = data.toGrid.getItems(),
+			toIndex = data.toIndex,
+			toGridItem = toGridItems[toIndex] ? toGridItems[toIndex] : (toGridItems[toIndex - 1] ? toGridItems[toIndex - 1] : toGridItems[toIndex + 1]),
+			newWidth;
+		if(toGridItem) {
+			newWidth = self.listWidget.document.defaultView.getComputedStyle(toGridItem.element).width;
+			data.item.element.style.width = newWidth;
+		} else {
+			newWidth = data.toGrid.element.offsetWidth;
+			data.item.element.style.width = newWidth + "px";
+		}
+		data.toGrid.refreshItems([data.item]);
+	})
+	.on("send",function(data) {
+		data.item.fromGrid = data.fromGrid;
+		data.toGrid.refreshItems([data.item]);
+		var toGridItems = data.toGrid.getItems(),
+			toIndex = data.toIndex,
+			toGridItem = toGridItems[toIndex],
+			newWidth;
+		if(toGridItem) {
+			newWidth = self.listWidget.document.defaultView.getComputedStyle(toGridItem.element).width;
+			data.item.element.style.width = newWidth;
+		} else {
+			newWidth = data.toGrid.element.offsetWidth;
+			data.item.element.style.width = newWidth + "px";
+		}
+		data.toGrid.refreshItems([data.item]);
+	})
+	.on("beforeReceive",function(data) {
+
+	})
+	.on("receive",function(data) {
+
+	})
+	.on("destroy",function() {
+		self.removeAllListeners();
+	});
+	this.addSelfToGlobalGrids();
+	this.observer = new MutationObserver(function(mutations) {
+		$tw.utils.each(mutations,function(mutation) {
+			if(mutation.removedNodes) {
+				var items = self.muuri.getItems();
+				self.muuri.refreshItems();
+				var needsRefresh = false;
+				for(var i=0; i<items.length; i++) {
+					if(items[i].width === 0 && items[i].height === 0) {
+						needsRefresh = true;
+					}
+				}
+				if(needsRefresh) {
+					self.observer.disconnect();
+					//self.removeAllListeners();
+					self.muuri.destroy(true);
+					self.findMuuriWidget().refreshSelf();
+				}
+			}
+		});
+	});
+	this.observer.observe(this.muuri.element,{attributes: true, childList: true, characterData: true});
+	$tw.hooks.addHook("th-page-refreshing",function() {
+		self.storeScrollPositions();
+	});
+	$tw.hooks.addHook("th-page-refreshed",function() {
+		self.restoreScrollPositions();
+	});
+	this.listWidget.document.defaultView.addEventListener("beforeunload",function(event) {
+		self.observer.disconnect();
+		self.removeAllListeners();
+		self.muuri.destroy(true);
+	});
 };
 
 MuuriStoryView.prototype.getScrollPosition = function(scrollContainer) {
@@ -430,15 +442,19 @@ MuuriStoryView.prototype.navigateTo = function(historyInfo) {
 };
 
 MuuriStoryView.prototype.createMuuriGrid = function() {
-	var options = this.collectOptions();
-	var domNode = this.listWidget.parentDomNode;
-	if(domNode) {
-		domNode.setAttribute("data-grid","muuri");
-		try {
-			return new Muuri(domNode,options);
-		} catch(e) {
-			console.log(e);
-			return false;
+	var self = this;
+	var domNode;
+	if(this.listWidget.parentDomNode.isConnected) {
+		domNode = this.listWidget.parentDomNode;
+		if(domNode) {
+			domNode.setAttribute("data-grid","muuri");
+			var options = this.collectOptions();
+			try {
+				return new Muuri(domNode,options);
+			} catch(e) {
+				console.log(e);
+				return false;
+			}
 		}
 	}
 	return false;
