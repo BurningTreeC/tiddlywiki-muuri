@@ -175,15 +175,9 @@ MuuriStoryView.prototype.setScrollPosition = function(scrollContainer,scrollPosi
 };
 
 MuuriStoryView.prototype.getScrollableElements = function(doc) {
-	var elements = doc.querySelectorAll("*"),
-		scrollers = [];
-	for(var i=0; i<elements.length; i++) {
-		var scrollContainer = this.getScrollContainer(elements[i]);
-		if(scrollers.indexOf(scrollContainer) === -1) {
-			scrollers.push(scrollContainer);
-		}
-	}
-	return scrollers;
+	var elements = Array.prototype.slice.call(doc.querySelectorAll(".tc-scrollable-element"));
+	elements.push("scrollingElement" in doc ? doc.scrollingElement : (navigator.userAgent.indexOf("WebKit") !== -1 ? doc.body : doc.documentElement));
+	return elements;
 };
 
 MuuriStoryView.prototype.storeScrollPositions = function() {
