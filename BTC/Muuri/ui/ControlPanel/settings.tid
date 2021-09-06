@@ -15,6 +15,12 @@ caption: Muuri
 	<option value="yes">Yes</option>
 </$select>
 
+!!! Set the colours for the navigate-to animation
+
+background: <$edit-text tiddler="$:/config/muuri/storyview/NavigateToAnimation" field="background" default="" placeholder="background-colour" tag="input"/>
+
+foreground: <$edit-text tiddler="$:/config/muuri/storyview/NavigateToAnimation" field="foreground" default="" placeholder="foreground-colour" tag="input"/>
+
 !!! Configure the left/right alignment of tiddlers in the ~StoryRiver
 
 <$select tiddler="$:/config/muuri/storyview/align-right" default="yes">

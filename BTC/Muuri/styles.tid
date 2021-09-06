@@ -103,8 +103,8 @@ muuri-tiddler-width: 1
 		}
 		
 		.tc-tiddler-frame.tc-navigating-to, .tc-tiddler-frame.tc-navigating-to .tc-tiddler-title .tc-titlebar {
-			background-color: <<colour foreground>>;
-			color: <<colour tiddler-background>>;
+			background-color: <$macrocall $name="colour" name={{{ [[$:/config/muuri/storyview/NavigateToAnimation]get[background]] }}}/>;
+			color: <$macrocall $name="colour" name={{{ [[$:/config/muuri/storyview/NavigateToAnimation]get[foreground]] }}}/>;
 		}
 
 		.tc-tiddler-frame, .tc-tiddler-frame .tc-tiddler-title .tc-titlebar {
