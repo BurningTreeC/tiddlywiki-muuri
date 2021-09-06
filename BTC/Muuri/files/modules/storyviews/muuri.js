@@ -147,6 +147,58 @@ var MuuriStoryView = function(listWidget) {
 			});
 		});
 		this.observer.observe(this.muuri.element,{attributes: true, childList: true, characterData: true});
+		$tw.hooks.addHook("th-page-refreshing",function() {
+			self.storeScrollPositions();
+		});
+		$tw.hooks.addHook("th-page-refreshed",function() {
+			self.restoreScrollPositions();
+		});
+	}
+};
+
+MuuriStoryView.prototype.getScrollPosition = function(scrollContainer) {
+	if("scrollX" in scrollContainer) {
+		return {x: scrollContainer.scrollX, y: scrollContainer.scrollY};
+	} else {
+		return {x: scrollContainer.scrollLeft, y: scrollContainer.scrollTop};
+	}
+};
+
+MuuriStoryView.prototype.setScrollPosition = function(scrollContainer,scrollPosition) {
+	if("scrollX" in scrollContainer) {
+		scrollContainer.scrollX = scrollPosition.x;
+		scrollContainer.scrollY = scrollPosition.y;
+	} else {
+		scrollContainer.scrollLeft = scrollPosition.x;
+		scrollContainer.scrollTop = scrollPosition.y;
+	}
+};
+
+MuuriStoryView.prototype.getScrollableElements = function(doc) {
+	var elements = doc.querySelectorAll("*"),
+		scrollers = [];
+	for(var i=0; i<elements.length; i++) {
+		var scrollContainer = this.getScrollContainer(elements[i]);
+		if(scrollers.indexOf(scrollContainer) === -1) {
+			scrollers.push(scrollContainer);
+		}
+	}
+	return scrollers;
+};
+
+MuuriStoryView.prototype.storeScrollPositions = function() {
+	this.scrollableElements = this.getScrollableElements(this.listWidget.document);
+	this.scrollPositions = [];
+	for(var i=0; i<this.scrollableElements.length; i++) {
+		this.scrollPositions.push(this.getScrollPosition(this.scrollableElements[i]));
+	}
+};
+
+MuuriStoryView.prototype.restoreScrollPositions = function() {
+	if(this.scrollableElements) {
+		for(var k=0; k<this.scrollableElements.length; k++) {
+			this.setScrollPosition(this.scrollableElements[k],this.scrollPositions[k]);
+		}
 	}
 };
 
