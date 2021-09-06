@@ -148,6 +148,8 @@ Error message and password prompt
 
 <li>$:/_styles</li>
 
+<li>$:/config/kanban/items/match-header-color</li>
+
 <li>$:/config/muuri/storyview/columns</li>
 
 <li>$:/config/muuri/storyview/NavigateToAnimation</li>
@@ -270,6 +272,8 @@ Error message and password prompt
 
 {"title":"$:/_styles","created":"20201218163434681","modified":"20210801152147326","tags":"$:/tags/Stylesheet","type":"text/vnd.tiddlywiki","text":".tc-red-icon svg {\nfill: red;\n}","revision":"0","bag":"default"},
 
+{"title":"$:/config/kanban/items/match-header-color","created":"20210906154529100","modified":"20210906154529114","type":"text/vnd.tiddlywiki","text":"yes","revision":"0","bag":"default"},
+
 {"title":"$:/config/muuri/storyview/columns","created":"20210801151708281","modified":"20210906140149517","type":"text/vnd.tiddlywiki","text":"3","revision":"0","bag":"default"},
 
 {"title":"$:/config/muuri/storyview/NavigateToAnimation","background":"foreground","created":"20210906061518091","foreground":"tiddler-background","modified":"20210906062321934","type":"text/vnd.tiddlywiki","text":"no","revision":"0","bag":"default"},
@@ -328,7 +332,7 @@ Error message and password prompt
 
 {"title":"Do the laundry","caption":"","created":"20201226162849128","icon":"","modified":"20210801152645154","tags":"","type":"text/vnd.tiddlywiki","text":"Someone needs to do it","revision":"0","bag":"default"},
 
-{"title":"Done","color":"#66a079","created":"20201226140352252","list":"[[Do the laundry]] [[Buy some milk]]","modified":"20210802054852950","tags":"","type":"text/vnd.tiddlywiki","revision":"0","bag":"default"},
+{"title":"Done","color":"#DAE0A6","created":"20201226140352252","list":"[[Do the laundry]] [[Buy some milk]]","modified":"20210906154336338","tags":"","type":"text/vnd.tiddlywiki","revision":"0","bag":"default"},
 
 {"title":"Dragging Tiddlers","created":"20201218053417117","modified":"20210904081335603","tags":"Features","type":"text/vnd.tiddlywiki","text":"!!! Tiddlers can be dragged around (yay)","revision":"0","bag":"default"},
 
@@ -340,11 +344,11 @@ Error message and password prompt
 
 {"title":"I am one of that guy's paintings","created":"20201011123604658","modified":"20210801151701184","tags":"","type":"text/vnd.tiddlywiki","text":"[img [https://upload.wikimedia.org/wikipedia/commons/c/cd/VanGogh-starry_night.jpg]]","revision":"0","bag":"default"},
 
-{"title":"Images","color":"#ff9c63","created":"20201227190921011","list":"[[The Great Wave off the Coast of Kanagawa]] [[Ceci n’est pas une pipe.]]","modified":"20210906150558331","tags":"","type":"text/vnd.tiddlywiki","revision":"0","bag":"default"},
+{"title":"Images","color":"#A6BDE0","created":"20201227190921011","list":"[[The Great Wave off the Coast of Kanagawa]] [[Ceci n’est pas une pipe.]]","modified":"20210906154502004","tags":"","type":"text/vnd.tiddlywiki","revision":"0","bag":"default"},
 
 {"title":"Installation","created":"20210101141719290","modified":"20210801151701229","muuri-tiddler-width":"1","tags":"Information","type":"text/vnd.tiddlywiki","text":"!! How to install the Muuri ~StoryView\n\n!!! On a single-file Wiki:\n\nDrag the following Link into your Wiki:\n\n{{$:/plugins/BTC/Muuri||$:/core/ui/Components/plugin-info}}\n\n!!! On ~NodeJs:\n\n* Clone the [ext[tiddlywiki-muuri repository|https://github.com/BurningTreeC/tiddlywiki-muuri]] to your `TIDDLYWIKI_PLUGIN_PATH`\n\n```\ngit clone --depth=\"1\" git@github.com:BurningTreeC/tiddlywiki-muuri.git $TIDDLYWIKI_PLUGIN_PATH\n```\n\n* Enable the Plugin in your tiddlywiki.info file\n\n!!! Don't forget: If you like it - [ext[star it!|https://github.com/BurningTreeC/tiddlywiki-muuri]]\n\n!!! See the [[Changelog]] for recent changes","revision":"0","bag":"default"},
 
-{"title":"Kanban","created":"20210802061138276","list":"Todo Done Working Images","modified":"20210906123306910","muuri-tiddler-width":"1","type":"text/vnd.tiddlywiki","text":"{{||$:/plugins/BTC/Muuri-Kanban/ui/KanbanTemplate}}","revision":"0","bag":"default"},
+{"title":"Kanban","created":"20210802061138276","list":"Todo Done Working Images","modified":"20210906153925676","muuri-tiddler-width":"1","type":"text/vnd.tiddlywiki","text":"{{||$:/plugins/BTC/Muuri-Kanban/ui/KanbanTemplate}}","revision":"0","bag":"default"},
 
 {"title":"Kanban Changelog","created":"20210103145416211","modified":"20210906131228581","type":"text/vnd.tiddlywiki","text":"!!! __v0.1.14__\n\n* Made the Kanban-column and Kanban-item templates configurable\n* Added `tc-scrollable-element` class to all scrollables of the Kanban\n\n!!! __v0.1.13__\n\n* item-titles can now be configured to be links that open outside the kanban\n* links within items can now be configured to be opened outside the kanban\n* added a `kanban-history` for each item\n\n!!! __v0.1.12__\n\n* made item-inputs cancel popups\n\n!!! __v0.1.11__\n\n* fixed alignment of items\n* made textarea full-width\n* made kanban-columns connected with other kanbans\n* updated the creation of new kanbans using the kanban-button\n\n!!! __v0.1.10__\n\n* removed horizontal line\n* made font-weight for item-text configurable, 300 by default\n* made border-radius for items and column-headers configurable\n\n!!! __v0.1.9__\n\n* added configuration option for item-text fontsize and lineheight\n* made default item-text smaller\n\n!!! __v0.1.8__\n\n* added configuration options for item top-margin and item right/left-margin\n* updated styles\n\n!!! __v0.1.7__\n\n* added configuration option to show tags on items\n* added configuration option to make item-borders the same color as the column-headers\n\n!!! __v0.1.6__\n\n* fixed overflow issue of kanban\n\n!!! __v0.1.5__\n\n* added toolbar for items in edit-mode\n\n!!! __v0.1.4__\n\n* add autosave configuration option\n* small style updates\n\n!!! __v0.1.3__\n\n* doubleclick to edit items\n* link to ~StoryRiver for each item\n* animations of buttons can be turned off in plugin config\n* item-toolbar can be enabled in plugin config\n* new-column button (and dropzone) are now at the bottom\n* fixed nasty stylesheet bug\n* some small style updates\n\n!!! __v0.1.2__\n\n* added tooltips and aria-labels to kanban buttons\n\n!!! __v0.1.1__\n\n* fixed a bug with the kanban-navigator\n\n!!! __v0.1.0__\n\n* added the first version of the plugin","revision":"0","bag":"default"},
 
@@ -368,9 +372,9 @@ Error message and password prompt
 
 {"title":"Tip: Use the Muuri Layout","created":"20210103180636884","modified":"20210801152645206","tags":"Information","type":"text/vnd.tiddlywiki","text":"You can switch to the Muuri Layout using the keyboard key \u003Ckbd>\u003C\u003Cdisplayshortcuts ((layout-switcher))>>\u003C/kbd>\n\nIt is exactly like the standard ~TiddlyWiki layout but with a fixed positioned, invisible utility div on top that's used to append dragged items to during the time of the drag\n\nThe advantage is that dragged items don't show below other elements while dragging\n\nAlternatively, if you have your own ~PageTemplate or Layout, you can add the following `div` at the top of your ~PageTemplate/Layout:\n\n`\u003Cdiv class=\"tc-drag-container\"/>`","revision":"0","bag":"default"},
 
-{"title":"Todo","color":"#b25342","created":"20201226152301492","list":"[[Create a Kanban]] [[Buy some eggs]]","modified":"20210801152645161","tags":"","type":"text/vnd.tiddlywiki","revision":"0","bag":"default"},
+{"title":"Todo","color":"#E0ACA6","created":"20201226152301492","list":"[[Create a Kanban]] [[Buy some eggs]]","modified":"20210906154256394","tags":"","type":"text/vnd.tiddlywiki","revision":"0","bag":"default"},
 
-{"title":"Working","color":"#669fb2","created":"20201226140410781","list":"[[Star me on GitHub]]","modified":"20210906150558766","tags":"","type":"text/vnd.tiddlywiki","revision":"0","bag":"default"},
+{"title":"Working","color":"#E0C9A6","created":"20201226140410781","list":"[[Star me on GitHub]]","modified":"20210906154418149","tags":"","type":"text/vnd.tiddlywiki","revision":"0","bag":"default"},
 
 {"title":"Works best with the CodeMirror plugin","created":"20201218052427626","modified":"20210905122918623","tags":"Information","type":"text/vnd.tiddlywiki","text":"!!!Really.","revision":"0","bag":"default"}
 ]</script><div id="storeArea" style="display:none;"></div>
