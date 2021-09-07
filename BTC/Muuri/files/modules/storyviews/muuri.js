@@ -108,7 +108,7 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 			newWidth = self.listWidget.document.defaultView.getComputedStyle(toGridItem.element).width;
 			data.item.element.style.width = newWidth;
 		} else {
-			newWidth = data.toGrid.element.offsetWidth;
+			newWidth = data.toGrid.element.clientWidth;//data.toGrid.element.offsetWidth;
 			data.item.element.style.width = newWidth + "px";
 		}
 		data.toGrid.refreshItems([data.item]);
