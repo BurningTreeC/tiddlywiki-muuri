@@ -166,11 +166,13 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 	$tw.hooks.addHook("th-page-refreshed",function() {
 		self.restoreScrollPositions();
 	});
-	this.listWidget.document.defaultView.addEventListener("beforeunload",function(event) {
-		self.observer.disconnect();
-		self.removeAllListeners();
-		self.muuri.destroy(true);
-	});
+	if(this.listWidget.document.defaultView !== window) {
+		this.listWidget.document.defaultView.addEventListener("beforeunload",function(event) {
+			self.observer.disconnect();
+			self.muuri.destroy(true);
+			//self.removeAllListeners();
+		});
+	}
 };
 
 MuuriStoryView.prototype.getScrollPosition = function(scrollContainer) {
@@ -493,7 +495,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 				if((e.target && e.target.tagName && (self.noDragTags.indexOf(e.target.tagName) > -1 || 
 					self.lookupDragTarget(e.target)) || self.detectWithinCodemirror(e) || !self.detectGridWithinGrid(e.target))) {
 					return false;
-				} else if(e.deltaTime > self.dragDeltaTime && e.distance > self.dragDistance) {
+				} else if((e.deltaTime > self.dragDeltaTime) && (e.distance > self.dragDistance)) {
 					return Muuri.ItemDrag.defaultStartPredicate(item,e);
 				}
 			} else {
@@ -657,7 +659,7 @@ MuuriStoryView.prototype.detectGridWithinGrid = function(element) {
 	}
 	$tw.utils.each(elementChildNodes,function(node) {
 		while(node && !foundGrid) {
-			if(node instanceof Element && node.getAttribute("data-grid") === "muuri") {
+			if(node && node.nodeType !== Node.TEXT_NODE && node.getAttribute && node.getAttribute("data-grid") === "muuri") {
 				// dragging within a grid
 				// detect if the found grid is the current grid node
 				if(node !== gridNode) {
