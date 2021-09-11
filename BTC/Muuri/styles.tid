@@ -471,6 +471,10 @@ muuri-tiddler-width: 1
 				z-index: -1 !important;
 			}
 
+			.tc-story-river.tc-muuri-river > .tc-tiddler-frame video::-webkit-media-controls {
+				z-index: -1;
+			}
+
 		</$list>
 
 		.tc-story-river.tc-muuri-river {
@@ -525,5 +529,10 @@ muuri-tiddler-width: 1
 		</$list>
 
 	</$vars>
+
+	.tc-story-river.tc-muuri-river > .tc-tiddler-frame video::-webkit-media-controls-timeline {
+		align-self: center;
+		width: calc(100% - 64px);
+	}
 
 </$list>
