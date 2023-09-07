@@ -2,6 +2,7 @@ title: $:/plugins/BTC/Muuri/ui/KeyboardShortcuts/columns-up
 tags: $:/tags/KeyboardShortcut
 key: ((columns-up))
 
+<$list filter="[{$:/layout}!match[$:/plugins/BTC/tiddlywiki-multi-columns/ui/Layout]]" variable="ignore">
 <$vars rangeMax={{$:/config/muuri/storyview/columns/max}} columns={{{ [[$:/config/muuri/storyview/columns]!is[missing]get[text]] ~[[1]] }}}>
 <$list filter="[<columns>!match<rangeMax>]" emptyMessage="""
 <$action-setfield $tiddler="$:/config/muuri/storyview/columns" text="1"/>
@@ -9,3 +10,4 @@ key: ((columns-up))
 <$action-setfield $tiddler="$:/config/muuri/storyview/columns" text={{{ [range<rangeMax>after<columns>] }}}/>
 </$list>
 </$vars>
+</$list>

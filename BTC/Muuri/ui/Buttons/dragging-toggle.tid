@@ -9,6 +9,7 @@ dragging $onoff$ - [$(draggingShortcut)$]
 \end
 
 \whitespace trim
+<span class="btc-muuri-dragging-toggle-button">
 <$vars draggingShortcut=<<displayshortcuts ((dragging))>> state="$:/config/muuri/storyview/drag-enabled">
 <$reveal state=<<state>> type="nomatch" text="no">
 <$button class=<<get-button-class "tc-selected">> tooltip=<<get-dragging-tooltip "off">>>
@@ -33,3 +34,4 @@ dragging $onoff$ - [$(draggingShortcut)$]
 </$button>
 </$reveal>
 </$vars>
+</span>

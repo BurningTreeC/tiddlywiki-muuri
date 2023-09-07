@@ -21,6 +21,7 @@ columns [$(shortcutUp)$] / [$(shortcutDown)$]
 </$list>
 \end
 \whitespace trim
+<span class="btc-muuri-columns-button">
 <$vars rangeMax={{$:/config/muuri/storyview/columns/max}} columns={{{ [[$:/config/muuri/storyview/columns]!is[missing]get[text]] ~[[1]] }}} shortcutUp=<<displayshortcuts ((columns-up))>> shortcutDown=<<displayshortcuts ((columns-down))>>>
 <$button tooltip=<<get-columns-tooltip>> aria-label={{$:/language/Buttons/Muuri/Columns/Caption}} class=<<tv-config-toolbar-class>> actions=<<set-next-column-actions>>>
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
@@ -31,3 +32,4 @@ columns [$(shortcutUp)$] / [$(shortcutDown)$]
 </$list>
 </$button>
 </$vars>
+</span>
