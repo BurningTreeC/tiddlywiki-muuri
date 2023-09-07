@@ -70,6 +70,7 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 		style.paddingTop = "";
 		style.paddingRight = "";
 		style.paddingBottom = "";
+		style.border = "";
 		style.width = "";
 		style.height = "";
 		self.refreshMuuriGrid(true);
@@ -90,10 +91,12 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 		var elementPaddingRight = parseInt(computedStyle.paddingRight,10);
 		var elementPaddingBottom = parseInt(computedStyle.paddingBottom,10);
 		var elementWidth = item.element.offsetWidth;
+		var elementBorder = computedStyle.border;
 		style.paddingLeft = elementPaddingLeft + "px";
 		style.paddingTop = elementPaddingTop + "px";
 		style.paddingRight = elementPaddingRight + "px";
 		style.paddingBottom = elementPaddingBottom + "px";
+		style.border = elementBorder;
 		style.width = item.width + "px";
 		style.height = item.height + "px";
 	})
@@ -343,7 +346,6 @@ MuuriStoryView.prototype.getScrollContainer = function (element,includeHidden) {
 
 MuuriStoryView.prototype.synchronizeGrid = function() {
 	this.refreshItemTitlesArray();
-	this.muuri.synchronize();
 	var hasChanged = false;
 	if(this.itemTitlesArray.length !== this.listWidget.list.length) {
 		hasChanged = true;
@@ -356,6 +358,7 @@ MuuriStoryView.prototype.synchronizeGrid = function() {
 		}
 	}
 	if(this.storyListTitle && hasChanged && this.itemTitlesArray.indexOf(undefined) === -1 && this.itemTitlesArray.indexOf(null) === -1) {
+		this.muuri.synchronize();
 		this.listWidget.wiki.setText(this.storyListTitle,this.storyListField,undefined,this.itemTitlesArray);
 	}
 };
@@ -543,7 +546,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 			smoothStop: false,
 			threshold: 0
 		},
-		translate3d: true,
+		//translate3d: true,
 		showDuration: self.animationDuration,
 		layoutDurattion: self.animationDuration,
 		layoutOnResize: true,
