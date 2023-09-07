@@ -66,9 +66,13 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 	this.muuri.on("dragReleaseEnd",function(item) {
 		self.onDragReleaseEnd(item);
 		var style = item.element.style;
+		style.paddingLeft = "";
+		style.paddingTop = "";
+		style.paddingRight = "";
+		style.paddingBottom = "";
 		style.width = "";
 		style.height = "";
-		self.refreshMuuriGrid();
+		self.refreshMuuriGrid(true);
 		//self.muuri.refreshItems([item]);
 	})
 	.on("add",function(items) {
@@ -80,6 +84,16 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 	.on("dragInit",function(item,event) {
 		self.inheritIframeEvents();
 		var style = item.element.style;
+		var computedStyle = item.element.ownerDocument.defaultView.getComputedStyle(item.element);
+		var elementPaddingLeft = parseInt(computedStyle.paddingLeft,10);
+		var elementPaddingTop = parseInt(computedStyle.paddingTop,10);
+		var elementPaddingRight = parseInt(computedStyle.paddingRight,10);
+		var elementPaddingBottom = parseInt(computedStyle.paddingBottom,10);
+		var elementWidth = item.element.offsetWidth;
+		style.paddingLeft = elementPaddingLeft + "px";
+		style.paddingTop = elementPaddingTop + "px";
+		style.paddingRight = elementPaddingRight + "px";
+		style.paddingBottom = elementPaddingBottom + "px";
 		style.width = item.width + "px";
 		style.height = item.height + "px";
 	})
@@ -89,11 +103,12 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 	.on("dragEnd",function(item,event) {
 		item.event = event;
 		self.restoreIframeEvents();
+		
 	})
 	.on("layoutStart",function() {
 	})
 	.on("layoutEnd",function(items) {
-
+		
 	})
 	.on("layoutAbort",function(items) {
 
@@ -160,7 +175,7 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 		});
 	});
 	this.observer.observe(this.muuri.element,{attributes: true, childList: true, characterData: true});
-	$tw.hooks.addHook("th-page-refreshing",function() {
+	/*$tw.hooks.addHook("th-page-refreshing",function() {
 		self.storeScrollPositions();
 	});
 	$tw.hooks.addHook("th-page-refreshed",function() {
@@ -172,7 +187,7 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 			self.muuri.destroy(true);
 			//self.removeAllListeners();
 		});
-	}
+	}*/
 };
 
 MuuriStoryView.prototype.getScrollPosition = function(scrollContainer) {
@@ -788,10 +803,11 @@ MuuriStoryView.prototype.removeAllListeners = function() {
 	});
 };
 
-MuuriStoryView.prototype.refreshMuuriGrid = function() {
+MuuriStoryView.prototype.refreshMuuriGrid = function(instant) {
+	instant = instant || false;
 	this.muuri.refreshItems();
 	//this.muuri._refreshDimensions();
-	this.muuri.layout(); //no .layout(true), make tiddlers move, not jump instantly
+	this.muuri.layout(instant); //no .layout(true), make tiddlers move, not jump instantly
 };
 
 MuuriStoryView.prototype.hardRefresh = function() {
