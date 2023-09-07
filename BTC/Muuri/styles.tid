@@ -95,6 +95,10 @@ muuri-tiddler-width: 1
 }
 
 <$list filter="[{$:/view}match[muuri]]" variable="ignore">
+	
+	.tc-tiddler-frame, .tc-muuri-river {
+		color-scheme: normal;
+	}
 
 	<$list filter="[{$:/config/muuri/storyview/NavigateToAnimation}match[yes]]" variable="ignore">
 

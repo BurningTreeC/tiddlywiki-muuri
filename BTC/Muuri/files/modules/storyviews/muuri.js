@@ -594,7 +594,7 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	this.alignRight = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-right") !== "no";
 	this.alignBottom = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-bottom") === "yes";
 	this.dragEnabled = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
-	this.storyListTitle = this.listWidget.getVariable("tv-muuri-story-list") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist");
+	this.storyListTitle = this.listWidget.getVariable("tv-muuri-story-list") || this.listWidget.getVariable("tv-story-list") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist");
 	this.storyListField = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist-field") || "list";
 	this.connectionSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "connection-selector");
 	this.dropActions = this.listWidget.getVariable("tv-muuri-drop-actions") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
