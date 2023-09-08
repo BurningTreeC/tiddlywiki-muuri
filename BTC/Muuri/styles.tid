@@ -110,6 +110,10 @@ muuri-tiddler-width: 1
 
 	</$list>
 
+	.tc-tiddler-title {
+		transform: none !important;
+	}
+
 <$list filter="[{$:/layout}match[$:/plugins/BTC/Muuri/ui/Layout]]" variable="ignore">
 
 	<$list filter="[{$:/config/muuri/storyview/NavigateToAnimation}match[yes]]" variable="ignore">
