@@ -554,8 +554,8 @@ MuuriStoryView.prototype.collectOptions = function() {
 			handle: Muuri.AutoScroller.pointerHandle(100),
 			sortDuringScroll: false,
 			smoothStop: false,
-			threshold: 50,
-			speed: Muuri.AutoScroller.smoothSpeed(1000, 2000, 2500)
+			threshold: 50
+			//speed: Muuri.AutoScroller.smoothSpeed(1000, 2000, 2500)
 		},
 		//translate3d: true,
 		showDuration: self.animationDuration,
