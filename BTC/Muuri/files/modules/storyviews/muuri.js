@@ -534,20 +534,28 @@ MuuriStoryView.prototype.collectOptions = function() {
 		},
 		dragAutoScroll: {
 			targets: function(item) {
-				return [
-					{
-						element: self.getScrollContainer(item.getGrid().element),
-						axis: self.dragAutoScrollAxis && self.dragAutoScrollAxis === "y" ? Muuri.AutoScroller.AXIS_Y : 
-								self.dragAutoScrollAxis && self.dragAutoScrollAxis === "x" ? Muuri.AutoScroller.AXIS_X : 
-								self.dragAutoScrollAxis && self.dragAutoScrollAxis === "xy" ? Muuri.AutoScroller.AXIS_X | 
-								Muuri.AutoScroller.AXIS_Y : self.horizontal ? Muuri.AutoScroller.AXIS_X : Muuri.AutoScroller.AXIS_Y
+				var scrollContainers = [];
+				var options = [];
+				var node = item.getGrid().element;
+				while(node && (node.nodeType === 1)) {
+					var scrollContainer = self.getScrollContainer(node);
+					if(scrollContainer && (scrollContainers.indexOf(scrollContainer) === -1)) {
+						$tw.utils.pushTop(scrollContainers,scrollContainer);
 					}
-				];
+					node = node.parentNode;
+				}
+				for(var i=0; i<scrollContainers.length; i++) {
+					var object = {};
+					$tw.utils.extend(object,{ element: scrollContainers[i], priority: i});
+					$tw.utils.pushTop(options,object);
+				}
+				return options;
 			},
 			handle: Muuri.AutoScroller.pointerHandle(100),
 			sortDuringScroll: false,
 			smoothStop: false,
-			threshold: 0
+			threshold: 50,
+			speed: Muuri.AutoScroller.smoothSpeed(1000, 2000, 2500)
 		},
 		//translate3d: true,
 		showDuration: self.animationDuration,
