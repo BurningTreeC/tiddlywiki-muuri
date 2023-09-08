@@ -58,7 +58,7 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 		});
 	}
 	this.addResizeListener(self.muuri.element,function() {
-		self.refreshMuuriGrid(true);
+		self.refreshMuuriGrid();
 	});
 	this.muuri.synchronizeGrid = function() {
 		self.synchronizeGrid();
@@ -815,7 +815,7 @@ MuuriStoryView.prototype.removeAllListeners = function() {
 		});
 	}
 	this.removeResizeListener(this.muuri.element,function() {
-		self.refreshMuuriGrid(true);
+		self.refreshMuuriGrid();
 	});
 };
 
