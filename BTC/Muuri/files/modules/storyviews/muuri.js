@@ -624,7 +624,8 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	this.dragDistance = parseInt(this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-distance")) || 10;
 	this.alignRight = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-right") !== "no";
 	this.alignBottom = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-bottom") === "yes";
-	this.dragEnabled = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
+	console.log(this.listWidget.attributes);
+	this.dragEnabled = this.listWidget.hasAttribute("drag-enabled") ? (this.listWidget.getAttribute("drag-enabled") !== "no") : this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
 	this.storyListTitle = this.listWidget.getVariable("tv-muuri-story-list") || this.listWidget.getVariable("tv-story-list") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist");
 	this.storyListField = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist-field") || "list";
 	this.connectionSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "connection-selector");
@@ -839,8 +840,8 @@ MuuriStoryView.prototype.hardRefresh = function() {
 
 MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttributes) {
 	var self = this;
-	if(this.muuri && changedTiddlers[this.configNamespace + "drag-enabled"]) {
-		this.dragEnabled = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
+	if(this.muuri && (changedAttributes["drag-enabled"] || changedTiddlers[this.configNamespace + "drag-enabled"])) {
+		this.dragEnabled = this.listWidget.hasAttribute("drag-enabled") ? (this.listWidget.getAttribute("drag-enabled") !== "no") : this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
 	}
 	if(this.muuri && changedTiddlers[this.configNamespace + "drag-handle"]) {
 		var dragHandle = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-handle");
