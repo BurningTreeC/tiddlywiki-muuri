@@ -101,7 +101,7 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 		style.marginBottom = elementMarginBottom + "px";
 		style.border = elementBorder;
 		style.width = item.width + "px";
-		style.height = item.height + "px";
+		//style.height = item.height + "px"; // TODO
 	})
 	.on("dragStart",function(item,event) {
 
@@ -349,6 +349,7 @@ MuuriStoryView.prototype.getScrollContainer = function (element,includeHidden) {
 
 MuuriStoryView.prototype.synchronizeGrid = function() {
 	this.refreshItemTitlesArray();
+	this.muuri.synchronize();
 	var hasChanged = false;
 	if(this.itemTitlesArray.length !== this.listWidget.list.length) {
 		hasChanged = true;
@@ -361,7 +362,6 @@ MuuriStoryView.prototype.synchronizeGrid = function() {
 		}
 	}
 	if(this.storyListTitle && hasChanged && this.itemTitlesArray.indexOf(undefined) === -1 && this.itemTitlesArray.indexOf(null) === -1) {
-		this.muuri.synchronize();
 		this.listWidget.wiki.setText(this.storyListTitle,this.storyListField,undefined,this.itemTitlesArray);
 	}
 };
