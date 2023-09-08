@@ -271,10 +271,6 @@ muuri-tiddler-width: 1
 
 			</$list>
 
-			.tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
-				z-index: -1;
-			}
-
 		}
 
 		@media(max-width:<<sidebarbreakpoint-minus-one>>) {
@@ -348,10 +344,6 @@ muuri-tiddler-width: 1
 
 			.tc-drag-container > .tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
 				padding: 0;
-			}
-
-			.tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-fold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
-				z-index: -1;
 			}
 
 			.tc-drag-container > .tc-tiddler-frame button.tc-unfold-banner, .tc-story-river.tc-muuri-river > .tc-tiddler-frame button.tc-unfold-banner {
@@ -477,22 +469,6 @@ muuri-tiddler-width: 1
 				-ms-user-select: text !important;
 				-moz-user-select: text !important;
 				-webkit-user-select: text !important;
-			}
-
-		</$list>
-
-		<$list filter="[all[tiddlers]prefix[$:/state/popup/more-]limit[1]]">
-
-			.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tag-list-item {
-				z-index: -1;
-			}
-
-			.tc-story-river.tc-muuri-river > .tc-tiddler-frame [data-grid="muuri"] {
-				z-index: -1 !important;
-			}
-
-			.tc-story-river.tc-muuri-river > .tc-tiddler-frame video::-webkit-media-controls {
-				z-index: -1;
 			}
 
 		</$list>
