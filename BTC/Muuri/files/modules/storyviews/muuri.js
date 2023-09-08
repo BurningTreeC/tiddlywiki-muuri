@@ -101,7 +101,9 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 		style.marginBottom = elementMarginBottom + "px";
 		style.border = elementBorder;
 		style.width = item.width + "px";
-		//style.height = item.height + "px"; // TODO
+		if($tw.utils.hasClass(item.element,"tc-preserve-height")) {
+			style.height = item.height + "px"; // TODO
+		}
 	})
 	.on("dragStart",function(item,event) {
 
