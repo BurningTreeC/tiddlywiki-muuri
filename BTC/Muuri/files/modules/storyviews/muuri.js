@@ -529,7 +529,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 			}
 			var element = item.element;
 			$tw.utils.addClass(element,"tc-active");
-			if(self.dragEnabled && e.pointerType === 'touch') {
+/*			if(self.dragEnabled && e.pointerType === "touch") {
 				// On first event (touchstart) we need to store the
 				// drag start data and bind listeners for touchmove
 				// and contextmenu.
@@ -593,8 +593,8 @@ MuuriStoryView.prototype.collectOptions = function() {
 				// On move (touchmove) event let's check the drag state from
 				// our drag data and return it for the predicate.
 				var data = self.dragStartData.get(item);
-				return data ? data.dragAllowed : false;
-			}
+				return data ? data.dragAllowed : undefined;
+			}*/
 			if(self.dragEnabled && !((e.srcEvent.which && e.srcEvent.which === 3) || (e.srcEvent.button && e.srcEvent.button === 2))) {
 				if((e.target && e.target.tagName && (self.noDragTags.indexOf(e.target.tagName) > -1 || 
 					self.lookupDragTarget(e.target)) || self.detectWithinCodemirror(e) || !self.detectGridWithinGrid(e.target))) {
