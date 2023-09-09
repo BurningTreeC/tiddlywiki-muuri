@@ -579,7 +579,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 				
 				// On final event (touchend/touchcancel) we just need to
 				// remove the listeners and delete the item's drag data.
-				if (e.isFinal) {
+				if(e.isFinal) {
 					var data = self.dragStartData.get(item);
 					if(data) {
 						self.dragContainer.parentNode.removeEventListener('touchmove', data.touchMoveListener, { passive: false, capture: true });
@@ -593,7 +593,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 				// On move (touchmove) event let's check the drag state from
 				// our drag data and return it for the predicate.
 				var data = self.dragStartData.get(item);
-				return data ? data.dragAllowed : undefined;
+				return data ? data.dragAllowed : false;
 			}
 			if(self.dragEnabled && !((e.srcEvent.which && e.srcEvent.which === 3) || (e.srcEvent.button && e.srcEvent.button === 2))) {
 				if((e.target && e.target.tagName && (self.noDragTags.indexOf(e.target.tagName) > -1 || 
