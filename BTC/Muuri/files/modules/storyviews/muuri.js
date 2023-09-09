@@ -522,6 +522,14 @@ MuuriStoryView.prototype.collectOptions = function() {
 			rounding: false
 		},
 		layoutEasing: easing,
+		dragCssProps: {
+			touchAction: "auto",
+			userSelect: "none",
+			userDrag: "none",
+			tapHighlightColor: "rgba(0, 0, 0, 0)",
+			touchCallout: "none",
+			contentZooming: "none"
+		},
 		dragStartPredicate: function(item,e) {
 			var items = self.muuri.getItems();
 			for(var i=0; i<items.length; i++) {
@@ -529,7 +537,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 			}
 			var element = item.element;
 			$tw.utils.addClass(element,"tc-active");
-/*			if(self.dragEnabled && e.pointerType === "touch") {
+			if(self.dragEnabled && e.pointerType === "touch") {
 				// On first event (touchstart) we need to store the
 				// drag start data and bind listeners for touchmove
 				// and contextmenu.
@@ -594,7 +602,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 				// our drag data and return it for the predicate.
 				var data = self.dragStartData.get(item);
 				return data ? data.dragAllowed : undefined;
-			}*/
+			}
 			if(self.dragEnabled && !((e.srcEvent.which && e.srcEvent.which === 3) || (e.srcEvent.button && e.srcEvent.button === 2))) {
 				if((e.target && e.target.tagName && (self.noDragTags.indexOf(e.target.tagName) > -1 || 
 					self.lookupDragTarget(e.target)) || self.detectWithinCodemirror(e) || !self.detectGridWithinGrid(e.target))) {
