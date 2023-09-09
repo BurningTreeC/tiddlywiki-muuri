@@ -76,14 +76,18 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 		style.height = "";
 		self.refreshMuuriGrid(true);
 		//self.muuri.refreshItems([item]);
+		console.log("dragReleaseEnd");
 	})
 	.on("add",function(items) {
+		console.log("add");
 		self.muuri.element.style.height = "";
 	})
 	.on("remove",function(items) {
+		console.log("remove");
 		self.muuri.element.style.height = "";
 	})
 	.on("dragInit",function(item,event) {
+		console.log("dragInit");
 		self.inheritIframeEvents();
 		var style = item.element.style;
 		var computedStyle = item.element.ownerDocument.defaultView.getComputedStyle(item.element);
@@ -106,28 +110,30 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 		}
 	})
 	.on("dragStart",function(item,event) {
-
+		console.log("dragStart");
 	})
 	.on("dragEnd",function(item,event) {
 		item.event = event;
 		self.restoreIframeEvents();
-		
+		console.log("dragEnd");
 	})
 	.on("layoutStart",function() {
+		console.log("layoutStart");
 	})
 	.on("layoutEnd",function(items) {
-		
+		console.log("layoutEnd");
 	})
 	.on("layoutAbort",function(items) {
-
+		console.log("layoutAbort");
 	})
 	.on("beforeSend",function(data) {
+		console.log("beforeSend");
 		data.toGrid.refreshItems([data.item]);
 		var toGridItems = data.toGrid.getItems(),
 			toIndex = data.toIndex,
 			toGridItem = toGridItems[toIndex] ? toGridItems[toIndex] : (toGridItems[toIndex - 1] ? toGridItems[toIndex - 1] : toGridItems[toIndex + 1]),
 			newWidth;
-		if(toGridItem) {
+		if(toGridItem && toGridItem.isVisible()) {
 			newWidth = self.listWidget.document.defaultView.getComputedStyle(toGridItem.element).width;
 			data.item.element.style.width = newWidth;
 		} else {
@@ -137,6 +143,7 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 		data.toGrid.refreshItems([data.item]);
 	})
 	.on("send",function(data) {
+		console.log("send");
 		data.item.fromGrid = data.fromGrid;
 		data.toGrid.refreshItems([data.item]);
 		var toGridItems = data.toGrid.getItems(),
@@ -153,12 +160,19 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 		data.toGrid.refreshItems([data.item]);
 	})
 	.on("beforeReceive",function(data) {
-
+		console.log("beforeReceive");
 	})
 	.on("receive",function(data) {
-
+		console.log("receive");
+	})
+	.on("synchronize",function() {
+		console.log("synchronize");
+	})
+	.on("sort",function() {
+		console.log("sort");
 	})
 	.on("destroy",function() {
+		console.log("destroy");
 		self.removeAllListeners();
 	});
 	this.addSelfToGlobalGrids();
@@ -169,7 +183,7 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 				self.muuri.refreshItems();
 				var needsRefresh = false;
 				for(var i=0; i<items.length; i++) {
-					if(items[i].width === 0 && items[i].height === 0) {
+					if(items[i].isVisible() && (items[i].width === 0 && items[i].height === 0)) {
 						needsRefresh = true;
 					}
 				}
@@ -487,6 +501,7 @@ MuuriStoryView.prototype.createMuuriGrid = function() {
 
 MuuriStoryView.prototype.collectOptions = function() {
 	var self = this;
+	this.dragStartData = new Map();
 	return {
 		items: self.itemSelector,
 		dragContainer: self.dragContainer,
@@ -514,15 +529,81 @@ MuuriStoryView.prototype.collectOptions = function() {
 			}
 			var element = item.element;
 			$tw.utils.addClass(element,"tc-active");
+			if(self.dragEnabled && e.pointerType === 'touch') {
+				// On first event (touchstart) we need to store the
+				// drag start data and bind listeners for touchmove
+				// and contextmenu.
+				if(e.isFirst) {
+					var contextMenuListener = function(e) {
+						e.preventDefault();
+					}
+					var touchMoveListener = function(e) {
+						var data = self.dragStartData.get(item);
+						if(data) {
+							if(data.dragAllowed) {
+								e.cancelable && e.preventDefault();
+							} else if(data.dragAllowed === undefined) {
+								if(e.cancelable && e.timeStamp - data.startTimeStamp > 250) {
+									data.dragAllowed = true;
+									e.preventDefault();
+								} else {
+									data.dragAllowed = false;
+								}
+							} 
+						}
+					};
+				
+					// Store drag start data.
+					self.dragStartData.set(item, {
+						dragAllowed: undefined,
+						startTimeStamp: e.srcEvent.timeStamp,
+						touchMoveListener,
+						contextMenuListener
+					});
+ 
+					// We need to bind the touch move listener to every scrollable ancestor
+					// of the dragged item. You probably want to create a method for
+					// querying such elements, but in this example we know the specific
+					// elements so we explicitly define the listeners for those.
+					// Also note that it's important to bind the listeners with
+					// capture:true and passive:false options.
+					self.dragContainer.parentNode.addEventListener('touchmove', touchMoveListener, { passive: false, capture: true });
+					item.getElement().ownerDocument.defaultView.addEventListener('touchmove', touchMoveListener, { passive: false, capture: true });
+					
+					// Prevent context menu popping up.
+					item.getElement().addEventListener('contextmenu', contextMenuListener);
+
+					// Let's keep the drag start predicate in "pending" state.
+					return undefined;
+				}
+				
+				// On final event (touchend/touchcancel) we just need to
+				// remove the listeners and delete the item's drag data.
+				if (e.isFinal) {
+					var data = self.dragStartData.get(item);
+					if(data) {
+						self.dragContainer.parentNode.removeEventListener('touchmove', data.touchMoveListener, { passive: false, capture: true });
+						item.getElement().ownerDocument.defaultView.removeEventListener('touchmove', data.touchMoveListener, { passive: false, capture: true });
+						item.getElement().removeEventListener('contextmenu', data.contextMenuListener);
+						self.dragStartData.delete(item);
+					}
+					return undefined;
+				}
+				
+				// On move (touchmove) event let's check the drag state from
+				// our drag data and return it for the predicate.
+				var data = self.dragStartData.get(item);
+				return data ? data.dragAllowed : undefined;
+			}
 			if(self.dragEnabled && !((e.srcEvent.which && e.srcEvent.which === 3) || (e.srcEvent.button && e.srcEvent.button === 2))) {
 				if((e.target && e.target.tagName && (self.noDragTags.indexOf(e.target.tagName) > -1 || 
 					self.lookupDragTarget(e.target)) || self.detectWithinCodemirror(e) || !self.detectGridWithinGrid(e.target))) {
-					return false;
+					return undefined;
 				} else if((e.deltaTime > self.dragDeltaTime) && (e.distance > self.dragDistance)) {
 					return Muuri.ItemDrag.defaultStartPredicate(item,e);
 				}
 			} else {
-				return false;
+				return undefined;
 			}
 		},
 		dragSort: function() {
@@ -624,13 +705,13 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	this.dragDistance = parseInt(this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-distance")) || 10;
 	this.alignRight = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-right") !== "no";
 	this.alignBottom = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-bottom") === "yes";
-	console.log(this.listWidget.attributes);
 	this.dragEnabled = this.listWidget.hasAttribute("drag-enabled") ? (this.listWidget.getAttribute("drag-enabled") !== "no") : this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
 	this.storyListTitle = this.listWidget.getVariable("tv-muuri-story-list") || this.listWidget.getVariable("tv-story-list") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist");
 	this.storyListField = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist-field") || "list";
 	this.connectionSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "connection-selector");
 	this.dropActions = this.listWidget.getVariable("tv-muuri-drop-actions") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
 	this.horizontal = this.listWidget.wiki.getTiddlerText(this.configNamespace + "horizontal") === "yes";
+	this.filterTiddler = this.listWidget.wiki.getTiddlerText(this.configNamespace + "filter-tiddler");
 };
 
 MuuriStoryView.prototype.findMuuriWidget = function() {
@@ -665,6 +746,23 @@ MuuriStoryView.prototype.getItemTitle = function(item) {
 	var element = item.element;
 	var widget = this.findListWidget(element);
 	return widget ? widget.parseTreeNode.itemTitle : null;
+};
+
+MuuriStoryView.prototype.filterItems = function() {
+	var self = this;
+	if(this.filterTiddler) {
+		this.muuri.filter(function(item) {
+			var listWidget = item.getGrid().listWidget;
+			var listWidgetFilter = listWidget.getAttribute("filter");
+			var searchFilter = listWidgetFilter + " " + "+[search[" + (listWidget.wiki.getTiddlerText(self.filterTiddler) !== undefined ? listWidget.wiki.getTiddlerText(self.filterTiddler) : "") + "]]";
+			var foundTiddlers = listWidget.wiki.filterTiddlers(searchFilter,listWidget);//listWidget.getTiddlerList();
+			var itemTitle = self.getItemTitle(item);
+			if(foundTiddlers.indexOf(itemTitle) !== -1) {
+				return true;
+			}
+			return false;
+		});
+	}
 };
 
 MuuriStoryView.prototype.detectWithinCodemirror = function(event) {
@@ -932,7 +1030,7 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 	if(changedTiddlers[this.configNamespace + "drop-actions"]) {
 		this.dropActions = this.listWidget.getVariable("tv-muuri-drop-actions") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
 	}
-	if(this.muuri && changedTiddlers[this.configNamespace + "drag-autoscroll-axis"]) {
+	/*if(this.muuri && changedTiddlers[this.configNamespace + "drag-autoscroll-axis"]) {
 		this.dragAutoScrollAxis = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-autoscroll-axis");
 		this.muuri.updateSettings({
 			dragAutoScroll: {
@@ -949,7 +1047,7 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 				}
 			}
 		});
-	}
+	}*/
 	if(this.muuri && changedTiddlers[this.configNamespace + "drag-container"]) {
 		var dragContainerSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-container");
 		this.dragContainer = this.listWidget.document.documentElement.querySelector(dragContainerSelector);
@@ -976,6 +1074,13 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 	if(this.muuri && changedTiddlers[this.configNamespace + "drag-distance"]) {
 		this.dragDistance = parseInt(this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-distance")) || 10;
 	}
+	if(this.muuri && changedTiddlers[this.configNamespace + "filter-tiddler"]) {
+		this.filterTiddler = this.listWidget.wiki.getTiddlerText(this.configNamespace + "filter-tiddler");
+	}
+	if(this.muuri && this.filterTiddler && changedTiddlers[this.filterTiddler]) {
+		this.detectConnectedGrids();
+		this.filterItems();
+	}
 	if(changedAttributes.storyViewConfig) {
 		this.observer.disconnect();
 		this.removeAllListeners();
@@ -985,6 +1090,13 @@ MuuriStoryView.prototype.refreshStart = function(changedTiddlers,changedAttribut
 		this.observer.disconnect();
 	}
 	return true;
+};
+
+MuuriStoryView.prototype.refreshEnd = function() {
+	if(this.filterTiddler) {
+		this.detectConnectedGrids();
+		this.filterItems();
+	}
 };
 
 exports.muuri = MuuriStoryView;
