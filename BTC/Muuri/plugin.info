@@ -2,7 +2,7 @@
 	"title": "$:/plugins/BTC/Muuri",
 	"description": "A gridded storyview",
 	"author": "Simon Huber",
-	"version": "0.2.34",
+	"version": "0.2.35",
 	"list": "readme license usage",
 	"muuri-tiddler-width": "1"
 }

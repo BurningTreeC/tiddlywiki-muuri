@@ -568,10 +568,10 @@ MuuriStoryView.prototype.collectOptions = function() {
 					// Also note that it's important to bind the listeners with
 					// capture:true and passive:false options.
 					self.dragContainer.parentNode.addEventListener('touchmove', touchMoveListener, { passive: false, capture: true });
-					item.getElement().ownerDocument.defaultView.addEventListener('touchmove', touchMoveListener, { passive: false, capture: true });
+					item.element.ownerDocument.defaultView.addEventListener('touchmove', touchMoveListener, { passive: false, capture: true });
 					
 					// Prevent context menu popping up.
-					item.getElement().addEventListener('contextmenu', contextMenuListener);
+					item.element.addEventListener('contextmenu', contextMenuListener);
 
 					// Let's keep the drag start predicate in "pending" state.
 					return undefined;
@@ -583,8 +583,8 @@ MuuriStoryView.prototype.collectOptions = function() {
 					var data = self.dragStartData.get(item);
 					if(data) {
 						self.dragContainer.parentNode.removeEventListener('touchmove', data.touchMoveListener, { passive: false, capture: true });
-						item.getElement().ownerDocument.defaultView.removeEventListener('touchmove', data.touchMoveListener, { passive: false, capture: true });
-						item.getElement().removeEventListener('contextmenu', data.contextMenuListener);
+						item.element.ownerDocument.defaultView.removeEventListener('touchmove', data.touchMoveListener, { passive: false, capture: true });
+						item.element.removeEventListener('contextmenu', data.contextMenuListener);
 						self.dragStartData.delete(item);
 					}
 					return undefined;
@@ -640,7 +640,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 			threshold: 50
 			//speed: Muuri.AutoScroller.smoothSpeed(1000, 2000, 2500)
 		},
-		//translate3d: true,
+		translate3d: true,
 		showDuration: self.animationDuration,
 		layoutDurattion: self.animationDuration,
 		layoutOnResize: true,
