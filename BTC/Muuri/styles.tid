@@ -94,9 +94,9 @@ muuri-tiddler-width: 1
 	z-index: 1000;
 }
 	
-	.tc-tiddler-frame, .tc-muuri-river {
-		color-scheme: normal;
-	}
+.tc-tiddler-frame, .tc-muuri-river {
+	color-scheme: normal;
+}
 
 <$list filter="[{$:/view}match[muuri]]" variable="ignore">
 

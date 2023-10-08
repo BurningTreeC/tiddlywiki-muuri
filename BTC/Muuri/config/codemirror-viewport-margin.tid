@@ -1,0 +1,4 @@
+title: $:/config/codemirror/viewportMargin
+type: integer
+
+Infinity

@@ -76,18 +76,14 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 		style.height = "";
 		self.refreshMuuriGrid(true);
 		//self.muuri.refreshItems([item]);
-		console.log("dragReleaseEnd");
 	})
 	.on("add",function(items) {
-		console.log("add");
 		self.muuri.element.style.height = "";
 	})
 	.on("remove",function(items) {
-		console.log("remove");
 		self.muuri.element.style.height = "";
 	})
 	.on("dragInit",function(item,event) {
-		console.log("dragInit");
 		self.inheritIframeEvents();
 		var style = item.element.style;
 		var computedStyle = item.element.ownerDocument.defaultView.getComputedStyle(item.element);
@@ -110,24 +106,23 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 		}
 	})
 	.on("dragStart",function(item,event) {
-		console.log("dragStart");
+
 	})
 	.on("dragEnd",function(item,event) {
 		item.event = event;
 		self.restoreIframeEvents();
-		console.log("dragEnd");
+
 	})
 	.on("layoutStart",function() {
-		console.log("layoutStart");
+
 	})
 	.on("layoutEnd",function(items) {
-		console.log("layoutEnd");
+
 	})
 	.on("layoutAbort",function(items) {
-		console.log("layoutAbort");
+
 	})
 	.on("beforeSend",function(data) {
-		console.log("beforeSend");
 		data.toGrid.refreshItems([data.item]);
 		var toGridItems = data.toGrid.getItems(),
 			toIndex = data.toIndex,
@@ -143,7 +138,6 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 		data.toGrid.refreshItems([data.item]);
 	})
 	.on("send",function(data) {
-		console.log("send");
 		data.item.fromGrid = data.fromGrid;
 		data.toGrid.refreshItems([data.item]);
 		var toGridItems = data.toGrid.getItems(),
@@ -160,19 +154,18 @@ MuuriStoryView.prototype.unleashMuuriGrid = function(listWidget) {
 		data.toGrid.refreshItems([data.item]);
 	})
 	.on("beforeReceive",function(data) {
-		console.log("beforeReceive");
+
 	})
 	.on("receive",function(data) {
-		console.log("receive");
+
 	})
 	.on("synchronize",function() {
-		console.log("synchronize");
+
 	})
 	.on("sort",function() {
-		console.log("sort");
+
 	})
 	.on("destroy",function() {
-		console.log("destroy");
 		self.removeAllListeners();
 	});
 	this.addSelfToGlobalGrids();
@@ -491,7 +484,6 @@ MuuriStoryView.prototype.createMuuriGrid = function() {
 			try {
 				return new Muuri(domNode,options);
 			} catch(e) {
-				console.log(e);
 				return false;
 			}
 		}
@@ -606,7 +598,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 			if(self.dragEnabled && !((e.srcEvent.which && e.srcEvent.which === 3) || (e.srcEvent.button && e.srcEvent.button === 2))) {
 				if((e.target && e.target.tagName && (self.noDragTags.indexOf(e.target.tagName) > -1 || 
 					self.lookupDragTarget(e.target)) || self.detectWithinCodemirror(e) || !self.detectGridWithinGrid(e.target))) {
-					return undefined;
+					return false;
 				} else if((e.deltaTime > self.dragDeltaTime) && (e.distance > self.dragDistance)) {
 					return Muuri.ItemDrag.defaultStartPredicate(item,e);
 				}
@@ -648,7 +640,7 @@ MuuriStoryView.prototype.collectOptions = function() {
 			threshold: 50
 			//speed: Muuri.AutoScroller.smoothSpeed(1000, 2000, 2500)
 		},
-		translate3d: true,
+		translate3d: false,
 		showDuration: self.animationDuration,
 		layoutDurattion: self.animationDuration,
 		layoutOnResize: true,
@@ -714,7 +706,7 @@ MuuriStoryView.prototype.collectAttributes = function() {
 	this.alignRight = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-right") !== "no";
 	this.alignBottom = this.listWidget.wiki.getTiddlerText(this.configNamespace + "align-bottom") === "yes";
 	this.dragEnabled = this.listWidget.hasAttribute("drag-enabled") ? (this.listWidget.getAttribute("drag-enabled") !== "no") : this.listWidget.wiki.getTiddlerText(this.configNamespace + "drag-enabled") !== "no";
-	this.storyListTitle = this.listWidget.getVariable("tv-muuri-story-list") || this.listWidget.getVariable("tv-story-list") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist");
+	this.storyListTitle = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist") || this.listWidget.getVariable("tv-muuri-story-list") || this.listWidget.getVariable("tv-story-list");
 	this.storyListField = this.listWidget.wiki.getTiddlerText(this.configNamespace + "storylist-field") || "list";
 	this.connectionSelector = this.listWidget.wiki.getTiddlerText(this.configNamespace + "connection-selector");
 	this.dropActions = this.listWidget.getVariable("tv-muuri-drop-actions") || this.listWidget.wiki.getTiddlerText(this.configNamespace + "drop-actions");
@@ -776,7 +768,7 @@ MuuriStoryView.prototype.filterItems = function() {
 MuuriStoryView.prototype.detectWithinCodemirror = function(event) {
 	var node = event.target;
 	while(node) {
-		if(node.classList && ((node.classList.contains("CodeMirror-scroll")) || (node.classList.contains("CodeMirror")))) {
+		if(node.classList && ((node.classList.contains("CodeMirror-scroll")) || (node.classList.contains("cm-scroller")) || (node.classList.contains("CodeMirror")) || (node.classList.contains("cm-editor")))) {
 			return true;
 		}
 		node = node.parentNode;
