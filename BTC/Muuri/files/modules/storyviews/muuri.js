@@ -3,7 +3,32 @@ title: $:/plugins/BTC/Muuri/modules/storyviews/muuri.js
 type: application/javascript
 module-type: storyview
 
-Views the story as a Muuri grid (attribute-driven config, dev/master compatible)
+Muuri storyview for TiddlyWiki (attribute-driven config, dev/master compatible)
+
+Production-ready behavior:
+- Commit pipeline (single-shot, de-duped):
+  1) wait idle (Muuri transitions + rAF layout + released-item settling)
+  2) reconcile Muuri to DOM order (NO animation)
+  3) wait idle (same)
+  4) write storylist (multi-grid) + optional drop-actions
+  5) reconcile again in refreshEnd (NO timers) to prevent post-commit "jump"
+- Robust idle detection:
+  - Muuri item transitions (dragging/releasing/showing/hiding/positioning)
+  - our scheduled rAF layout
+  - DOM churn from media/ResizeObserver
+  - released item must be fully settled in its final position before commit
+- Safer drop-actions (captured once per drag, executed once per commit)
+- Connected grids supported (single commit writes all involved storylists)
+- Editor/iframe stability: detach/restore iframes during drag to prevent editor breakage
+- Commit-lock (layout suppression) prevents the "second jump" after storylist write triggers TW refresh
+- layoutAbort-aware: aborted layouts invalidate pending settle/commit attempts; we wait for the next clean layoutEnd/idle
+
+Key production fixes applied:
+- insert()/remove() are commit-lock aware (no intermediate layouts during TW DOM rebuild)
+- refreshStart() does NOT accidentally clear commit-lock mid setText refresh cycle
+- NEW: staged reveal for fast add/remove bursts:
+  - newly added items are hidden until Muuri has applied translate/transform (after clean layoutEnd)
+  - layoutAbort keeps staged items hidden; next clean layoutEnd reveals
 \*/
 
 /*jslint node: true, browser: true */
@@ -17,7 +42,7 @@ const EASING = "cubic-bezier(0.215, 0.61, 0.355, 1)";
 function ensureMuuriLoaded() {
 	if (typeof window === "undefined") return;
 
-	// Web Animations polyfill (Muuri drag animations)
+	// Web Animations polyfill (Muuri drag animations in older engines)
 	var testElement = document.body;
 	if (testElement && !("animate" in testElement)) {
 		require("$:/plugins/BTC/Muuri/library/web-animations-polyfill.js");
@@ -61,24 +86,16 @@ function isRightClickLike(e) {
 }
 
 function isPrimaryButtonOnly(srcEvent) {
-	// Allow if no event info (safety) -> let Muuri decide
 	if (!srcEvent) return true;
 
-	// Pointer events: buttons bitmask (1 = primary/left)
-	// During move, "button" can be -1, so "buttons" is the reliable one.
-	if (typeof srcEvent.buttons === "number") {
-		return srcEvent.buttons === 1;
-	}
+	// Pointer: buttons bitmask (1 = primary)
+	if (typeof srcEvent.buttons === "number") return srcEvent.buttons === 1;
 
-	// MouseEvent fallback: button (0 = left)
-	if (typeof srcEvent.button === "number") {
-		return srcEvent.button === 0;
-	}
+	// Mouse: button (0 = left)
+	if (typeof srcEvent.button === "number") return srcEvent.button === 0;
 
-	// Old fallback: which (1 = left)
-	if (typeof srcEvent.which === "number") {
-		return srcEvent.which === 1;
-	}
+	// Old: which (1 = left)
+	if (typeof srcEvent.which === "number") return srcEvent.which === 1;
 
 	return true;
 }
@@ -90,8 +107,6 @@ function getMuuriGridElement(grid) {
 }
 
 function isRightClickOrNonPrimaryPointer(e) {
-	// Hard fail if right click, or if any non-primary buttons are held.
-	// We use both helpers for robustness across event types.
 	if (!e) return false;
 	var se = e.srcEvent || e;
 	if (isRightClickLike(se)) return true;
@@ -106,20 +121,17 @@ function firstElementDomNode(widget) {
 	return (n && n.nodeType === Node.ELEMENT_NODE) ? n : null;
 }
 
-// Pick a grid constructor that actually creates instances with getItems/on/layout.
-// Dev branch: MuuriModule.Grid
+// Dev branch: MuuriModule.Grid (recommended). Older builds: module itself / default export / Muuri.
 function resolveGridCtor(MuuriModule) {
 	if (!MuuriModule) return null;
 
 	if (MuuriModule.Grid && typeof MuuriModule.Grid === "function") return MuuriModule.Grid;
 
-	// Older builds: module itself or default export might be the ctor
 	var candidates = [];
 	if (typeof MuuriModule === "function") candidates.push(MuuriModule);
 	if (MuuriModule.default && typeof MuuriModule.default === "function") candidates.push(MuuriModule.default);
 	if (MuuriModule.Muuri && typeof MuuriModule.Muuri === "function") candidates.push(MuuriModule.Muuri);
 
-	// any function exports
 	for (var k in MuuriModule) {
 		if (Object.prototype.hasOwnProperty.call(MuuriModule, k) && typeof MuuriModule[k] === "function") {
 			candidates.push(MuuriModule[k]);
@@ -153,29 +165,45 @@ class MuuriStoryView {
 		this.connectedGrids = [];
 		this.dragStartData = new Map();
 
-		// Deferred sync after layout truly settles (including image loads / resizes)
+		// Commit pipeline + reconciliation
 		this._pendingSyncAfterLayout = false;
 		this._pendingDropAction = null; // { title, modifier, srcEvent }
 		this._layoutEndHandlerBound = false;
+		this._reconciling = false;
+		this._commitInFlight = false;
+		this._postCommitNeedsReconcile = false;
 
-		// Debounce timer for "quiet window" settle detection
+		// layoutAbort generation gating (aborted layouts invalidate settle/commit attempts)
+		this._layoutGen = 0;
+		this._layoutEndGenSeen = -1;
+
+		// Released-item settle tracking: only commit when released item has fully stopped moving.
+		// (Rect must be stable for 2 consecutive rAF frames, and item must not be positioning/releasing.)
+		this._releasedItem = null;            // Muuri.Item (best-effort)
+		this._releasedItemRect = null;        // {left, top, width, height}
+		this._releasedItemStableFrames = 0;   // consecutive stable frames
+		this._releasedItemStableThreshold = 2;
+
+		// Commit-lock (suppress Muuri layouts during TW setText -> DOM rebuild)
+		this._suppressAutoLayout = false;
+		this._pendingLayoutAfterUnsuppress = false;
+
+		// Quiet window debounce
 		this._settleTimer = null;
-
-		// "quiet window" after last relevant event; minimum commit delay is max(animationDuration, settleDelay)
 		this._settleDelay = 200;
 
 		// Load/error listener for late-loading media inside items
 		this._imageLoadListener = null;
 
-		// Post-commit layout: after storylist write triggers TW refresh, wait animationDuration then layout
-		this._postCommitLayoutTimer = null;
-		this._postCommitLayoutInFlight = false;
-
-		// Listener bookkeeping
+		// Resize observation
 		this._resizeObserver = null;
 		this._resizeFallbackMap = new Map(); // element -> { obj, onResize, win, winListener }
 		this._itemResizeHandlers = new Map(); // element -> fn
 		this._layoutRAF = null;
+
+		// NEW: staged reveal for fast add/remove bursts
+		this._pendingReveal = new Set(); // Set<HTMLElement>
+		this._revealRAF = null;
 
 		// iframe pointer-events toggle during drag
 		this.iframePointerEventStyle = undefined;
@@ -183,8 +211,12 @@ class MuuriStoryView {
 		// iframe-detach fix bookkeeping: WeakMap<MuuriItem, Array<Stash>>
 		this._detachedIframes = new WeakMap();
 
-		// Mutation observer (self-heal when DOM gets weird)
+		// Mutation observer (self-heal)
 		this.observer = null;
+
+		// Back-compat leftovers (not used for reconciliation anymore)
+		this._postCommitLayoutTimer = null;
+		this._postCommitLayoutInFlight = false;
 
 		this.collectAttributes();
 
@@ -206,6 +238,159 @@ class MuuriStoryView {
 	getItemGridElement(item) {
 		if (!item || typeof item.getGrid !== "function") return null;
 		return this.getGridElement(item.getGrid());
+	}
+
+	/* ---------------- staged reveal (prevent "flash/jump" before translate) ---------------- */
+
+	_stageElementForReveal(el) {
+		if (!el || !el.style) return;
+
+		this._pendingReveal.add(el);
+
+		// Hide immediately so it never flashes in-flow before Muuri writes transforms.
+		el.style.visibility = "hidden";
+		el.style.pointerEvents = "none";
+	}
+
+	_hasTranslateApplied(el) {
+		if (!el) return false;
+
+		// Prefer inline style (Muuri usually writes transform here)
+		var t = el.style && el.style.transform;
+		if (t && t !== "none") return true;
+
+		// Fallback: computed transform
+		try {
+			var ct = el.ownerDocument.defaultView.getComputedStyle(el).transform;
+			return ct && ct !== "none";
+		} catch (e) {
+			return false;
+		}
+	}
+
+	_tryRevealPending() {
+		var self = this;
+		if (!this._pendingReveal || this._pendingReveal.size === 0) return;
+
+		var win = this.listWidget && this.listWidget.document && this.listWidget.document.defaultView;
+		if (!win) return;
+
+		if (this._revealRAF) return;
+
+		this._revealRAF = win.requestAnimationFrame(function () {
+			self._revealRAF = null;
+			if (!self._pendingReveal || self._pendingReveal.size === 0) return;
+
+			self._pendingReveal.forEach(function (el) {
+				if (!el || !el.isConnected) {
+					self._pendingReveal.delete(el);
+					return;
+				}
+
+				if (self._hasTranslateApplied(el)) {
+					el.style.visibility = "";
+					el.style.pointerEvents = "";
+					self._pendingReveal.delete(el);
+				}
+			});
+		});
+	}
+
+	_forceRevealAllPending() {
+		if (!this._pendingReveal) return;
+		this._pendingReveal.forEach(function (el) {
+			if (!el || !el.style) return;
+			el.style.visibility = "";
+			el.style.pointerEvents = "";
+		});
+		this._pendingReveal.clear();
+	}
+
+	/* ---------------- released item settle detection ---------------- */
+
+	_clearReleasedItemTracking() {
+		this._releasedItem = null;
+		this._releasedItemRect = null;
+		this._releasedItemStableFrames = 0;
+	}
+
+	_isReleasedItemSettled() {
+		var item = this._releasedItem;
+		if (!item) return true;
+
+		// If item went away or is inactive, stop caring.
+		try {
+			if (typeof item.isActive === "function" && !item.isActive()) {
+				this._clearReleasedItemTracking();
+				return true;
+			}
+		} catch (e0) {
+			this._clearReleasedItemTracking();
+			return true;
+		}
+
+		var el = item.element;
+		if (!el || !el.isConnected) {
+			this._clearReleasedItemTracking();
+			return true;
+		}
+
+		// If Muuri reports it's still transitioning, it's not settled.
+		try {
+			if ((item.isReleasing && item.isReleasing()) || (item.isPositioning && item.isPositioning())) {
+				this._releasedItemStableFrames = 0;
+				this._releasedItemRect = null;
+				return false;
+			}
+		} catch (e1) { /* ignore */ }
+
+		// Extra guard: class-based (covers edge cases where methods are absent)
+		try {
+			if ($tw && $tw.utils && ($tw.utils.hasClass(el, "tc-muuri-releasing") || $tw.utils.hasClass(el, "tc-muuri-positioning"))) {
+				this._releasedItemStableFrames = 0;
+				this._releasedItemRect = null;
+				return false;
+			}
+		} catch (e2) { /* ignore */ }
+
+		// Rect stability check (two consecutive frames with unchanged rect)
+		var r;
+		try {
+			r = el.getBoundingClientRect();
+		} catch (e3) {
+			this._releasedItemStableFrames = 0;
+			this._releasedItemRect = null;
+			return false;
+		}
+
+		var cur = { left: r.left, top: r.top, width: r.width, height: r.height };
+		var prev = this._releasedItemRect;
+
+		if (!prev) {
+			this._releasedItemRect = cur;
+			this._releasedItemStableFrames = 0;
+			return false;
+		}
+
+		var same =
+			cur.left === prev.left &&
+			cur.top === prev.top &&
+			cur.width === prev.width &&
+			cur.height === prev.height;
+
+		if (same) {
+			this._releasedItemStableFrames++;
+		} else {
+			this._releasedItemStableFrames = 0;
+			this._releasedItemRect = cur;
+		}
+
+		if (this._releasedItemStableFrames >= this._releasedItemStableThreshold) {
+			this._clearReleasedItemTracking();
+			return true;
+		}
+
+		return false;
 	}
 
 	/* ---------------- iframe detach/restore: reliable editor fix ---------------- */
@@ -230,11 +415,9 @@ class MuuriStoryView {
 			var parent = iframe.parentNode;
 			var nextSibling = iframe.nextSibling;
 
-			// Placeholder keeps Muuri measurements stable.
 			var placeholder = doc.createElement("div");
 			placeholder.className = "tc-muuri-iframe-placeholder";
 
-			// Lock placeholder height to current rendered height.
 			var rect = iframe.getBoundingClientRect();
 			var h = Math.max(50, rect.height || iframe.offsetHeight || 200);
 			var w = Math.max(50, rect.width || iframe.offsetWidth || 300);
@@ -243,10 +426,8 @@ class MuuriStoryView {
 			placeholder.style.width = "100%";
 			placeholder.style.height = h + "px";
 
-			// Insert placeholder where iframe was.
 			parent.insertBefore(placeholder, iframe);
 
-			// Remember styles we will touch.
 			var prev = {
 				position: iframe.style.position || "",
 				left: iframe.style.left || "",
@@ -260,10 +441,6 @@ class MuuriStoryView {
 				zIndex: iframe.style.zIndex || ""
 			};
 
-			// Move iframe to <body> BUT keep it "alive":
-			// - NOT display:none
-			// - NOT 0x0
-			// - offscreen + invisible + non-interactive
 			body.appendChild(iframe);
 			iframe.style.position = "fixed";
 			iframe.style.left = "-100000px";
@@ -295,19 +472,16 @@ class MuuriStoryView {
 		for (var i = 0; i < stash.length; i++) {
 			var s = stash[i];
 			try {
-				// Reinsert iframe where it came from.
 				if (s.nextSibling && s.nextSibling.parentNode === s.parent) {
 					s.parent.insertBefore(s.iframe, s.nextSibling);
 				} else {
 					s.parent.appendChild(s.iframe);
 				}
 
-				// Remove placeholder.
 				if (s.placeholder && s.placeholder.parentNode) {
 					s.placeholder.parentNode.removeChild(s.placeholder);
 				}
 
-				// Restore styles.
 				var p = s.prev || {};
 				s.iframe.style.position = p.position;
 				s.iframe.style.left = p.left;
@@ -320,29 +494,20 @@ class MuuriStoryView {
 				s.iframe.style.transform = p.transform;
 				s.iframe.style.zIndex = p.zIndex;
 
-				// Kick editors that depend on resize/visibility observers.
-				// (safe no-op if cross-origin)
 				try {
-					if (s.iframe.contentWindow) {
-						s.iframe.contentWindow.dispatchEvent(new Event("resize"));
-					}
+					if (s.iframe.contentWindow) s.iframe.contentWindow.dispatchEvent(new Event("resize"));
 				} catch (e) { }
 			} catch (e2) { }
 		}
 
 		this._detachedIframes.delete(item);
-
-		// Force Muuri to re-measure after iframe is back.
 		this._requestLayout(true);
 	}
 
 	_restoreAllDetachedIframes() {
-		// WeakMap not iterable; restore via current grid items
 		if (!this.muuri || typeof this.muuri.getItems !== "function") return;
 		var items = this.muuri.getItems();
-		for (var i = 0; i < items.length; i++) {
-			this._restoreIframesForItem(items[i]);
-		}
+		for (var i = 0; i < items.length; i++) this._restoreIframesForItem(items[i]);
 	}
 
 	/* ---------------- attribute-driven configuration ---------------- */
@@ -486,10 +651,8 @@ class MuuriStoryView {
 				for (var i = 0; i < items.length; i++) $tw.utils.removeClass(items[i].element, "tc-active");
 				$tw.utils.addClass(item.element, "tc-active");
 
-				// HARD BLOCK: never start dragging from an iframe (editor)
 				if (e && e.target && e.target.tagName === "IFRAME") return false;
 
-				// Touch long-press gating
 				if (self.dragEnabled && e.pointerType === "touch") {
 					if (e.isFirst) {
 						var contextMenuListener = function (ev) { ev.preventDefault(); };
@@ -545,8 +708,6 @@ class MuuriStoryView {
 
 				if (!self.dragEnabled) return undefined;
 
-				// Desktop/mouse/pointer: only allow primary/left button.
-				// Also blocks right/middle/extra buttons.
 				if (e.pointerType !== "touch") {
 					if (isRightClickOrNonPrimaryPointer(e)) return false;
 				}
@@ -637,16 +798,27 @@ class MuuriStoryView {
 
 		this.setupResizeObservation();
 
-		// Watch for media loads inside the grid (captures late-loading images that change item size)
+		// Stage current items too (prevents initial "in-flow" flash if any)
+		try {
+			var initItems = this.muuri.getItems();
+			for (var si = 0; si < initItems.length; si++) {
+				if (initItems[si] && initItems[si].element && !this._hasTranslateApplied(initItems[si].element)) {
+					this._stageElementForReveal(initItems[si].element);
+				}
+			}
+		} catch (e0) { }
+
+		// Media load/error inside the grid => sizes may change => request layout.
 		this._imageLoadListener = function (ev) {
 			var t = ev && ev.target;
 			if (!t) return;
 
 			if (t.tagName === "IMG" || t.tagName === "VIDEO" || t.tagName === "IFRAME") {
-				// A load can change sizes -> trigger a layout
+				if (self._suppressAutoLayout && !self._reconciling) {
+					self._pendingLayoutAfterUnsuppress = true;
+					return;
+				}
 				self._requestLayout(false);
-
-				// If we're in the middle of a drag-commit phase, push the quiet window forward
 				if (self._pendingSyncAfterLayout) self._scheduleSettledSync();
 			}
 		};
@@ -663,16 +835,13 @@ class MuuriStoryView {
 
 		this.muuri.synchronizeGrid = function () { self.synchronizeGrid(); };
 
-		/* ---- Muuri events (NO chaining) ---- */
+		/* ---- Muuri events ---- */
 
 		this.muuri.on("dragInit", function (item) {
-			// Reliable fix: detach iframes before Muuri starts reparenting/moving elements
 			self._detachIframesForItem(item);
-
-			// Optional: prevent interaction glitches while dragging
 			self.inheritIframeEvents();
+			self._clearReleasedItemTracking();
 
-			// Preserve sizing (existing behavior)
 			var style = item.element.style;
 			var computed = item.element.ownerDocument.defaultView.getComputedStyle(item.element);
 			style.paddingLeft = parseInt(computed.paddingLeft, 10) + "px";
@@ -687,15 +856,11 @@ class MuuriStoryView {
 
 		this.muuri.on("dragEnd", function (item, event) {
 			item.event = event;
-
-			// Restore iframe(s) ASAP (some paths end here)
 			self._restoreIframesForItem(item);
-
 			self.restoreIframeEvents();
 		});
 
 		this.muuri.on("dragReleaseEnd", function (item) {
-			// Restore again as safety net (some builds/edge cases skip dragEnd)
 			self._restoreIframesForItem(item);
 
 			self.onDragReleaseEnd(item);
@@ -710,10 +875,9 @@ class MuuriStoryView {
 			style.width = "";
 			style.height = "";
 
-			// Ensure iframe pointer events are restored even if dragEnd didn’t run
 			self.restoreIframeEvents();
 
-			self.refreshMuuriGrid(true);
+			self._requestLayout(true);
 		});
 
 		this.muuri.on("add", function () { gridEl.style.height = ""; });
@@ -759,35 +923,34 @@ class MuuriStoryView {
 		});
 
 		this.muuri.on("destroy", function () {
-			// try to restore any detached iframes (best effort)
 			try { self._restoreAllDetachedIframes(); } catch (e) { }
 			self.removeAllListeners();
 		});
 
-		// One layoutEnd handler that nudges pending commits forward (debounced).
 		this._bindLayoutEndCommitHandlerOnce();
-
 		this.addSelfToGlobalGrids();
 
 		/* ---- Mutation observer self-heal ---- */
 
 		this.observer = new MutationObserver(function (mutations) {
+			if (self._suppressAutoLayout && !self._reconciling) return;
+
 			$tw.utils.each(mutations, function (mutation) {
 				if (mutation.removedNodes) {
 					var items2 = self.muuri.getItems();
 					self.muuri.refreshItems();
 
 					var needsRefresh = false;
-					for (var i = 0; i < items2.length; i++) {
-						if (items2[i].isVisible() && items2[i].width === 0 && items2[i].height === 0) {
+					for (var i2 = 0; i2 < items2.length; i2++) {
+						if (items2[i2].isVisible() && items2[i2].width === 0 && items2[i2].height === 0) {
 							needsRefresh = true;
 							break;
 						}
 					}
 
 					if (needsRefresh) {
-						try { self.observer.disconnect(); } catch (e) { }
-						try { self.muuri.destroy(true); } catch (e2) { }
+						try { self.observer.disconnect(); } catch (e3) { }
+						try { self.muuri.destroy(true); } catch (e4) { }
 						self.findMuuriWidget().refreshSelf();
 					}
 				}
@@ -809,7 +972,10 @@ class MuuriStoryView {
 		var self = this;
 		if (typeof ResizeObserver !== "undefined") {
 			this._resizeObserver = new ResizeObserver(function () {
-				// Resizes should trigger a layout. If we are waiting to commit, layoutEnd will reschedule settle sync.
+				if (self._suppressAutoLayout && !self._reconciling) {
+					self._pendingLayoutAfterUnsuppress = true;
+					return;
+				}
 				self._requestLayout(false);
 			});
 		} else {
@@ -820,16 +986,28 @@ class MuuriStoryView {
 
 	_requestLayout(instant) {
 		if (!this.muuri) return;
+
+		if (this._suppressAutoLayout && !this._reconciling) {
+			this._pendingLayoutAfterUnsuppress = true;
+			return;
+		}
+
 		if (this._layoutRAF) return;
+
+		instant = !!instant || !!this._reconciling;
 
 		var win = this.listWidget.document.defaultView;
 		var self = this;
 
 		this._layoutRAF = win.requestAnimationFrame(function () {
 			self._layoutRAF = null;
+
+			if (self._suppressAutoLayout && !self._reconciling) {
+				self._pendingLayoutAfterUnsuppress = true;
+				return;
+			}
+
 			self.refreshMuuriGrid(!!instant);
-			// IMPORTANT: do NOT schedule settle-sync here.
-			// We rely on real signals (layoutEnd / media load / onDragReleaseEnd) to avoid feedback loops.
 		});
 	}
 
@@ -903,13 +1081,13 @@ class MuuriStoryView {
 		var fb = this._resizeFallbackMap.get(element);
 		if (fb) {
 			if (this.attachEvent && fb.onResize) {
-				try { element.detachEvent("onresize", fb.onResize); } catch (e) { }
+				try { element.detachEvent("onresize", fb.onResize); } catch (e2) { }
 			} else {
 				if (fb.win && fb.winListener) {
-					try { fb.win.removeEventListener("resize", fb.winListener); } catch (e2) { }
+					try { fb.win.removeEventListener("resize", fb.winListener); } catch (e3) { }
 				}
 				if (fb.obj && fb.obj.parentNode === element) {
-					try { element.removeChild(fb.obj); } catch (e3) { }
+					try { element.removeChild(fb.obj); } catch (e4) { }
 				}
 			}
 			this._resizeFallbackMap.delete(element);
@@ -929,8 +1107,14 @@ class MuuriStoryView {
 	removeAllListeners() {
 		if (!this.muuri) return;
 
-		// restore any detached iframes as best effort
 		try { this._restoreAllDetachedIframes(); } catch (e) { }
+
+		// Never leave items hidden on teardown
+		try { this._forceRevealAllPending(); } catch (e0) { }
+		if (this._revealRAF) {
+			try { this.listWidget.document.defaultView.cancelAnimationFrame(this._revealRAF); } catch (e1) { }
+			this._revealRAF = null;
+		}
 
 		var items = this.muuri.getItems();
 		for (var i = 0; i < items.length; i++) this.unobserveElementResize(items[i].element);
@@ -938,7 +1122,6 @@ class MuuriStoryView {
 		var gridEl = this.getGridElement();
 		if (gridEl) this.unobserveElementResize(gridEl);
 
-		// Remove image load listener
 		if (gridEl && this._imageLoadListener) {
 			try { gridEl.removeEventListener("load", this._imageLoadListener, true); } catch (e2) { }
 			try { gridEl.removeEventListener("error", this._imageLoadListener, true); } catch (e3) { }
@@ -947,26 +1130,37 @@ class MuuriStoryView {
 
 		var win = this.listWidget && this.listWidget.document && this.listWidget.document.defaultView;
 
-		// Clear settle timer
 		if (win && this._settleTimer) {
 			try { win.clearTimeout(this._settleTimer); } catch (e4) { }
 		}
 		this._settleTimer = null;
 
-		// Clear post-commit layout timer
 		if (win && this._postCommitLayoutTimer) {
-			try { win.clearTimeout(this._postCommitLayoutTimer); } catch (e7) { }
+			try { win.clearTimeout(this._postCommitLayoutTimer); } catch (e5) { }
 		}
 		this._postCommitLayoutTimer = null;
 		this._postCommitLayoutInFlight = false;
 
+		this._postCommitNeedsReconcile = false;
+		this._commitInFlight = false;
+		this._pendingSyncAfterLayout = false;
+		this._pendingDropAction = null;
+
+		this._layoutGen = 0;
+		this._layoutEndGenSeen = -1;
+
+		this._clearReleasedItemTracking();
+
+		this._suppressAutoLayout = false;
+		this._pendingLayoutAfterUnsuppress = false;
+
 		if (this._resizeObserver) {
-			try { this._resizeObserver.disconnect(); } catch (e5) { }
+			try { this._resizeObserver.disconnect(); } catch (e6) { }
 			this._resizeObserver = null;
 		}
 
 		if (this.observer) {
-			try { this.observer.disconnect(); } catch (e6) { }
+			try { this.observer.disconnect(); } catch (e7) { }
 			this.observer = null;
 		}
 	}
@@ -976,6 +1170,12 @@ class MuuriStoryView {
 	refreshMuuriGrid(instant) {
 		instant = !!instant;
 		if (!this.muuri) return;
+
+		if (this._suppressAutoLayout && !this._reconciling) {
+			this._pendingLayoutAfterUnsuppress = true;
+			return;
+		}
+
 		this.muuri.refreshItems();
 		this.muuri.layout(instant);
 	}
@@ -1059,28 +1259,37 @@ class MuuriStoryView {
 
 	refreshItemTitlesArray() {
 		if (!this.muuri) return;
-		this.muuri.refreshItems();
 
-		var items = this.muuri.getItems();
+		try { if (typeof this.muuri.synchronize === "function") this.muuri.synchronize(); } catch (e0) { }
+		try { this.muuri.refreshItems(); } catch (e1) { }
+
+		var items = (typeof this.muuri.getItems === "function") ? this.muuri.getItems() : [];
 		var muuriItems = [];
 		this.itemTitlesArray = [];
 
 		for (var i = 0; i < items.length; i++) {
 			var it = items[i];
+			if (!it || !it.element) continue;
+
 			if ((it.width !== 0 && it.height !== 0) || (it.element.offsetParent === null)) {
-				this.itemTitlesArray.push(this.getItemTitle(it));
+				var title = this.getItemTitle(it);
+				this.itemTitlesArray.push(title);
 				muuriItems.push(it);
 			} else {
-				if (it.element && it.element.parentNode) it.element.parentNode.removeChild(it.element);
-				else this.muuri.remove([it], { removeElements: true, layout: false });
+				try {
+					if (it.element && it.element.parentNode) it.element.parentNode.removeChild(it.element);
+					else this.muuri.remove([it], { removeElements: true, layout: false });
+				} catch (e2) { }
 			}
 		}
+
 		this.muuri.items = muuriItems;
 	}
 
 	synchronizeGrid() {
+		if (!this.muuri) return;
+
 		this.refreshItemTitlesArray();
-		this.muuri.synchronize();
 
 		var hasChanged = (this.itemTitlesArray.length !== this.listWidget.list.length);
 		if (!hasChanged) {
@@ -1099,11 +1308,55 @@ class MuuriStoryView {
 		}
 	}
 
+	/* ---------------- reconciliation helper (prevents post-commit jump) ---------------- */
+
+	_withNoAnimation(fn) {
+		if (!this.muuri || typeof this.muuri.updateSettings !== "function") return fn();
+
+		var prevShow = (this.muuri._settings && this.muuri._settings.showDuration);
+		var prevLayout = (this.muuri._settings && this.muuri._settings.layoutDuration);
+		var prevRelease = (this.muuri._settings && this.muuri._settings.dragRelease);
+
+		this._reconciling = true;
+
+		try {
+			this.muuri.updateSettings({
+				showDuration: 0,
+				layoutDuration: 0,
+				dragRelease: {
+					duration: 0,
+					easing: (prevRelease && prevRelease.easing) || EASING,
+					useDragContainer: (prevRelease && prevRelease.useDragContainer) !== undefined
+						? prevRelease.useDragContainer
+						: true
+				}
+			});
+			return fn();
+		} finally {
+			var restoreShow = Number.isFinite(prevShow) ? prevShow : (this.animationDuration || 0);
+			var restoreLayout = Number.isFinite(prevLayout) ? prevLayout : (this.animationDuration || 0);
+
+			try {
+				this.muuri.updateSettings({
+					showDuration: restoreShow,
+					layoutDuration: restoreLayout,
+					dragRelease: {
+						duration: (this.animationDuration || 0),
+						easing: EASING,
+						useDragContainer: true
+					}
+				});
+			} catch (e2) { }
+
+			this._reconciling = false;
+		}
+	}
+
 	/* ---------------- drag/drop + connected grids sync ---------------- */
 
-	_isGridBusy() {
-		if (!this.muuri || typeof this.muuri.getItems !== "function") return false;
-		var items = this.muuri.getItems();
+	_isGridBusy(grid) {
+		if (!grid || typeof grid.getItems !== "function") return false;
+		var items = grid.getItems();
 		for (var i = 0; i < items.length; i++) {
 			var it = items[i];
 			if (!it) continue;
@@ -1120,80 +1373,130 @@ class MuuriStoryView {
 		return false;
 	}
 
-	_schedulePostCommitLayout() {
+	_isAnyConnectedGridBusy() {
+		if (!this.connectedGrids || !this.connectedGrids.length) {
+			return this._isGridBusy(this.muuri);
+		}
+		for (var i = 0; i < this.connectedGrids.length; i++) {
+			if (this._isGridBusy(this.connectedGrids[i])) return true;
+		}
+		return false;
+	}
+
+	/* ---------------- idle + reconcile pipeline ---------------- */
+
+	_waitForIdleThen(fn) {
 		var self = this;
 		var win = this.listWidget && this.listWidget.document && this.listWidget.document.defaultView;
-		if (!win || !this.muuri) return;
+		if (!win) return;
 
-		// Avoid stacking; we want the latest only.
-		if (this._postCommitLayoutTimer) {
-			try { win.clearTimeout(this._postCommitLayoutTimer); } catch (e) { }
-			this._postCommitLayoutTimer = null;
-		}
+		function tick() {
+			if (!self.muuri) return;
 
-		// Prevent re-entrancy storms if multiple commits happen quickly.
-		if (this._postCommitLayoutInFlight) return;
-		this._postCommitLayoutInFlight = true;
+			self.detectConnectedGrids();
 
-		var delay = Math.max(this.animationDuration || 0, 0);
+			if (self._isAnyConnectedGridBusy() || self._layoutRAF || !self._isReleasedItemSettled()) {
+				win.setTimeout(tick, 50);
+				return;
+			}
 
-		this._postCommitLayoutTimer = win.setTimeout(function () {
-			self._postCommitLayoutTimer = null;
+			win.requestAnimationFrame(function () {
+				win.requestAnimationFrame(function () {
+					if (!self.muuri) return;
 
-			// Give TW one tick to finish DOM refresh / widget refresh cycle.
-			nextTickSafe(function () {
-				if (!self.muuri) { self._postCommitLayoutInFlight = false; return; }
+					self.detectConnectedGrids();
 
-				// Re-measure and layout after TW has applied DOM changes.
-				self._requestLayout(false);
-
-				// Release guard on next tick.
-				nextTickSafe(function () {
-					self._postCommitLayoutInFlight = false;
+					if (self._isAnyConnectedGridBusy() || self._layoutRAF || !self._isReleasedItemSettled()) {
+						win.setTimeout(tick, 50);
+						return;
+					}
+					fn();
 				});
 			});
-		}, delay);
+		}
+
+		tick();
 	}
+
+	_reconcileToDomOnce() {
+		var self = this;
+		if (!this.muuri) return;
+
+		this._withNoAnimation(function () {
+			try { if (typeof self.muuri.synchronize === "function") self.muuri.synchronize(); } catch (e1) { }
+			try { self.muuri.refreshItems(); } catch (e2) { }
+			try { self.muuri.layout(true); } catch (e3) { }
+		});
+
+		// After reconciliation, try to reveal any staged items.
+		try { this._tryRevealPending(); } catch (e4) { }
+	}
+
+	/* ---------------- commit pipeline ---------------- */
 
 	_commitPendingSyncIfAny() {
 		if (!this._pendingSyncAfterLayout) return;
 
-		// If Muuri still animates/moves, don't commit yet.
-		if (this._isGridBusy()) return;
+		if (this._commitInFlight) return;
 
+		if (this._isAnyConnectedGridBusy()) return;
+		if (!this._isReleasedItemSettled()) return;
+
+		if (this._layoutEndGenSeen !== this._layoutGen) return;
+
+		this._commitInFlight = true;
 		this._pendingSyncAfterLayout = false;
 
+		var self = this;
 		this.detectConnectedGrids();
 
-		// We assume sync/drop may trigger TW refresh; post-commit layout is cheap and stabilizes DOM changes.
-		var mayHaveChangedStoryList = false;
+		this._waitForIdleThen(function () {
+			if (!self.muuri) { self._commitInFlight = false; return; }
+			self._reconcileToDomOnce();
 
-		for (var k = 0; k < this.connectedGrids.length; k++) {
-			var g = this.connectedGrids[k];
-			if (g && typeof g.synchronizeGrid === "function") {
-				g.synchronizeGrid();
-				mayHaveChangedStoryList = true;
-			}
-		}
+			self._waitForIdleThen(function () {
+				if (!self.muuri) { self._commitInFlight = false; return; }
 
-		if (this._pendingDropAction && this.dropActions) {
-			var d = this._pendingDropAction;
-			this._pendingDropAction = null;
-			try {
-				this.listWidget.invokeActionString(
-					this.dropActions,
-					this.listWidget,
-					d.srcEvent,
-					{ actionTiddler: d.title, modifier: d.modifier }
-				);
-				mayHaveChangedStoryList = true;
-			} catch (e) { /* best effort */ }
-		}
+				self._suppressAutoLayout = true;
+				self._pendingLayoutAfterUnsuppress = false;
 
-		// CRITICAL: after TW list updates, wait animationDuration, then layout.
-		if (mayHaveChangedStoryList) {
-			this._schedulePostCommitLayout();
-		}
+				var mayHaveChangedStoryList = false;
+
+				for (var k = 0; k < self.connectedGrids.length; k++) {
+					var g = self.connectedGrids[k];
+					if (g && typeof g.synchronizeGrid === "function") {
+						g.synchronizeGrid();
+						mayHaveChangedStoryList = true;
+					}
+				}
+
+				if (self._pendingDropAction && self.dropActions) {
+					var d = self._pendingDropAction;
+					self._pendingDropAction = null;
+					try {
+						self.listWidget.invokeActionString(
+							self.dropActions,
+							self.listWidget,
+							d.srcEvent,
+							{ actionTiddler: d.title, modifier: d.modifier }
+						);
+						mayHaveChangedStoryList = true;
+					} catch (e) { }
+				}
+
+				if (mayHaveChangedStoryList) {
+					self._postCommitNeedsReconcile = true;
+				} else {
+					self._suppressAutoLayout = false;
+					if (self._pendingLayoutAfterUnsuppress) {
+						self._pendingLayoutAfterUnsuppress = false;
+						self._requestLayout(false);
+					}
+				}
+
+				nextTickSafe(function () { self._commitInFlight = false; });
+			});
+		});
 	}
 
 	_scheduleSettledSync() {
@@ -1201,9 +1504,8 @@ class MuuriStoryView {
 		var win = this.listWidget && this.listWidget.document && this.listWidget.document.defaultView;
 		if (!win) return;
 
-		// Minimum wait time after last signal:
-		// - at least animationDuration (drag/layout animation)
-		// - at least settleDelay (quiet window for late media/resizes)
+		if (this._layoutEndGenSeen !== this._layoutGen) return;
+
 		var delay = Math.max(this.animationDuration || 0, this._settleDelay || 0);
 
 		if (this._settleTimer) {
@@ -1211,10 +1513,13 @@ class MuuriStoryView {
 			this._settleTimer = null;
 		}
 
+		var genAtArm = this._layoutGen;
+
 		this._settleTimer = win.setTimeout(function () {
 			self._settleTimer = null;
 
-			// Next TW tick: attempt commit. If still busy or more changes come in, we will reschedule.
+			if (self._layoutGen !== genAtArm) return;
+
 			nextTickSafe(function () {
 				self._commitPendingSyncIfAny();
 				if (self._pendingSyncAfterLayout) self._scheduleSettledSync();
@@ -1229,9 +1534,32 @@ class MuuriStoryView {
 		var self = this;
 		this._layoutEndHandlerBound = true;
 
+		this.muuri.on("layoutAbort", function () {
+			self._layoutGen++;
+
+			var win = self.listWidget && self.listWidget.document && self.listWidget.document.defaultView;
+			if (win && self._settleTimer) {
+				try { win.clearTimeout(self._settleTimer); } catch (e) { }
+				self._settleTimer = null;
+			}
+
+			// Cancel reveal rAF; keep items hidden until next successful layoutEnd.
+			if (win && self._revealRAF) {
+				try { win.cancelAnimationFrame(self._revealRAF); } catch (e2) { }
+				self._revealRAF = null;
+			}
+
+			self._releasedItemStableFrames = 0;
+			self._releasedItemRect = null;
+		});
+
 		this.muuri.on("layoutEnd", function () {
+			self._layoutEndGenSeen = self._layoutGen;
+
+			// Always attempt reveal on clean layout end (even if no pending commit).
+			self._tryRevealPending();
+
 			if (!self._pendingSyncAfterLayout) return;
-			// A layout finished; if there are more (due to images/resizes), we'll keep debouncing.
 			self._scheduleSettledSync();
 		});
 	}
@@ -1239,10 +1567,12 @@ class MuuriStoryView {
 	onDragReleaseEnd(item) {
 		if (!this.muuri) return;
 
-		// Always clear the temp width (existing behavior)
 		if (item && item.element && item.element.style) item.element.style.width = "";
 
-		// Capture dropAction parameters NOW (event/title may be invalid later).
+		this._releasedItem = item || null;
+		this._releasedItemRect = null;
+		this._releasedItemStableFrames = 0;
+
 		this._pendingDropAction = null;
 		if (item && item.fromGrid && item.fromGrid !== this.muuri && this.dropActions) {
 			var srcEvent = item.event && item.event.srcEvent;
@@ -1254,14 +1584,10 @@ class MuuriStoryView {
 			};
 		}
 
-		// Defer synchronization until the layout truly settles (including late image loads).
 		this._pendingSyncAfterLayout = true;
-
-		// Ensure handler is bound and connections are up to date.
 		this._bindLayoutEndCommitHandlerOnce();
 		this.detectConnectedGrids();
 
-		// Kick a layout pass and start the quiet window (minimum = animationDuration).
 		this._requestLayout(false);
 		this._scheduleSettledSync();
 	}
@@ -1273,6 +1599,9 @@ class MuuriStoryView {
 		if (!targetElement) return;
 		if (!this.muuri) return;
 
+		// NEW: stage for reveal BEFORE we add to Muuri to prevent flash.
+		this._stageElementForReveal(targetElement);
+
 		this.refreshItemTitlesArray();
 
 		var itemTitle = widget.parseTreeNode.itemTitle;
@@ -1281,14 +1610,39 @@ class MuuriStoryView {
 		var existingIndex = this.itemTitlesArray.indexOf(itemTitle);
 		if (existingIndex !== -1) {
 			var items = this.muuri.getItems();
-			this.muuri.remove([items[existingIndex]], { removeElements: true });
-			this.muuri.refreshItems();
+			try {
+				this.muuri.remove([items[existingIndex]], {
+					removeElements: true,
+					layout: !this._suppressAutoLayout,
+					layoutInstant: true
+				});
+			} catch (e0) {
+				try { this.muuri.remove([items[existingIndex]], { removeElements: true, layout: false }); } catch (e1) { }
+			}
 		}
 
-		this.muuri.add(targetElement, { index: targetIndex, instant: true });
-		this.observeElementResize(targetElement, this._makeRefreshHandler());
+		try {
+			this.muuri.add(targetElement, {
+				index: targetIndex,
+				layout: !this._suppressAutoLayout,
+				layoutInstant: true,
+				instant: true
+			});
+		} catch (e2) {
+			try {
+				this.muuri.add(targetElement, { index: targetIndex, instant: true });
+			} catch (e3) { }
+		}
 
+		this.observeElementResize(targetElement, this._makeRefreshHandler());
 		this.refreshItemTitlesArray();
+
+		if (this._suppressAutoLayout) {
+			this._pendingLayoutAfterUnsuppress = true;
+		} else {
+			// If not locked, attempt reveal as soon as the next layoutEnd happens.
+			this._requestLayout(false);
+		}
 	}
 
 	remove(widget) {
@@ -1300,19 +1654,37 @@ class MuuriStoryView {
 		if (!targetElement) return;
 		if (!this.muuri) return;
 
+		// If it was staged, drop it from reveal set.
+		if (this._pendingReveal && this._pendingReveal.has(targetElement)) {
+			this._pendingReveal.delete(targetElement);
+		}
+
 		this.unobserveElementResize(targetElement);
 
 		this.refreshItemTitlesArray();
-		this.muuri.refreshItems();
+		try { this.muuri.refreshItems(); } catch (e0) { }
 
 		var items = this.muuri.getItems();
 		for (var i = 0; i < items.length; i++) {
 			if (items[i].element === targetElement) {
-				this.muuri.remove([items[i]], { removeElements: true, layout: false });
+				try {
+					this.muuri.remove([items[i]], {
+						removeElements: true,
+						layout: !this._suppressAutoLayout,
+						layoutInstant: true
+					});
+				} catch (e1) {
+					try { this.muuri.remove([items[i]], { removeElements: true, layout: false }); } catch (e2) { }
+				}
 				break;
 			}
 		}
-		this.muuri.layout();
+
+		if (this._suppressAutoLayout) {
+			this._pendingLayoutAfterUnsuppress = true;
+		} else {
+			try { this.muuri.layout(); } catch (e3) { }
+		}
 	}
 
 	navigateTo(historyInfo) {
@@ -1447,6 +1819,18 @@ class MuuriStoryView {
 	/* ---------------- refresh lifecycle hooks ---------------- */
 
 	refreshStart(changedTiddlers, changedAttributes) {
+		// CRITICAL:
+		// Do NOT clear commit-lock here if we're in the middle of the post-commit TW refresh that we triggered.
+		if (!this._postCommitNeedsReconcile) {
+			this._suppressAutoLayout = false;
+			this._pendingLayoutAfterUnsuppress = false;
+		} else {
+			this._suppressAutoLayout = true;
+		}
+
+		// Released item tracking should not survive across refresh rebuilds.
+		this._clearReleasedItemTracking();
+
 		var before = {
 			containerClass: this.containerClass,
 			itemClass: this.itemClass,
@@ -1457,7 +1841,11 @@ class MuuriStoryView {
 
 		if (this.muuri && changedTiddlers["$:/config/AnimationDuration"]) {
 			this.animationDuration = $tw.utils.getAnimationDuration();
-			this.muuri.updateSettings({ showDuration: this.animationDuration, layoutDuration: this.animationDuration });
+			this.muuri.updateSettings({
+				showDuration: this.animationDuration,
+				layoutDuration: this.animationDuration,
+				dragRelease: { duration: this.animationDuration, easing: EASING, useDragContainer: true }
+			});
 		}
 
 		var structuralChange =
@@ -1523,6 +1911,33 @@ class MuuriStoryView {
 			this.detectConnectedGrids();
 			this.filterItems();
 		}
+
+		// After storylist writes trigger TW refresh, DOM is now final.
+		if (this._postCommitNeedsReconcile) {
+			this._postCommitNeedsReconcile = false;
+			var self = this;
+
+			this._waitForIdleThen(function () {
+				if (!self.muuri) return;
+
+				self._reconcileToDomOnce();
+
+				// END COMMIT-LOCK
+				self._suppressAutoLayout = false;
+
+				if (self._pendingLayoutAfterUnsuppress) {
+					self._pendingLayoutAfterUnsuppress = false;
+					self._requestLayout(false);
+				}
+			});
+
+			return;
+		}
+
+		this._suppressAutoLayout = false;
+
+		// If something got staged during refresh, try reveal after refresh ends.
+		this._tryRevealPending();
 	}
 }
 
