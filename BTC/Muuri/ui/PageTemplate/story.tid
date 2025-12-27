@@ -1,0 +1,46 @@
+title: $:/core/ui/PageTemplate/story
+tags: $:/tags/PageTemplate
+
+\function tf.story-river-class() [{$:/view}match[muuri]then[tc-story-river tc-muuri-river]] :else[[tc-story-river]]
+\whitespace trim
+<section class=<<tf.story-river-class>> role="main">
+
+<section class="story-backdrop">
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/AboveStory]!has[draft.of]]">
+
+<$transclude/>
+
+</$list>
+
+</section>
+
+<%if [{$:/view}match[muuri]] %>
+
+<$list
+    filter="[list[$:/StoryList]]"
+    history="$:/HistoryList"
+    template="$:/core/ui/StoryTiddlerTemplate"
+    storyview="muuri"
+    emptyMessage={{$:/config/EmptyStoryMessage}}
+    muuri-drag-enabled={{$:/config/muuri/storyview/drag-enabled}}
+    muuri-item-class="tc-tiddler-frame"
+/>
+
+<% else %>
+
+<$list filter="[list[$:/StoryList]]" history="$:/HistoryList" template="$:/core/ui/StoryTiddlerTemplate" storyview={{$:/view}} emptyMessage={{$:/config/EmptyStoryMessage}}/>
+
+<% endif %>
+
+<section class="story-frontdrop">
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/BelowStory]!has[draft.of]]">
+
+<$transclude/>
+
+</$list>
+
+</section>
+
+</section>

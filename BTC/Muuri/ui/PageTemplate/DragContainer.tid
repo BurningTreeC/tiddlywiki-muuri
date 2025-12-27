@@ -1,0 +1,8 @@
+title: $:/plugins/BTC/Muuri/ui/PageTemplate/drag-container
+tags: $:/tags/PageTemplate
+list-before:
+
+\whitespace trim
+<div
+	class="tc-drag-container"
+/>

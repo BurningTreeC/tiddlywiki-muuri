@@ -95,7 +95,7 @@ muuri-tiddler-width: 1
 }
 	
 .tc-tiddler-frame, .tc-muuri-river {
-	color-scheme: normal;
+	color-scheme: {{{ [{$:/palette}get[color-scheme]] ~light }}};
 }
 
 <$list filter="[{$:/view}match[muuri]]" variable="ignore">
@@ -113,8 +113,6 @@ muuri-tiddler-width: 1
 	.tc-tiddler-title {
 		transform: none !important;
 	}
-
-<$list filter="[{$:/layout}match[$:/plugins/BTC/Muuri/ui/Layout]]" variable="ignore">
 
 	<$list filter="[{$:/config/muuri/storyview/NavigateToAnimation}match[yes]]" variable="ignore">
 
@@ -143,6 +141,7 @@ muuri-tiddler-width: 1
 
 			.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 				position: absolute;
+				scroll-margin-top: <<margin>>;
 			}
 
 			.tc-drag-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river > .tc-tiddler-frame {
@@ -521,6 +520,9 @@ muuri-tiddler-width: 1
 		width: calc(100% - 64px);
 	}
 
-</$list>
+	.tc-muuri-iframe-placeholder {
+		display: block;
+		width: 100%;
+	}
 
 </$list>
