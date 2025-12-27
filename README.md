@@ -2,11 +2,29 @@
 
 ## About
 
-**tiddlywiki-muuri** is a Drag&Drop enabled plugin for [TiddlyWiki5](https://tiddlywiki.com) that adds a gridded storyview based on the [muuri library](https://muuri.dev)
+**tiddlywiki-muuri** is a Drag & Drop–enabled plugin for [TiddlyWiki5](https://tiddlywiki.com) that adds a **Muuri-based grid storyview** (a “board”/“masonry” style story river). It supports **connected grids** (drag cards between multiple storyviews), **attribute-driven configuration**, and a set of **practical fixes** for real-world wiki content (late-loading images, embedded iframes/editors, and resize/layout stability).
 
-You can see a Demo [here](https://burningtreec.github.io/tiddlywiki-muuri)
+Demo: https://burningtreec.github.io/tiddlywiki-muuri
 
-Note that the plugin works best with the TiddlyWiki CodeMirror plugin installed
+> Tip: The plugin works best with the **TiddlyWiki CodeMirror** plugin installed, because it improves the editor experience inside draggable tiles.
+
+---
+
+## Features
+
+- **Muuri grid storyview**: story tiddlers shown as draggable “cards” in a responsive grid.
+- **Drag & Drop reordering** with persistence to the story list (configurable story list target/field).
+- **Connected grids**: drag items between multiple Muuri storyviews (e.g., columns/lanes).
+- **Optional drop actions**: run TiddlyWiki action strings on cross-grid drops (e.g., tag/status changes).
+- **Touch support** with long-press gating to prevent accidental drags while scrolling.
+- **Robust layout stability**:
+  - reacts to **late-loading images/media**
+  - uses **ResizeObserver** (with fallback) to keep layout correct
+  - avoids common **iframe/editor issues** during drag by safely detaching/restoring iframes
+- **Filtering** via a “search tiddler” (type-to-filter behavior) that integrates with list filters.
+- **Works on classic + modern builds** (dev/master compatible constructor resolution).
+
+---
 
 ## Installation
 
@@ -14,25 +32,7 @@ You can install the tiddlywiki-muuri plugin in two ways:
 
 ### NodeJs
 
-clone this repo to your `TIDDLYWIKI_PLUGIN_PATH` (see https://tiddlywiki.com/#Environment%20Variables%20on%20Node.js)
+Clone this repo to your `TIDDLYWIKI_PLUGIN_PATH` (see https://tiddlywiki.com/#Environment%20Variables%20on%20Node.js):
 
-```
-git clone --depth=1 git@github.com:BurningTreeC/tiddlywiki-muuri.git $TIDDLYWIKI_PLUGIN_PATH
-```
-
-enable the plugin in your tiddlywiki.info file (see https://tiddlywiki.com/#tiddlywiki.info%20Files)
-
-```
-"plugins": [
-	"plugins/first-plugin",
-	"plugins/second-plugin",
-	"tiddlywiki-muuri/BTC/Muuri"
-	]
-```
-
-### The TiddlyWiki SingleFile way
-
-- go to https://burningtreec.github.io/tiddlywiki-muuri
-- drag the link in the "Installation" tiddler to the Wiki where you want to install it
-- save your Wiki and reload
-
+```bash
+git clone --depth=1 git@github.com:BurningTreeC/tiddlywiki-muuri.git "$TIDDLYWIKI_PLUGIN_PATH"
