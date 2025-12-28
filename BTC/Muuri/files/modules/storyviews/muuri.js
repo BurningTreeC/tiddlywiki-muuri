@@ -417,6 +417,7 @@ class MuuriStoryView {
 		if (!this.muuri) return;
 		this.muuri.refreshItems();
 		this.muuri.layout(!!instant);
+		this.updateZIndices();
 	}
 
 	observeElementResize(element, fn) {
@@ -684,6 +685,9 @@ class MuuriStoryView {
 				g.synchronizeGrid();
 			}
 		}
+
+		// Update z-indices after drag release
+		this.updateZIndices();
 	}
 
 	/* ---------------- Grid Setup ---------------- */
@@ -725,7 +729,10 @@ class MuuriStoryView {
 
 		// Drag events
 		this.muuri.on("dragInit", function (item) {
-			// Could add drag-start logic here if needed
+			// Ensure dragged item is always on top
+			if (item && item.element && item.element.style) {
+				item.element.style.zIndex = "10000";
+			}
 		});
 
 		this.muuri.on("dragEnd", function (item, event) {
@@ -737,6 +744,11 @@ class MuuriStoryView {
 			self._requestLayout(true);
 		});
 
+		// Update z-indices after every layout completes
+		this.muuri.on("layoutEnd", function () {
+			self.updateZIndices();
+		});
+
 		this.muuri.on("destroy", function () {
 			self.removeAllListeners();
 		});
@@ -745,6 +757,9 @@ class MuuriStoryView {
 
 		this.observer = new MutationObserver(function () {});
 		this.observer.observe(gridEl, { attributes: true, childList: true, characterData: true });
+
+		// Initial z-index update
+		this.updateZIndices();
 
 		this.refreshEnd();
 	}
@@ -797,6 +812,43 @@ class MuuriStoryView {
 			var itemTitle = self.getItemTitle(item);
 			return foundTiddlers.indexOf(itemTitle) !== -1;
 		});
+	}
+
+	/* ---------------- Z-Index Management ---------------- */
+
+	updateZIndices() {
+		if (!this.muuri) return;
+
+		var items = this.muuri.getItems();
+		if (!items.length) return;
+
+		// Collect items with their positions
+		var itemsWithPos = [];
+		for (var i = 0; i < items.length; i++) {
+			var item = items[i];
+			if (!item || !item.element) continue;
+			itemsWithPos.push({
+				item: item,
+				left: item.left || 0,
+				top: item.top || 0
+			});
+		}
+
+		// Sort: top-left first (highest z-index), bottom-right last (lowest z-index)
+		// Primary sort by top (ascending), secondary by left (ascending)
+		itemsWithPos.sort(function(a, b) {
+			if (a.top !== b.top) return a.top - b.top;
+			return a.left - b.left;
+		});
+
+		// Assign z-index: first item (top-left) gets highest, last gets lowest
+		var baseZIndex = itemsWithPos.length;
+		for (var j = 0; j < itemsWithPos.length; j++) {
+			var element = itemsWithPos[j].item.element;
+			if (element && element.style) {
+				element.style.zIndex = String(baseZIndex - j);
+			}
+		}
 	}
 
 	/* ---------------- Misc Helpers ---------------- */
@@ -953,6 +1005,25 @@ class MuuriStoryView {
 		// Clear the reorder flag after refresh cycle completes
 		this._muuriHandledReorder = false;
 	}
+
+	navigateTo(historyInfo) {
+		if (!this.muuri || !historyInfo || !historyInfo.title) {
+			return;
+		}
+		var duration = $tw.utils.getAnimationDuration()
+		var listElementIndex = this.listWidget.findListItem(0,historyInfo.title);
+		if(listElementIndex === undefined) {
+			return;
+		}
+		var listItemWidget = this.listWidget.children[listElementIndex],
+			targetElement = listItemWidget.findFirstDomNode();
+		// Abandon if the list entry isn't a DOM element (it might be a text node)
+		if(!targetElement || targetElement.nodeType === Node.TEXT_NODE) {
+			return;
+		}
+		// Scroll the node into view
+		this.listWidget.dispatchEvent({type: "tm-scroll", target: targetElement});
+	};
 }
 
 exports.muuri = MuuriStoryView;

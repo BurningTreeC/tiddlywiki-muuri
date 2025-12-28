@@ -487,7 +487,7 @@ code-body: yes
 		}
 
 		.tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-dragging, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-muuri-releasing, .tc-story-river.tc-muuri-river > .tc-tiddler-frame:focus-within, .tc-story-river.tc-muuri-river > .tc-tiddler-frame.tc-active {
-			z-index: <<storyHighZIndex>>;
+			z-index: <<storyHighZIndex>> !important;
 		}
 
 		<%if [{$:/config/muuri/storyview/hide-titles-tags}match[yes]] %>

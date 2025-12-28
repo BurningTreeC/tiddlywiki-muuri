@@ -31,6 +31,13 @@
 				"title": "$:/plugins/BTC/Muuri/modules/widgets/subclasses/list.js",
 				"module-type": "widget-subclass"
 			}
+		},{
+			"file": "modules/utils/dom/scroller.js",
+			"fields": {
+				"type": "application/javascript",
+				"title": "$:/core/modules/utils/dom/scroller.js",
+				"module-type": "utils"
+			}
 		}
 	]
 }
