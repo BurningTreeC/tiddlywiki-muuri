@@ -1,6 +1,7 @@
 title: $:/plugins/BTC/Muuri/css
 tags: $:/tags/Stylesheet
 muuri-tiddler-width: 1
+code-body: yes
 
 \define set-muuri-tiddler-width(suffix)
 <$list filter="[{$:/config/muuri/storyview/fill-gaps}!match[yes]]" emptyMessage="""
@@ -93,14 +94,14 @@ muuri-tiddler-width: 1
 	left: 0;
 	z-index: 1000;
 }
-	
+
 .tc-tiddler-frame, .tc-muuri-river {
 	color-scheme: {{{ [{$:/palette}get[color-scheme]] ~light }}};
 }
 
-<$list filter="[{$:/view}match[muuri]]" variable="ignore">
+<%if [{$:/view}match[muuri]] %>
 
-	<$list filter="[{$:/themes/tiddlywiki/vanilla/options/stickytitles}match[yes]]" variable="ignore">
+	<%if [{$:/themes/tiddlywiki/vanilla/options/stickytitles}match[yes]] %>
 
 		.tc-tiddler-title {
 			position: initial !important;
@@ -108,13 +109,13 @@ muuri-tiddler-width: 1
 			background: initial !important;
 		}
 
-	</$list>
+	<% endif %>
 
 	.tc-tiddler-title {
 		transform: none !important;
 	}
 
-	<$list filter="[{$:/config/muuri/storyview/NavigateToAnimation}match[yes]]" variable="ignore">
+	<%if [{$:/config/muuri/storyview/NavigateToAnimation}match[yes]] %>
 
 		.tc-tiddler-frame .tc-tiddler-title .tc-titlebar {
 			background-color: <<colour tiddler-background>>;
@@ -129,14 +130,23 @@ muuri-tiddler-width: 1
 			transition: background-color {{$:/config/AnimationDuration}}ms ease-in-out, color {{$:/config/AnimationDuration}}ms ease-in-out;
 		}
 
-	</$list>
+	<% endif %>
 
-	<$vars count={{{ [{$:/config/muuri/storyview/columns}!match[]] ~[[1]] }}} margin={{$:/config/muuri/tiddler/margin}} marginSuffix={{{ [{$:/config/muuri/storyview/align-right}match[yes]addprefix[right]removesuffix[yes]] ~[[$:/config/muuri/storyview/align-right]is[missing]then[right]] ~[[left]] }}} sidebarBreakPoint={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}} marginBottom={{$:/config/muuri/tiddler/margin-bottom}} storyHighZIndex={{{ [list[$:/StoryList]count[]add[201]] }}} firstBreakPoint={{$:/config/muuri/storyview/first-break-point}} secondBreakPoint={{$:/config/muuri/storyview/second-break-point}}>
+	<$let
+		count={{{ [{$:/config/muuri/storyview/columns}!match[]] ~[[1]] }}}
+		margin={{$:/config/muuri/tiddler/margin}}
+		marginSuffix={{{ [{$:/config/muuri/storyview/align-right}match[yes]addprefix[right]removesuffix[yes]] ~[[$:/config/muuri/storyview/align-right]is[missing]then[right]] ~[[left]] }}}
+		sidebarBreakPoint={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}
+		marginBottom={{$:/config/muuri/tiddler/margin-bottom}}
+		storyHighZIndex={{{ [list[$:/StoryList]count[]add[201]] }}}
+		firstBreakPoint={{$:/config/muuri/storyview/first-break-point}}
+		secondBreakPoint={{$:/config/muuri/storyview/second-break-point}}
+	>
 
 		@media(min-width:<<sidebarBreakPoint>>) {
 
 			.tc-story-river.tc-muuri-river {
-				min-height: calc(100vh - 2em);
+				min-height: calc(100vh - (2 * {{$:/config/muuri/storyview/story-river/margin-top}}));
 			}
 
 			.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
@@ -150,13 +160,13 @@ muuri-tiddler-width: 1
 				margin-bottom: <<marginBottom>>;
 			}
 
-			<$list filter="[{$:/config/muuri/storyview/horizontal}match[yes]]">
+			<%if [{$:/config/muuri/storyview/horizontal}match[yes]] %>
 
 				.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 					width: calc((100vw / <<count>>) - <<margin>> - (<<margin>> / <<count>>));
 				}
 
-			</$list>
+			<% endif %>
 
 			.tc-story-river.tc-muuri-river {
 				margin-top: {{$:/config/muuri/storyview/story-river/margin-top}};
@@ -166,7 +176,7 @@ muuri-tiddler-width: 1
 				padding-left: calc(42px - <<margin>>);
 			}
 
-			<$list filter="[<count>compare:number:gt<firstBreakPoint>]" variable="ignore">
+			<%if [<count>compare:number:gt<firstBreakPoint>] %>
 
 				.tc-drag-container > .tc-tiddler-frame .tc-tiddler-info, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tiddler-info {
 					padding: 0;
@@ -176,7 +186,7 @@ muuri-tiddler-width: 1
 					margin-left: -29px;
 				}
 
-				<$list filter="[<count>compare:number:lt<secondBreakPoint>]" variable="ignore">
+				<%if [<count>compare:number:lt<secondBreakPoint>] %>
 
 					.tc-drag-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 						padding: 2em;
@@ -186,9 +196,9 @@ muuri-tiddler-width: 1
 						margin: 0 -2em 0 -2em;
 					}
 
-				</$list>
+				<% endif %>
 
-				<$list filter="[<count>compare:number:gteq<secondBreakPoint>]" variable="ignore">
+				<%if [<count>compare:number:gteq<secondBreakPoint>] %>
 
 					.tc-drag-container > .tc-tiddler-frame, .tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 						padding: 1em;
@@ -206,9 +216,9 @@ muuri-tiddler-width: 1
 						margin-top: -6px;
 					}
 
-				</$list>
+				<% endif %>
 
-			</$list>
+			<% endif %>
 
 			<$list filter="[list[$:/StoryList]has[muuri-tiddler-width]] $:/ControlPanel $:/Manager $:/TagManager">
 
@@ -216,37 +226,37 @@ muuri-tiddler-width: 1
 				
 					<$set name="cssEscapedTitle" value={{{ [<currentTiddler>escapecss[]] }}}>
 
-						<$list filter="[{$:/config/muuri/storyview/horizontal}!match[yes]]" emptyMessage="""
+						<%if [{$:/config/muuri/storyview/horizontal}!match[yes]] %>
 
-							<<set-muuri-tiddler-width "vw">>
-
-						""">
-					
 							<<set-muuri-tiddler-width "%">>
 
-						</$list>
+						<% else %>
+					
+							<<set-muuri-tiddler-width "vw">>
 
-						<$list filter="[<columns>compare:number:lteq<firstBreakPoint>]" variable="ignore">
+						<% endif %>
+
+						<%if [<columns>compare:number:lteq<firstBreakPoint>] %>
 
 							<<set-muuri-tiddler-padding-high>>
 						
-						</$list>
+						<% endif %>
 
-						<$list filter="[<columns>compare:number:gt<firstBreakPoint>]" variable="ignore">
+						<%if [<columns>compare:number:gt<firstBreakPoint>] %>
 
-							<$list filter="[<columns>compare:number:lt<secondBreakPoint>]" variable="ignore">
+							<%if [<columns>compare:number:lt<secondBreakPoint>] %>
 
 								<<set-muuri-tiddler-padding-medium>>
 
-							</$list>
+							<% endif %>
 
-							<$list filter="[<columns>compare:number:gteq<secondBreakPoint>]" variable="ignore">
+							<%if [<columns>compare:number:gteq<secondBreakPoint>] %>
 
 								<<set-muuri-tiddler-padding-low>>
 
-							</$list>
+							<% endif %>
 						
-						</$list>
+						<% endif %>
 					
 					</$set>
 
@@ -254,21 +264,21 @@ muuri-tiddler-width: 1
 
 			</$list>
 
-			<$list filter="[{$:/themes/tiddlywiki/vanilla/options/sidebarlayout}match[fixed-fluid]]" variable="ignore">
+			<%if [{$:/themes/tiddlywiki/vanilla/options/sidebarlayout}match[fixed-fluid]] %>
 
 				.tc-sidebar-scrollable {
 					left: calc({{$:/themes/tiddlywiki/vanilla/metrics/storyright}} + 42px);
 				}
 
-				<$list filter="[{$:/state/sidebar}!match[no]]" variable="ignore">
+				<%if [{$:/state/sidebar}!match[no]] %>
 
 					.tc-story-river.tc-muuri-river {
 						width: {{$:/themes/tiddlywiki/vanilla/metrics/storywidth}};
 					}
 
-				</$list>
+				<% endif %>
 
-			</$list>
+			<% endif %>
 
 		}
 
@@ -360,7 +370,7 @@ muuri-tiddler-width: 1
 
 		</$list>
 
-		<$list filter="[{$:/config/muuri/storyview/fill-gaps}match[yes]]" variable="ignore">
+		<%if [{$:/config/muuri/storyview/fill-gaps}match[yes]] %>
 
 			@media (min-width: <<sidebarBreakPoint>>) {
 
@@ -458,9 +468,9 @@ muuri-tiddler-width: 1
 
 			}
 
-		</$list>
+		<% endif %>
 
-		<$list filter="[{$:/config/muuri/storyview/drag-enabled}match[no]]" variable="ignore">
+		<%if [{$:/config/muuri/storyview/drag-enabled}match[no]] %>
 
 			.tc-story-river.tc-muuri-river > .tc-tiddler-frame {
 				touch-action: auto !important;
@@ -470,7 +480,7 @@ muuri-tiddler-width: 1
 				-webkit-user-select: text !important;
 			}
 
-		</$list>
+		<% endif %>
 
 		.tc-story-river.tc-muuri-river {
 			padding: 0;
@@ -480,15 +490,15 @@ muuri-tiddler-width: 1
 			z-index: <<storyHighZIndex>>;
 		}
 
-		<$list filter="[{$:/config/muuri/storyview/hide-titles-tags}match[yes]]" variable="ignore">
+		<%if [{$:/config/muuri/storyview/hide-titles-tags}match[yes]] %>
 
 			.tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-titlebar, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-subtitle, .tc-story-river.tc-muuri-river > .tc-tiddler-frame .tc-tags-wrapper {
 				display: none;
 			}
 
-		</$list>
+		<% endif %>
 
-		<$list filter="[{$:/config/muuri/storyview/horizontal}match[yes]]">
+		<%if [{$:/config/muuri/storyview/horizontal}match[yes]] %>
 
 			.tc-sidebar-scrollable {
 				position: fixed;
@@ -503,17 +513,17 @@ muuri-tiddler-width: 1
 				height: 100vh;
 			}
 
-			<$list filter="[{$:/state/sidebar}match[no]]">
+			<%if [{$:/state/sidebar}match[no]] %>
 
 				.tc-sidebar-scrollable {
 					display: none;
 				}
 
-			</$list>
+			<% endif %>
 
-		</$list>
+		<% endif %>
 
-	</$vars>
+	</$let>
 
 	.tc-story-river.tc-muuri-river > .tc-tiddler-frame video::-webkit-media-controls-timeline {
 		align-self: center;
@@ -525,4 +535,15 @@ muuri-tiddler-width: 1
 		width: 100%;
 	}
 
-</$list>
+	.tc-tiddler-frame.tc-tiddler-muuri-frame {
+		border: none !important;
+		box-shadow: none !important;
+		padding: 0 !important;
+		background-color: transparent !important;
+	}
+
+	.tc-tiddler-frame.tc-tiddler-muuri-frame > .tc-tiddler-frame {
+		margin: 0 !important;
+	}
+
+<% endif %>

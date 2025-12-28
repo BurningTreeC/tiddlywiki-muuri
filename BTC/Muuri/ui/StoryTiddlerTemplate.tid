@@ -1,0 +1,7 @@
+title: $:/plugins/BTC/Muuri/ui/StoryTiddlerTemplate
+code-body: yes
+
+\whitespace trim
+<div class="tc-tiddler-frame tc-tiddler-muuri-frame">
+<$transclude tiddler={{{ [<currentTiddler>] :cascade[all[shadows+tiddlers]tag[$:/tags/StoryTiddlerTemplateFilter]!is[draft]get[text]] :and[has[title]else[$:/core/ui/ViewTemplate]] }}} />
+</div>

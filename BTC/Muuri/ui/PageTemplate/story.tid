@@ -20,11 +20,11 @@ tags: $:/tags/PageTemplate
 <$list
     filter="[list[$:/StoryList]]"
     history="$:/HistoryList"
-    template="$:/core/ui/StoryTiddlerTemplate"
+    template="$:/plugins/BTC/Muuri/ui/StoryTiddlerTemplate"
     storyview="muuri"
     emptyMessage={{$:/config/EmptyStoryMessage}}
     muuri-drag-enabled={{$:/config/muuri/storyview/drag-enabled}}
-    muuri-item-class="tc-tiddler-frame"
+    muuri-item-class="tc-tiddler-muuri-frame"
 />
 
 <% else %>

@@ -24,6 +24,13 @@
 				"title": "$:/plugins/BTC/Muuri/library/web-animations-polyfill.js",
 				"module-type": "library"
 			}
+		},{
+			"file": "modules/widgets/subclasses/list.js",
+			"fields": {
+				"type": "application/javascript",
+				"title": "$:/plugins/BTC/Muuri/modules/widgets/subclasses/list.js",
+				"module-type": "widget-subclass"
+			}
 		}
 	]
 }
